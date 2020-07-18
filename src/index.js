@@ -4,31 +4,28 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import './App.scss';
-import { createStore ,applyMiddleware , compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import { Provider } from 'react-redux';
 import allReducers from './components/redux/reducers';
 
-
-
 const store = createStore(
 	allReducers,
 	compose(
 		applyMiddleware(thunk),
-		window.devToolsExtension ? window.devToolsExtension() : f => f
+		window.devToolsExtension ? window.devToolsExtension() : (f) => f
 	)
 );
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Provider store ={store}>
+		<Provider store={store}>
 			<App />
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
-
 
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
