@@ -1,9 +1,9 @@
-  
 import { combineReducers } from "redux";
+import { GET_ALL_PRODUCTS } from "../types";
 
-const currentBoardIDReducer = (state = [], action) => {
+const getAllProductsReducer = (state = [], action) => {
   switch (action.type) {
-    case "CURRENT_BOARD_ID":
+    case GET_ALL_PRODUCTS:
       return action.payload;
     default:
       return state;
@@ -11,7 +11,7 @@ const currentBoardIDReducer = (state = [], action) => {
 };
 
 const allReducers = combineReducers({
-    currentBoardIDReducer,
-  });
-  
-  export default allReducers;
+  getAllProductsReducer,
+});
+
+export default allReducers;

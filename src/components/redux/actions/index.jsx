@@ -1,8 +1,8 @@
-import {firstType} from './actionsTypes'
+import { GET_ALL_PRODUCTS } from "../types";
 
-export const currentBoardIDAction = (data) => {
-    return {
-      type: FIRST_TYPE,
-      payload: data,
-    };
+export const getAllProducts = (data) => {
+  return {
+    type: GET_ALL_PRODUCTS,
+    payload: data,
   };
+};
