@@ -6,7 +6,7 @@ import {
     faGoogle,
     faGithub
 } from "@fortawesome/free-brands-svg-icons";
-export const footer = () => {
+const Footer = () => {
     return <div>
         <hr />
         <footer>
@@ -29,4 +29,5 @@ export const footer = () => {
         </footer>
     </div>
 };
-export default footer;
+
+export default Footer;

@@ -6,9 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import './App.scss';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import footer from './components/home/footer';
 import { Provider } from 'react-redux';
 import allReducers from './components/redux/reducers';
+
 
 
 
