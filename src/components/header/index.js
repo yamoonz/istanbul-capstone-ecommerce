@@ -1,7 +1,7 @@
 import React from "react";
 import clock from "./video-clock.mov";
 import { Button } from "react-bootstrap";
-import "./index.css";
+import "./index.scss";
 
 export default function Header() {
   return (
