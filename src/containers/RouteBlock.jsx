@@ -6,18 +6,18 @@ import BlogOverview from '../components/blog/BlogOverview';
 import AboutPage from '../components/about';
 import HomePage from '../components/home';
 import ProductsPage from '../components/products';
-import Navbar from '../components/layout/nav';
+import Profile from '../components/profile';
 
 export const RouteBlock = () => {
 	return (
 		<Switch>
-			<Route path="/" component={Navbar} />
-			<Route path="/signup" component={SignUp} />
-			<Route path="/products" component={ProductsPage} />
-			<Route path="/shoppingcart" component={CartPage} />
-			<Route path="/blog" component={BlogOverview} />
-			<Route path="/about" component={AboutPage} />
-			<Route path="/admin" component={AboutPage} />
+			<Route exact path="/signup" component={SignUp} />
+			<Route exact path="/products" component={ProductsPage} />
+			<Route exact path="/shoppingcart" component={CartPage} />
+			<Route exact path="/blog" component={BlogOverview} />
+			<Route exact path="/about" component={AboutPage} />
+			<Route exact path="/admin" component={AboutPage} />
+			<Route exact path="/profile" component={Profile} />
 			<Route exact path="/" component={HomePage} />
 		</Switch>
 	);
