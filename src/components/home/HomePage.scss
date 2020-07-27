@@ -42,7 +42,7 @@
     }
   }
 
-  .icon-trio {
+  .iconTrio {
     width: 25%;
     position: relative;
     display: flex;
@@ -70,7 +70,7 @@
       font-size: 15px;
     }
 
-    .icon-trio {
+    .iconTrio {
       .fas,
       .fab {
         font-size: 20px;
@@ -83,7 +83,7 @@
       font-size: 14px;
     }
 
-    .icon-trio {
+    .iconTrio {
       .fas,
       .fab {
         font-size: 18px;
@@ -217,7 +217,7 @@
       }
     }
 
-    .icon-trio {
+    .iconTrio {
       order: 1;
       width: 100%;
       flex-wrap: nowrap;
@@ -232,16 +232,16 @@
     }
   }
 
-  .search-box {
+  .searchBox {
     width: 460px;
     margin-left: 45px;
     position: absolute;
     transition: all 0.5s linear;
 
-    .search-preview {
+    .searchPreview {
       padding: 20px;
 
-      &__card:nth-of-type(1) {
+      .card:nth-of-type(1) {
         margin-right: 20px;
       }
     }
@@ -249,33 +249,33 @@
 }
 
 @media only screen and (max-width: 720px) {
-  .search-box {
+  .searchBox {
     width: 450px;
     margin-left: 35px;
   }
 }
 
 @media only screen and (max-width: 690px) {
-  .search-box {
+  .searchBox {
     width: 400px;
     margin-left: 30px;
   }
 }
 
 @media only screen and (max-width: 635px) {
-  .search-box {
+  .searchBox {
     width: 340px;
   }
 }
 
 @media only screen and (max-width: 590px) {
-  .search-box {
+  .searchBox {
     width: 330px;
   }
 }
 
 @media only screen and (max-width: 565px) {
-  .search-box {
+  .searchBox {
     width: 300px;
 
     button {
@@ -285,26 +285,26 @@
 }
 
 @media only screen and (max-width: 552px) {
-  .search-box {
+  .searchBox {
     width: 290px;
   }
 }
 
 @media only screen and (max-width: 525px) {
-  .search-box {
+  .searchBox {
     margin-left: 10px;
     width: 275px;
   }
 }
 
 @media only screen and (max-width: 490px) {
-  .search-box {
+  .searchBox {
     width: 260px;
   }
 }
 
 @media only screen and (max-width: 465px) {
-  .search-box {
+  .searchBox {
     width: 245px;
 
     input {
@@ -314,13 +314,13 @@
 }
 
 @media only screen and (max-width: 450px) {
-  .search-box {
+  .searchBox {
     width: 230px;
   }
 }
 
 @media only screen and (max-width: 444px) {
-  .search-box {
+  .searchBox {
     width: 215px;
 
     button {
@@ -330,7 +330,7 @@
 }
 
 @media only screen and (max-width: 444px) {
-  .search-box {
+  .searchBox {
     width: 70%;
     position: relative;
     margin: 0;

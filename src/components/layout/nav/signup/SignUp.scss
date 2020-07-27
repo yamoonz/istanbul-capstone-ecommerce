@@ -1,4 +1,4 @@
-.signup-box {
+.signupBox {
   width: 250px;
   transition: all 1s ease-in-out;
   position: absolute;
@@ -15,11 +15,11 @@
     margin-top: 20px;
   }
 
-  > .signup-form {
+  > .signupForm {
     margin-top: 20px;
   }
 
-  .signup-redirect {
+  .signupRedirect {
     width: 100%;
     height: 30px;
     margin-bottom: 15px;
@@ -30,15 +30,15 @@
     }
   }
 
-  .gg-button,
-  .fb-button {
+  .ggButton,
+  .fbButton {
     height: 100%;
     width: 80%;
     padding: 7px 0px 7px 0px;
     font-size: 13px;
   }
 
-  .login-button {
+  .loginButton {
     margin-top: 10px;
     width: 100%;
   }
@@ -67,7 +67,7 @@
 }
 
 @media only screen and (max-width: 316px) {
-  .signup-box.signUpBoxResponsive {
+  .signupBox.signUpBoxResponsive {
     width: 85%;
     min-width: 170px !important;
   }
