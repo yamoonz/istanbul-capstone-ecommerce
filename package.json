@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint '**/*.{js,jsx}'",
-    "fix": "prettier --write '**/*.{js,jsx,snap}' "
+    "fix": "prettier --write '**/*.{js,jsx}' "
   },
   "eslintConfig": {
     "extends": "react-app"
