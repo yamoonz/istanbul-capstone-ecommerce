@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import { NavLink } from "react-router-dom";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
+import "../../home/HomePage.scss";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {

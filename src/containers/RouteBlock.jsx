@@ -4,7 +4,6 @@ import SignUp from "../components/signup/SignUp";
 import CartPage from "../components/shoppingCart/Cart";
 import BlogOverview from "../components/blog/BlogOverview";
 import AboutPage from "../components/about/About";
-import HomePage from "../components/home/HomePage";
 import ProductsPage from "../components/products/Products";
 import AdminPage from "../components/addProductsForm/AddProducts";
 
@@ -17,7 +16,6 @@ export const RouteBlock = () => {
       <Route path="/blog" component={BlogOverview} />
       <Route path="/about" component={AboutPage} />
       <Route path="/admin" component={AdminPage} />
-      <Route exact path="/" component={HomePage} />
     </Switch>
   );
 };
