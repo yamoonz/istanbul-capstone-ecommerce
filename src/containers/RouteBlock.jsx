@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SignUp from '../components/signup';
-import CartPage from '../components/shoppingCart';
+import SignUp from '../components/signup/SignUp';
+import CartPage from '../components/shoppingCart/Cart';
 import BlogOverview from '../components/blog/BlogOverview';
-import AboutPage from '../components/about';
-import HomePage from '../components/home';
-import ProductsPage from '../components/products';
-import Navbar from '../components/layout/nav';
+import AboutPage from '../components/about/About';
+import HomePage from '../components/home/HomePage';
+import ProductsPage from '../components/products/ProductsPage';
+import Navbar from '../components/layout/nav/Navbar';
 
 export const RouteBlock = () => {
 	return (

@@ -68,20 +68,17 @@ export const mockDatabase = [
   },
 ];
 
-const SearchBox = () => {
+const Search = () => {
   const [searchQueryContainer, setSearchQuery] = useState("");
   const [warningOfEmptySearch, setWarningOfEmptySearch] = useState(false);
   const [isSearchLoading, setSearchLoading] = useState(false);
   const [isErrorOccured, setError] = useState(false);
-  const [isSearchCanceled, setSearchCanceled] = useState(false);
-  const [previewList, setPreviewList] = useState(false);
   const { widthOfDevice, heightOfDevice } = useDeviceSizes();
 
   const breakPointTooSmall = 590;
   const breakPointToSmallDevices = 765;
   const amountOfProductToShowInSearch =
     widthOfDevice < breakPointToSmallDevices ? 2 : 3;
-  //const URL_OF_SEARCH = '';
 
   const sendSearchQuery = () => {
     if (!searchQueryContainer) {
@@ -158,15 +155,19 @@ const SearchBox = () => {
   );
 };
 
-export default SearchBox;
+export default Search;
 
 /*THIS WILL BE A FETCHING FUNCTION
+
+  const [isSearchCanceled, setSearchCanceled] = useState(false);
+  const [previewList, setPreviewList] = useState(false);
 
   useEffect(() => {
     setSearchCanceled(false);
     const getSearchPreviews = async () => {
        setError(true);
        setSearchLoading(true);
+
      try {
         const response = await fetch(mock);
         if (!isSearchCanceled) {
@@ -179,8 +180,8 @@ export default SearchBox;
           setError(true);
         }
       }
-      setSearchLoading(false);
 
+      setSearchLoading(false);
       return () => {
         setSearchCanceled(true);
       };

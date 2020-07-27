@@ -7,7 +7,7 @@ import "./SignUp.scss";
 import { NavLink } from "react-router-dom";
 import useDeviceSizes from "../../useDeviceSizes";
 
-const SignUpBox = () => {
+const SignUp = () => {
   const passwordOfUser = useRef(null);
   const emailOfUser = useRef(null);
   const { widthOfDevice, heightOfDevice } = useDeviceSizes();
@@ -72,4 +72,4 @@ const SignUpBox = () => {
   );
 };
 
-export default SignUpBox;
+export default SignUp;

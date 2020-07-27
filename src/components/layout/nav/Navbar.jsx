@@ -93,7 +93,6 @@ const Navbar = () => {
             {isAdminLoggedIn ? (
               <div>
                 <NavLink to="/admin">
-                  {" "}
                   <i className="fas fa-user-shield"></i>
                 </NavLink>
               </div>
@@ -107,7 +106,6 @@ const Navbar = () => {
             )}
             <div>
               <NavLink to="/shoppingcart">
-                {" "}
                 <i className="fas fa-shopping-cart"></i>
               </NavLink>
             </div>
