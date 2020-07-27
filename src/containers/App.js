@@ -1,12 +1,13 @@
-import React from 'react';
-import '../App.scss';
+import React from "react";
+import "../App.scss";
+import Product from "./Product";
 
 function App() {
-	return (
-		<div className="App">
-			<h1>Hello</h1>
-		</div>
-	);
+  return (
+    <div>
+      <Product />
+    </div>
+  );
 }
 
 export default App;

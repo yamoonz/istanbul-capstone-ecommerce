@@ -1,0 +1,59 @@
+.product-wrapper{
+  border: 1px solid #ECEBE4;
+  border-radius: 15px;
+  height: 600px;
+  overflow: hidden;
+}
+
+.product-image-wrapper{
+  background-color: #ECEBE4;
+}
+
+.product-overview-wrapper{
+  background-color: #153B50;
+  color: #fff;
+}
+
+.image-wrapper{
+  height: 60%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.circles-wrapper{
+  height: 15%;
+}
+
+.previews-wrapper{
+  height: 25%;
+}
+
+.preview{
+  background-color: #C4C4C4;
+  height: 100%;
+}
+
+.stars-wrapper{
+  justify-content: flex-end;
+}
+
+.MuiTypography-root{
+  color: #fff !important;
+}
+
+.MuiFormLabel-root{
+  color: #fff !important;
+}
+
+.MuiInputBase-root{
+  color: #fff !important;
+}
+
+.MuiFormControl-root{
+  border-color: #fff !important;
+}
+
+.MuiOutlinedInput-root{
+  border-color: #fff !important;
+
+}
