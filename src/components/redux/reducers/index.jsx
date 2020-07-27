@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 const currentBoardIDReducer = (state = [], action) => {
 	switch (action.type) {
