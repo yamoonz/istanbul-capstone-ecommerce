@@ -1,4 +1,3 @@
-  
 import { combineReducers } from "redux";
 
 const currentBoardIDReducer = (state = [], action) => {
@@ -11,7 +10,7 @@ const currentBoardIDReducer = (state = [], action) => {
 };
 
 const allReducers = combineReducers({
-    currentBoardIDReducer,
-  });
-  
-  export default allReducers;
+  currentBoardIDReducer,
+});
+
+export default allReducers;
