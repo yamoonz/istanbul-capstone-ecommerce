@@ -1,10 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Search.scss";
 import useDeviceSizes from "../../useDeviceSizes";
 
+//This will be serving as a temporary database until we build the real one completely.
 export const mockDatabase = [
   {
     title: "Airmax",
@@ -71,14 +72,13 @@ export const mockDatabase = [
 const Search = () => {
   const [searchQueryContainer, setSearchQuery] = useState("");
   const [warningOfEmptySearch, setWarningOfEmptySearch] = useState(false);
-  const [isSearchLoading, setSearchLoading] = useState(false);
-  const [isErrorOccured, setError] = useState(false);
-  const { widthOfDevice, heightOfDevice } = useDeviceSizes();
+  const { widthOfDevice } = useDeviceSizes();
 
   const breakPointTooSmall = 590;
   const breakPointToSmallDevices = 765;
   const amountOfProductToShowInSearch =
     widthOfDevice < breakPointToSmallDevices ? 2 : 3;
+  const onlyFirstImageOfProduct = 0;
 
   const sendSearchQuery = () => {
     if (!searchQueryContainer) {
@@ -86,7 +86,6 @@ const Search = () => {
       return;
     } else {
       setWarningOfEmptySearch(false);
-      console.log(`${searchQueryContainer} will be sent with button click`);
     }
   };
 
@@ -106,12 +105,14 @@ const Search = () => {
       .slice(0, amountOfProductToShowInSearch)
       .map((product, idx) => (
         <Col xl={3} lg={3} md={3} className="card" key={idx}>
-          <img src={product.images[0]} alt="product" />
+          <img src={product.images[onlyFirstImageOfProduct]} alt="product" />
           <div className="title">{product.title}</div>
           <div className="brand">{product.brand}</div>
           <div className="price">{product.price}</div>
         </Col>
       ));
+
+    //This will be more precise to show if it's still loading or failed at finding when we implement Fetching.
     if (previewItemsContainer.lenght === 0) {
       return <span>It's still loading.</span>;
     } else {
@@ -137,11 +138,7 @@ const Search = () => {
             <Button onClick={sendSearchQuery}>Search</Button>
           </Col>
         </Col>
-        {isErrorOccured ? (
-          <span>Something went wrong, please try again later.</span>
-        ) : isSearchLoading ? (
-          <span>This will be a spinner.</span>
-        ) : searchQueryContainer && widthOfDevice > breakPointTooSmall ? (
+        {searchQueryContainer && widthOfDevice > breakPointTooSmall ? (
           <Col xl={6} lg={7} md={8} className="searchPreview">
             {handleSearchPreview()}
           </Col>
@@ -156,36 +153,3 @@ const Search = () => {
 };
 
 export default Search;
-
-/*THIS WILL BE A FETCHING FUNCTION
-
-  const [isSearchCanceled, setSearchCanceled] = useState(false);
-  const [previewList, setPreviewList] = useState(false);
-
-  useEffect(() => {
-    setSearchCanceled(false);
-    const getSearchPreviews = async () => {
-       setError(true);
-       setSearchLoading(true);
-
-     try {
-        const response = await fetch(mock);
-        if (!isSearchCanceled) {
-          let { array } = await response.json();
-          console.log(array);
-        }
-      } catch (error) {
-        console.log(error);
-         (!isSearchCanceled) {
-          setError(true);
-        }
-      }
-
-      setSearchLoading(false);
-      return () => {
-        setSearchCanceled(true);
-      };
-          };
-
-    getSearchPreviews();
-  }, [searchQueryContainer]);*/

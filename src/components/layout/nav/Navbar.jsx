@@ -84,7 +84,7 @@ const Navbar = () => {
               <NavLink to="/contact">Contact</NavLink>
             </Col>
           </Row>
-          <Row xl={2} lg={2} className="icon-trio">
+          <Row xl={2} lg={2} className="iconTrio">
             <div>
               <i
                 className="fas fa-search"

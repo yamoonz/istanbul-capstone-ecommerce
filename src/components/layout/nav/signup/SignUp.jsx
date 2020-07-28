@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -8,13 +8,13 @@ import { NavLink } from "react-router-dom";
 import useDeviceSizes from "../../useDeviceSizes";
 
 const SignUp = () => {
-  const passwordOfUser = useRef(null);
-  const emailOfUser = useRef(null);
-  const { widthOfDevice, heightOfDevice } = useDeviceSizes();
+  const passwordOfUser = useRef(false);
+  const emailOfUser = useRef(false);
+  const { widthOfDevice } = useDeviceSizes();
   const breakPointsToSmallDevices = 765;
 
-  const handleLoginInputs = () =>
-    console.log([emailOfUser.current.value, passwordOfUser.current.value]);
+  //This function will send the input values to check auth with 'emailOfUser.current.value' and 'passwordOfUser.current.value';
+  const handleLoginInputs = () => null;
 
   return (
     <>
