@@ -13,10 +13,10 @@ export default function AddProducts() {
 	const [getProductPrice, setGetProductPrice] = useState('');
 	const [getProductSizes, setGetProductSizes] = useState([]);
 
-	console.log(getProductCategory);
 
 	const addNewProductToDatabase = async (e) => {
 		e.preventDefault();
+
 		const allImages = [];
 		const firstImage = e.target['firstImage'].value;
 		allImages.push(firstImage);
@@ -26,6 +26,19 @@ export default function AddProducts() {
 		allImages.push(thridImage);
 		const fourthImage = e.target['fourthImage'].value;
 		allImages.push(fourthImage);
+		const allSizes = [];
+		if(hasSizes === true){
+			
+			const firstSize = e.target['firstSize'].value;
+			allSizes.push(firstSize);
+			const secondSize = e.target['secondSize'].value;
+			allSizes.push(secondSize);
+			const thirdSize = e.target['thirdSize'].value;
+			allSizes.push(thirdSize);
+			const fourthSize = e.target['fourthSize'].value;
+			allSizes.push(fourthSize);
+		}
+
 
 		const productInfo = {
 			brand: getProductBrand,
@@ -34,6 +47,7 @@ export default function AddProducts() {
 			description: getProductDescription,
 			images: allImages,
 			hasSize: hasSizes,
+			sizes:allSizes,
 			price: getProductPrice,
 		};
 
@@ -72,16 +86,15 @@ export default function AddProducts() {
 					<Row>
 						<Col xs={12} md={6} lg={5}>
 							<Form.Group controlId="formGridState">
-								<Form.Control as="select" defaultValue="Shoes">
+								<Form.Control as="select" defaultValue="Shoes" onChange={(e) => setGetProductCategory(e.target.value)}>
 									<option
-										onChange={(e) => setGetProductCategory(e.target.value)}
+										
 									>
-                    Shoes
+                   						 Shoes
 									</option>
 									<option
-										onChange={(e) => setGetProductCategory(e.target.value)}
 									>
-                    Health care
+                   						 Health care
 									</option>
 								</Form.Control>
 							</Form.Group>
@@ -106,14 +119,14 @@ export default function AddProducts() {
 							<Form.Control
 								type="number"
 								placeholder="Price"
-								onChange={(e) => setGetProductPrice(e.target.value)}
+								onChange={(e) => setGetProductPrice(parseInt(e.target.value))}
 							/>
 						</Col>
 					</Row>
 					{hasSizes && (
 						<Row>
 							<Col xs={12} md={6} lg={3}>
-								<Form.Control as="select" defaultValue="sizes">
+								<Form.Control as="select" defaultValue="sizes" id= "firstSize">
 									<option>45</option>
 									<option>44</option>
 									<option>43</option>
@@ -122,7 +135,7 @@ export default function AddProducts() {
 								</Form.Control>
 							</Col>
 							<Col xs={12} md={6} lg={3}>
-								<Form.Control as="select" defaultValue="sizes">
+								<Form.Control as="select" defaultValue="sizes" id= "secondSize">
 									<option>45</option>
 									<option>44</option>
 									<option>43</option>
@@ -131,7 +144,7 @@ export default function AddProducts() {
 								</Form.Control>
 							</Col>
 							<Col xs={12} md={6} lg={3}>
-								<Form.Control as="select" defaultValue="sizes">
+								<Form.Control as="select" defaultValue="sizes" id= "thirdSize">
 									<option>45</option>
 									<option>44</option>
 									<option>43</option>
@@ -140,7 +153,7 @@ export default function AddProducts() {
 								</Form.Control>
 							</Col>
 							<Col xs={12} md={6} lg={3}>
-								<Form.Control as="select" defaultValue="sizes">
+								<Form.Control as="select" defaultValue="sizes" id = "fourthSize">
 									<option>45</option>
 									<option>44</option>
 									<option>43</option>
@@ -173,6 +186,8 @@ export default function AddProducts() {
 					</Row>
 				</Container>
 			</Form>
+			
 		</>
+	
 	);
 }

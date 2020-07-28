@@ -29,7 +29,7 @@ const LogInForm = () => {
 
 	return (
 		<>
-			<AddProducts />
+			{isAdmin && <AddProducts />}
 			<h5>sign in</h5>
 			<form onSubmit={(e) => userLogin(e)}>
 				<input type="email" id="emailField" placeholder="Email" />
