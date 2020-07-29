@@ -108,11 +108,11 @@ const Search = () => {
           <img src={product.images[onlyFirstImageOfProduct]} alt="product" />
           <div className="title">{product.title}</div>
           <div className="brand">{product.brand}</div>
-          <div className="price">{product.price}</div>
+          <div className="price">${product.price}</div>
         </Col>
       ));
 
-    //This will be more precise to show if it's still loading or failed at finding when we implement Fetching.
+    //This will be more precise to show if it's still loading or failed as searching when we implement Fetching.
     if (previewItemsContainer.lenght === 0) {
       return <span>It's still loading.</span>;
     } else {
