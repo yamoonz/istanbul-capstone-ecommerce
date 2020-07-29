@@ -196,12 +196,12 @@
       order: 2;
 
       > .col {
+        border-bottom: 0.1px solid #f5deb378;
+        transition: all 1.5s ease-in-out;
+
         &:nth-of-type(1) {
           border-top: 0.1px solid #f5deb378;
         }
-
-        border-bottom: 0.1px solid #f5deb378;
-        transition: all 1.5s ease-in-out;
 
         &:hover {
           border-right: 0.1px solid #f5deb378;
