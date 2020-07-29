@@ -37,13 +37,12 @@ function navbarIconsReducer(state, action) {
 
 const Navbar = () => {
   const [
-    { isSignBoxOpen, isSearchBoxOpen, isHamburgerOpen, isAdminLoggedIn },
+    { isSignBoxOpen, isSearchBoxOpen, isHamburgerOpen },
     dispatch,
   ] = useReducer(navbarIconsReducer, {
     isSignBoxOpen: false,
     isSearchBoxOpen: false,
     isHamburgerOpen: false,
-    isAdminLoggedIn: false,
   });
 
   const handleStatusOfIcons = (type) => dispatch({ type });
@@ -51,7 +50,7 @@ const Navbar = () => {
   return (
     <>
       {isSearchBoxOpen && <SearchBox />}
-      <Container fluid id="navbar">
+      <Container fluid className="navbar">
         <Row
           className="hamburgerContainer"
           onClick={() => handleStatusOfIcons("IS_HAMBURGER_OPENED")}
@@ -66,46 +65,38 @@ const Navbar = () => {
           <Row className="navbarLogo">LOGO</Row>
 
           <Row xl={7} lg={7} className="navbarItems">
-            <Col>
+            <Col className="navLinkCol">
               <NavLink exact to="/">
                 Home
               </NavLink>
             </Col>
-            <Col>
+            <Col className="navLinkCol">
               <NavLink to="/about">About</NavLink>
             </Col>
-            <Col>
+            <Col className="navLinkCol">
               <NavLink to="/blog">Blog</NavLink>
             </Col>
-            <Col>
+            <Col className="navLinkCol">
               <NavLink to="/products">Products</NavLink>
             </Col>
-            <Col>
+            <Col className="navLinkCol">
               <NavLink to="/contact">Contact</NavLink>
             </Col>
           </Row>
           <Row xl={2} lg={2} className="iconTrio">
-            <div>
+            <div className="iconWrapper">
               <i
                 className="fas fa-search"
                 onClick={() => handleStatusOfIcons("IS_SEARCH_OPENED")}
               ></i>
             </div>
-            {isAdminLoggedIn ? (
-              <div>
-                <NavLink to="/admin">
-                  <i className="fas fa-user-shield"></i>
-                </NavLink>
-              </div>
-            ) : (
-              <div>
-                <i
-                  className="fas fa-user-circle"
-                  onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
-                ></i>
-              </div>
-            )}
-            <div>
+            <div className="iconWrapper">
+              <i
+                className="fas fa-user-circle"
+                onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
+              ></i>
+            </div>
+            <div className="iconWrapper">
               <NavLink to="/shoppingcart">
                 <i className="fas fa-shopping-cart"></i>
               </NavLink>

@@ -1,4 +1,4 @@
-#navbar {
+.navbar {
   display: flex;
   height: 100px;
   justify-content: space-around;
@@ -19,7 +19,7 @@
     width: 50%;
     padding: 10px 5px 10px 5px;
 
-    > .col {
+    .navLinkCol {
       padding-left: 5px;
       padding-right: 5px;
       transition: font-size 0.3s ease-in-out;
@@ -33,6 +33,7 @@
     cursor: pointer;
   }
 
+  // To give this alignment to all div's that are direct child of .navbar
   > div {
     text-align: center;
 
@@ -51,12 +52,13 @@
     margin-left: 20px;
     padding: 10px 5px 10px 5px;
 
-    > div {
+    .iconWrapper {
       max-width: 35px;
       margin-right: 15px;
       min-width: 18px;
     }
 
+    // FontAwesome classNames.
     .fas,
     .fab {
       font-size: 22px;
@@ -65,41 +67,17 @@
     }
   }
 
-  @media only screen and (max-width: 980px) {
-    .navbarItems > .col {
-      font-size: 15px;
+  $tabletFirst: 980px;
+  @media (max-width: $tabletFirst) {
+    .navbarItems .navLinkCol {
+      font-size: 95%;
     }
 
     .iconTrio {
       .fas,
       .fab {
-        font-size: 20px;
+        font-size: 125%;
       }
-    }
-  }
-
-  @media only screen and (max-width: 880px) {
-    .navbarItems > .col {
-      font-size: 14px;
-    }
-
-    .iconTrio {
-      .fas,
-      .fab {
-        font-size: 18px;
-      }
-    }
-  }
-
-  @media only screen and (max-width: 850px) {
-    .navbarItems > .col {
-      font-size: 13px;
-    }
-  }
-
-  @media only screen and (max-width: 770px) {
-    .navbarItems {
-      width: 50%;
     }
   }
 
@@ -108,8 +86,9 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  #navbar.container-fluid {
+$breakToHamburger: 768px;
+@media (max-width: $breakToHamburger) {
+  .navbar {
     position: absolute;
     width: 200px;
     height: 100vh;
@@ -195,7 +174,7 @@
       height: 40%;
       order: 2;
 
-      > .col {
+      .navLinkCol {
         border-bottom: 0.1px solid #f5deb378;
         transition: all 1.5s ease-in-out;
 
@@ -244,108 +223,6 @@
       .card:nth-of-type(1) {
         margin-right: 20px;
       }
-    }
-  }
-}
-
-@media only screen and (max-width: 720px) {
-  .searchBox {
-    width: 450px;
-    margin-left: 35px;
-  }
-}
-
-@media only screen and (max-width: 690px) {
-  .searchBox {
-    width: 400px;
-    margin-left: 30px;
-  }
-}
-
-@media only screen and (max-width: 635px) {
-  .searchBox {
-    width: 340px;
-  }
-}
-
-@media only screen and (max-width: 590px) {
-  .searchBox {
-    width: 330px;
-  }
-}
-
-@media only screen and (max-width: 565px) {
-  .searchBox {
-    width: 300px;
-
-    button {
-      font-size: 14px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 552px) {
-  .searchBox {
-    width: 290px;
-  }
-}
-
-@media only screen and (max-width: 525px) {
-  .searchBox {
-    margin-left: 10px;
-    width: 275px;
-  }
-}
-
-@media only screen and (max-width: 490px) {
-  .searchBox {
-    width: 260px;
-  }
-}
-
-@media only screen and (max-width: 465px) {
-  .searchBox {
-    width: 245px;
-
-    input {
-      font-size: 15px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .searchBox {
-    width: 230px;
-  }
-}
-
-@media only screen and (max-width: 444px) {
-  .searchBox {
-    width: 215px;
-
-    button {
-      font-size: 13.5px;
-    }
-  }
-}
-
-@media only screen and (max-width: 444px) {
-  .searchBox {
-    width: 70%;
-    position: relative;
-    margin: 0;
-    width: calc(100% - 20px) !important;
-    padding-left: 10px;
-    margin-bottom: -1px;
-
-    &::before {
-      content: "";
-      background-color: #6676a0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100%;
     }
   }
 }
