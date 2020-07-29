@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function About() {
+const Cart = () => {
   return <div></div>;
-}
+};
+
+export default Cart;

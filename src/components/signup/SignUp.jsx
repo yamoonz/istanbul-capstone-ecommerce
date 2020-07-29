@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function About() {
+const SignUp = () => {
   return <div></div>;
-}
+};
+
+export default SignUp;
