@@ -43,14 +43,12 @@ const Navbar = () => {
     isSignBoxOpen: false,
     isSearchBoxOpen: false,
     isHamburgerOpen: false,
-    isAdminLoggedIn: false,
   });
 
   const handleStatusOfIcons = (type) => dispatch({ type });
 
   return (
     <>
-      {isSearchBoxOpen && <SearchBox />}
       <Container fluid id="navbar">
         <Row
           className="hamburgerContainer"
@@ -91,20 +89,12 @@ const Navbar = () => {
                 onClick={() => handleStatusOfIcons("IS_SEARCH_OPENED")}
               ></i>
             </div>
-            {isAdminLoggedIn ? (
-              <div>
-                <NavLink to="/admin">
-                  <i className="fas fa-user-shield"></i>
-                </NavLink>
-              </div>
-            ) : (
-              <div>
-                <i
-                  className="fas fa-user-circle"
-                  onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
-                ></i>
-              </div>
-            )}
+            <div>
+              <i
+                className="fas fa-user-circle"
+                onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
+              ></i>
+            </div>
             <div>
               <NavLink to="/shoppingcart">
                 <i className="fas fa-shopping-cart"></i>
