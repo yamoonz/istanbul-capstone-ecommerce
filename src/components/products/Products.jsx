@@ -3,6 +3,8 @@ import ProductCard from "../layout/productCard/ProductCard";
 import { Container, Row } from "react-bootstrap";
 
 export default function Products() {
+  // This is a temporary until we add real products in the database
+
   const data = [
     {
       title: "Airmax",
@@ -66,15 +68,13 @@ export default function Products() {
     },
   ];
 
-  const renderProductsCards = () => {
-    return data.map((info, index) => {
-      return <ProductCard info={info} index={index} key={index} />;
-    });
-  };
-
   return (
     <Container>
-      <Row>{renderProductsCards()}</Row>
+      <Row>
+        {data.map((info, index) => (
+          <ProductCard info={info} index={index} key={index} />
+        ))}
+      </Row>
     </Container>
   );
 }
