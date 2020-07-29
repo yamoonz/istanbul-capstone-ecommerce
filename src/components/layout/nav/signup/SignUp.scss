@@ -11,11 +11,11 @@
   right: 10px;
   display: block !important;
 
-  .row {
+  .socialLoginButtons {
     margin-top: 20px;
   }
 
-  > .signupForm {
+  .signupForm {
     margin-top: 20px;
   }
 
@@ -42,8 +42,13 @@
     margin-top: 10px;
     width: 100%;
   }
+}
 
-  &.signUpBoxResponsive {
+$breakPointToSideNav: 768px;
+$breakPointOverflowInExtraSmall: 316px;
+
+@media (max-width: $breakPointToSideNav) {
+  .signUpBoxResponsive {
     position: absolute;
     z-index: 10;
     left: 50%;
@@ -66,7 +71,7 @@
   }
 }
 
-@media only screen and (max-width: 316px) {
+@media (max-width: $breakPointOverflowInExtraSmall) {
   .signupBox.signUpBoxResponsive {
     width: 85%;
     min-width: 170px !important;

@@ -5,26 +5,18 @@ import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import "./SignUp.scss";
 import { NavLink } from "react-router-dom";
-import useDeviceSizes from "../../useDeviceSizes";
 
 const SignUp = () => {
   const passwordOfUser = useRef(false);
   const emailOfUser = useRef(false);
-  const { widthOfDevice } = useDeviceSizes();
-  const breakPointsToSmallDevices = 765;
 
   //This function will send the input values to check auth with 'emailOfUser.current.value' and 'passwordOfUser.current.value';
   const handleLoginInputs = () => null;
 
   return (
     <>
-      <Col
-        xl={11}
-        className={`signupBox ${
-          widthOfDevice < breakPointsToSmallDevices ? "signUpBoxResponsive" : ""
-        }`}
-      >
-        <Row>
+      <Col xl={11} className="signupBox signUpBoxResponsive">
+        <Row className="socialLoginButtons">
           <Col>
             <Button variant="info" size="md" className="fbButton">
               Facebook
