@@ -70,17 +70,19 @@ export const mockDatabase = [
 ];
 
 const Search = () => {
+  // It is left empty because we want search to start as empty.
   const [searchQueryContainer, setSearchQuery] = useState("");
   const [warningOfEmptySearch, setWarningOfEmptySearch] = useState(false);
   const { widthOfDevice } = useDeviceSizes();
 
+  // In order to set the number of product we wanna filter in preview according to size of device.
   const breakPointTooSmall = 590;
   const breakPointToSmallDevices = 765;
   const amountOfProductToShowInSearch =
     widthOfDevice < breakPointToSmallDevices ? 2 : 3;
   const onlyFirstImageOfProduct = 0;
 
-  //This will be sending input value to database with fetching if input is not empty when "Search" button is clicked.
+  // This will be sending input value to database with fetching if input is not empty when "Search" button is clicked.
   const sendSearchQuery = () => {
     if (!searchQueryContainer) {
       setWarningOfEmptySearch(true);
@@ -90,7 +92,7 @@ const Search = () => {
     }
   };
 
-  //This will setting input values onChange and will show preview card only if there is something typed.
+  // This will setting input values onChange and will show preview card only if there is something typed.
   const handleSearchChanges = (e) => {
     setSearchQuery(e.target.value);
     if (!searchQueryContainer) {
@@ -110,11 +112,14 @@ const Search = () => {
           <img src={product.images[onlyFirstImageOfProduct]} alt="product" />
           <div className="title">{product.title}</div>
           <div className="brand">{product.brand}</div>
-          <div className="price">${product.price}</div>
+          <div className="price">
+            {product.currency}
+            {product.price}
+          </div>
         </Col>
       ));
 
-    //This will be more precise to show if it's still loading or failed as searching when we implement Fetching.
+    // This will be more precise to show if it's still loading or failed as searching when we implement Fetching.
     if (previewItemsContainer.lenght === 0) {
       return <span>It's still loading.</span>;
     } else {
@@ -126,7 +131,7 @@ const Search = () => {
     <>
       <Col className="searchBox col-12 searchTransition">
         <Col xl={6} lg={7} md={8} className="searchBar">
-          <Col xl={10} lg={10} md={10} className="col-9">
+          <Col xl={10} lg={10} md={10} className="col-9 searchInputWrapper">
             <Form.Control
               size="lg"
               type="text"
@@ -136,7 +141,7 @@ const Search = () => {
               value={searchQueryContainer}
             />
           </Col>
-          <Col xl={2} lg={2} md={2} className="col-3">
+          <Col xl={2} lg={2} md={2} className="col-3 searchButtonWrapper">
             <Button onClick={sendSearchQuery}>Search</Button>
           </Col>
         </Col>

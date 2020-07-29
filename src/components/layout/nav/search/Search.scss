@@ -21,7 +21,7 @@
     font-size: 1.4vw;
   }
 
-  > .searchBar {
+  .searchBar {
     height: 55%;
     background-color: #ebebeb;
     border: 1px solid #d7d7d7;
@@ -34,7 +34,8 @@
     border-radius: 0.3rem;
     transition: all 0.3s ease-in-out;
 
-    > div {
+    .searchButtonWrapper,
+    .searchInputWrapper {
       height: 100%;
       position: relative;
       display: inline-block;
@@ -128,58 +129,77 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+$breakPointPreviewBreaks: 1200px;
+$breakPointCardBreaks: 1134px;
+$breakPointHamburgerSwallowSearch: 769px;
+$breakPointOfSmallDevices: 620px;
+$breakPointOfExtraSmall: 444px;
+
+@media (max-width: breakPointPreviewBreaks) {
   .searchPreview {
     margin-top: 8px;
   }
 }
 
-@media only screen and (max-width: 1134px) {
+@media (max-width: $breakPointCardBreaks) {
   .searchPreview {
     .card {
-      font-size: 15px;
+      font-size: 90%;
     }
   }
 }
 
-@media only screen and (max-width: 1100px) {
-  .searchPreview {
-    .card {
-      font-size: 14px;
+@media (max-width: $breakPointHamburgerSwallowSearch) {
+  .searchBox {
+    width: 62vw;
+    left: 10px;
+    position: absolute;
+    transition: all 0.5s linear;
+
+    .searchPreview {
+      padding: 20px;
+
+      .card:nth-of-type(1) {
+        margin-right: 20px;
+      }
     }
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .searchPreview {
-    .card {
-      font-size: 13px;
-    }
-  }
+@media (max-width: $breakPointOfSmallDevices) {
+  .searchBox {
+    width: 52vw;
 
-  .searchBox span {
-    font-size: 1.6vw;
+    button,
+    input {
+      font-size: 85%;
+    }
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .searchPreview {
-    .card {
-      font-size: 12px;
+@media (max-width: $breakPointOfExtraSmall) {
+  .searchBox {
+    position: relative;
+    margin: 0;
+    width: 100% !important;
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: -1px;
+
+    button,
+    input {
+      font-size: 100%;
     }
-  }
 
-  .searchBox span {
-    font-size: 1.7vw;
-  }
-}
-
-@media only screen and (max-width: 770px) {
-  .searchPreview {
-    margin-top: 5px;
-  }
-
-  .searchBox span {
-    font-size: 1.9vw;
+    &::before {
+      content: "";
+      background-color: #6676a0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+    }
   }
 }
