@@ -52,13 +52,13 @@ const Navbar = () => {
       {isSearchBoxOpen && <SearchBox />}
       <Container fluid className="navbar">
         <Row
-          className="hamburgerContainer"
+          className="hamburgerContainer navbarItemWrapper"
           onClick={() => handleStatusOfIcons("IS_HAMBURGER_OPENED")}
         >
           <Col className="hamburgerIcon"></Col>
         </Row>
         <Row
-          className={`collapseMenuItems ${
+          className={`navbarItemWrapper collapseMenuItems ${
             isHamburgerOpen ? "hamburgerOpened" : ""
           }`}
         >
@@ -83,7 +83,7 @@ const Navbar = () => {
               <NavLink to="/contact">Contact</NavLink>
             </Col>
           </Row>
-          <Row xl={2} lg={2} className="iconTrio">
+          <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">
             <div className="iconWrapper">
               <i
                 className="fas fa-search"

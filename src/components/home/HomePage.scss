@@ -33,8 +33,7 @@
     cursor: pointer;
   }
 
-  // To give this alignment to all div's that are direct child of .navbar
-  > div {
+  .navbarItemWrapper {
     text-align: center;
 
     a {
@@ -207,21 +206,6 @@ $breakToHamburger: 768px;
       .fas,
       .fab {
         font-size: 22px;
-      }
-    }
-  }
-
-  .searchBox {
-    width: 460px;
-    margin-left: 45px;
-    position: absolute;
-    transition: all 0.5s linear;
-
-    .searchPreview {
-      padding: 20px;
-
-      .card:nth-of-type(1) {
-        margin-right: 20px;
       }
     }
   }

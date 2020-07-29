@@ -6,18 +6,17 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="container-fluid"
-        id="navbar"
+        class="navbar container-fluid"
       >
         <div
-          class="hamburgerContainer row"
+          class="hamburgerContainer navbarItemWrapper row"
         >
           <div
             class="hamburgerIcon col"
           />
         </div>
         <div
-          class="collapseMenuItems  row"
+          class="navbarItemWrapper collapseMenuItems  row"
         >
           <div
             class="navbarLogo row"
@@ -28,7 +27,7 @@ Object {
             class="navbarItems row row-cols-xl-7 row-cols-lg-7"
           >
             <div
-              class="col"
+              class="navLinkCol col"
             >
               <a
                 aria-current="page"
@@ -39,7 +38,7 @@ Object {
               </a>
             </div>
             <div
-              class="col"
+              class="navLinkCol col"
             >
               <a
                 href="/about"
@@ -48,7 +47,7 @@ Object {
               </a>
             </div>
             <div
-              class="col"
+              class="navLinkCol col"
             >
               <a
                 href="/blog"
@@ -57,7 +56,7 @@ Object {
               </a>
             </div>
             <div
-              class="col"
+              class="navLinkCol col"
             >
               <a
                 href="/products"
@@ -66,7 +65,7 @@ Object {
               </a>
             </div>
             <div
-              class="col"
+              class="navLinkCol col"
             >
               <a
                 href="/contact"
@@ -76,19 +75,25 @@ Object {
             </div>
           </div>
           <div
-            class="iconTrio row row-cols-xl-2 row-cols-lg-2"
+            class="iconTrio navbarItemWrapper row row-cols-xl-2 row-cols-lg-2"
           >
-            <div>
+            <div
+              class="iconWrapper"
+            >
               <i
                 class="fas fa-search"
               />
             </div>
-            <div>
+            <div
+              class="iconWrapper"
+            >
               <i
                 class="fas fa-user-circle"
               />
             </div>
-            <div>
+            <div
+              class="iconWrapper"
+            >
               <a
                 href="/shoppingcart"
               >
@@ -104,18 +109,17 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="container-fluid"
-      id="navbar"
+      class="navbar container-fluid"
     >
       <div
-        class="hamburgerContainer row"
+        class="hamburgerContainer navbarItemWrapper row"
       >
         <div
           class="hamburgerIcon col"
         />
       </div>
       <div
-        class="collapseMenuItems  row"
+        class="navbarItemWrapper collapseMenuItems  row"
       >
         <div
           class="navbarLogo row"
@@ -126,7 +130,7 @@ Object {
           class="navbarItems row row-cols-xl-7 row-cols-lg-7"
         >
           <div
-            class="col"
+            class="navLinkCol col"
           >
             <a
               aria-current="page"
@@ -137,7 +141,7 @@ Object {
             </a>
           </div>
           <div
-            class="col"
+            class="navLinkCol col"
           >
             <a
               href="/about"
@@ -146,7 +150,7 @@ Object {
             </a>
           </div>
           <div
-            class="col"
+            class="navLinkCol col"
           >
             <a
               href="/blog"
@@ -155,7 +159,7 @@ Object {
             </a>
           </div>
           <div
-            class="col"
+            class="navLinkCol col"
           >
             <a
               href="/products"
@@ -164,7 +168,7 @@ Object {
             </a>
           </div>
           <div
-            class="col"
+            class="navLinkCol col"
           >
             <a
               href="/contact"
@@ -174,19 +178,25 @@ Object {
           </div>
         </div>
         <div
-          class="iconTrio row row-cols-xl-2 row-cols-lg-2"
+          class="iconTrio navbarItemWrapper row row-cols-xl-2 row-cols-lg-2"
         >
-          <div>
+          <div
+            class="iconWrapper"
+          >
             <i
               class="fas fa-search"
             />
           </div>
-          <div>
+          <div
+            class="iconWrapper"
+          >
             <i
               class="fas fa-user-circle"
             />
           </div>
-          <div>
+          <div
+            class="iconWrapper"
+          >
             <a
               href="/shoppingcart"
             >
