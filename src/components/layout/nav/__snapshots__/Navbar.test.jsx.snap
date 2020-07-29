@@ -76,7 +76,7 @@ Object {
             </div>
           </div>
           <div
-            class="icon-trio row row-cols-xl-2 row-cols-lg-2"
+            class="iconTrio row row-cols-xl-2 row-cols-lg-2"
           >
             <div>
               <i
@@ -174,7 +174,7 @@ Object {
           </div>
         </div>
         <div
-          class="icon-trio row row-cols-xl-2 row-cols-lg-2"
+          class="iconTrio row row-cols-xl-2 row-cols-lg-2"
         >
           <div>
             <i

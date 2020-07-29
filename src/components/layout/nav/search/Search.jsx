@@ -80,6 +80,7 @@ const Search = () => {
     widthOfDevice < breakPointToSmallDevices ? 2 : 3;
   const onlyFirstImageOfProduct = 0;
 
+  //This will be sending input value to database with fetching if input is not empty when "Search" button is clicked.
   const sendSearchQuery = () => {
     if (!searchQueryContainer) {
       setWarningOfEmptySearch(true);
@@ -89,6 +90,7 @@ const Search = () => {
     }
   };
 
+  //This will setting input values onChange and will show preview card only if there is something typed.
   const handleSearchChanges = (e) => {
     setSearchQuery(e.target.value);
     if (!searchQueryContainer) {
