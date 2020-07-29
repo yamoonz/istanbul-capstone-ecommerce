@@ -23,7 +23,9 @@ export default function ProductCard(props) {
 
   return (
     <React.Fragment>
-      <Col xs={8} md={5} lg={3} className="productCard"> {/*when we get the real product we need to add an id to each product*/}
+      <Col xs={8} md={5} lg={3} className="productCard">
+        {" "}
+        {/*when we get the real product we need to add an id to each product*/}
         {isLiked ? (
           <img
             onClick={() => setIsLiked(!isLiked)}
