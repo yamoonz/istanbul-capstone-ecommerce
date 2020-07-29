@@ -72,7 +72,7 @@ export const mockDatabase = [
 const Search = () => {
   // It is left empty because we want search to start as empty.
   const [searchQueryContainer, setSearchQuery] = useState("");
-  const [warningOfEmptySearch, setWarningOfEmptySearch] = useState(false);
+  const [showEmptySearchWarning, setEmptySearchWarning] = useState(false);
   const { widthOfDevice } = useDeviceSizes();
 
   // In order to set the number of product we wanna filter in preview according to size of device.
@@ -85,10 +85,10 @@ const Search = () => {
   // This will be sending input value to database with fetching if input is not empty when "Search" button is clicked.
   const sendSearchQuery = () => {
     if (!searchQueryContainer) {
-      setWarningOfEmptySearch(true);
+      setEmptySearchWarning(true);
       return;
     } else {
-      setWarningOfEmptySearch(false);
+      setEmptySearchWarning(false);
     }
   };
 
@@ -96,10 +96,10 @@ const Search = () => {
   const handleSearchChanges = (e) => {
     setSearchQuery(e.target.value);
     if (!searchQueryContainer) {
-      setWarningOfEmptySearch(true);
+      setEmptySearchWarning(true);
       return;
     } else {
-      setWarningOfEmptySearch(false);
+      setEmptySearchWarning(false);
     }
   };
 
@@ -150,7 +150,7 @@ const Search = () => {
             {handleSearchPreview()}
           </Col>
         ) : (
-          warningOfEmptySearch && (
+          showEmptySearchWarning && (
             <span>You should type something to search.</span>
           )
         )}
