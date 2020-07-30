@@ -34,7 +34,7 @@
   .fbButton {
     height: 100%;
     width: 80%;
-    padding: 7px 0px 7px 0px;
+    padding: 7px 0px;
     font-size: 13px;
   }
 
@@ -72,7 +72,7 @@ $breakPointOverflowInExtraSmall: 316px;
 }
 
 @media (max-width: $breakPointOverflowInExtraSmall) {
-  .signupBox.signUpBoxResponsive {
+  .signUpBoxResponsive {
     width: 85%;
     min-width: 170px !important;
   }
