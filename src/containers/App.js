@@ -8,6 +8,7 @@ import Home from "../components/home/Home";
 function App() {
   return (
     <>
+      <Route path="/" component={Navbar} />
       <RouteBlock />
       <Home />
     </>
