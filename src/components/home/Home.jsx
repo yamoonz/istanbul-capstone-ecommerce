@@ -6,11 +6,11 @@ import LanguageDropdown from "./LanguageDropdown";
 
 export default function Home() {
   return (
-    <div>
-      <Products />
+    <>
       <LoginForm />
       <SignUpForm />
       <LanguageDropdown />
-    </div>
+      <Products />
+    </>
   );
 }
