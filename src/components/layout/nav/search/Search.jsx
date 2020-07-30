@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
 import "./Search.scss";
 
-//This will be serving as a temporary database until we build the real one completely.
+// We agreed on switching to a 'common' mockDatabase after finishing merging HomePage succesfully.
 export const mockDatabase = [
   {
     title: "Airmax",
@@ -70,56 +71,50 @@ export const mockDatabase = [
 
 const Search = () => {
   // It is left empty because we want search to start as empty.
-  const [searchQueryContainer, setSearchQuery] = useState("");
-  const [showEmptySearchWarning, setEmptySearchWarning] = useState(false);
+  const [searchQueryContainer, setSearchQueryContainer] = useState("");
+  const [showEmptySearchWarning, setShowEmptySearchWarning] = useState(false);
 
-  const onlyFirstImageOfProduct = 0;
-  const amountOfProductToShowInSearch = 3;
+  const ONLY_FIRST_IMAGE_OF_PRODUCTS = 0;
+  const AMOUNT_OF_PRODUCT_IN_SEARCH_PREVIEW = 3;
 
+  // TODO(emrerdem1): Link this to database.
   // This will be sending input value to database with fetching if input is not empty when "Search" button is clicked.
   const sendSearchQuery = () => {
-    if (!searchQueryContainer) {
-      setEmptySearchWarning(true);
-      return;
-    } else {
-      setEmptySearchWarning(false);
-    }
+    isSearchInputEmpty();
   };
 
-  // This will setting input values onChange and will show preview card only if there is something typed.
+  // Set input values by onChange and show preview card only if there is something typed.
   const handleSearchChanges = (e) => {
-    setSearchQuery(e.target.value);
-    if (!searchQueryContainer) {
-      setEmptySearchWarning(true);
-      return;
-    } else {
-      setEmptySearchWarning(false);
-    }
+    setSearchQueryContainer(e.target.value);
+    isSearchInputEmpty();
   };
 
-  const handleSearchPreview = () => {
-    const previewItemsContainer = mockDatabase
-      .filter((product) => product.tags.includes(searchQueryContainer))
-      .slice(0, amountOfProductToShowInSearch)
-      .map((product, idx) => (
-        <Col xl={3} lg={3} md={3} className="card" key={idx}>
-          <img src={product.images[onlyFirstImageOfProduct]} alt="product" />
-          <div className="title">{product.title}</div>
-          <div className="brand">{product.brand}</div>
-          <div className="price">
-            {product.currency}
-            {product.price}
-          </div>
-        </Col>
-      ));
+  const isSearchInputEmpty = () =>
+    !searchQueryContainer
+      ? setShowEmptySearchWarning(true)
+      : setShowEmptySearchWarning(false);
 
-    // This will be more precise to show if it's still loading or failed as searching when we implement Fetching.
-    if (previewItemsContainer.lenght === 0) {
-      return <span>It's still loading.</span>;
-    } else {
-      return previewItemsContainer;
-    }
-  };
+  const previewItemsContainer = mockDatabase
+    .filter((product) => product.tags.includes(searchQueryContainer))
+    .slice(0, AMOUNT_OF_PRODUCT_IN_SEARCH_PREVIEW)
+    .map((product, idx) => (
+      <Col xl={3} lg={3} md={3} className="card" key={idx}>
+        <img src={product.images[ONLY_FIRST_IMAGE_OF_PRODUCTS]} alt="product" />
+        <div className="title">{product.title}</div>
+        <div className="brand">{product.brand}</div>
+        <div className="price">
+          {product.currency}
+          {product.price}
+        </div>
+      </Col>
+    ));
+
+  // TODO(emrerdem1): Make it more precise to show if it's still loading or failed as searching when we implement Fetching.
+  const searchSpinnerContainer = (
+    <Spinner animation="border" role="status" variant="info">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  );
 
   return (
     <>
@@ -141,12 +136,12 @@ const Search = () => {
         </Col>
         {searchQueryContainer ? (
           <Col xl={6} lg={7} md={8} className="searchPreview">
-            {handleSearchPreview()}
+            {previewItemsContainer.length === 0
+              ? searchSpinnerContainer
+              : previewItemsContainer}
           </Col>
         ) : (
-          showEmptySearchWarning && (
-            <span>You should type something to search.</span>
-          )
+          showEmptySearchWarning && <span>Please type a search term.</span>
         )}
       </Col>
     </>
