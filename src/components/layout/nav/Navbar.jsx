@@ -9,10 +9,10 @@ import "./Navbar.scss";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
-    case "IS_SIGN_OPENED":
+    case "IS_SIGNUP_OPENED":
       return {
         ...state,
-        isSignBoxOpen: !state.isSignBoxOpen,
+        isSignUpBoxOpen: !state.isSignUpBoxOpen,
         isSearchBoxOpen: false,
       };
 
@@ -20,13 +20,13 @@ function navbarIconsReducer(state, action) {
       return {
         ...state,
         isSearchBoxOpen: !state.isSearchBoxOpen,
-        isSignBoxOpen: false,
+        isSignUpBoxOpen: false,
       };
 
     case "IS_HAMBURGER_OPENED":
       return {
         isHamburgerOpen: !state.isHamburgerOpen,
-        isSignBoxOpen: false,
+        isSignUpBoxOpen: false,
         isSearchBoxOpen: false,
       };
 
@@ -37,10 +37,10 @@ function navbarIconsReducer(state, action) {
 
 const Navbar = () => {
   const [
-    { isSignBoxOpen, isSearchBoxOpen, isHamburgerOpen },
+    { isSignUpBoxOpen, isSearchBoxOpen, isHamburgerOpen },
     dispatch,
   ] = useReducer(navbarIconsReducer, {
-    isSignBoxOpen: false,
+    isSignUpBoxOpen: false,
     isSearchBoxOpen: false,
     isHamburgerOpen: false,
   });
@@ -93,7 +93,7 @@ const Navbar = () => {
         <div className="iconWrapper">
           <i
             className="fas fa-user-circle"
-            onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
+            onClick={() => handleStatusOfIcons("IS_SIGNUP_OPENED")}
           ></i>
         </div>
         <div className="iconWrapper">
@@ -112,7 +112,7 @@ const Navbar = () => {
         {hamburgerMenu}
         {fullNavbarMenu}
       </Container>
-      {isSignBoxOpen && <SignUpBox />}
+      {isSignUpBoxOpen && <SignUpBox />}
     </>
   );
 };
