@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./style.scss";
+import "./categories.scss";
 import sportImg from "../../assets/img/dumbbell.jpg";
 import glassesImg from "../../assets/img/glasses.jpg";
 import setUpImg from "../../assets/img/setup.jpg";
@@ -17,7 +17,7 @@ const SLIDER_SETTINGS = {
   autoplay: false,
   autoplaySpeed: 10000,
   speed: 1000,
-  arrows: false,
+  arrows: true,
   slidesToShow: 5,
   slidesToScroll: 1,
   dots: true,
