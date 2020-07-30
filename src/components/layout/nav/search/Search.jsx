@@ -3,7 +3,6 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Search.scss";
-import useDeviceSizes from "../../useDeviceSizes";
 
 //This will be serving as a temporary database until we build the real one completely.
 export const mockDatabase = [
@@ -73,14 +72,9 @@ const Search = () => {
   // It is left empty because we want search to start as empty.
   const [searchQueryContainer, setSearchQuery] = useState("");
   const [showEmptySearchWarning, setEmptySearchWarning] = useState(false);
-  const { widthOfDevice } = useDeviceSizes();
 
-  // In order to set the number of product we wanna filter in preview according to size of device.
-  const breakPointTooSmall = 590;
-  const breakPointToSmallDevices = 765;
-  const amountOfProductToShowInSearch =
-    widthOfDevice < breakPointToSmallDevices ? 2 : 3;
   const onlyFirstImageOfProduct = 0;
+  const amountOfProductToShowInSearch = 3;
 
   // This will be sending input value to database with fetching if input is not empty when "Search" button is clicked.
   const sendSearchQuery = () => {
@@ -145,7 +139,7 @@ const Search = () => {
             <Button onClick={sendSearchQuery}>Search</Button>
           </Col>
         </Col>
-        {searchQueryContainer && widthOfDevice > breakPointTooSmall ? (
+        {searchQueryContainer ? (
           <Col xl={6} lg={7} md={8} className="searchPreview">
             {handleSearchPreview()}
           </Col>

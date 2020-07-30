@@ -12,7 +12,7 @@
 
   span {
     position: absolute;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 15px;
     background-color: #e2909066;
     border-radius: 5px;
     bottom: 5px;
@@ -159,8 +159,9 @@ $breakPointOfExtraSmall: 444px;
     .searchPreview {
       padding: 20px;
 
-      .card:nth-of-type(1) {
-        margin-right: 20px;
+      // Do not show the third product at preview in this resolution.
+      .card:nth-last-of-type(1) {
+        display: none;
       }
     }
   }
@@ -169,6 +170,11 @@ $breakPointOfExtraSmall: 444px;
 @media (max-width: $breakPointOfSmallDevices) {
   .searchBox {
     width: 52vw;
+
+    // Do not show preview at all in this resolution.
+    .searchPreview {
+      display: none;
+    }
 
     button,
     input {
