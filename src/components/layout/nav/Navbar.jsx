@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import { NavLink } from "react-router-dom";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
-import "../../home/HomePage.scss";
+import "./Navbar.scss";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -47,62 +47,70 @@ const Navbar = () => {
 
   const handleStatusOfIcons = (type) => dispatch({ type });
 
+  const hamburgerMenu = (
+    <Row
+      className="hamburgerContainer navbarItemWrapper"
+      onClick={() => handleStatusOfIcons("IS_HAMBURGER_OPENED")}
+    >
+      <Col className="hamburgerIcon"></Col>
+    </Row>
+  );
+
+  const fullNavbarMenu = (
+    <Row
+      className={`navbarItemWrapper collapseMenuItems ${
+        isHamburgerOpen ? "hamburgerOpened" : ""
+      }`}
+    >
+      <Row className="navbarLogo">LOGO</Row>
+
+      <Row xl={7} lg={7} className="navbarItems">
+        <Col className="navLinkCol">
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+        </Col>
+        <Col className="navLinkCol">
+          <NavLink to="/about">About</NavLink>
+        </Col>
+        <Col className="navLinkCol">
+          <NavLink to="/blog">Blog</NavLink>
+        </Col>
+        <Col className="navLinkCol">
+          <NavLink to="/products">Products</NavLink>
+        </Col>
+        <Col className="navLinkCol">
+          <NavLink to="/contact">Contact</NavLink>
+        </Col>
+      </Row>
+      <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">
+        <div className="iconWrapper">
+          <i
+            className="fas fa-search"
+            onClick={() => handleStatusOfIcons("IS_SEARCH_OPENED")}
+          ></i>
+        </div>
+        <div className="iconWrapper">
+          <i
+            className="fas fa-user-circle"
+            onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
+          ></i>
+        </div>
+        <div className="iconWrapper">
+          <NavLink to="/shoppingcart">
+            <i className="fas fa-shopping-cart"></i>
+          </NavLink>
+        </div>
+      </Row>
+    </Row>
+  );
+
   return (
     <>
       {isSearchBoxOpen && <SearchBox />}
       <Container fluid className="navbar">
-        <Row
-          className="hamburgerContainer navbarItemWrapper"
-          onClick={() => handleStatusOfIcons("IS_HAMBURGER_OPENED")}
-        >
-          <Col className="hamburgerIcon"></Col>
-        </Row>
-        <Row
-          className={`navbarItemWrapper collapseMenuItems ${
-            isHamburgerOpen ? "hamburgerOpened" : ""
-          }`}
-        >
-          <Row className="navbarLogo">LOGO</Row>
-
-          <Row xl={7} lg={7} className="navbarItems">
-            <Col className="navLinkCol">
-              <NavLink exact to="/">
-                Home
-              </NavLink>
-            </Col>
-            <Col className="navLinkCol">
-              <NavLink to="/about">About</NavLink>
-            </Col>
-            <Col className="navLinkCol">
-              <NavLink to="/blog">Blog</NavLink>
-            </Col>
-            <Col className="navLinkCol">
-              <NavLink to="/products">Products</NavLink>
-            </Col>
-            <Col className="navLinkCol">
-              <NavLink to="/contact">Contact</NavLink>
-            </Col>
-          </Row>
-          <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">
-            <div className="iconWrapper">
-              <i
-                className="fas fa-search"
-                onClick={() => handleStatusOfIcons("IS_SEARCH_OPENED")}
-              ></i>
-            </div>
-            <div className="iconWrapper">
-              <i
-                className="fas fa-user-circle"
-                onClick={() => handleStatusOfIcons("IS_SIGN_OPENED")}
-              ></i>
-            </div>
-            <div className="iconWrapper">
-              <NavLink to="/shoppingcart">
-                <i className="fas fa-shopping-cart"></i>
-              </NavLink>
-            </div>
-          </Row>
-        </Row>
+        {hamburgerMenu}
+        {fullNavbarMenu}
       </Container>
       {isSignBoxOpen && <SignUpBox />}
     </>

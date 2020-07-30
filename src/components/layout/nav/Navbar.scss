@@ -17,7 +17,7 @@
 
   .navbarItems {
     width: 50%;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 5px;
 
     .navLinkCol {
       padding-left: 5px;
@@ -68,7 +68,7 @@
 
   $tabletFirst: 980px;
   @media (max-width: $tabletFirst) {
-    .navbarItems .navLinkCol {
+    .navLinkCol {
       font-size: 95%;
     }
 
@@ -177,6 +177,7 @@ $breakToHamburger: 768px;
         border-bottom: 0.1px solid #f5deb378;
         transition: all 1.5s ease-in-out;
 
+        // Add border-top to the first side-nav item to tell them apart.
         &:nth-of-type(1) {
           border-top: 0.1px solid #f5deb378;
         }
