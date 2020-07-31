@@ -48,7 +48,7 @@ $breakPointToSideNav: 768px;
 $breakPointOverflowInExtraSmall: 316px;
 
 @media (max-width: $breakPointToSideNav) {
-  .signUpBoxResponsive {
+  .signupBox {
     position: absolute;
     z-index: 10;
     left: 50%;
@@ -72,7 +72,7 @@ $breakPointOverflowInExtraSmall: 316px;
 }
 
 @media (max-width: $breakPointOverflowInExtraSmall) {
-  .signUpBoxResponsive {
+  .signupBox {
     width: 85%;
     min-width: 170px !important;
   }

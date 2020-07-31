@@ -15,7 +15,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Col xl={11} className="signupBox signUpBoxResponsive">
+      <Col xl={11} className="signupBox">
         <Row className="socialLoginButtons">
           <Col>
             <Button variant="info" size="md" className="fbButton">
@@ -57,7 +57,7 @@ const SignUp = () => {
           </Form>
         </Col>
         <Col className="signupRedirect">
-          <NavLink to="/signup">Still not a user? Sign-Up now!</NavLink>
+          <NavLink to="/signup">Still not a user? Sign up now!</NavLink>
         </Col>
       </Col>
     </>
