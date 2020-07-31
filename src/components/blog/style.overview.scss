@@ -1,0 +1,74 @@
+//React-bootstrap built in classes
+
+.btn-primary {
+  margin-top: 80px;
+}
+
+.card-body {
+  padding: 20px 0;
+}
+
+.btn-primary {
+  padding: 5px 30px;
+}
+
+.overviewContainer {
+  height: 100vh;
+}
+
+.blogHeader {
+  background-color: #ecebe4;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+
+  .headerImgBox {
+    grid-row: 4/11;
+    grid-column: 3/7;
+    position: relative;
+    z-index: 1;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: 80px;
+      border: 7px solid #fff;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .headerImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .blogTitle {
+    grid-row: 4/5;
+    grid-column: 9/11;
+    z-index: 4;
+  }
+
+  .blogDescription {
+    grid-row: 6/11;
+    grid-column: 8/12;
+    z-index: 4;
+  }
+
+  .blogHeaderBtn {
+    grid-row: 10/11;
+    grid-column: 8/10;
+    background-color: #fff;
+    justify-content: center;
+    align-self: end;
+    text-align: center;
+    padding: 10px;
+    z-index: 4;
+    cursor: pointer;
+  }
+}
