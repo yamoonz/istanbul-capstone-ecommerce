@@ -1,3 +1,5 @@
+@import "../../../common/style.scss";
+
 .signupBox {
   width: 250px;
   transition: all 1s ease-in-out;
@@ -43,10 +45,7 @@
   }
 }
 
-$breakPointToSideNav: 768px;
-$breakPointOverflowInExtraSmall: 316px;
-
-@media (max-width: $breakPointToSideNav) {
+@include media(tablet-sm) {
   .signupBox {
     position: absolute;
     z-index: 10;
@@ -70,7 +69,7 @@ $breakPointOverflowInExtraSmall: 316px;
   }
 }
 
-@media (max-width: $breakPointOverflowInExtraSmall) {
+@include media(phone-sm) {
   .signupBox {
     width: 85%;
     min-width: 170px !important;
