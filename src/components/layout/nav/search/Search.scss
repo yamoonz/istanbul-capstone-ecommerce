@@ -1,3 +1,5 @@
+@import "../../../common/style.scss";
+
 :root {
   font-size: 16px;
 }
@@ -131,25 +133,16 @@
 }
 
 // TODO(emrerdem1): Use mixin with common breakpoints.
-$breakPointPreviewBreaks: 1200px;
-$breakPointCardBreaks: 1134px;
-$breakPointHamburgerSwallowSearch: 769px;
 $breakPointOfSmallDevices: 620px;
 $breakPointOfExtraSmall: 444px;
 
-@media (max-width: breakPointPreviewBreaks) {
+@include media(desktop) {
   .searchPreview {
     margin-top: 8px;
   }
 }
 
-@media (max-width: $breakPointCardBreaks) {
-  .card {
-    font-size: 90%;
-  }
-}
-
-@media (max-width: $breakPointHamburgerSwallowSearch) {
+@include media(tablet-sm) {
   .searchBox {
     width: 62vw;
     left: 10px;
@@ -167,23 +160,7 @@ $breakPointOfExtraSmall: 444px;
   }
 }
 
-@media (max-width: $breakPointOfSmallDevices) {
-  .searchBox {
-    width: 52vw;
-
-    // Do not show preview at all in this resolution.
-    .searchPreview {
-      display: none;
-    }
-
-    button,
-    input {
-      font-size: 85%;
-    }
-  }
-}
-
-@media (max-width: $breakPointOfExtraSmall) {
+@include media(phone) {
   .searchBox {
     position: relative;
     margin: 0;
@@ -192,12 +169,6 @@ $breakPointOfExtraSmall: 444px;
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: -1px;
-
-    // Turn back to original font-size in this resolution since SearchBox will expand again.
-    button,
-    input {
-      font-size: 100%;
-    }
 
     &::before {
       content: "";
