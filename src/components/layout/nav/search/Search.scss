@@ -132,10 +132,6 @@
   }
 }
 
-// TODO(emrerdem1): Use mixin with common breakpoints.
-$breakPointOfSmallDevices: 620px;
-$breakPointOfExtraSmall: 444px;
-
 @include media(desktop) {
   .searchPreview {
     margin-top: 8px;
@@ -168,6 +164,8 @@ $breakPointOfExtraSmall: 444px;
     left: 0;
     padding-left: 10px;
     padding-right: 10px;
+
+    // To hide 1px empty space between Search and Navbar.
     margin-bottom: -1px;
 
     &::before {
