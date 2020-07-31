@@ -10,7 +10,7 @@ const SignUp = () => {
   const passwordOfUser = useRef(false);
   const emailOfUser = useRef(false);
 
-  //This function will send the input values to check auth with 'emailOfUser.current.value' and 'passwordOfUser.current.value';
+  // TODO(emrerdem1): This function will send the input values to check auth with 'emailOfUser.current.value' and 'passwordOfUser.current.value';
   const handleLoginInputs = () => null;
 
   return (
