@@ -2,11 +2,11 @@
   height: 100px;
   background-color: #05225a;
   display: flex;
-  justify-content: space-around;
+   justify-content: space-around;
   color: white;
 }
 
-.navBar {
+.footerNav {
   list-style: none;
 }
 footer {
@@ -23,12 +23,14 @@ footer {
     margin: 15px;
   }
 }
-.navBar {
+.footerNav {
+  
   flex-direction: row;
   display: flex;
   li {
     display: inline-block;
     margin: auto;
+    
   }
 }
 
@@ -46,12 +48,12 @@ footer {
       margin-bottom: 5px;
     }
   }
-  .navBar {
+  .footerNav {
     width: 60px;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 15px;
     padding: 0;
