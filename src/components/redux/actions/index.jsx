@@ -1,4 +1,4 @@
-import { firstType } from "./actionsTypes";
+import { FIRST_TYPE } from "./actionsTypes";
 
 export const currentBoardIDAction = (data) => {
   return {
