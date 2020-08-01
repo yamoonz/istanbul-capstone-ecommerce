@@ -4,11 +4,9 @@ import heart from "../../../assets/svgs/heart.svg";
 import { Col } from "react-bootstrap";
 import "./style.scss";
 import heartBroken from "../../../assets/svgs/heart-broken.svg";
-import { useParams, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function ProductCard(props) {
-  let { productId } = useParams();
-
   // We will load isLiked from firebase and then set it to this state
   const [isLiked, setIsLiked] = React.useState(false);
 
@@ -55,7 +53,7 @@ export default function ProductCard(props) {
   );
 
   return (
-    <NavLink to={`/products/:${productId}`}>
+    <NavLink to={`/products/:${props.info.id}`}>
       <Col xs={8} md={5} lg={3} className="productCard">
         {/*When we get the real product we need to add an id to each product*/}
         {likeBtn}
