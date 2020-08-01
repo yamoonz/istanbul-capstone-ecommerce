@@ -62,6 +62,12 @@
   display: inline-block;
 }
 
-.slick-slide > div {
-  width: 330%;
+
+.categoriesContainer .slick-slide > div{
+  width: 100%;
+
+}
+
+.slick-slide > div{
+  width:330%;
 }

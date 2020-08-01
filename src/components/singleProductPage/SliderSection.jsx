@@ -3,8 +3,11 @@ import Slider from "react-slick";
 import { Container } from "react-bootstrap";
 import ProductCard from "../layout/productCard/ProductCard";
 import { MOCK_DATABASE } from "../common/MockDatabase";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const SETTINGS = {
+    className:"singleProductSlider",
   dots: true,
   infinite: true,
   speed: 500,
@@ -59,7 +62,7 @@ const SETTINGS = {
 
 export default function SliderSection() {
   return (
-    <Container>
+    <Container className = "singleProductContainer">
       <Slider {...SETTINGS}>
         {MOCK_DATABASE.map((info, index) => (
           <ProductCard info={info} index={index} key={index} />
