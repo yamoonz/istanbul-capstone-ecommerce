@@ -3,7 +3,7 @@ import ProductCard from "../layout/productCard/ProductCard";
 import { Container, Row } from "react-bootstrap";
 
 export default function Products() {
-  // This is a temporary until we add real products in the database
+  // This is a temporary until we add real products in the database .
 
   const data = [
     {
