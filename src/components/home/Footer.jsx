@@ -36,7 +36,7 @@ const Footer = () => {
 
           <li>Contact</li>
         </ul>
-        <span dangerouslySetInnerHTML={{ __html: "&copy; 2020" }} />
+        <div> &copy; 2020 </div>
       </footer>
     </div>
   );
