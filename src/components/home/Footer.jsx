@@ -17,7 +17,7 @@ const Footer = () => {
           <a href="https://www.twitter.com/" className="twitter social">
             <FontAwesomeIcon icon={faTwitter} size="2x" />
           </a>
-          <a href="https://www.gmail.com/" className="Gmail social">
+          <a href="https://www.gmail.com/" className="gmail social">
             <FontAwesomeIcon icon={faGoogle} size="2x" />{" "}
           </a>
           <a href="https://www.facebook.com/" className="facebook social">
@@ -28,13 +28,13 @@ const Footer = () => {
           </a>
         </div>
         <ul className="footerNav">
-          <li> Home </li>
+          <li>Home</li>
 
-          <li> Products </li>
+          <li>Products</li>
 
-          <li> Blog </li>
+          <li>Blog</li>
 
-          <li> Conatct </li>
+          <li>Contact</li>
         </ul>
         <span dangerouslySetInnerHTML={{ __html: "&copy; 2020" }} />
       </footer>
