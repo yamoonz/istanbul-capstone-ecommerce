@@ -1,17 +1,17 @@
 import React from "react";
 import clock from "./video-clock.mov";
 import { Button } from "react-bootstrap";
-import "./index.scss";
+import "./Header.scss";
 
 export default function Header() {
   return (
     <div className="header container">
-      <div className="video-wrap">
+      <div className="videoWrap">
         <video src={clock} autoPlay={true} loop={true}></video>
       </div>
-      <div className="header-overlay"></div>
-      <div className="header-content">
-        <div className="line-wrapper">
+      <div className="headerOverlay"></div>
+      <div className="headerContent">
+        <div className="lineWrapper">
           <p className="line mt-4"></p>
         </div>
         <div className="content">
@@ -23,7 +23,7 @@ export default function Header() {
             and scrambled it to make a type specimen book. It has survived not
             only five centuries.
           </p>
-          <div className="middle-buttons">
+          <div className="middleButtons">
             <Button
               variant="info"
               style={{
@@ -50,7 +50,7 @@ export default function Header() {
             </Button>
           </div>
         </div>
-        <div className="bottom-buttons">
+        <div className="bottomButtons">
           <ul>
             <li>Fast shipping</li>
             <li className="ml-5">Education</li>
