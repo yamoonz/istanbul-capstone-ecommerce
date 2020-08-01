@@ -11,7 +11,7 @@ export const RouteBlock = () => {
   return (
     <Switch>
       <Route path="/signup" component={SignUp} />
-      <Route path="/products" component={ProductsPage} />
+      <Route path="/products/:productId" component={ProductsPage} />
       <Route path="/shoppingcart" component={CartPage} />
       <Route path="/blog" component={BlogOverview} />
       <Route path="/about" component={AboutPage} />
