@@ -6,7 +6,7 @@ import { MOCK_DATABASE } from "../common/MockDatabase";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const SETTINGS = {
+const SINGLE_PRODUCT_SLIDER_SETTINGS = {
   className: "singleProductSlider",
   dots: true,
   infinite: true,
@@ -63,7 +63,7 @@ const SETTINGS = {
 export default function SliderSection() {
   return (
     <Container className="singleProductContainer">
-      <Slider {...SETTINGS}>
+      <Slider {...SINGLE_PRODUCT_SLIDER_SETTINGS}>
         {MOCK_DATABASE.map((info, index) => (
           <ProductCard info={info} index={index} key={index} />
         ))}
