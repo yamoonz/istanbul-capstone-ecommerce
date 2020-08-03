@@ -36,7 +36,7 @@ const Footer = () => {
 
           <li>Contact</li>
         </ul>
-        <div> &copy; 2020 </div>
+        <div>&copy;2020</div>
       </footer>
     </div>
   );
