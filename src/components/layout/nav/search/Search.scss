@@ -5,13 +5,14 @@
   background-color: white;
   margin: auto;
   height: 100px;
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 0;
   font-size: 16px;
+  z-index: 10;
 
   span {
     position: absolute;

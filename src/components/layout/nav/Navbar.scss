@@ -1,14 +1,18 @@
+@import "../../common/variables";
+
 .navbar {
   display: flex;
   height: 100px;
   justify-content: space-around;
   align-items: center;
-  background-color: #6676a0;
   color: white;
   justify-content: flex-end;
-  position: relative;
+  position: absolute;
   padding: 0;
   overflow-x: hidden;
+
+  // To show Navbar that has transparent background on top of Header component.
+  z-index: 10;
 
   .collapseMenuItems {
     width: 80%;
@@ -125,7 +129,6 @@ $breakToHamburger: 768px;
       top: 10px;
       right: 50px;
       z-index: 2;
-      background-color: black;
 
       .hamburgerIcon {
         display: block;
@@ -207,5 +210,14 @@ $breakToHamburger: 768px;
         font-size: 22px;
       }
     }
+  }
+}
+
+// When SearchBox is opened at the top of page, move Navbar down only on fullScreen.
+.moveOverHeader {
+  transform: translateY(100px);
+
+  @include media(tablet-sm) {
+    transform: none;
   }
 }
