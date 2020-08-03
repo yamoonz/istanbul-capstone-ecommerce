@@ -7,12 +7,12 @@
   align-items: center;
   color: white;
   justify-content: flex-end;
-  position: absolute;
+  position: fixed;
   padding: 0;
   overflow-x: hidden;
 
   // To show Navbar that has transparent background on top of Header component.
-  z-index: 10;
+  z-index: 100;
 
   .collapseMenuItems {
     width: 80%;
@@ -70,8 +70,7 @@
     }
   }
 
-  $tabletFirst: 980px;
-  @media (max-width: $tabletFirst) {
+  @include media(tablet) {
     .navLinkCol {
       font-size: 95%;
     }
@@ -87,8 +86,7 @@
   }
 }
 
-$breakToHamburger: 768px;
-@media (max-width: $breakToHamburger) {
+@include media(tablet-sm) {
   .navbar {
     position: absolute;
     width: 200px;

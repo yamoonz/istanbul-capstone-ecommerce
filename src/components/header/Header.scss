@@ -1,3 +1,5 @@
+@import "../common/variables";
+
 $buttonGetStarted: #485181;
 $buttonSignUp: #c3c9eb;
 
@@ -51,7 +53,8 @@ $buttonSignUp: #c3c9eb;
 .lineWrapper {
   grid-column: 1/2;
   grid-row: 5/6;
-  @media (max-width: 968px) {
+
+  @include media(tablet) {
     display: none;
   }
 }
@@ -59,15 +62,17 @@ $buttonSignUp: #c3c9eb;
 .headerTextContent {
   grid-column: 2/9;
   grid-row: 5/9;
-  @media (max-width: 968px) {
+
+  @include media(tablet) {
     grid-column: 1/13;
     grid-row: 4/8;
   }
 
   h1 {
-    @media (max-width: 576px) {
+    @include media(phone) {
       font-size: 2rem;
     }
+
     @media (max-width: 400px) {
       font-size: 1.5rem;
     }
@@ -83,14 +88,17 @@ $buttonSignUp: #c3c9eb;
 .bottomButtons {
   grid-column: 1/7;
   grid-row: 11/12;
-  @media (max-width: 968px) {
+
+  @include media(tablet) {
     grid-column: 3/11;
     grid-row: 11/12;
   }
-  @media (max-width: 576px) {
+
+  @include media(phone) {
     grid-column: 1/13;
     grid-row: 11/12;
   }
+
   @media (max-width: 400px) {
     grid-column: 1/13;
     grid-row: 9/12;
@@ -101,7 +109,8 @@ $buttonSignUp: #c3c9eb;
     display: flex;
     list-style: none;
     padding: 0;
-    @media (max-width: 968px) {
+
+    @include media(tablet) {
       color: #fff;
       display: flex;
       list-style: none;
@@ -127,7 +136,7 @@ $buttonSignUp: #c3c9eb;
     padding-right: 3rem;
   }
 
-  @media (max-width: 968px) {
+  @include media(tablet) {
     display: flex;
     justify-content: center;
   }
