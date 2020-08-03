@@ -12,9 +12,9 @@ export default function Header() {
       <div className="headerOverlay"></div>
       <div className="headerContent">
         <div className="lineWrapper">
-          <p className="line mt-4"></p>
+          <p className="whiteLine mt-4"></p>
         </div>
-        <div className="content">
+        <div className="headerTextContent">
           <h1>We Care About Your Health</h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -24,29 +24,11 @@ export default function Header() {
             only five centuries.
           </p>
           <div className="middleButtons">
-            <Button
-              variant="info"
-              style={{
-                backgroundColor: "#485181",
-                borderColor: "#485181",
-                paddingLeft: "2rem",
-                paddingRight: "2rem",
-              }}
-            >
+            <Button variant="info" className="buttonGetStarted">
               Get Started
             </Button>
-            <Button
-              variant="secondary"
-              className="ml-5"
-              style={{
-                backgroundColor: "#C3C9EB",
-                borderColor: "#C3C9EB",
-                color: "#485181",
-                paddingLeft: "3rem",
-                paddingRight: "3rem",
-              }}
-            >
-              SignUp
+            <Button variant="secondary" className="ml-5 buttonSignUp">
+              Sign Up
             </Button>
           </div>
         </div>
