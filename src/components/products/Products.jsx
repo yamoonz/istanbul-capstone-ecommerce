@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "../layout/productCard/ProductCard";
 import { Container, Row } from "react-bootstrap";
+import SingleProductPage from "../singleProductPage/SingleProductPage";
 
 export default function Products() {
   // This is a temporary until we add real products in the database
@@ -75,6 +76,7 @@ export default function Products() {
           <ProductCard info={info} index={index} key={index} />
         ))}
       </Row>
+      <SingleProductPage props={data[0]} />
     </Container>
   );
 }

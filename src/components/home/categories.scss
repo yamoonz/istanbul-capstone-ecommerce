@@ -1,9 +1,32 @@
 .categoriesContainer {
   background-color: #f0f0f0;
   padding: 10%;
+
+  // React-slick classes
+  .slick-dots {
+    background-color: #f0f0f0;
+    li {
+      button {
+        &::before {
+          font-size: 17px;
+          transform: matrix(0, 1, 1, 0, 0, 0);
+        }
+      }
+    }
+  }
+
+  .slick-slide.slick-center {
+    .card {
+      transform: scale(1.15);
+    }
+  }
+
+  .slick-track {
+    margin-bottom: 20px;
+  }
 }
 
-.title {
+.categoryTitle {
   font-family: "Lato", sans-serif;
   position: relative;
   font-size: 39px;
@@ -65,37 +88,14 @@
   z-index: 2;
 }
 
-// React-slick classes
-.slick-dots {
-  background-color: #f0f0f0;
-  li {
-    button {
-      &::before {
-        font-size: 17px;
-        transform: matrix(0, 1, 1, 0, 0, 0);
-      }
-    }
-  }
-}
-
-.slick-slide.slick-center {
-  .card {
-    transform: scale(1.15);
-  }
-}
-
-.slick-track {
-  margin-bottom: 20px;
-}
-
 @media screen and (max-width: 768) {
-  .title {
+  .categoryTitle {
     font-size: 30px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .title {
+  .categoryTitle {
     font-size: 25px;
     &::before {
       display: none;
