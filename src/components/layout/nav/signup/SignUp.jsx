@@ -7,11 +7,11 @@ import "./SignUp.scss";
 import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
-  const passwordOfUser = useRef(false);
-  const emailOfUser = useRef(false);
+  const passwordValue = useRef(false);
+  const emailValue = useRef(false);
 
-  // TODO(emrerdem1): This function will send the input values to check auth with 'emailOfUser.current.value' and 'passwordOfUser.current.value';
-  const handleLoginInputs = () => null;
+  // TODO(emrerdem1): This function will send the input values to check auth with 'emailValue.current.value' and 'passwordValue.current.value';
+  const handleLogin = () => null;
 
   return (
     <>
@@ -23,7 +23,7 @@ const SignUp = () => {
             </Button>
           </Col>
           <Col>
-            <Button variant="info" size="md" className="ggButton">
+            <Button variant="info" size="md" className="googleButton">
               Google
             </Button>
           </Col>
@@ -35,7 +35,7 @@ const SignUp = () => {
               <Form.Control
                 type="email"
                 placeholder="Enter email"
-                ref={emailOfUser}
+                ref={emailValue}
               />
             </Form.Group>
             <Form.Group controlId="formGroupPassword">
@@ -43,13 +43,13 @@ const SignUp = () => {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                ref={passwordOfUser}
+                ref={passwordValue}
               />
               <Button
                 variant="info"
                 size="md"
                 className="loginButton"
-                onClick={handleLoginInputs}
+                onClick={handleLogin}
               >
                 Login
               </Button>
