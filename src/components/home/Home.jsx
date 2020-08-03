@@ -4,7 +4,6 @@ import LoginForm from "../auth/login/Login";
 import SignUpForm from "../auth/signUp/SignUp";
 import LanguageDropdown from "./LanguageDropdown";
 import Categories from "./Categories";
-import SingleProductPage from "../singleProductPage/SingleProductPage";
 
 export default function Home() {
   return (

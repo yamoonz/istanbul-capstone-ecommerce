@@ -1,4 +1,5 @@
 import React from "react";
+import Slider from "react-slick";
 import "./singleProductPage.scss";
 
 export default function SingleProductPage(props) {
@@ -10,15 +11,33 @@ export default function SingleProductPage(props) {
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
   const sizes = [41, 42, 43, 44];
+
+  const PRODUCT_IMGS_SLIDER_SETTING = {
+    customPaging: function (i) {
+      return (
+        <a>
+          <img src={`${imgs[i]}`} className="smallImgs" />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <div class="row" className="productInfoContainer">
       <div class="col-lg-6 col-md-12" className="productImgs">
-        <img src={imgs[0]} class="row" className="mainImg" />
-        <div class="row" className="smallImgsContainer">
-          {imgs.map((img) => (
-            <img src={img} class="row" className="smallImgs" />
+        <Slider {...PRODUCT_IMGS_SLIDER_SETTING}>
+          {imgs.map((img, i) => (
+            <div>
+              <img src={imgs[i]} className="mainImg" />
+            </div>
           ))}
-        </div>
+        </Slider>
       </div>
       <div class="col-lg-6 col-md-12" className="productInfo">
         <span className="productBrand">{brand}</span>
@@ -36,8 +55,7 @@ export default function SingleProductPage(props) {
         {hasSize ? (
           <select name="productSizes" className="productSizes">
             <option selected="selected" disabled>
-              {" "}
-              Size{" "}
+              Size
             </option>
             {sizes.map((size) => (
               <option value={size}>{size}</option>
