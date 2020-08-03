@@ -14,7 +14,7 @@
   font-size: 16px;
 
   // To show Search and SearchPreview over Navbar and Header.
-  z-index: 11;
+  z-index: 101;
 
   span {
     position: absolute;
@@ -179,5 +179,9 @@
 
     // To hide 1px empty space between Search and Navbar.
     margin-bottom: -1px;
+
+    .searchPreview {
+      display: none;
+    }
   }
 }
