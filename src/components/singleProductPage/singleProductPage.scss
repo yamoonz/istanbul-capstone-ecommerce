@@ -1,4 +1,4 @@
-@import "../common/varaibles";
+@import "../common/variables";
 
 .productInfoContainer {
   width: 100%;
@@ -116,7 +116,7 @@
     display: none;
   }
 
-  .AddToCartBtn {
+  .addToCartBtn {
     background-color: #cecceb;
     border: none;
     grid-row: 7/10;
@@ -263,7 +263,7 @@
       font-size: 90%;
     }
 
-    .AddToCartBtn {
+    .addToCartBtn {
       width: 100%;
       height: 40%;
       font-size: 70%;
@@ -291,7 +291,7 @@
   .productInfo {
     height: 90%;
 
-    .AddToCartBtn {
+    .addToCartBtn {
       width: 100%;
       height: 50%;
     }
@@ -326,7 +326,7 @@
       font-size: 70%;
     }
 
-    .AddToCartBtn {
+    .addToCartBtn {
       width: 100%;
       height: 65%;
     }

@@ -14,7 +14,7 @@ export default function GoogleAndFacebookLogIn() {
       imageUrl: user.photoURL,
       isAdmin: false,
     };
-    // This varaibles is commented because it is not used yet
+    // This variables is commented because it is not used yet
     // const createNewSubCollection = await db
     //   .collection("users")
     //   .doc(info.userId)

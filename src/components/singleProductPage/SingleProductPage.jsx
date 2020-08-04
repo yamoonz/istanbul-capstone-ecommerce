@@ -2,19 +2,15 @@ import React from "react";
 import Slider from "react-slick";
 import "./singleProductPage.scss";
 
-export default function SingleProductPage(props) {
-  // These varaibles need to be replaced by the real data
-  const title = props.props.title;
-  const imgs = props.props.images;
-  const brand = props.props.brand;
-  const price = props.props.price;
+export default function SingleProductPage({ props }) {
+  const { title, images, brand, price } = props;
+  // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
   const sizes = [41, 42, 43, 44];
-
-  const PRODUCT_IMGS_SLIDER_SETTING = {
+  const productImgsSliderSetting = {
     customPaging: function (i) {
-      return <img src={`${imgs[i]}`} alt="product" className="smallImgs" />;
+      return <img src={`${images[i]}`} alt="product" className="smallImgs" />;
     },
     dots: true,
     dotsClass: "slick-dots slick-thumb",
@@ -27,10 +23,10 @@ export default function SingleProductPage(props) {
   return (
     <div class="row" className="productInfoContainer">
       <div class="col-lg-6 col-md-12" className="productImgs">
-        <Slider {...PRODUCT_IMGS_SLIDER_SETTING}>
-          {imgs.map((img, i) => (
+        <Slider {...productImgsSliderSetting}>
+          {images.map((img, i) => (
             <div>
-              <img src={imgs[i]} alt="product" className="mainImg" />
+              <img src={images[i]} alt="product" className="mainImg" />
             </div>
           ))}
         </Slider>
@@ -61,7 +57,7 @@ export default function SingleProductPage(props) {
           ""
         )}
 
-        <button className="AddToCartBtn">Add to cart</button>
+        <button className="addToCartBtn">Add to cart</button>
         <button className="BuyNowBtn">Buy now</button>
         <button className="favoriteBtn">
           <i class="fas fa-heart" />
