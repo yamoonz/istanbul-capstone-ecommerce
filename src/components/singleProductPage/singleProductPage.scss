@@ -53,6 +53,7 @@
     font-size: 25px;
     position: relative;
     left: 20%;
+
     &::before {
       content: "";
       display: block;
@@ -185,6 +186,7 @@
     .productQuantity {
       width: 50%;
     }
+
     .quantity {
       grid-row: 4;
       grid-column: 2/3;
@@ -198,11 +200,14 @@
     width: 100%;
     height: 50vh;
   }
+
   .productImgs {
     width: 50%;
+
     .smallImgs {
       width: 220%;
     }
+
     .slick-thumb li {
       margin: 15%;
       margin-bottom: 50%;
@@ -214,6 +219,7 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
+
     .productBrand {
       font-size: 17px;
       &::before {
@@ -221,48 +227,58 @@
         left: -40%;
       }
     }
+
     .productPrice {
       font-size: 17px;
     }
+
     .productTitle {
       grid-row: 2;
       grid-column: 1/2;
       font-size: 20px;
     }
+
     .productDescription {
       grid-column: 1/12;
       font-size: 13px;
     }
+
     .productQuantity {
       grid-row: 4/6;
       grid-column: 1/4;
       width: 40%;
       height: 60%;
     }
+
     .quantity {
       grid-row: 4;
       grid-column: 2;
       font-size: 90%;
     }
+
     .productSizes {
       width: 90%;
       height: 60%;
       font-size: 90%;
     }
+
     .AddToCartBtn {
       width: 100%;
       height: 40%;
       font-size: 70%;
     }
+
     .BuyNowBtn {
       width: 100%;
       height: 40%;
       font-size: 70%;
     }
+
     .favoriteBtn {
       width: 70%;
       height: 30px;
     }
+
     .commentBtn {
       width: 70%;
       height: 30px;
@@ -273,17 +289,21 @@
 @include media(phone) {
   .productInfo {
     height: 90%;
+
     .AddToCartBtn {
       width: 100%;
       height: 50%;
     }
+
     .BuyNowBtn {
       width: 100%;
       height: 50%;
     }
+
     .commentBtn {
       margin-top: 12px;
     }
+
     .quantity {
       font-size: 70%;
       margin-left: -25%;
@@ -297,26 +317,33 @@
     display: flex;
     flex-direction: column;
   }
+
   .productInfo {
     margin: 2%;
+
     .quantity {
       font-size: 70%;
     }
+
     .AddToCartBtn {
       width: 100%;
       height: 65%;
     }
+
     .BuyNowBtn {
       width: 100%;
       height: 65%;
     }
   }
+
   .productImgs {
     width: 100%;
     margin: 0;
+
     .smallImgs {
       width: 250%;
     }
+
     .slick-thumb li {
       margin: 15%;
       margin-bottom: 30%;
