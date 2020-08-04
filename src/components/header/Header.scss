@@ -8,6 +8,7 @@ $buttonSignUp: #c3c9eb;
   display: flex;
   align-items: center;
   color: #fff;
+
 }
 
 .videoWrap {
@@ -146,6 +147,6 @@ $buttonSignUp: #c3c9eb;
     justify-content: center;
   }
   @include media(phone-sm) {
-    flex-wrap: wrap;
+    
   }
 }
