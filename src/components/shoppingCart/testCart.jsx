@@ -34,11 +34,7 @@ export default function Cart({ cart, setCart }) {
     setCart(newCart);
   };
 
-  const removeFromCart = (productToRemove) => {
-    setCart(
-      cart.filter((product) => product !== productToRemove)
-    );
-  };
+
 
   return (
     <>
@@ -61,10 +57,7 @@ export default function Cart({ cart, setCart }) {
                   )
                 }
               />
-              <img src={product.image} alt={product.name} />
-              <button onClick={() => removeFromCart(product)}>
-                Remove
-            </button>
+
             </div>
           )
 
