@@ -53,6 +53,16 @@ export default function AddProducts() {
     await db.collection("products").add(productInfo);
   };
 
+  const sizeOptions = (
+    <>
+      <option>45</option>
+      <option>44</option>
+      <option>43</option>
+      <option>41</option>
+      <option>40</option>
+    </>
+  );
+
   return (
     <>
       <Form onSubmit={(e) => addNewProductToDatabase(e)}>
@@ -123,38 +133,22 @@ export default function AddProducts() {
             <Row>
               <Col xs={12} md={6} lg={3}>
                 <Form.Control as="select" defaultValue="sizes" id="firstSize">
-                  <option>45</option>
-                  <option>44</option>
-                  <option>43</option>
-                  <option>41</option>
-                  <option>40</option>
+                  {sizeOptions}
                 </Form.Control>
               </Col>
               <Col xs={12} md={6} lg={3}>
                 <Form.Control as="select" defaultValue="sizes" id="secondSize">
-                  <option>45</option>
-                  <option>44</option>
-                  <option>43</option>
-                  <option>41</option>
-                  <option>40</option>
+                  {sizeOptions}
                 </Form.Control>
               </Col>
               <Col xs={12} md={6} lg={3}>
                 <Form.Control as="select" defaultValue="sizes" id="thirdSize">
-                  <option>45</option>
-                  <option>44</option>
-                  <option>43</option>
-                  <option>41</option>
-                  <option>40</option>
+                  {sizeOptions}
                 </Form.Control>
               </Col>
               <Col xs={12} md={6} lg={3}>
                 <Form.Control as="select" defaultValue="sizes" id="fourthSize">
-                  <option>45</option>
-                  <option>44</option>
-                  <option>43</option>
-                  <option>41</option>
-                  <option>40</option>
+                  {sizeOptions}
                 </Form.Control>
               </Col>
             </Row>
