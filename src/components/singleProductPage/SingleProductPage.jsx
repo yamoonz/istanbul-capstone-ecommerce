@@ -14,11 +14,7 @@ export default function SingleProductPage(props) {
 
   const PRODUCT_IMGS_SLIDER_SETTING = {
     customPaging: function (i) {
-      return (
-        <a>
-          <img src={`${imgs[i]}`} className="smallImgs" />
-        </a>
-      );
+      return <img src={`${imgs[i]}`} alt="product" className="smallImgs" />;
     },
     dots: true,
     dotsClass: "slick-dots slick-thumb",
@@ -34,7 +30,7 @@ export default function SingleProductPage(props) {
         <Slider {...PRODUCT_IMGS_SLIDER_SETTING}>
           {imgs.map((img, i) => (
             <div>
-              <img src={imgs[i]} className="mainImg" />
+              <img src={imgs[i]} alt="product" className="mainImg" />
             </div>
           ))}
         </Slider>
