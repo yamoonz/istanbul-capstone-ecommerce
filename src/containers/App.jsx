@@ -11,7 +11,6 @@ function App() {
     <>
       <Route path="/" component={Navbar} />
       <RouteBlock />
-      <Cart />
       <Home />
     </>
   );
