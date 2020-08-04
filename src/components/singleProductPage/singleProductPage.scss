@@ -21,7 +21,7 @@
   }
 
   .smallImgs {
-    width: 350%;
+    width: 400%;
     background-color: #c4c4c4;
     margin-top: 200%;
   }
@@ -31,8 +31,8 @@
   }
 
   .slick-thumb li {
-    margin: 12%;
-    margin-bottom: 23%;
+    margin: 15%;
+    margin-bottom: 25%;
     margin-left: 0;
   }
 }
@@ -143,7 +143,6 @@
     margin-left: 0;
     width: 100%;
     height: 30px;
-
     border: none;
     border-bottom: solid 2px #c4c4c490;
     border-right: solid 2px #c4c4c490;
@@ -166,7 +165,7 @@
 @include media(desktop) {
   .productImgs {
     .slick-thumb li {
-      margin: 12%;
+      margin: 15%;
       margin-bottom: 30%;
       margin-left: 0;
     }
@@ -176,7 +175,7 @@
 @include media(tablet) {
   .productImgs {
     .slick-thumb li {
-      margin: 12%;
+      margin: 15%;
       margin-bottom: 40%;
       margin-left: 5%;
     }
@@ -195,7 +194,7 @@
 }
 
 @include media(tablet-sm) {
-  .productInfoContainer {
+  .productInfoContainer { 
     width: 100%;
     height: 50vh;
   }
@@ -286,7 +285,8 @@
       margin-top: 12px;
     }
     .quantity {
-      font-size: 50%;
+      font-size: 70%;
+      margin-left:-25%;
     }
   }
 }
@@ -294,11 +294,13 @@
 @include media(phone-sm) {
   .productInfoContainer {
     height: 30vh;
+    display: flex;
+    flex-direction: column;
   }
   .productInfo {
+    margin:2% ; 
     .quantity {
       font-size: 70%;
-      margin-right: 0;
     }
     .AddToCartBtn {
       width: 100%;
@@ -310,9 +312,14 @@
     }
   }
   .productImgs {
+    width: 100%;
+    margin: 0;
+    .smallImgs {
+      width: 250%;
+    }
     .slick-thumb li {
       margin: 15%;
-      margin-bottom: 70%;
+      margin-bottom: 30%;
       margin-left: 0;
     }
   }
