@@ -1,38 +1,10 @@
 import React from "react";
-import { MOCK_DATABASE } from "../../../common/MockDatabase";
+import { MOCK_DATABASE } from "../common/MockDatabase";
 import { Component } from "react";
+import { useState } from 'react';
 
-var Increment = React.createClass({
-    getInitialState: function () {
-        return {
-            counter: 0
-        };
-    },
 
-    increment: function () {
-        this.setState({
-            counter: this.state.counter + 1
-        });
-    },
-
-    decrement: function () {
-        this.setState({
-            counter: this.state.counter - 1
-        });
-    },
-
-    render: function () {
-        return <div>
-            <div id='counter'>{this.state.counter}</div>
-            <button onClick={this.increment}> + </button>
-            <button onClick={this.decrement}> -  </button>
-        </div>
-    }
-});
-
-React.render(<Increment />, document.getElementById('mount'))
-
-export default function Cart({ cart, setCart }) {
+function Cart({ cart, setCart }) {
     const getTotalSum = () => {
         return cart.reduce((sum, { cost, quantity }) => sum + cost * quantity, 0);
     };
@@ -41,40 +13,51 @@ export default function Cart({ cart, setCart }) {
         setCart([]);
     };
 
-    const setQuantity = (product, amount) => {
-        const newCart = [...cart];
-        newCart.find((item) => item.name === product.name).quantity = amount;
-        setCart(newCart);
-    };
-
     const removeFromCart = (productToRemove) => {
         setCart(cart.filter((product) => product !== productToRemove));
     };
+    const [count, setCount] = useState(0);
 
-    return (
-        <>
-            <h1>Cart</h1>
-            {/* {cart.length > 0 && (
+    // Create handleIncrement event handler
+    const handleIncrement = () => {
+        setCount(prevCount => prevCount + 1);
+    };
+
+    //Create handleDecrement event handler
+    const handleDecrement = () => {
+        setCount(prevCount => prevCount - 1);
+
+        return (
+            <>
+                <div>
+                    <div>
+                        <button onClick={handleDecrement}>-</button>
+                        <h5>Count is {count}</h5>
+                        <button onClick={handleIncrement}>+</button>
+                    </div>
+                    <button onClick={() => setCount(0)}>Reset</button>
+                </div>
+
+
+
+                <h1>Cart</h1>
+                {/* {cart.length > 0 && (
         <button onClick={clearCart}>Clear Cart</button>
       )} */}
-            <div className="products">
-                {cart.map((product, idx) => (
-                    <div className="product" key={idx}>
-                        <h3>{product.name}</h3>
-                        <h4>${product.cost}</h4>
-                        <input
-                            value={product.quantity}
-                            onChange={(e) => setQuantity(product, parseInt(e.target.value))}
-                        />
-                        <img src={product.image} alt={product.name} />
-                        <button onClick={() => removeFromCart(product)}>Remove</button>
-                    </div>
-                ))}
-            </div>
-
-            <div>Total Cost: ${getTotalSum()}</div>
-        </>
-    );
+                <div className="products">
+                    {cart.map((product, idx) => (
+                        <div className="product" key={idx}>
+                            <h3>{product.name}</h3>
+                            <h4>${product.cost}</h4>
+                            <input
+                            />
+                            <img src={product.image} alt={product.name} />
+                            <button onClick={() => removeFromCart(product)}>Remove</button>
+                        </div>
+                    ))}
+                </div>
+            </>
+        );
+    }
 }
-//export default Cart;
-//
+export default Cart;
