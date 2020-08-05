@@ -4,6 +4,7 @@ import LoginForm from "../auth/login/Login";
 import SignUpForm from "../auth/signUp/SignUp";
 import LanguageDropdown from "./LanguageDropdown";
 import Categories from "./Categories";
+import SliderSection from "../singleProductPage/SliderSection";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <LanguageDropdown />
       <Categories />
       <Products />
+      <SliderSection />
     </>
   );
 }
