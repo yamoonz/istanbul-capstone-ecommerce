@@ -7,7 +7,7 @@ import AboutPage from "../components/about/About";
 import ProductsPage from "../components/products/Products";
 import AdminPage from "../components/addProductsForm/AddProducts";
 import Home from "../components/home/Home";
-import SingleProductPage from "../components/products/product/SingleProductPage";
+import SingleProductPage from "../components/singleProductPage/SingleProductPage";
 
 export const RouteBlock = () => {
   return (

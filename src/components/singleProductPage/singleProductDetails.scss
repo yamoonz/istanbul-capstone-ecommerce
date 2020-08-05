@@ -1,5 +1,13 @@
 @import "../common/variables";
 
+.singleProductContainer {
+  height: 100vh;
+}
+
+.productDetailsRow {
+  margin-bottom: 5%;
+}
+
 .productInfoContainer {
   width: 100%;
   height: 70vh;
@@ -8,6 +16,10 @@
 }
 
 .productImgs {
+  .slick-slide > div {
+    width: 100%;
+  }
+
   width: 50%;
   height: 100%;
   background-color: #ecebe4;
@@ -288,6 +300,10 @@
 }
 
 @include media(phone) {
+  .productInfoContainer {
+    height: 40vh;
+  }
+
   .productInfo {
     height: 90%;
 
@@ -314,7 +330,6 @@
 
 @include media(phone-sm) {
   .productInfoContainer {
-    height: 30vh;
     display: flex;
     flex-direction: column;
   }
@@ -347,7 +362,7 @@
 
     .slick-thumb li {
       margin: 15%;
-      margin-bottom: 30%;
+      margin-bottom: 27%;
       margin-left: 0;
     }
   }

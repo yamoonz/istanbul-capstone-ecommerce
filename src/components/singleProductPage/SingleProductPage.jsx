@@ -1,69 +1,25 @@
 import React from "react";
-import Slider from "react-slick";
-import "./singleProductPage.scss";
+// import { useParams } from "react-router-dom";
+import SingleProduct from "./SingleProduct";
+import SliderSection from "./SliderSection";
+import { MOCK_DATABASE } from "../common/MockDatabase";
+import { Container, Row } from "react-bootstrap";
+import "./singleProductDetails.scss";
 
-export default function SingleProductPage({ props }) {
-  const { title, images, brand, price } = props;
-  // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
-  const description = "Health, soft and fast running shoes";
-  const hasSize = true;
-  const sizes = [41, 42, 43, 44];
-  const productImgsSliderSetting = {
-    customPaging: function (i) {
-      return <img src={`${images[i]}`} alt="product" className="smallImgs" />;
-    },
-    dots: true,
-    dotsClass: "slick-dots slick-thumb",
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+const SingleProductPage = () => {
+  // productId Will be used later
+  // let { productId } = useParams();
 
   return (
-    <div class="row" className="productInfoContainer">
-      <div class="col-lg-6 col-md-12" className="productImgs">
-        <Slider {...productImgsSliderSetting}>
-          {images.map((img, i) => (
-            <div>
-              <img src={images[i]} alt="product" className="mainImg" />
-            </div>
-          ))}
-        </Slider>
-      </div>
-      <div class="col-lg-6 col-md-12" className="productInfo">
-        <span className="productBrand">{brand}</span>
-        <span className="productPrice">{price}$</span>
-        <p className="productTitle">{title}</p>
-        <p className="productDescription">{description}</p>
-        <input
-          type="number"
-          className="productQuantity"
-          name="quantity"
-          min="1"
-          max="10"
-        />
-        <span className="quantity">Quantity</span>
-        {hasSize && (
-          <select name="productSizes" className="productSizes">
-            <option selected="selected" disabled>
-              Size
-            </option>
-            {sizes.map((size) => (
-              <option value={size}>{size}</option>
-            ))}
-          </select>
-        )}
-
-        <button className="addToCartBtn">Add to cart</button>
-        <button className="buyNowBtn">Buy now</button>
-        <button className="favoriteBtn">
-          <i class="fas fa-heart" />
-        </button>
-        <button className="commentBtn">
-          <i class="fas fa-comment-alt" />
-        </button>
-      </div>
-    </div>
+    <Container className="productSliderRow">
+      <Row className="productDetailsRow">
+        <SingleProduct productData={MOCK_DATABASE[0]} />
+      </Row>
+      <Row>
+        <SliderSection />
+      </Row>
+    </Container>
   );
-}
+};
+
+export default SingleProductPage;

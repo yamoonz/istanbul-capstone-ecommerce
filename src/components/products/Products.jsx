@@ -1,7 +1,6 @@
 import React from "react";
 import ProductCard from "../layout/productCard/ProductCard";
 import { Container, Row } from "react-bootstrap";
-import SingleProductPage from "../singleProductPage/SingleProductPage";
 import { MOCK_DATABASE } from "../common/MockDatabase";
 import { NavLink } from "react-router-dom";
 
@@ -18,7 +17,6 @@ export default function Products() {
           </NavLink>
         ))}
       </Row>
-      <SingleProductPage props={MOCK_DATABASE[0]} />
     </Container>
   );
 }
