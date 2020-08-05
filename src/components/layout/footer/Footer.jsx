@@ -6,6 +6,7 @@ import {
   faGoogle,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import { NavLink } from "react-router-dom";
 import "./style.scss";
 
 const Footer = () => {
@@ -26,10 +27,18 @@ const Footer = () => {
         </a>
       </div>
       <ul className="navBar">
-        <li className="navBarItem">Home</li>
-        <li className="navBarItem">Products</li>
-        <li className="navBarItem">Blog</li>
-        <li className="navBarItem">Contact</li>
+        <NavLink to="/">
+          <li className="navBarItem">Home</li>
+        </NavLink>
+        <NavLink to="/products">
+          <li className="navBarItem">Products</li>
+        </NavLink>
+        <NavLink to="/blog">
+          <li className="navBarItem">Blog</li>
+        </NavLink>
+        <NavLink to="/about">
+          <li className="navBarItem">About</li>
+        </NavLink>
       </ul>
     </footer>
   );
