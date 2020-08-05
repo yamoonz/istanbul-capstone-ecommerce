@@ -14,14 +14,10 @@ export default function GoogleAndFacebookLogIn() {
       imageUrl: user.photoURL,
       isAdmin: false,
     };
-    // This variables is commented because it is not used yet
-    // const createNewSubCollection = await db
-    //   .collection("users")
-    //   .doc(info.userId)
-    //   .collection("liked")
-    //   .add({
-    //     liked: 0,
-    //   });
+    // Create new subcollection
+    await db.collection("users").doc(info.userId).collection("liked").add({
+      liked: 0,
+    });
     await db.collection("users").doc(info.userId).set(info);
   };
 
