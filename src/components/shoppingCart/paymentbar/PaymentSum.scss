@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.paymentInfoBar {
+  max-width: 300px !important;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  background-color: rgba(128, 141, 158, 0.527);
+  font-size: 18px;
+
+  .orderSummary {
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+
+    .subTotal,
+    .shipping {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .shipping {
+      padding-top: 25px;
+
+      .shippingFree {
+        position: relative;
+        text-decoration: line-through;
+
+        &::after {
+          content: "FREE!";
+          position: absolute;
+          bottom: -22px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: green;
+        }
+      }
+    }
+
+    .orderTitle {
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      border: 1px solid black;
+      width: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .totalCost {
+    //padding-top: 30px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    .purchaseButton {
+      width: 200px;
+      margin-top: 30px;
+    }
+
+    .totalTitle {
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+  }
+}
