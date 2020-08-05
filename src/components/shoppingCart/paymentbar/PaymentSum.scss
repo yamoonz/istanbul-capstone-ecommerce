@@ -1,4 +1,5 @@
-* {
+// To only affect this styling scope for resetting.
+.paymentInfoBar * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -59,7 +60,6 @@
   }
 
   .totalCost {
-    //padding-top: 30px;
     flex-direction: column;
     text-align: center;
     align-items: center;
