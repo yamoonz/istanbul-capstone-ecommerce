@@ -44,7 +44,7 @@ export default function SingleProductPage({ props }) {
           max="10"
         />
         <span className="quantity">Quantity</span>
-        {hasSize ? (
+        {hasSize && (
           <select name="productSizes" className="productSizes">
             <option selected="selected" disabled>
               Size
@@ -53,8 +53,6 @@ export default function SingleProductPage({ props }) {
               <option value={size}>{size}</option>
             ))}
           </select>
-        ) : (
-          ""
         )}
 
         <button className="addToCartBtn">Add to cart</button>
