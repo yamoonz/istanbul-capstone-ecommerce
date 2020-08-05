@@ -19,12 +19,10 @@ const PaymentSum = () => {
   useEffect(() => {
     if (subTotal >= AMOUNT_TO_FREE_SHIPPING) {
       setIsShippingFree(true);
-    }
-    //subTotal >= AMOUNT_TO_FREE_SHIPPING && setIsShippingFree(true);
-    if (isShippingFree) {
       setTotalCost(subTotal);
       return;
     } else {
+      setIsShippingFree(false);
       setTotalCost(shippingCost + subTotal);
     }
     console.log({ isShippingFree, subTotal, AMOUNT_TO_FREE_SHIPPING });
