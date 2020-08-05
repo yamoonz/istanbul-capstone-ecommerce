@@ -5,49 +5,48 @@ import db from "../config/firebaseConfig";
 
 export default function AddProducts() {
   const [hasSizes, setHasSizes] = useState(false);
-  const [getProductBrand, setGetProductBrand] = useState("");
-  const [getProductTitle, setGetProductTitle] = useState("");
-  const [getProductDescription, setGetProductDescription] = useState("");
-  const [getProductCategory, setGetProductCategory] = useState("");
-  const [getProductPrice, setGetProductPrice] = useState("");
-  const [getProductSizes, setGetProductSizes] = useState([]);
+  const [productFormBrand, setProductFormBrand] = useState("");
+  const [productFormTitle, setProductFormTitle] = useState("");
+  const [productFormDescription, setProductFormDescription] = useState("");
+  const [productFormCategory, setProductFormCategory] = useState("");
+  const [productFormPrice, setProductFormPrice] = useState("");
+  const [productFormSizes, setProductFormSizes] = useState([]);
 
   // Add products to the database
   const addNewProductToDatabase = async (e) => {
     e.preventDefault();
     // Getting all images and push them into an array
     const allImages = [];
-    const firstImage = e.target["firstImage"].value;
-    allImages.push(firstImage);
-    const secondImage = e.target["secondImage"].value;
-    allImages.push(secondImage);
-    const thridImage = e.target["thirdImage"].value;
-    allImages.push(thridImage);
-    const fourthImage = e.target["fourthImage"].value;
-    allImages.push(fourthImage);
+    const arrayOfImages = [
+      "firstImage",
+      "secondImage",
+      "thirdImage",
+      "fourthImage",
+    ];
+    for (let i = 0; i < arrayOfImages.length; i++) {
+      const image = e.target[arrayOfImages[i]].value;
+      allImages.push(image);
+    }
+
     const allSizes = [];
     // Getting all sizes and push them into an array
-
+    const arrayOfSizes = ["firstSize", "secondSize", "thirdSize", "fourthSize"];
     if (hasSizes === true) {
-      const firstSize = e.target["firstSize"].value;
-      allSizes.push(firstSize);
-      const secondSize = e.target["secondSize"].value;
-      allSizes.push(secondSize);
-      const thirdSize = e.target["thirdSize"].value;
-      allSizes.push(thirdSize);
-      const fourthSize = e.target["fourthSize"].value;
-      allSizes.push(fourthSize);
+      for (let j = 0; j < arrayOfSizes.length; j++) {
+        const size = e.target[arrayOfSizes[j]].value;
+        allSizes.push(size);
+      }
     }
 
     const productInfo = {
-      brand: getProductBrand,
-      title: getProductTitle,
-      categories: getProductCategory,
-      description: getProductDescription,
+      brand: productFormBrand,
+      title: productFormTitle,
+      categories: productFormCategory,
+      description: productFormDescription,
       images: allImages,
       hasSize: hasSizes,
       sizes: allSizes,
-      price: getProductPrice,
+      price: productFormPrice,
     };
 
     await db.collection("products").add(productInfo);
@@ -72,14 +71,14 @@ export default function AddProducts() {
               <Form.Control
                 type="text"
                 placeholder="Brand"
-                onChange={(e) => setGetProductBrand(e.target.value)}
+                onChange={(e) => setProductFormBrand(e.target.value)}
               />
             </Col>
             <Col>
               <Form.Control
                 type="text"
                 placeholder="Title"
-                onChange={(e) => setGetProductTitle(e.target.value)}
+                onChange={(e) => setProductFormTitle(e.target.value)}
               />
             </Col>
           </Row>
@@ -88,7 +87,7 @@ export default function AddProducts() {
               <Form.Control
                 type="text"
                 placeholder="Description"
-                onChange={(e) => setGetProductDescription(e.target.value)}
+                onChange={(e) => setProductFormDescription(e.target.value)}
               />
             </Col>
           </Row>
@@ -98,7 +97,7 @@ export default function AddProducts() {
                 <Form.Control
                   as="select"
                   defaultValue="Shoes"
-                  onChange={(e) => setGetProductCategory(e.target.value)}
+                  onChange={(e) => setProductFormCategory(e.target.value)}
                 >
                   <option>Shoes</option>
                   <option>Health care</option>
@@ -125,7 +124,7 @@ export default function AddProducts() {
               <Form.Control
                 type="number"
                 placeholder="Price"
-                onChange={(e) => setGetProductPrice(parseInt(e.target.value))}
+                onChange={(e) => setProductFormPrice(parseInt(e.target.value))}
               />
             </Col>
           </Row>
