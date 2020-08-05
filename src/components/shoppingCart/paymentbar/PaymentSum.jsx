@@ -25,7 +25,6 @@ const PaymentSum = () => {
       setIsShippingFree(false);
       setTotalCost(shippingCost + subTotal);
     }
-    console.log({ isShippingFree, subTotal, AMOUNT_TO_FREE_SHIPPING });
   }, [subTotal]);
 
   return (
