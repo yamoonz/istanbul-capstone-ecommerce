@@ -7,6 +7,7 @@
   // React-slick classes
   .slick-dots {
     background-color: #f0f0f0;
+
     li {
       button {
         &::before {
@@ -37,6 +38,7 @@
   margin-left: 1%;
   text-align: center;
   max-width: 300px;
+
   &::before {
     content: "";
     display: block;
@@ -55,12 +57,14 @@
   position: relative;
   margin: 10%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   img {
     height: 100%;
     width: 100%;
     object-fit: cover !important;
     position: relative;
   }
+
   &::before {
     content: "";
     width: 100%;
@@ -103,6 +107,7 @@
       display: none;
     }
   }
+
   .card {
     width: 90%;
     height: 250px;

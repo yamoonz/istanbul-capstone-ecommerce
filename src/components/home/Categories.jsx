@@ -76,7 +76,7 @@ export default function Categories() {
   const Category = (props) => {
     return (
       <div className="card">
-        <img alt="ctegory" src={`${props.category.img}`} />
+        <img src={`${props.category.img}`} alt="category" />
         <p className="cardTitle">{props.category.name.toLocaleUpperCase()}</p>
       </div>
     );

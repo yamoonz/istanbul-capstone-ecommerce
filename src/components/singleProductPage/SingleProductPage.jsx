@@ -56,7 +56,7 @@ export default function SingleProductPage({ props }) {
         )}
 
         <button className="addToCartBtn">Add to cart</button>
-        <button className="BuyNowBtn">Buy now</button>
+        <button className="buyNowBtn">Buy now</button>
         <button className="favoriteBtn">
           <i class="fas fa-heart" />
         </button>
