@@ -5,13 +5,16 @@
   background-color: white;
   margin: auto;
   height: 100px;
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 0;
   font-size: 16px;
+
+  // To show Search and SearchPreview over Navbar and Header.
+  z-index: 101;
 
   span {
     position: absolute;
@@ -96,7 +99,7 @@
     max-width: 70%;
   }
 
-  .card {
+  .previewCard {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #ffffff;
@@ -108,14 +111,14 @@
       cursor: pointer;
     }
 
-    .brand {
+    .previewBrand {
       display: inline-block;
       width: 70%;
       opacity: 0.5;
       font-size: 0.9em;
     }
 
-    .price {
+    .previewPrice {
       display: inline-block;
       opacity: 0.5;
       width: 30%;
@@ -136,16 +139,29 @@
 
 @include media(tablet-sm) {
   .searchBox {
-    width: 62vw;
-    left: 10px;
+    width: calc(100vw - 200px);
     position: absolute;
     transition: all 0.5s linear;
+
+    &::before {
+      content: "";
+      background-color: #6676a0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+    }
+
+    .searchBar {
+      max-width: 90%;
+    }
 
     .searchPreview {
       padding: 20px;
 
       // Do not show the third product at preview in this resolution.
-      .card:nth-last-of-type(1) {
+      .previewCard:nth-last-of-type(1) {
         display: none;
       }
     }
@@ -164,14 +180,8 @@
     // To hide 1px empty space between Search and Navbar.
     margin-bottom: -1px;
 
-    &::before {
-      content: "";
-      background-color: #6676a0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100%;
+    .searchPreview {
+      display: none;
     }
   }
 }
