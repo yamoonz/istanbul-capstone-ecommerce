@@ -154,6 +154,7 @@ $buttonSignUp: #c3c9eb;
     grid-row: 12;
   }
 }
+
 @include media(phone-sm) {
   .headerTextContent {
     h1 {
