@@ -4,11 +4,13 @@ import LoginForm from "../auth/login/Login";
 import SignUpForm from "../auth/signUp/SignUp";
 import LanguageDropdown from "./LanguageDropdown";
 import Categories from "./Categories";
+import Header from "../header/Header";
 import SliderSection from "../singleProductPage/SliderSection";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <LoginForm />
       <SignUpForm />
       <LanguageDropdown />
