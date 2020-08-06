@@ -221,3 +221,23 @@
     z-index: 102;
   }
 }
+
+.closeSignUpForm {
+  position: fixed !important;
+  transform: translateY(70px);
+  top: 40px;
+  right: 50px;
+  z-index: 101;
+  font-size: 25px;
+  width: 30px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include media(tablet-sm) {
+    top: calc(50% - 240px);
+    right: calc(50% - 150px);
+  }
+}

@@ -34,13 +34,13 @@ const LogInForm = () => {
   };
 
   const emailGroup = (
-    <Form.Group controlId="formGroupEmail">
+    <Form.Group controlId="formGroupEmail" className="formGroupEmail">
       <Form.Label className="formInputLabel">Email address</Form.Label>
       <div className="formInputWrapper">
         <i className="fas fa-user-circle"></i>
         <Form.Control
           type="email"
-          placeholder="Enter email"
+          placeholder="Enter your registered email"
           ref={emailValue}
           className="formInput"
         />
@@ -49,33 +49,25 @@ const LogInForm = () => {
   );
 
   const passwordGroup = (
-    <Form.Group controlId="formGroupPassword">
+    <Form.Group controlId="formGroupPassword" className="formGroupPassword">
       <Form.Label className="formInputLabel">Password</Form.Label>
-      <Form.Control
-        type="password"
-        placeholder="Password"
-        ref={passwordValue}
-        className="formInput"
-      />
-      {isLoggedIn ? (
-        <Button
-          variant="info"
-          size="md"
-          className="loginButton"
-          onClick={userLogout}
-        >
-          LOG OUT
-        </Button>
-      ) : (
-        <Button
-          variant="info"
-          size="md"
-          className="loginButton"
-          onClick={userLogin}
-        >
-          LOG IN
-        </Button>
-      )}
+      <div className="formInputWrapper">
+        <i className="fas fa-key"></i>
+        <Form.Control
+          type="password"
+          placeholder="Enter your password"
+          ref={passwordValue}
+          className="formInput"
+        />
+      </div>
+      <Button
+        variant="info"
+        size="md"
+        className="loginButton"
+        onClick={`${isLoggedIn ? userLogout : userLogin}`}
+      >
+        {`${isLoggedIn ? "LOG OUT" : "LOG IN"}`}
+      </Button>
     </Form.Group>
   );
 

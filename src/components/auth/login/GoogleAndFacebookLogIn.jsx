@@ -2,8 +2,6 @@ import React from "react";
 import db from "../../config/firebaseConfig";
 import * as firebase from "firebase";
 import "firebase/auth";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 export default function GoogleAndFacebookLogIn() {
@@ -18,13 +16,10 @@ export default function GoogleAndFacebookLogIn() {
       isAdmin: false,
     };
 
-    const createNewSubCollection = await db
-      .collection("users")
-      .doc(info.userId)
-      .collection("liked")
-      .add({
-        liked: 0,
-      });
+    await db.collection("users").doc(info.userId).collection("liked").add({
+      liked: 0,
+    });
+
     await db.collection("users").doc(info.userId).set(info);
   };
 
@@ -42,27 +37,16 @@ export default function GoogleAndFacebookLogIn() {
   };
 
   return (
-    <Row className="socialLoginButtons">
-      <Col>
-        <Button
-          variant="info"
-          size="md"
-          className="fbButton"
-          onClick={() => logIn(facebookProvider)}
-        >
-          Facebook
-        </Button>
-      </Col>
-      <Col>
-        <Button
-          variant="info"
-          size="md"
-          className="googleButton"
-          onClick={() => logIn(googleProvider)}
-        >
-          Google
-        </Button>
-      </Col>
+    <Row className="socialLoginIcons">
+      <span>Login using:</span>
+      <i
+        className="fab fa-facebook"
+        onClick={() => logIn(facebookProvider)}
+      ></i>
+      <i
+        className="fab fa-google-plus"
+        onClick={() => logIn(googleProvider)}
+      ></i>
     </Row>
   );
 }
