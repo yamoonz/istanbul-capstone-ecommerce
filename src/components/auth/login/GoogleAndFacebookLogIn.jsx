@@ -14,13 +14,16 @@ export default function GoogleAndFacebookLogIn() {
       imageUrl: user.photoURL,
       isAdmin: false,
     };
+
+    /* It is yet to be used, so is commented out to pass Netlify tests.
     const createNewSubCollection = await db
       .collection("users")
       .doc(info.userId)
       .collection("liked")
       .add({
         liked: 0,
-      });
+      });*/
+
     await db.collection("users").doc(info.userId).set(info);
   };
 
