@@ -57,9 +57,9 @@ export default function ProductCard(props) {
         {/*When we get the real product we need to add an id to each product*/}
         {likeBtn}
         {slider}
-        <div className="title">{props.info.title}</div>
-        <div className="price">${props.info.price}</div>
-        <div className="brand">{props.info.brand}</div>
+        <div className="productCardTitle">{props.info.title}</div>
+        <div className="productCardPrice">${props.info.price}</div>
+        <div className="productCardBrand">{props.info.brand}</div>
       </Col>
     </React.Fragment>
   );
