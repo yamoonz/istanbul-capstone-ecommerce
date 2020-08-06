@@ -11,12 +11,12 @@ export default function SignUp() {
     const userName = e.target[0].value;
     const newUser = await auth.createUserWithEmailAndPassword(email, password);
 
-    // TODO(MiraAr): To use this function that creates new subcollection
+    // Create new subcollection
     await db.collection("users").doc(newUser.user.uid).collection("liked").add({
       liked: "0",
     });
 
-    // TODO(MiraAr): To use this function that set new user data
+    // Set new user data
     await db.collection("users").doc(newUser.user.uid).set({
       name: userName,
       isAdmin: false,
