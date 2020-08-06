@@ -31,7 +31,7 @@
     }
   }
 
-  .title {
+  .productCardTitle {
     grid-row: 9/11;
     grid-column: 2/5;
     width: 100%;
@@ -40,14 +40,14 @@
     align-items: flex-end;
   }
 
-  .brand {
+  .productCardBrand {
     grid-row: 11/12;
     grid-column: 2/3;
     opacity: 0.5;
     align-self: center;
   }
 
-  .price {
+  .productCardPrice {
     grid-row: 11/12;
     grid-column: 11/12;
     opacity: 0.5;
@@ -60,4 +60,14 @@
 
 .slick-slide {
   display: inline-block;
+}
+
+.categoriesContainer .slick-slide > div {
+  width: 100%;
+}
+
+// This is a default div coming with the slider
+
+.slick-slide > div {
+  width: 330%;
 }
