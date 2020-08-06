@@ -33,46 +33,50 @@ const LogInForm = () => {
     setLoggedIn(true);
   };
 
+  const emailGroup = (
+    <Form.Group controlId="formGroupEmail">
+      <Form.Label>Email address</Form.Label>
+      <Form.Control type="email" placeholder="Enter email" ref={emailValue} />
+    </Form.Group>
+  );
+
+  const passwordGroup = (
+    <Form.Group controlId="formGroupPassword">
+      <Form.Label>Password</Form.Label>
+      <Form.Control
+        type="password"
+        placeholder="Password"
+        ref={passwordValue}
+      />
+      {isLoggedIn ? (
+        <Button
+          variant="info"
+          size="md"
+          className="loginButton"
+          onClick={userLogout}
+        >
+          Logout
+        </Button>
+      ) : (
+        <Button
+          variant="info"
+          size="md"
+          className="loginButton"
+          onClick={userLogin}
+        >
+          Login
+        </Button>
+      )}
+    </Form.Group>
+  );
+
   return (
     <>
       {isAdmin && <AddProducts />}
       <Col className="signupForm">
         <Form>
-          <Form.Group controlId="formGroupEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              ref={emailValue}
-            />
-          </Form.Group>
-          <Form.Group controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              ref={passwordValue}
-            />
-            {isLoggedIn ? (
-              <Button
-                variant="info"
-                size="md"
-                className="loginButton"
-                onClick={userLogout}
-              >
-                Logout
-              </Button>
-            ) : (
-              <Button
-                variant="info"
-                size="md"
-                className="loginButton"
-                onClick={userLogin}
-              >
-                Login
-              </Button>
-            )}
-          </Form.Group>
+          {emailGroup}
+          {passwordGroup}
         </Form>
       </Col>
     </>
