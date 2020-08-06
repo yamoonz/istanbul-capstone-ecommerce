@@ -27,28 +27,36 @@ const PaymentSum = () => {
     }
   }, [subTotal]);
 
+  const orderSummaryRow = (
+    <Row className="orderSummary">
+      <h3 className="orderTitle">Order Summary</h3>
+      <Col className="subTotal">
+        <span>Subtotal</span>
+        <span className="subNumber">${subTotal}</span>
+      </Col>
+      <Col className="shipping">
+        <span>Shipping</span>
+        <span className={`${isShippingFree && "shippingFree"}`}>
+          ${shippingCost}
+        </span>
+      </Col>
+    </Row>
+  );
+
+  const totalCostRow = (
+    <Row className="totalCost">
+      <h3 className="totalTitle">Total Cost</h3>
+      <Col>
+        <span className="totalNumber">${totalCost}</span>
+      </Col>
+      <Button className="purchaseButton">Purchase</Button>
+    </Row>
+  );
+
   return (
     <Container className="paymentInfoBar">
-      <Row className="orderSummary">
-        <h3 className="orderTitle">Order Summary</h3>
-        <Col className="subTotal">
-          <span>Subtotal</span>
-          <span className="subNumber">${subTotal}</span>
-        </Col>
-        <Col className="shipping">
-          <span>Shipping</span>
-          <span className={`${isShippingFree && "shippingFree"}`}>
-            ${shippingCost}
-          </span>
-        </Col>
-      </Row>
-      <Row className="totalCost">
-        <h3 className="totalTitle">Total Cost</h3>
-        <Col>
-          <span className="totalNumber">${totalCost}</span>
-        </Col>
-        <Button className="purchaseButton">Purchase</Button>
-      </Row>
+      {orderSummaryRow}
+      {totalCostRow}
     </Container>
   );
 };
