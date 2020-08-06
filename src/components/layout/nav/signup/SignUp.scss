@@ -5,6 +5,8 @@ $leftBorderRounded: 0 0.25rem 0.25rem 0;
 $signUpIconBackground: #f3f3f36e;
 $signUpInputBorder: #ced4da;
 $loginButtonColor: #8b85ea;
+$fadedBlack: #495057;
+$signUpFormIndex: 104;
 
 .signupBox {
   // !important is used to cascade default Bootstrap styling.
@@ -23,7 +25,7 @@ $loginButtonColor: #8b85ea;
   border-radius: 4px;
 
   // To show SignUpBox on the Header overlay.
-  z-index: 20;
+  z-index: $signUpFormIndex;
 
   .socialMediaSeperator {
     width: 80%;
@@ -63,12 +65,12 @@ $loginButtonColor: #8b85ea;
       }
     }
 
-    .fa-facebook {
+    .facebookIcon {
       color: #3c5b94;
       padding-right: 10px;
     }
 
-    .fa-google-plus {
+    .googleIcon {
       color: #c5423a;
     }
   }
@@ -126,7 +128,7 @@ $loginButtonColor: #8b85ea;
 
     a {
       font-size: 12px;
-      color: #495057 !important;
+      color: $fadedBlack !important;
     }
   }
 
@@ -141,7 +143,6 @@ $loginButtonColor: #8b85ea;
 
 @include media(tablet-sm) {
   .signupBox {
-    z-index: 100;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
