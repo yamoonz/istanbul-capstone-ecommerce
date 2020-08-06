@@ -4,6 +4,7 @@ import LanguageDropdown from "./LanguageDropdown";
 import Categories from "./Categories";
 import Header from "../header/Header";
 import SliderSection from "../singleProductPage/SliderSection";
+import Footer from "../layout/footer/Footer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Categories />
       <Products />
       <SliderSection />
+      <Footer />
     </>
   );
 }
