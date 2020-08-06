@@ -2,15 +2,15 @@
 
 .signupBox {
   // !important is used to cascade default Bootstrap styling.
-  width: 250px !important;
+  width: 270px !important;
   transition: all 1s ease-in-out;
   position: absolute !important;
   margin: 0 auto;
-  background-color: wheat;
+  background-color: #ffffff;
   transform: translateY(70px);
   top: 35px;
   color: black;
-  right: 20px;
+  right: 35px;
   display: block !important;
 
   // To show SignUpBox on the Header overlay.
@@ -22,6 +22,40 @@
 
   .signupForm {
     margin-top: 20px;
+    padding: 0;
+
+    .formInputWrapper {
+      display: flex;
+
+      .fas {
+        position: relative;
+        min-width: 42px;
+        background-color: #f3f3f36e;
+        height: 42px;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        border-right: 0.1px solid #ced4da;
+
+        &::before {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    input {
+      font-size: 14px;
+    }
+
+    .formInputLabel {
+      margin-bottom: 2px;
+    }
+
+    .formInput {
+      height: 42px;
+    }
   }
 
   .signupRedirect {
