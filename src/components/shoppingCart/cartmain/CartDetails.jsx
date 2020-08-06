@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { MOCK_DATABASE } from "../common/MockDatabase";
+import { MOCK_DATABASE } from "../../common/MockDatabase";
 
 function CartDetails({ cart, setCart }) {
   const getTotalSum = () => {

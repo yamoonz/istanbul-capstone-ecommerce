@@ -5,7 +5,6 @@ import SignUpForm from "../auth/signUp/SignUp";
 import LanguageDropdown from "./LanguageDropdown";
 import Categories from "./Categories";
 import SliderSection from "../singleProductPage/SliderSection";
-import Footer from "../layout/footer/Footer";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <Categories />
       <Products />
       <SliderSection />
-      <Footer />
     </>
   );
 }
