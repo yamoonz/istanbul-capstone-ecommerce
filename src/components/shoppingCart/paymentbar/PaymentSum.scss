@@ -1,3 +1,5 @@
+@import "../../common/variables";
+
 // To only affect this styling scope for resetting.
 .paymentInfoBar * {
   margin: 0;
@@ -12,6 +14,7 @@
   right: 0;
   background-color: rgba(128, 141, 158, 0.527);
   font-size: 18px;
+  padding-top: 70px;
 
   .orderSummary {
     flex-direction: column;
@@ -73,5 +76,13 @@
       padding-top: 30px;
       padding-bottom: 20px;
     }
+  }
+}
+
+@include media(tablet-sm) {
+  .paymentInfoBar {
+    position: relative !important;
+    max-width: 80% !important;
+    margin: 0 auto;
   }
 }

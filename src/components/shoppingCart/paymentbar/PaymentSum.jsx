@@ -11,9 +11,9 @@ const AMOUNT_TO_FREE_SHIPPING = 150;
 const TEMPORARY_SUBTOTAL = 160;
 
 const PaymentSum = () => {
-  const [shippingCost, setShippingCost] = useState(SHIPPING_COST);
+  const [shippingCost] = useState(SHIPPING_COST);
   const [isShippingFree, setIsShippingFree] = useState(false);
-  const [subTotal, setSubTotal] = useState(TEMPORARY_SUBTOTAL);
+  const [subTotal] = useState(TEMPORARY_SUBTOTAL);
   const [totalCost, setTotalCost] = useState(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const PaymentSum = () => {
       setIsShippingFree(false);
       setTotalCost(shippingCost + subTotal);
     }
-  }, [subTotal]);
+  }, [subTotal, shippingCost]);
 
   const orderSummaryRow = (
     <Row className="orderSummary">
