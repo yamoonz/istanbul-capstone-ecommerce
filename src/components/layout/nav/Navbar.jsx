@@ -108,7 +108,10 @@ const Navbar = () => {
   return (
     <>
       {isSearchBoxOpen && <SearchBox />}
-      <Container fluid className="navbar">
+      <Container
+        fluid
+        className={`navbar ${isSearchBoxOpen && "moveOverHeader"}`}
+      >
         {hamburgerMenu}
         {fullNavbarMenu}
       </Container>
