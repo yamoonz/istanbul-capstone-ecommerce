@@ -48,25 +48,14 @@ const LogInForm = () => {
         placeholder="Password"
         ref={passwordValue}
       />
-      {isLoggedIn ? (
-        <Button
-          variant="info"
-          size="md"
-          className="loginButton"
-          onClick={userLogout}
-        >
-          Logout
-        </Button>
-      ) : (
-        <Button
-          variant="info"
-          size="md"
-          className="loginButton"
-          onClick={userLogin}
-        >
-          Login
-        </Button>
-      )}
+      <Button
+        variant="info"
+        size="md"
+        className="loginButton"
+        onClick={`${isLoggedIn ? userLogout : userLogin}`}
+      >
+        {`${isLoggedIn ? "LOG OUT" : "LOG IN"}`}
+      </Button>
     </Form.Group>
   );
 
