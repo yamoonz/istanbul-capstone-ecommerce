@@ -1,9 +1,5 @@
 @import "../common/variables";
 
-.singleProductContainer {
-  height: 100vh;
-}
-
 .productDetailsRow {
   margin-bottom: 5%;
 }
@@ -332,6 +328,7 @@
   .productInfoContainer {
     display: flex;
     flex-direction: column;
+    height: 40vh;
   }
 
   .productInfo {
