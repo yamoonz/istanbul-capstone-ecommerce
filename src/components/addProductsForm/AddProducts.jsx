@@ -10,7 +10,6 @@ export default function AddProducts() {
   const [productFormDescription, setProductFormDescription] = useState("");
   const [productFormCategory, setProductFormCategory] = useState("");
   const [productFormPrice, setProductFormPrice] = useState("");
-  const [productFormSizes, setProductFormSizes] = useState([]);
 
   // Add products to the database
   const addNewProductToDatabase = async (e) => {
@@ -65,8 +64,8 @@ export default function AddProducts() {
   return (
     <>
       <Form onSubmit={(e) => addNewProductToDatabase(e)}>
-        <Container>
-          <Row>
+        <Container className="productFormContainer">
+          <Row className="productFormRow">
             <Col>
               <Form.Control
                 type="text"
@@ -82,7 +81,7 @@ export default function AddProducts() {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="productFormRow">
             <Col>
               <Form.Control
                 type="text"
@@ -91,7 +90,7 @@ export default function AddProducts() {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="productFormRow">
             <Col xs={12} md={6} lg={5}>
               <Form.Group controlId="formGridState">
                 <Form.Control
@@ -109,14 +108,12 @@ export default function AddProducts() {
                 type="radio"
                 label="Size"
                 name="formHorizontalRadios"
-                id="formHorizontalRadios2"
                 onChange={() => setHasSizes(true)}
               />
               <Form.Check
                 type="radio"
                 label="No size"
                 name="formHorizontalRadios"
-                id="formHorizontalRadios1"
                 onChange={() => setHasSizes(false)}
               />
             </Col>
@@ -129,7 +126,7 @@ export default function AddProducts() {
             </Col>
           </Row>
           {hasSizes && (
-            <Row>
+            <Row className="productFormRow">
               <Col xs={12} md={6} lg={3}>
                 <Form.Control as="select" defaultValue="sizes" id="firstSize">
                   {sizeOptions}
@@ -152,7 +149,7 @@ export default function AddProducts() {
               </Col>
             </Row>
           )}
-          <Row>
+          <Row className="productFormRow">
             <Col xs={12} md={6}>
               <Form.Control type="text" placeholder="Image" id="firstImage" />
             </Col>
@@ -160,7 +157,7 @@ export default function AddProducts() {
               <Form.Control type="text" placeholder="Image" id="secondImage" />
             </Col>
           </Row>
-          <Row>
+          <Row className="productFormRow">
             <Col xs={12} md={6}>
               <Form.Control type="text" placeholder="Image" id="thirdImage" />
             </Col>
@@ -168,7 +165,7 @@ export default function AddProducts() {
               <Form.Control type="text" placeholder="Image" id="fourthImage" />
             </Col>
           </Row>
-          <Row>
+          <Row className="productFormRow">
             <Col>
               <Button type="submit">Submit form</Button>
             </Col>
