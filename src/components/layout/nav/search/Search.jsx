@@ -36,11 +36,11 @@ const Search = () => {
   )
     .slice(0, AMOUNT_OF_PRODUCT_IN_SEARCH_PREVIEW)
     .map((product, idx) => (
-      <Col xl={3} lg={3} md={3} className="card" key={idx}>
+      <Col xl={3} lg={3} md={3} className="previewCard" key={idx}>
         <img src={product.images[ONLY_FIRST_IMAGE_OF_PRODUCTS]} alt="product" />
-        <div className="title">{product.title}</div>
-        <div className="brand">{product.brand}</div>
-        <div className="price">
+        <div className="previewTitle">{product.title}</div>
+        <div className="previewBrand">{product.brand}</div>
+        <div className="previewPrice">
           {product.currency}
           {product.price}
         </div>
