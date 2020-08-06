@@ -40,13 +40,13 @@ export default function ProductCard(props) {
   const slider = (
     <Slider {...settings}>
       <div>
-        <img src={props.info.images[0]} alt="product pic" />
+        <img src={props.info.images[0]} alt={props.info.title} />
       </div>
       <div>
-        <img src={props.info.images[1]} alt="product pic" />
+        <img src={props.info.images[1]} alt={props.info.title} />
       </div>
       <div>
-        <img src={props.info.images[2]} alt="product pic" />
+        <img src={props.info.images[2]} alt={props.info.title} />
       </div>
     </Slider>
   );
