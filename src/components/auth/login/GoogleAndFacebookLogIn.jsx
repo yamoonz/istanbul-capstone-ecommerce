@@ -2,6 +2,9 @@ import React from "react";
 import db from "../../config/firebaseConfig";
 import * as firebase from "firebase";
 import "firebase/auth";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 export default function GoogleAndFacebookLogIn() {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -15,14 +18,9 @@ export default function GoogleAndFacebookLogIn() {
       isAdmin: false,
     };
 
-    /* It is yet to be used, so is commented out to pass Netlify tests.
-    const createNewSubCollection = await db
-      .collection("users")
-      .doc(info.userId)
-      .collection("liked")
-      .add({
-        liked: 0,
-      });*/
+    await db.collection("users").doc(info.userId).collection("liked").add({
+      liked: 0,
+    });
 
     await db.collection("users").doc(info.userId).set(info);
   };
@@ -41,11 +39,27 @@ export default function GoogleAndFacebookLogIn() {
   };
 
   return (
-    <div>
-      <button onClick={() => logIn(googleProvider)}>Log in with Google</button>
-      <button onClick={() => logIn(facebookProvider)}>
-        Log in with Facebook
-      </button>
-    </div>
+    <Row className="socialLoginButtons">
+      <Col>
+        <Button
+          variant="info"
+          size="md"
+          className="fbButton"
+          onClick={() => logIn(facebookProvider)}
+        >
+          Facebook
+        </Button>
+      </Col>
+      <Col>
+        <Button
+          variant="info"
+          size="md"
+          className="googleButton"
+          onClick={() => logIn(googleProvider)}
+        >
+          Google
+        </Button>
+      </Col>
+    </Row>
   );
 }
