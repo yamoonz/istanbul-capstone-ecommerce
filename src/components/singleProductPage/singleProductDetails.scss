@@ -28,6 +28,7 @@
     margin: auto;
   }
 
+  // The smallImgs represent the dots li of the slick-slider thats why they'r given 400% width, otherwise they would be so tiny
   .smallImgs {
     width: 400%;
     background-color: #c4c4c4;
@@ -283,13 +284,9 @@
       font-size: 70%;
     }
 
-    .favoriteBtn {
-      width: 70%;
-      height: 30px;
-    }
-
+    .favoriteBtn,
     .commentBtn {
-      width: 70%;
+      width: 100%;
       height: 30px;
     }
   }
@@ -313,10 +310,6 @@
       height: 50%;
     }
 
-    .commentBtn {
-      margin-top: 12px;
-    }
-
     .quantity {
       font-size: 70%;
       margin-left: -25%;
@@ -328,24 +321,41 @@
   .productInfoContainer {
     display: flex;
     flex-direction: column;
-    height: 40vh;
+    height: 70vh;
   }
 
   .productInfo {
     margin: 2%;
 
+    .productQuantity {
+      height: 30%;
+    }
+
     .quantity {
-      font-size: 70%;
+      font-size: 80%;
+      padding-top: 15%;
+    }
+
+    .productSizes {
+      height: 40%;
+      font-size: 80%;
     }
 
     .addToCartBtn {
       width: 100%;
-      height: 65%;
+      height: 30%;
+      grid-row: 5/8;
     }
 
     .buyNowBtn {
       width: 100%;
-      height: 65%;
+      height: 30%;
+      grid-row: 5/8;
+    }
+
+    .favoriteBtn,
+    .commentBtn {
+      grid-row: 6/7;
     }
   }
 
