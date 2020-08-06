@@ -7,7 +7,6 @@ import Categories from "./Categories";
 import Header from "../header/Header";
 import SliderSection from "../singleProductPage/SliderSection";
 
-
 export default function Home() {
   return (
     <>
