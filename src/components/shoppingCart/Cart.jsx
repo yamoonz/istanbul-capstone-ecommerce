@@ -1,7 +1,12 @@
 import React from "react";
+import PaymentSum from "./paymentbar/PaymentSum";
 
 const Cart = () => {
-  return <div></div>;
+  return (
+    <>
+      <PaymentSum />
+    </>
+  );
 };
 
 export default Cart;
