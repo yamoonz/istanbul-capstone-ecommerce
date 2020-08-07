@@ -1,19 +1,19 @@
 import React from "react";
-import { Col, Card, Button, ListGroupItem, ListGroup } from "react-bootstrap";
+import { Col, Card, Button } from "react-bootstrap";
 
 export default function SingleBlogCard(props) {
   const renderCard = (
     <Card>
-      {props.blogImage && (
-        <Card.Img variant="top" src={props.blogImage.source_url} />
+      {props.postImage && (
+        <Card.Img variant="top" src={props.postImage.source_url} />
       )}
       <Card.Body>
-        <Card.Title>{props.blog.title.rendered}</Card.Title>
+        <Card.Title>{props.post.title.rendered}</Card.Title>
       </Card.Body>
       <Card.Body>
         <Card.Text
           dangerouslySetInnerHTML={{
-            __html: props.blog.excerpt.rendered.substring(0, 100) + " ...",
+            __html: props.post.excerpt.rendered,
           }}
         ></Card.Text>
       </Card.Body>

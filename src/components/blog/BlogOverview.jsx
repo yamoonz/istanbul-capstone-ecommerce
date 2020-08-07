@@ -5,35 +5,34 @@ import "./style.overview.scss";
 import BlogHeader from "./BlogHeader";
 
 export default function BlogOverview() {
-  const [allBlogs, setAllBlogs] = useState([]);
-  const [blogsImages, setBlogsImages] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
+  const [postsImages, setPostsImages] = useState([]);
 
-  // To all of our data from wordpress
-
-  const getAllBlogsAndImages = async () => {
-    const blogs = await fetch("http://eecommerce.local/wp-json/wp/v2/health");
-    const blogsMedia = await fetch(
+  // All posts from wordpress
+  const getAllPostsAndImages = async () => {
+    const posts = await fetch("http://eecommerce.local/wp-json/wp/v2/health");
+    const postsMedia = await fetch(
       "http://eecommerce.local/wp-json/wp/v2/media"
     );
 
-    const blogsToJson = await blogs.json();
-    const mediaToJson = await blogsMedia.json();
+    const postsToJson = await posts.json();
+    const mediaToJson = await postsMedia.json();
 
-    setAllBlogs(blogsToJson);
-    setBlogsImages(mediaToJson);
+    setAllPosts(postsToJson);
+    setPostsImages(mediaToJson);
   };
 
   useEffect(() => {
-    getAllBlogsAndImages();
+    getAllPostsAndImages();
   }, []);
 
   return (
     <>
-      <BlogHeader allBlogs={allBlogs} blogImage={blogsImages[0]} />
+      <BlogHeader allPosts={allPosts} postImage={postsImages[0]} />
       <Container className="overviewContainer">
         <Row>
-          {allBlogs.map((blog, index) => (
-            <SingleBlogCard blog={blog} blogImage={blogsImages[index]} />
+          {allPosts.map((post, index) => (
+            <SingleBlogCard post={post} postImage={postsImages[index]} />
           ))}
         </Row>
       </Container>

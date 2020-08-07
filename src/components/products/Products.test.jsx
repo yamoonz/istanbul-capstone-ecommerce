@@ -16,7 +16,7 @@ it("renders correctly when there are no items", async () => {
       <Products />
     </Router>
   );
-  const items = await findAllByAltText("image");
+  const items = await findAllByAltText("sliderImage");
 
   expect(items).toMatchSnapshot();
 });

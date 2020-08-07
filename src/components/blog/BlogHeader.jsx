@@ -1,28 +1,32 @@
 import React from "react";
 
 export default function BlogHeader(props) {
-  const latestBlog = props.allBlogs[0];
-  const latestBlogImage = props.blogImage;
+  const latestPosts = props.allPosts[0];
+  const latestPostImage = props.postImage;
+
+  console.log(latestPostImage);
 
   return (
     <>
-      {latestBlogImage && (
+      {latestPostImage && (
         <div className="blogHeader">
           <div className="headerImgBox">
             <img
               className="headerImg"
-              src={latestBlogImage.source_url}
-              alt="Card image cap"
+              src={latestPostImage.source_url}
+              alt="CardImage"
             />
-            <h6 className="blogInfo">{latestBlog.acf.publisher}</h6>
-            <h6 className="blogInfo">{latestBlog.date}</h6>
+            <h6>{latestPosts.acf.publisher}</h6>
+            <h6>{latestPosts.date}</h6>
           </div>
-          <h1 className="blogTitle">{latestBlog.title.rendered}</h1>
+          <h1>{latestPosts.title.rendered}</h1>
           <div
-            dangerouslySetInnerHTML={{ __html: latestBlog.excerpt.rendered }}
+            dangerouslySetInnerHTML={{ __html: latestPosts.excerpt.rendered }}
             className="blogDescription"
           ></div>
-          <a className="blogHeaderBtn">Read more</a>
+          <a href="./blog" className="blogHeaderBtn">
+            Read more
+          </a>
         </div>
       )}
     </>
