@@ -2,8 +2,9 @@ import React from "react";
 import "./GeneralSection.scss";
 import Container from "react-bootstrap/Container";
 
+const TEMPORARY_USERNAME = "Emre Erdem";
 const DEFAULT_IMG_SRC =
-  "https://images.unsplash.com/photo-1561882161-d9599193623c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80";
+  "https://images.unsplash.com/photo-1561882161-d9599193623c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=90";
 
 const GeneralSection = () => {
   return (
@@ -13,7 +14,7 @@ const GeneralSection = () => {
           <img src={DEFAULT_IMG_SRC} alt="user avatar" />
           <i className="fas fa-cogs settingsIcon"></i>
         </div>
-        <span className="userInfo">Emre Erdem</span>
+        <span className="userInfo">{TEMPORARY_USERNAME}</span>
       </div>
     </Container>
   );

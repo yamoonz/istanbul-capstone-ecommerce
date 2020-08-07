@@ -1,24 +1,27 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import SignUp from "../components/signup";
-import CartPage from "../components/shoppingCart";
+import SignUp from "../components/auth/signUp/SignUp";
+import CartPage from "../components/shoppingCart/Cart";
 import BlogOverview from "../components/blog/BlogOverview";
-import AboutPage from "../components/about";
-import HomePage from "../components/home";
-import ProductsPage from "../components/products";
-import Profile from "../components/profile/ProfilePage";
+import AboutPage from "../components/about/About";
+import ProductsPage from "../components/products/Products";
+import AdminPage from "../components/addProductsForm/AddProducts";
+import Home from "../components/home/Home";
+import SingleProductPage from "../components/singleProductPage/SingleProductPage";
+import ProfilePage from "../components/profile/ProfilePage";
 
 export const RouteBlock = () => {
   return (
     <Switch>
-      <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/products" component={ProductsPage} />
-      <Route exact path="/shoppingcart" component={CartPage} />
-      <Route exact path="/blog" component={BlogOverview} />
-      <Route exact path="/about" component={AboutPage} />
-      <Route exact path="/admin" component={AboutPage} />
-      <Route exact path="/profile" component={Profile} />
-      <Route exact path="/" component={HomePage} />
+      <Route exact path="/" component={Home} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/products/:productId" component={SingleProductPage} />
+      <Route path="/products" component={ProductsPage} />
+      <Route path="/shoppingcart" component={CartPage} />
+      <Route path="/blog" component={BlogOverview} />
+      <Route path="/profile" component={ProfilePage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/admin" component={AdminPage} />
     </Switch>
   );
 };
