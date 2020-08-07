@@ -17,11 +17,10 @@ export default function GoogleAndFacebookLogIn() {
       imageUrl: user.photoURL,
       isAdmin: false,
     };
-
+    // Create new subcollection
     await db.collection("users").doc(info.userId).collection("liked").add({
       liked: 0,
     });
-
     await db.collection("users").doc(info.userId).set(info);
   };
 

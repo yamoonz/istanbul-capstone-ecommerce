@@ -1,3 +1,5 @@
+@import "../../common/variables";
+
 .productCard {
   width: 300px;
   height: 300px;
@@ -32,6 +34,7 @@
       width: 100%;
       position: relative;
       left: 10px;
+
       img {
         width: 60%;
         object-fit: cover;
@@ -78,4 +81,10 @@
 
 .slick-slide > div {
   width: 330%;
+}
+
+@include media(tablet) {
+  .slick-slide > div {
+    width: 100%;
+  }
 }
