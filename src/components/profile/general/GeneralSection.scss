@@ -8,7 +8,7 @@
   background-size: cover;
   background-position: 0 35%;
 
-  > div {
+  .userSectionWrapper {
     width: 50%;
     flex-direction: column;
     height: 100%;
@@ -27,7 +27,7 @@
         clip-path: circle(50%);
       }
 
-      .fas.fa-cogs {
+      .settingsIcon {
         position: absolute;
         bottom: 0;
         right: -30px;
