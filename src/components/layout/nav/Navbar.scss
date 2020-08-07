@@ -1,5 +1,6 @@
 @import "../../common/variables";
 
+// Fixed Navbar always will be shown over other components except HamburgerIcon, Search and SignUpModal elements.
 $navbarIndex: 102;
 $hamburgerIconIndex: 103;
 $closeSignUpIconIndex: 105;

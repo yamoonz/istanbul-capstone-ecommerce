@@ -14,7 +14,7 @@ const SignUp = () => {
         <Col className="signupRedirect">
           <NavLink to="/signup">Still not a user? Register now!</NavLink>
         </Col>
-        <Row className="socialMediaSeperator"></Row>
+        <Row className="socialMediaSeparator"></Row>
         <GoogleAndFacebookLogIn />
       </Col>
     </>
