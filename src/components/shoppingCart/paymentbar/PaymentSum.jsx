@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -12,27 +12,26 @@ const TEMPORARY_SUBTOTAL = 160;
 
 const PaymentSum = () => {
   const [shippingCost] = useState(SHIPPING_COST);
-  const [isShippingFree, setIsShippingFree] = useState(false);
   const [subTotal] = useState(TEMPORARY_SUBTOTAL);
-  const [totalCost, setTotalCost] = useState(null);
 
-  useEffect(() => {
-    if (subTotal >= AMOUNT_TO_FREE_SHIPPING) {
-      setIsShippingFree(true);
-      setTotalCost(subTotal);
-      return;
-    } else {
-      setIsShippingFree(false);
-      setTotalCost(shippingCost + subTotal);
-    }
-  }, [subTotal, shippingCost]);
+  let totalCost;
+  let isShippingFree;
+
+  if (subTotal >= AMOUNT_TO_FREE_SHIPPING) {
+    isShippingFree = true;
+    totalCost = subTotal;
+    return;
+  } else {
+    isShippingFree = false;
+    totalCost = subTotal + shippingCost;
+  }
 
   const orderSummaryRow = (
     <Row className="orderSummary">
       <h3 className="orderTitle">Order Summary</h3>
       <Col className="subTotal">
         <span>Subtotal</span>
-        <span className="subNumber">${subTotal}</span>
+        <span className="subtotalNumber">${subTotal}</span>
       </Col>
       <Col className="shipping">
         <span>Shipping</span>
