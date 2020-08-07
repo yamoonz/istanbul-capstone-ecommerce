@@ -38,7 +38,7 @@ export default function GoogleAndFacebookLogIn() {
 
   return (
     <Row className="socialLoginIcons">
-      <span>Login using:</span>
+      <span>Login/Register using:</span>
       <i
         className="fab fa-facebook facebookIcon"
         onClick={() => logIn(facebookProvider)}
