@@ -14,25 +14,23 @@ export default function AddProducts() {
   // Add products to the database
   const addNewProductToDatabase = async (e) => {
     e.preventDefault();
-    // Getting all images and push them into an array
+
+    // Getting all images from the inputs and then pushing them into an array to post the data to the database
     const allImages = [];
-    const arrayOfImages = [
-      "firstImage",
-      "secondImage",
-      "thirdImage",
-      "fourthImage",
-    ];
-    for (let i = 0; i < arrayOfImages.length; i++) {
-      const image = e.target[arrayOfImages[i]].value;
-      allImages.push(image);
+    const imageInputs = document.getElementsByTagName("input");
+    for (let i = 0; i < imageInputs.length; i++) {
+      if (imageInputs[i].placeholder === "Image") {
+        const image = imageInputs[i].value;
+        allImages.push(image);
+      }
     }
 
+    // Getting all sizes from the select inputs and then  pushing them into an array to post the data to the database
     const allSizes = [];
-    // Getting all sizes and push them into an array
-    const arrayOfSizes = ["firstSize", "secondSize", "thirdSize", "fourthSize"];
-    if (hasSizes === true) {
-      for (let j = 0; j < arrayOfSizes.length; j++) {
-        const size = e.target[arrayOfSizes[j]].value;
+    const optionInputs = document.getElementsByClassName("sizeOptions");
+    if (hasSizes) {
+      for (let j = 0; j < optionInputs.length; j++) {
+        const size = optionInputs[j].value;
         allSizes.push(size);
       }
     }
@@ -97,9 +95,10 @@ export default function AddProducts() {
                   as="select"
                   defaultValue="Shoes"
                   onChange={(e) => setProductFormCategory(e.target.value)}
+                  placeholder="category"
                 >
-                  <option>Shoes</option>
-                  <option>Health care</option>
+                  <option value="Shoes">Shoes</option>
+                  <option value="Health care">Health care</option>
                 </Form.Control>
               </Form.Group>
             </Col>
@@ -128,22 +127,38 @@ export default function AddProducts() {
           {hasSizes && (
             <Row className="productFormRow">
               <Col xs={12} md={6} lg={3}>
-                <Form.Control as="select" defaultValue="sizes" id="firstSize">
+                <Form.Control
+                  as="select"
+                  defaultValue="sizes"
+                  className="sizeOptions"
+                >
                   {sizeOptions}
                 </Form.Control>
               </Col>
               <Col xs={12} md={6} lg={3}>
-                <Form.Control as="select" defaultValue="sizes" id="secondSize">
+                <Form.Control
+                  as="select"
+                  defaultValue="sizes"
+                  className="sizeOptions"
+                >
                   {sizeOptions}
                 </Form.Control>
               </Col>
               <Col xs={12} md={6} lg={3}>
-                <Form.Control as="select" defaultValue="sizes" id="thirdSize">
+                <Form.Control
+                  as="select"
+                  defaultValue="sizes"
+                  className="sizeOptions"
+                >
                   {sizeOptions}
                 </Form.Control>
               </Col>
               <Col xs={12} md={6} lg={3}>
-                <Form.Control as="select" defaultValue="sizes" id="fourthSize">
+                <Form.Control
+                  as="select"
+                  defaultValue="sizes"
+                  className="sizeOptions"
+                >
                   {sizeOptions}
                 </Form.Control>
               </Col>
@@ -151,18 +166,18 @@ export default function AddProducts() {
           )}
           <Row className="productFormRow">
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" id="firstImage" />
+              <Form.Control type="text" placeholder="Image" />
             </Col>
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" id="secondImage" />
+              <Form.Control type="text" placeholder="Image" />
             </Col>
           </Row>
           <Row className="productFormRow">
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" id="thirdImage" />
+              <Form.Control type="text" placeholder="Image" />
             </Col>
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" id="fourthImage" />
+              <Form.Control type="text" placeholder="Image" />
             </Col>
           </Row>
           <Row className="productFormRow">

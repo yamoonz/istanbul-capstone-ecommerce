@@ -63,7 +63,7 @@ const LogInForm = () => {
       <Col className="signupForm">
         <Form
           onSubmit={(e) => {
-            if (isLoggedIn === true) {
+            if (isLoggedIn) {
               userLogout(e);
             } else {
               userLogin(e);
@@ -78,7 +78,7 @@ const LogInForm = () => {
             className="loginButton"
             type="submit"
           >
-            {`${isLoggedIn ? "LOG OUT" : "LOG IN"}`}
+            {`${isLoggedIn ? "Log out" : "Log in"}`}
           </Button>
         </Form>
       </Col>
