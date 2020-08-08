@@ -84,7 +84,7 @@ export default function Categories() {
 
   return (
     <div className="categoriesContainer">
-      <h1 className="title">Categories</h1>
+      <h1 className="categoryTitle">Categories</h1>
 
       <Slider {...SLIDER_SETTINGS}>
         {CATEGORIES_INFO.map((cat) => (

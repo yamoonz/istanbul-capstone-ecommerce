@@ -10,12 +10,10 @@ export default function SignUp() {
     const password = e.target[2].value;
     const userName = e.target[0].value;
     const newUser = await auth.createUserWithEmailAndPassword(email, password);
-
     // Create new subcollection
     await db.collection("users").doc(newUser.user.uid).collection("liked").add({
-      liked: "0",
+      liked: 0,
     });
-
     // Set new user data
     await db.collection("users").doc(newUser.user.uid).set({
       name: userName,

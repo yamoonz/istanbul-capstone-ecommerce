@@ -5,14 +5,15 @@ import ProductCard from "../layout/productCard/ProductCard";
 import { MOCK_DATABASE } from "../common/MockDatabase";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./singleProductDetails.scss";
 
 const SINGLE_PRODUCT_SLIDER_SETTINGS = {
   className: "singleProductSlider",
-  dots: true,
+  dots: false,
   infinite: true,
   slidesToShow: 3,
   slidesToScroll: 1,
-  autoplay: true,
+  autoplay: false,
   speed: 2000,
   autoplaySpeed: 10000,
   cssEase: "ease",
@@ -23,7 +24,6 @@ const SINGLE_PRODUCT_SLIDER_SETTINGS = {
         slidesToShow: 3,
         slidesToScroll: 1,
         infinite: true,
-        dots: true,
       },
     },
     {
@@ -41,27 +41,12 @@ const SINGLE_PRODUCT_SLIDER_SETTINGS = {
         slidesToScroll: 1,
       },
     },
-    {
-      breakpoint: 576,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-
-    {
-      breakpoint: 375,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
   ],
 };
 
 export default function SliderSection() {
   return (
-    <Container className="singleProductContainer">
+    <Container>
       <Slider {...SINGLE_PRODUCT_SLIDER_SETTINGS}>
         {MOCK_DATABASE.map((info, index) => (
           <ProductCard info={info} index={index} key={index} />
