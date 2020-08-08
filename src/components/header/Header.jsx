@@ -1,9 +1,12 @@
 import React from "react";
 import clock from "../../assets/video-clock.mov";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import "./Header.scss";
 
 export default function Header() {
+  const { t } = useTranslation();
+
   return (
     <div className="header container">
       <div className="videoWrap">
@@ -15,7 +18,7 @@ export default function Header() {
           <p className="whiteLine mt-4"></p>
         </div>
         <div className="headerTextContent">
-          <h1 className="headerTitle">We Care About Your Health</h1>
+          <h1 className="headerTitle">{t("We Care About Your Health")}</h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text

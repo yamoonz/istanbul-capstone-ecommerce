@@ -6,9 +6,18 @@ import { NavLink } from "react-router-dom";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
 import "./Navbar.scss";
+import LanguageDropdown from "../../home/LanguageDropdown";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
+    case "IS_LANGUAGE_DROPDOWN_OPENED":
+      return {
+        ...state,
+        isLanguageDropdownOpen: !state.isLanguageDropdownOpen,
+        isSearchBoxOpen: false,
+        isSignUpBoxOpen: false,
+      };
+
     case "IS_SIGNUP_OPENED":
       return {
         ...state,
@@ -37,9 +46,15 @@ function navbarIconsReducer(state, action) {
 
 const Navbar = () => {
   const [
-    { isSignUpBoxOpen, isSearchBoxOpen, isHamburgerOpen },
+    {
+      isLanguageDropdownOpen,
+      isSignUpBoxOpen,
+      isSearchBoxOpen,
+      isHamburgerOpen,
+    },
     dispatch,
   ] = useReducer(navbarIconsReducer, {
+    isLanguageDropdownOpen: false,
     isSignUpBoxOpen: false,
     isSearchBoxOpen: false,
     isHamburgerOpen: false,
@@ -101,6 +116,13 @@ const Navbar = () => {
             <i className="fas fa-shopping-cart"></i>
           </NavLink>
         </div>
+        <div className="iconWrapper">
+          <i
+            class="fas fa-globe"
+            onClick={() => handleStatusOfIcons("IS_LANGUAGE_DROPDOWN_OPENED")}
+          ></i>
+          {isLanguageDropdownOpen && <LanguageDropdown />}
+        </div>
       </Row>
     </Row>
   );
@@ -115,6 +137,7 @@ const Navbar = () => {
         {hamburgerMenu}
         {fullNavbarMenu}
       </Container>
+
       {isSignUpBoxOpen && <SignUpBox />}
     </>
   );
