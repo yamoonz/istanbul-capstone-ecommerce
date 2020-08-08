@@ -118,7 +118,7 @@ const Navbar = () => {
         </div>
         <div className="iconWrapper">
           <i
-            class="fas fa-globe"
+            className="fas fa-globe"
             onClick={() => handleStatusOfIcons("IS_LANGUAGE_DROPDOWN_OPENED")}
           ></i>
           {isLanguageDropdownOpen && <LanguageDropdown />}

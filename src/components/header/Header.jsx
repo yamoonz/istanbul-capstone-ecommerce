@@ -18,7 +18,9 @@ export default function Header() {
           <p className="whiteLine mt-4"></p>
         </div>
         <div className="headerTextContent">
-          <h1 className="headerTitle">{t("We Care About Your Health")}</h1>
+          <h1 className="headerTitle">
+            {t("headerTitle", "We Care About Your Health")}
+          </h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
