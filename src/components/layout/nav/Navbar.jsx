@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
 import "./Navbar.scss";
+import ClickAwayListener from "react-click-away-listener";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -30,6 +31,13 @@ function navbarIconsReducer(state, action) {
         isSearchBoxOpen: false,
       };
 
+    case "CLICK_AWAY":
+      return {
+        isHamburgerOpen: false,
+        isSignUpBoxOpen: false,
+        isSearchBoxOpen: false,
+      };
+
     default:
       return state;
   }
@@ -45,12 +53,12 @@ const Navbar = () => {
     isHamburgerOpen: false,
   });
 
-  const handleStatusOfIcons = (type) => dispatch({ type });
+  const handleStatus = (type) => dispatch({ type });
 
   const hamburgerMenu = (
     <Row
       className="hamburgerContainer navbarItemWrapper"
-      onClick={() => handleStatusOfIcons("IS_HAMBURGER_OPENED")}
+      onClick={() => handleStatus("IS_HAMBURGER_OPENED")}
     >
       <Col className="hamburgerIcon"></Col>
     </Row>
@@ -87,13 +95,13 @@ const Navbar = () => {
         <div className="iconWrapper">
           <i
             className="fas fa-search"
-            onClick={() => handleStatusOfIcons("IS_SEARCH_OPENED")}
+            onClick={() => handleStatus("IS_SEARCH_OPENED")}
           ></i>
         </div>
         <div className="iconWrapper">
           <i
             className="fas fa-user-circle"
-            onClick={() => handleStatusOfIcons("IS_SIGNUP_OPENED")}
+            onClick={() => handleStatus("IS_SIGNUP_OPENED")}
           ></i>
         </div>
         <div className="iconWrapper">
@@ -108,26 +116,32 @@ const Navbar = () => {
   const closeSignUpForm = (
     <i
       className="fas fa-times closeSignUpForm"
-      onClick={() => handleStatusOfIcons("IS_SIGNUP_OPENED")}
+      onClick={() => handleStatus("IS_SIGNUP_OPENED")}
     ></i>
   );
 
+  const handleClickAway = () => {
+    handleStatus("CLICK_AWAY");
+  };
+
   return (
     <>
-      {isSearchBoxOpen && <SearchBox />}
-      <Container
-        fluid
-        className={`navbar ${isSearchBoxOpen && "moveOverHeader"}`}
-      >
-        {hamburgerMenu}
-        {fullNavbarMenu}
-      </Container>
-      {isSignUpBoxOpen && (
-        <>
-          {closeSignUpForm}
-          <SignUpBox />
-        </>
-      )}
+      <ClickAwayListener onClickAway={handleClickAway}>
+        {isSearchBoxOpen && <SearchBox />}
+        <Container
+          fluid
+          className={`navbar ${isSearchBoxOpen && "moveOverHeader"}`}
+        >
+          {hamburgerMenu}
+          {fullNavbarMenu}
+        </Container>
+        {isSignUpBoxOpen && (
+          <>
+            {closeSignUpForm}
+            <SignUpBox />
+          </>
+        )}
+      </ClickAwayListener>
     </>
   );
 };
