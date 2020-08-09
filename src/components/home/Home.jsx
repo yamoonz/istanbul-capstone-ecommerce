@@ -5,11 +5,7 @@ import SignUpForm from "../auth/signUp/SignUp";
 import LanguageDropdown from "./LanguageDropdown";
 import Categories from "./Categories";
 import Header from "../header/Header";
-import SliderSection from "../singleProductPage/SliderSection";
-// import CartDetails from "../shoppingCart/cartmain/"
-import { CartContext } from "../shoppingCart/cartmain/CartContext";
-import { CartReducer } from "../shoppingCart/cartmain/CartReducer";
-import { ProductsContext } from "../shoppingCart/cartmain/ProductsContext";
+import SliderSection from "../singleProductPage/SliderSection"; 
 export default function Home() {
   return (
     <>
@@ -20,9 +16,7 @@ export default function Home() {
       <Categories />
       <Products />
       <SliderSection />
-      <CartContext />
-      <CartReducer/>
-      <ProductsContext/>
+     
     </>
   );
 }
