@@ -13,15 +13,15 @@ import ProfilePage from "../components/profile/ProfilePage";
 export const RouteBlock = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/signup" component={SignUp} />
       <Route path="/products/:productId" component={SingleProductPage} />
       <Route path="/products" component={ProductsPage} />
       <Route path="/shoppingcart" component={CartPage} />
+      <Route path="/signup" component={SignUp} />
       <Route path="/blog" component={BlogOverview} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/admin" component={AdminPage} />
+      <Route exact path="/" component={Home} />
     </Switch>
   );
 };
