@@ -14,7 +14,7 @@ export default function SignUp() {
 
     // Create new subcollection
     await db.collection("users").doc(newUser.user.uid).collection("liked").add({
-      liked: "0",
+      liked: 0,
     });
 
     // Set new user data
