@@ -54,9 +54,10 @@ $facebookHoverColor: #3b5998 !important;
     }
 
     .footerLinksBlogs,
-    .footerLinksPages a {
-      width: 100%;
-      display: inline-block;
+    .footerLinksPages {
+      a {
+        display: block;
+      }
     }
   }
 
