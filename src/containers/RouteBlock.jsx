@@ -8,6 +8,7 @@ import ProductsPage from "../components/products/Products";
 import AdminPage from "../components/addProductsForm/AddProducts";
 import Home from "../components/home/Home";
 import SingleProductPage from "../components/singleProductPage/SingleProductPage";
+import ProfilePage from "../components/profile/ProfilePage";
 
 export const RouteBlock = () => {
   return (
@@ -18,6 +19,7 @@ export const RouteBlock = () => {
       <Route path="/products" component={ProductsPage} />
       <Route path="/shoppingcart" component={CartPage} />
       <Route path="/blog" component={BlogOverview} />
+      <Route path="/profile" component={ProfilePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/admin" component={AdminPage} />
     </Switch>
