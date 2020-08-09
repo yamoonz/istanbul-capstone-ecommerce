@@ -105,6 +105,13 @@ const Navbar = () => {
     </Row>
   );
 
+  const closeSignUpForm = (
+    <i
+      className="fas fa-times closeSignUpForm"
+      onClick={() => handleStatusOfIcons("IS_SIGNUP_OPENED")}
+    ></i>
+  );
+
   return (
     <>
       {isSearchBoxOpen && <SearchBox />}
@@ -115,7 +122,12 @@ const Navbar = () => {
         {hamburgerMenu}
         {fullNavbarMenu}
       </Container>
-      {isSignUpBoxOpen && <SignUpBox />}
+      {isSignUpBoxOpen && (
+        <>
+          {closeSignUpForm}
+          <SignUpBox />
+        </>
+      )}
     </>
   );
 };
