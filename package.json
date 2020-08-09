@@ -20,6 +20,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
+    "react-click-away-listener": "^1.2.0",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.7.0",
     "react-redux": "^7.2.1",
