@@ -13,6 +13,7 @@ import ProfilePage from "../components/profile/ProfilePage";
 export const RouteBlock = () => {
   return (
     <Switch>
+      <Route path="/categories/:categoryName" component={ProductsPage} />
       <Route path="/products/:productId" component={SingleProductPage} />
       <Route path="/products" component={ProductsPage} />
       <Route path="/shoppingcart" component={CartPage} />
