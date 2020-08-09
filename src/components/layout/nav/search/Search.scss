@@ -1,5 +1,7 @@
 @import "../../../../App.scss";
 
+$searchBlockIndex: 105;
+
 .searchBox {
   width: 100%;
   background-color: white;
@@ -14,7 +16,7 @@
   font-size: 16px;
 
   // To show Search and SearchPreview over Navbar and Header.
-  z-index: 101;
+  z-index: $searchBlockIndex;
 
   span {
     position: absolute;
@@ -87,7 +89,6 @@
   border-bottom-right-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
   border-top: none;
-  z-index: 1;
   justify-content: center;
   align-items: center;
   padding-top: 20px;
