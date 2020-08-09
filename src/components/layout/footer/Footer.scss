@@ -3,6 +3,10 @@
 $fadedWhite: #e0dddd9e;
 $footerBg: #2f3e46;
 $footerLinksHover: #52796f;
+$twitterHoverColor: #00acee !important;
+$googleHoverColor: #c52d27 !important;
+$githubHoverColor: #211f1f !important;
+$facebookHoverColor: #3b5998 !important;
 
 .footerWrapper * {
   margin: 0;
@@ -50,11 +54,9 @@ $footerLinksHover: #52796f;
     }
 
     .footerLinksBlogs,
-    .footerLinksPages {
-      a {
-        width: 100%;
-        display: inline-block;
-      }
+    .footerLinksPages a {
+      width: 100%;
+      display: inline-block;
     }
   }
 
@@ -79,19 +81,19 @@ $footerLinksHover: #52796f;
     }
 
     .twitter:hover {
-      color: #00acee !important;
+      color: $twitterHoverColor;
     }
 
     .google:hover {
-      color: #c52d27 !important;
+      color: $googleHoverColor;
     }
 
     .github:hover {
-      color: #211f1f !important;
+      color: $githubHoverColor;
     }
 
     .facebook:hover {
-      color: #3b5998 !important;
+      color: $facebookHoverColor;
     }
   }
 
