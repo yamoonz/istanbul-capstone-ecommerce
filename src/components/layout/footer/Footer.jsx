@@ -16,16 +16,16 @@ const Footer = () => {
   return (
     <Container fluid className="footerWrapper">
       <Row className="footerLinks">
-        <Col className="footerLinksLogo">
+        <Col xl={6} lg={6} md={6} sm={12} xs={12} className="footerLinksLogo">
           <h3 className="footerLogo">LOGO</h3>
           <span className="footerMotto">Your health is in good hands.</span>
         </Col>
-        <Col className="footerLinksBlogs">
+        <Col xl={3} lg={3} md={4} sm={8} xs={8} className="footerLinksBlogs">
           <NavLink to="/blog">Blog</NavLink>
           <NavLink to="/blog">Skin Care</NavLink>
           <NavLink to="/blog">Stay Fit and Healthy</NavLink>
         </Col>
-        <Col className="footerLinksPages">
+        <Col xl={3} lg={3} md={2} sm={4} xs={4} className="footerLinksPages">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/products">Products</NavLink>
           <NavLink to="/about">About</NavLink>

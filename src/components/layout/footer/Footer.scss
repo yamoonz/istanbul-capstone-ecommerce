@@ -1,6 +1,8 @@
 @import "../../common/variables";
 
 $fadedWhite: #e0dddd9e;
+$footerBg: #2f3e46;
+$footerLinksHover: #52796f;
 
 .footerWrapper * {
   margin: 0;
@@ -11,15 +13,16 @@ $fadedWhite: #e0dddd9e;
 .footerWrapper {
   height: 80vh;
   width: 100%;
-  padding: 0;
+  padding: 50px 0 20px 0;
   margin: 0;
-  background-color: black;
+  background-color: $footerBg;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
   color: white;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
 
   .row {
     width: 80%;
@@ -45,6 +48,14 @@ $fadedWhite: #e0dddd9e;
         min-width: 100%;
       }
     }
+
+    .footerLinksBlogs,
+    .footerLinksPages {
+      a {
+        width: 100%;
+        display: inline-block;
+      }
+    }
   }
 
   .footerSeparator {
@@ -66,11 +77,56 @@ $fadedWhite: #e0dddd9e;
     .footerSocialIcon {
       margin-right: 20px;
     }
+
+    .twitter:hover {
+      color: #00acee !important;
+    }
+
+    .google:hover {
+      color: #c52d27 !important;
+    }
+
+    .github:hover {
+      color: #211f1f !important;
+    }
+
+    .facebook:hover {
+      color: #3b5998 !important;
+    }
   }
 
   a {
-    width: 100%;
     color: white;
-    text-decoration: none;
+    text-decoration: none !important;
+    transition: color 0.3s ease-in-out;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: $footerLinksHover !important;
+    }
+  }
+}
+
+@include media(tablet) {
+  .footerWrapper {
+    height: 70vh;
+    font-size: 0.8rem;
+  }
+}
+
+@include media(tablet-sm) {
+  .footerLinks {
+    height: auto !important;
+    flex-wrap: wrap;
+
+    .footerLinksLogo {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@include media(phone) {
+  .footerLinksLogo {
+    margin-bottom: 40px !important;
   }
 }
