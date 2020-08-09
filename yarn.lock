@@ -10623,6 +10623,11 @@ react-bootstrap@^1.2.2:
     uncontrollable "^7.0.0"
     warning "^4.0.3"
 
+react-click-away-listener@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-click-away-listener/-/react-click-away-listener-1.2.0.tgz#e9a8fdc81a3c4f8b152ac7cb86a0b03ad6e0f8aa"
+  integrity sha512-ZS9/UxbEY6Tr/ryNKhRj+QpDhb94mtq2BMrzCpFV2Fi70HIsVQGnbc168ZspPpq/3m4QzZyvnR/84CSJUqrMcA==
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"

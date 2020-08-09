@@ -1,58 +1,148 @@
 @import "../../../common/variables.scss";
 
+$rightBorderRounded: 0.25rem 0 0 0.25rem;
+$leftBorderRounded: 0 0.25rem 0.25rem 0;
+$signUpIconBackground: #f3f3f36e;
+$signUpInputBorder: #ced4da;
+$loginButtonColor: #8b85ea;
+$fadedBlack: #495057;
+$signUpFormIndex: 104;
+
 .signupBox {
   // !important is used to cascade default Bootstrap styling.
-  width: 250px !important;
+  position: fixed !important;
+  width: 320px !important;
   transition: all 1s ease-in-out;
-  position: absolute !important;
   margin: 0 auto;
-  background-color: wheat;
+  background-color: white;
   transform: translateY(70px);
-  top: 35px;
+  top: 30px;
   color: black;
-  right: 20px;
+  right: 35px;
   display: block !important;
+  padding: 30px !important;
+  filter: drop-shadow(0 0 0.4rem black);
+  border-radius: 4px;
 
   // To show SignUpBox on the Header overlay.
-  z-index: 20;
+  z-index: $signUpFormIndex;
 
-  .socialLoginButtons {
+  .socialMediaSeparator {
+    width: 80%;
+    text-align: center;
+    border-bottom: 1px solid $signUpInputBorder;
+    line-height: 0.1em;
+    margin: auto;
+    position: relative;
+
+    &::before {
+      content: "or";
+      background: white;
+      position: absolute;
+      height: 15px;
+      width: 35px;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .socialLoginIcons {
     margin-top: 20px;
+    justify-content: center;
+
+    span {
+      font-size: 14px;
+      margin: auto 0;
+      padding-right: 10px;
+    }
+
+    .fab {
+      font-size: 35px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .facebookIcon {
+      color: #3c5b94;
+      padding-right: 10px;
+    }
+
+    .googleIcon {
+      color: #c5423a;
+    }
   }
 
   .signupForm {
-    margin-top: 20px;
+    padding: 0;
+
+    .formGroupPassword,
+    .formGroupEmail {
+      margin-bottom: 0.5rem;
+    }
+
+    .formInputWrapper {
+      display: flex;
+
+      .fas {
+        position: relative;
+        min-width: 42px;
+        background-color: $signUpIconBackground;
+        height: 42px;
+        border: 1px solid $signUpInputBorder;
+        border-right: 0.1px solid $signUpInputBorder;
+        border-radius: $rightBorderRounded;
+
+        &::before {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    input {
+      font-size: 14px;
+    }
+
+    .formInputLabel {
+      margin-bottom: 2px;
+      font-size: 0.9rem;
+    }
+
+    .formInput {
+      height: 42px;
+      border-left: none;
+      border-radius: $leftBorderRounded;
+    }
   }
 
   .signupRedirect {
     width: 100%;
     height: 30px;
     margin-bottom: 15px;
+    text-align: center;
 
     a {
       font-size: 12px;
-      color: black !important;
+      color: $fadedBlack !important;
     }
   }
 
-  .googleButton,
-  .fbButton {
-    height: 100%;
-    width: 80%;
-    padding: 7px 0px;
-    font-size: 13px;
-  }
-
   .loginButton {
-    margin-top: 10px;
+    font-size: 15px;
+    margin-top: 15px;
     width: 100%;
+    background-color: $loginButtonColor;
+    border-color: $loginButtonColor;
   }
 }
 
 @include media(tablet-sm) {
   .signupBox {
-    position: absolute;
-    z-index: 10;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -66,6 +156,7 @@
       width: 100%;
       height: 100%;
       left: 0;
+      top: 0;
       -webkit-box-shadow: 0px 0px 36px 3000px rgba(0, 0, 0, 0.37);
       -moz-box-shadow: 0px 0px 36px 3000px rgba(0, 0, 0, 0.37);
       box-shadow: 0px 0px 36px 3000px rgba(0, 0, 0, 0.37);

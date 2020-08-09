@@ -19,12 +19,12 @@
 //         increase,
 //         decrease,
 //         ...state
-//     } 
-//     return ( 
+//     }
+//     return (
 //         <CartContext.Provider value={contextValues} >
 //             { children }
 //         </CartContext.Provider>
 //      );
 // }
- 
+
 // export default CartContextProvider;

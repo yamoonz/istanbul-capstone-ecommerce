@@ -2,6 +2,7 @@ import React from "react";
 import db from "../../config/firebaseConfig";
 import * as firebase from "firebase";
 import "firebase/auth";
+import Row from "react-bootstrap/Row";
 
 export default function GoogleAndFacebookLogIn() {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -14,13 +15,10 @@ export default function GoogleAndFacebookLogIn() {
       imageUrl: user.photoURL,
       isAdmin: false,
     };
-    const createNewSubCollection = await db
-      .collection("users")
-      .doc(info.userId)
-      .collection("liked")
-      .add({
-        liked: 0,
-      });
+    // Create new subcollection
+    await db.collection("users").doc(info.userId).collection("liked").add({
+      liked: 0,
+    });
     await db.collection("users").doc(info.userId).set(info);
   };
 
@@ -38,11 +36,16 @@ export default function GoogleAndFacebookLogIn() {
   };
 
   return (
-    <div>
-      <button onClick={() => logIn(googleProvider)}>Log in with Google</button>
-      <button onClick={() => logIn(facebookProvider)}>
-        Log in with Facebook
-      </button>
-    </div>
+    <Row className="socialLoginIcons">
+      <span>Login or Register using:</span>
+      <i
+        className="fab fa-facebook facebookIcon"
+        onClick={() => logIn(facebookProvider)}
+      ></i>
+      <i
+        className="fab fa-google-plus googleIcon"
+        onClick={() => logIn(googleProvider)}
+      ></i>
+    </Row>
   );
 }

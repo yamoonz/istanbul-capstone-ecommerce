@@ -17,7 +17,7 @@
 //                     ...action.payload,
 //                     quantity: 1
 //                 })
-//             } 
+//             }
 
 //             return {
 //                 ...state,
@@ -38,7 +38,7 @@
 //                 ...sumItems(state.cartItems),
 //                 cartItems: [...state.cartItems]
 //             }
-  
+
 //         default:
 //             return state
 

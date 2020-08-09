@@ -6,11 +6,11 @@
 
 //     const [products] = useState(MOCK_DATABASE);
 
-//     return ( 
+//     return (
 //         <ProductsContext.Provider value={{products}} >
 //             { children }
 //         </ProductsContext.Provider>
 //      );
 // }
- 
+
 // export default ProductsContextProvider;

@@ -24,7 +24,7 @@
 //     increase,
 //     decrease,
 //     ...state
-// } 
+// }
 
 //     return (
 //       <>
@@ -55,6 +55,5 @@
 //       </>
 //     );
 //   };
-
 
 // export default CartDetails;
