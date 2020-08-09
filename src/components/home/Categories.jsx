@@ -10,6 +10,7 @@ import shoesImg from "../../assets/img/shoes.jpg";
 import sterhoscopeImg from "../../assets/img/sterhoscope.jpg";
 import NutritionImg from "../../assets/img/supplements.jpg";
 import selfCareimg from "../../assets/img/selfCare.jpg";
+import { NavLink } from "react-router-dom";
 
 const SLIDER_SETTINGS = {
   centerMode: true,
@@ -88,7 +89,9 @@ export default function Categories() {
 
       <Slider {...SLIDER_SETTINGS}>
         {CATEGORIES_INFO.map((cat) => (
-          <Category category={cat} key={cat.name} className="row" />
+          <NavLink to={`/categories/${cat.name.toLowerCase()}`} key={cat.name}>
+            <Category category={cat} className="row" />
+          </NavLink>
         ))}
       </Slider>
     </div>
