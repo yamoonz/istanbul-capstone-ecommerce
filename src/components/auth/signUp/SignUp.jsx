@@ -30,7 +30,7 @@ export default function SignUp() {
         <form className="signUpForm" onSubmit={createNewUser}>
           <h1 className="signUpTitle">Create Account</h1>
 
-          <label className="signUpFormLable">
+          <label className="signUpFormLabel">
             Full Name:
             <input
               name="username"
@@ -40,7 +40,7 @@ export default function SignUp() {
             />
           </label>
 
-          <label className="signUpFormLable">
+          <label className="signUpFormLabel">
             Email:
             <input
               name="email"
@@ -50,7 +50,7 @@ export default function SignUp() {
             />
           </label>
 
-          <label className="signUpFormLable">
+          <label className="signUpFormLabel">
             Password:
             <input
               name="password"

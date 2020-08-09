@@ -10,7 +10,7 @@
 }
 
 .signUpForm {
-  margin-top: 5%;
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -21,7 +21,7 @@
   box-shadow: 0px 8px 36px #222;
   background-color: #fefefe;
 
-  > .signUpTitle {
+  .signUpTitle {
     display: flex;
     justify-content: center;
     font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue",
@@ -34,7 +34,7 @@
   }
 }
 
-.signUpFormLable {
+.signUpFormLabel {
   margin-bottom: 0.5em;
   color: #444;
   font-weight: lighter;
