@@ -9,7 +9,6 @@ import "./Navbar.scss";
 import LanguageDropdown from "../../home/LanguageDropdown";
 import ClickAwayListener from "react-click-away-listener";
 
-
 function navbarIconsReducer(state, action) {
   switch (action.type) {
     case "IS_LANGUAGE_DROPDOWN_OPENED":
