@@ -4,7 +4,7 @@ import emre from "../../assets/img/emre.jpg";
 import yaman from "../../assets/img/yaman.jpg";
 import burak from "../../assets/img/burak.png";
 
-export const teamData = [
+export const TEAM_DATA = [
   {
     name: "Omar Alithawi",
     image: omar,

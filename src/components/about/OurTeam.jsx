@@ -1,5 +1,5 @@
 import React from "react";
-import { teamData } from "../common/teamData";
+import { TEAM_DATA } from "../common/teamData";
 import { Container, Row, Col } from "react-bootstrap";
 
 export default function OurTeam() {
@@ -7,7 +7,7 @@ export default function OurTeam() {
     <Container className="ourTeamContainer">
       <h1 className="ourTeamTitle">Our Team</h1>
       <Row className="ourTeamRow">
-        {teamData.map((member, index) => {
+        {TEAM_DATA.map((member, index) => {
           return (
             <Col key={index} xs={8} md={5} lg={3} className="teamMember">
               <img src={member.image} alt="member" />
