@@ -4,6 +4,7 @@ import heart from "../../../assets/svgs/heart.svg";
 import { Col } from "react-bootstrap";
 import "./style.scss";
 import heartBroken from "../../../assets/svgs/heart-broken.svg";
+import { NavLink } from "react-router-dom";
 
 export default function ProductCard(props) {
   // We will load isLiked from firebase and then set it to this state
@@ -53,13 +54,21 @@ export default function ProductCard(props) {
 
   return (
     <React.Fragment>
-      <Col xs={8} md={5} lg={3} className="productCard">
-        {/*When we get the real product we need to add an id to each product*/}
-        {likeBtn}
-        {slider}
-        <div className="productCardTitle">{props.info.title}</div>
-        <div className="productCardPrice">${props.info.price}</div>
-        <div className="productCardBrand">{props.info.brand}</div>
+      <Col xs={8} md={5} lg={3} className="ml-5">
+        <div className="productCard">
+          {likeBtn}
+          <NavLink
+            to={`/products/${props.info.id}`}
+            key={props.index}
+            className="productCardNavLink"
+          >
+            {/*When we get the real product we need to add an id to each product*/}
+            {slider}
+            <div className="productCardTitle">{props.info.title}</div>
+            <div className="productCardPrice">${props.info.price}</div>
+            <div className="productCardBrand">{props.info.brand}</div>
+          </NavLink>
+        </div>
       </Col>
     </React.Fragment>
   );
