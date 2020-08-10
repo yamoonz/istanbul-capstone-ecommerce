@@ -51,7 +51,7 @@ export default function Header() {
                 Have your orders shipped right away!
               </span>
             </Col>
-            <Col className="shortInfoItem">
+            <Col className="shortInfoItem shortInfoEducation">
               <i className="fas fa-award educationIcon shortInfoIcon"></i>
               <h3 className="shortInfoTitle">Education</h3>
               <span className="shortInfoText">

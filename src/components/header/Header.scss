@@ -2,8 +2,8 @@
 
 $buttonGetStarted: #485181;
 $buttonSignUp: #c3c9eb;
-$headerHeight: 680px;
-$headerHeightOnPhone: 850px;
+$headerHeight: 690px;
+$headerHeightOnPhone: 860px;
 
 .header {
   height: $headerHeight;
@@ -77,6 +77,29 @@ $headerHeightOnPhone: 850px;
     color: #fff;
     display: flex;
     padding: 0;
+    position: relative;
+
+    .shortInfoEducation {
+      &::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: -20px;
+        border-left: 1px solid $buttonSignUp;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        right: 20px;
+        border-right: 1px solid $buttonSignUp;
+      }
+    }
 
     .shortInfoItem {
       .shortInfoTitle {
@@ -157,12 +180,22 @@ $headerHeightOnPhone: 850px;
     grid-row: 10/13;
     padding-top: 20px;
 
-    .shortInfoItem {
+    .shortInfoRow {
       padding-top: 30px;
 
       .shortInfoIcon,
       .shortInfoTitle {
         font-size: 1.4rem;
+      }
+
+      .shortInfoEducation {
+        &::before {
+          left: -10px;
+        }
+
+        &::after {
+          right: 5px;
+        }
       }
     }
   }
@@ -179,9 +212,8 @@ $headerHeightOnPhone: 850px;
   }
 
   .bottomButtons {
-    grid-row: 11/13;
+    grid-row: 10/13;
     padding: 0;
-    margin-top: -50px;
 
     .shortInfoItem {
       .shortInfoIcon {
@@ -197,6 +229,16 @@ $headerHeightOnPhone: 850px;
         font-size: 2.3vw;
       }
     }
+
+    .shortInfoEducation {
+      &::before {
+        left: -5px !important;
+      }
+
+      &::after {
+        right: 10px !important;
+      }
+    }
   }
 }
 
@@ -209,7 +251,7 @@ $headerHeightOnPhone: 850px;
   }
 
   .headerTextContent {
-    grid-row: 3/8;
+    grid-row: 2/8;
     padding-left: 15px;
     padding-right: 15px;
 
@@ -224,23 +266,49 @@ $headerHeightOnPhone: 850px;
   }
 
   .bottomButtons {
-    grid-row: 10/13;
-    margin-top: -70px;
+    grid-row: 9/13;
+    margin-top: -10px;
 
     .shortInfoRow {
       flex-wrap: wrap;
+      padding-top: 0px;
 
       .shortInfoItem {
         text-align: center;
         min-width: 100%;
+        padding-bottom: 35px;
 
         .shortInfoIcon,
         .shortInfoTitle {
-          font-size: 1.4rem !important;
+          font-size: 1.3rem !important;
         }
 
         .shortInfoText {
-          font-size: 1.1rem !important;
+          font-size: 1rem !important;
+        }
+      }
+
+      .shortInfoEducation {
+        &::before,
+        &::after {
+          width: 80%;
+          height: 1px;
+        }
+
+        &::before {
+          border-top: 1px solid $buttonSignUp;
+          top: -15px;
+          left: 50% !important;
+          transform: translateX(-50%);
+        }
+
+        &::after {
+          border-bottom: 1px solid $buttonSignUp;
+          bottom: -15px;
+          left: 50% !important;
+          transform: translateX(-50%);
+          top: auto;
+          bottom: 12px;
         }
       }
     }
@@ -249,12 +317,9 @@ $headerHeightOnPhone: 850px;
   .middleButtons {
     grid-column: 1/13;
 
-    .buttonGetStarted {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
+    .buttonGetStarted,
     .buttonSignUp {
+      font-size: 0.8rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
