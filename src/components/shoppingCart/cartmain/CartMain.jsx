@@ -3,6 +3,7 @@ import { MOCK_DATABASE } from "../../common/MockDatabase";
 import Products from "../../products/Products";
 import "./style.scss";
 const CartMain = () => {
+
   function handleClick(e) {
     e.preventDefault();
   }
@@ -19,18 +20,18 @@ const CartMain = () => {
   const handleDecrement = () => {
     setCount((prevCount) => prevCount - 1);
   };
-  return (
-    <>
-      <div className="handleClick">
+  return(
+    <div  className="paymentInfoWrapper">
+      <div className="handleClick" >
         <button onClick={handleDecrement}>-</button>
-        <h5> {count}</h5>
+        <h5 className="quantityCount"> {count}</h5>
         <button onClick={handleIncrement}>+</button>
       </div>
       <div className="backToProducts">
         <button onClick={Products}>Back To Shopping</button>
       </div>
-      <img src={MOCK_DATABASE} />;{/* <CartDetails /> */}
-    </>
+      <img src={MOCK_DATABASE} />
+    </div>
   );
 };
 export default CartMain;

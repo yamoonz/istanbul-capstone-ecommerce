@@ -20,7 +20,6 @@ const PaymentSum = () => {
   if (subTotal >= AMOUNT_TO_FREE_SHIPPING) {
     isShippingFree = true;
     totalCost = subTotal;
-    return;
   } else {
     isShippingFree = false;
     totalCost = subTotal + shippingCost;
@@ -52,12 +51,12 @@ const PaymentSum = () => {
     </Row>
   );
 
-  return (
+  return(
     <Container className="paymentInfoBar">
       {orderSummaryRow}
       {totalCostRow}
     </Container>
-  );
+  )
 };
 
 export default PaymentSum;

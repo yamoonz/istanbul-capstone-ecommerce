@@ -3,7 +3,7 @@ import PaymentSum from "./paymentbar/PaymentSum";
 import CartMain from "./cartmain/CartMain";
 
 const Cart = () => {
-  return (
+  return(
     <>
       <PaymentSum />
       <CartMain />
