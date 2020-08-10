@@ -1,0 +1,20 @@
+.productsSectionContainer {
+  margin-bottom: 50px;
+
+  h1 {
+    position: relative;
+    padding: 40px;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background-color: #555a63;
+      position: absolute;
+      left: -60px;
+      top: 50%;
+    }
+  }
+}
