@@ -14,6 +14,7 @@ $closeSignUpIconIndex: 105;
   justify-content: flex-end;
   position: fixed;
   padding: 0;
+  padding-right: 25px;
   overflow-x: hidden;
 
   // To show Navbar that has transparent background on top of Header component.
@@ -76,6 +77,11 @@ $closeSignUpIconIndex: 105;
   }
 
   @include media(tablet) {
+    .navbarItems {
+      width: 60%;
+      margin-right: 20px;
+    }
+
     .navLinkCol {
       font-size: 95%;
     }

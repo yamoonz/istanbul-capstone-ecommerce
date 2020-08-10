@@ -1,6 +1,15 @@
 .productsSectionContainer {
   margin-bottom: 50px;
 
+  a {
+    text-decoration: none !important;
+    color: initial;
+
+    &:hover {
+      color: initial;
+    }
+  }
+
   h1 {
     position: relative;
     padding: 40px;

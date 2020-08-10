@@ -2,16 +2,18 @@
 
 $buttonGetStarted: #485181;
 $buttonSignUp: #c3c9eb;
-$headerHeight: 110vh;
+$headerHeight: 680px;
+$headerHeightOnPhone: 850px;
 
 .header {
   height: $headerHeight;
   display: flex;
   align-items: center;
   color: #fff;
+  width: 100vw;
 
   .headerDescription {
-    padding-top: 10px;
+    padding-top: 20px;
   }
 }
 
@@ -19,7 +21,7 @@ $headerHeight: 110vh;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: $headerHeight;
   overflow: hidden;
 }
@@ -31,7 +33,7 @@ $headerHeight: 110vh;
 
 .headerOverlay {
   height: $headerHeight;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -58,27 +60,43 @@ $headerHeight: 110vh;
 .lineWrapper {
   grid-column: 1/2;
   grid-row: 5/6;
+  margin-top: -35px;
 }
 
 .headerTextContent {
   grid-column: 2/9;
-  grid-row: 5/9;
+  grid-row: 4/8;
+  padding-top: 20px;
 }
 
 .bottomButtons {
   grid-column: 1/13;
   grid-row: 11/13;
 
-  ul {
+  .shortInfoRow {
     color: #fff;
     display: flex;
-    list-style: none;
     padding: 0;
+
+    .shortInfoItem {
+      .shortInfoTitle {
+        display: inline-block;
+      }
+
+      .shortInfoText {
+        display: block;
+      }
+
+      .shortInfoIcon {
+        font-size: 30px;
+        padding-right: 20px;
+      }
+    }
   }
 }
 
 .middleButtons {
-  padding-top: 10px;
+  padding-top: 20px;
 
   .buttonGetStarted {
     background-color: $buttonGetStarted;
@@ -93,6 +111,15 @@ $headerHeight: 110vh;
     color: $buttonGetStarted;
     padding-left: 3rem;
     padding-right: 3rem;
+
+    &:hover a {
+      color: $buttonSignUp;
+    }
+
+    a {
+      text-decoration: none;
+      color: $buttonGetStarted;
+    }
   }
 }
 
@@ -130,26 +157,64 @@ $headerHeight: 110vh;
     grid-row: 10/13;
     padding-top: 20px;
 
-    ul {
-      justify-content: center;
+    .shortInfoItem {
+      padding-top: 30px;
+
+      .shortInfoIcon,
+      .shortInfoTitle {
+        font-size: 1.4rem;
+      }
     }
   }
 }
 
 @include media(tablet-sm) {
+  .header {
+    max-width: 650px !important;
+    padding-right: 40px !important;
+  }
+
+  .headerTextContent {
+    grid-row: 3/8;
+  }
+
   .bottomButtons {
     grid-row: 11/13;
+    padding: 0;
+    margin-top: -50px;
+
+    .shortInfoItem {
+      .shortInfoIcon {
+        padding-right: 10px !important;
+        font-size: 1.3rem !important;
+      }
+
+      .shortInfoTitle {
+        font-size: 1.1rem !important;
+      }
+
+      .shortInfoText {
+        font-size: 2.3vw;
+      }
+    }
   }
 }
 
 @include media(phone) {
+  .header,
+  .videoWrap,
+  .headerOverlay,
+  .headerContent {
+    height: $headerHeightOnPhone;
+  }
+
   .headerTextContent {
     grid-row: 3/8;
     padding-left: 15px;
     padding-right: 15px;
 
     .headerTitle {
-      font-size: 1.9rem;
+      font-size: 5.2vw;
       margin-bottom: 1.5rem;
     }
 
@@ -158,33 +223,45 @@ $headerHeight: 110vh;
     }
   }
 
+  .bottomButtons {
+    grid-row: 10/13;
+    margin-top: -70px;
+
+    .shortInfoRow {
+      flex-wrap: wrap;
+
+      .shortInfoItem {
+        text-align: center;
+        min-width: 100%;
+
+        .shortInfoIcon,
+        .shortInfoTitle {
+          font-size: 1.4rem !important;
+        }
+
+        .shortInfoText {
+          font-size: 1.1rem !important;
+        }
+      }
+    }
+  }
+
   .middleButtons {
     grid-column: 1/13;
 
     .buttonGetStarted {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
     .buttonSignUp {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
   }
 }
 
 @include media(phone-sm) {
-  .headerTextContent {
-    .headerTitle {
-      font-size: 1.3rem;
-    }
-
-    .headerDescription {
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-    }
-  }
-
   .bottomButtons {
     grid-column: 1/13;
     grid-row: 11/12;
