@@ -13,6 +13,9 @@
   h1 {
     position: relative;
     padding: 40px 40px 20px 80px;
+    font-family: "Lato", sans-serif;
+    font-size: 39px;
+    color: #2c3648;
 
     &::before {
       content: "";
@@ -22,7 +25,7 @@
       height: 3px;
       background-color: #555a63;
       left: 20px;
-    top: 60%;
+      top: 60%;
     }
   }
 }
