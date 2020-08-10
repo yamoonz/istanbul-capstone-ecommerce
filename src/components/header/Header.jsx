@@ -2,6 +2,7 @@ import React from "react";
 import clock from "../../assets/video-clock.mov";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 export default function Header() {
@@ -21,19 +22,21 @@ export default function Header() {
           <h1 className="headerTitle">
             {t("headerTitle", "We Care About Your Health")}
           </h1>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries.
+          <p className="headerDescription">
+            Cholesterol is a waxy, fat-like substance that's found in all the
+            cells in your body. Your body needs some cholesterol to make
+            hormones and substances that help you digest foods. Your body makes
+            all the cholesterol it needs. Cholesterol is also found in foods
+            from animal sources, such as egg yolks and meat. If you have too
+            much cholesterol in your blood, it can combine with other substances
+            in the blood to form plaque.
           </p>
           <div className="middleButtons">
             <Button variant="info" className="buttonGetStarted">
               Get Started
             </Button>
             <Button variant="secondary" className="ml-5 buttonSignUp">
-              Sign Up
+              <NavLink to="/signup">Sign Up</NavLink>
             </Button>
           </div>
         </div>
