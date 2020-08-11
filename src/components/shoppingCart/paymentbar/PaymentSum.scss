@@ -1,6 +1,6 @@
-@import "../../common/variables";
+@import "../../common/mixins";
 
-$avoidOverlappingNavbar: 90px;
+$avoidOverlappingNavbar: 120px;
 
 // To only affect this styling scope for resetting.
 .paymentInfoBar * {

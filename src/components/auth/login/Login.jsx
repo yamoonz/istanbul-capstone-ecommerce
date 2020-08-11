@@ -1,18 +1,19 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
 import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
+import { Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 const LogInForm = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const passwordValue = useRef(false);
-  const emailValue = useRef(false);
+  const [passwordValue, setPasswordValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
 
-  const userLogout = () => {
+  const userLogout = (e) => {
+    e.preventDefault();
     auth.signOut().then(() => {
       setIsAdmin(false);
       setLoggedIn(false);
@@ -20,6 +21,7 @@ const LogInForm = () => {
   };
 
   const userLogin = async (e) => {
+    e.preventDefault();
     const userLogin = await auth.signInWithEmailAndPassword(
       emailValue,
       passwordValue
@@ -34,53 +36,53 @@ const LogInForm = () => {
   };
 
   const emailGroup = (
-    <Form.Group controlId="formGroupEmail" className="formGroupEmail">
-      <Form.Label className="formInputLabel">Email address</Form.Label>
-      <div className="formInputWrapper">
-        <i className="fas fa-user-circle"></i>
-        <Form.Control
-          type="email"
-          placeholder="Enter your registered email"
-          ref={emailValue}
-          className="formInput"
-        />
-      </div>
+    <Form.Group controlId="formGroupEmail">
+      <Form.Label>Email address</Form.Label>
+      <Form.Control
+        type="email"
+        placeholder="Enter email"
+        onChange={(e) => setEmailValue(e.target.value)}
+      />
     </Form.Group>
   );
 
   const passwordGroup = (
-    <Form.Group controlId="formGroupPassword" className="formGroupPassword">
-      <Form.Label className="formInputLabel">Password</Form.Label>
-      <div className="formInputWrapper">
-        <i className="fas fa-key"></i>
-        <Form.Control
-          type="password"
-          placeholder="Enter your password"
-          ref={passwordValue}
-          className="formInput"
-        />
-      </div>
-      <Button
-        variant="info"
-        size="md"
-        className="loginButton"
-        onClick={`${isLoggedIn ? userLogout : userLogin}`}
-      >
-        {`${isLoggedIn ? "LOG OUT" : "LOG IN"}`}
-      </Button>
+    <Form.Group controlId="formGroupPassword">
+      <Form.Label>Password</Form.Label>
+      <Form.Control
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPasswordValue(e.target.value)}
+      />
     </Form.Group>
   );
 
   return (
-    <>
+    <Row>
       {isAdmin && <AddProducts />}
       <Col className="signupForm">
-        <Form>
+        <Form
+          onSubmit={(e) => {
+            if (isLoggedIn) {
+              userLogout(e);
+            } else {
+              userLogin(e);
+            }
+          }}
+        >
           {emailGroup}
           {passwordGroup}
+          <Button
+            variant="info"
+            size="md"
+            className="loginButton"
+            type="submit"
+          >
+            {`${isLoggedIn ? "Log out" : "Log in"}`}
+          </Button>
         </Form>
       </Col>
-    </>
+    </Row>
   );
 };
 
