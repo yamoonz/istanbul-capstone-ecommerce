@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -52,7 +52,9 @@ function navbarIconsReducer(state, action) {
   }
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [navbarClassName, setNavbarClassName] = useState("navbar");
+
   const [
     {
       isLanguageDropdownOpen,
@@ -78,6 +80,19 @@ const Navbar = () => {
       <Col className="hamburgerIcon"></Col>
     </Row>
   );
+  //   ////////////////////////////////////////////////////////////////////
+  // const changeNavbarClassNameForSpecificComponents= (currentLocation) =>{
+  //   const componentsLocation= ["/products","/shoppingcart","/blog"]
+  //   for(const i in componentsLocation){
+  //     if(currentLocation===componentsLocation[i]){
+  //       setNavbarClassName("navbarWithBackground");
+  //     }
+  //     else{
+  //       setNavbarClassName("");
+  //     }
+
+  //   }
+  // }
 
   const fullNavbarMenu = (
     <Row
@@ -101,9 +116,6 @@ const Navbar = () => {
         </Col>
         <Col className="navLinkCol">
           <NavLink to="/products">Products</NavLink>
-        </Col>
-        <Col className="navLinkCol">
-          <NavLink to="/contact">Contact</NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">
@@ -146,13 +158,20 @@ const Navbar = () => {
     handleStatus("CLICK_AWAY");
   };
 
+  ////////////////////////////////////////////////////////////
+  // browserHistory.listen( location =>  {
+  //   changeNavbarClassNameForSpecificComponents(location.pathname)
+  //  });
+
   return (
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
         {isSearchBoxOpen && <SearchBox />}
         <Container
           fluid
-          className={`navbar ${isSearchBoxOpen && "moveOverHeader"}`}
+          className={`${navbarClassName} navbar ${
+            isSearchBoxOpen && "moveOverHeader"
+          }`}
         >
           {hamburgerMenu}
           {fullNavbarMenu}
