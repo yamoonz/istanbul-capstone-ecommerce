@@ -53,7 +53,7 @@ function navbarIconsReducer(state, action) {
   }
 }
 
-const Navbar = (props) => {
+const Navbar = () => {
   const [navbarClassName, setNavbarClassName] = useState("navbar");
   const [scrollState, setScrollState] = useState("top");
 
@@ -82,7 +82,8 @@ const Navbar = (props) => {
       <Col className="hamburgerIcon"></Col>
     </Row>
   );
-  ////////////////////////////////////////////////////////////////////
+
+  // To give navbar background on components with white bakground
   const changeNavbarClassNameForSpecificComponents = (currentLocation) => {
     const componentsLocation = ["/blog", "/products", "/shoppingcart"];
     for (let i in componentsLocation) {
@@ -95,28 +96,30 @@ const Navbar = (props) => {
     }
   };
 
+  // To give navbar background on scrolling
   const changeNavbarClassNameOnScroll = (currentLocation) => {
     const componentsLocation = ["/", "/about"];
-
     const listener = document.addEventListener("scroll", (e) => {
-      for (let i in componentsLocation) {
-        if (currentLocation === componentsLocation[i]) {
-          const scrolled = document.scrollingElement.scrollTop;
-          if (scrolled >= 120) {
-            if (scrollState !== "amir") {
-              setScrollState("amir");
-              setNavbarClassName("navbarWithBackgroundOnScroll");
-            }
-          } else {
-            if (scrollState !== "top") {
+      const scrolled = document.scrollingElement.scrollTop;
+      if (scrolled >= 90) {
+        if (scrollState !== "amir") {
+          setScrollState("amir");
+          setNavbarClassName("navbarWithBackgroundOnScroll");
+        }
+      } else {
+        if (scrollState !== "top") {
+          for (let i in componentsLocation) {
+            if (currentLocation === componentsLocation[i]) {
               setScrollState("top");
               setNavbarClassName("");
+              break;
+            } else {
+              setNavbarClassName("navbarWithBackground");
             }
           }
         }
       }
     });
-
     return () => {
       document.removeEventListener("scroll", listener);
     };
@@ -186,9 +189,11 @@ const Navbar = (props) => {
     handleStatus("CLICK_AWAY");
   };
   let location = useLocation();
+
   useEffect(() => {
     changeNavbarClassNameForSpecificComponents(location.pathname);
     changeNavbarClassNameOnScroll(location.pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, scrollState]);
 
   return (
