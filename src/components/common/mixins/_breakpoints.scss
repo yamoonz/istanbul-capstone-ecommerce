@@ -21,14 +21,3 @@
     }
   }
 }
-
-@mixin resetAnchorHover($color, $colorHovered) {
-  &:hover a {
-    color: $colorHovered !important;
-  }
-
-  a {
-    text-decoration: none !important;
-    color: $color !important;
-  }
-}
