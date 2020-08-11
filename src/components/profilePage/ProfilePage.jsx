@@ -13,7 +13,6 @@ function ProfilePage() {
           <a href="#" onClick={handleClick} className="anchorFavorite">
             Favorite
           </a>
-    
         </div>
         <div className="userProfileItems">
           {MOCK_DATABASE.slice(0, 2).map((info, index) => (
