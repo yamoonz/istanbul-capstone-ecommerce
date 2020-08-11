@@ -1,5 +1,16 @@
 @import "../common/variables";
 
+@mixin resetAnchorHover($color, $colorHovered) {
+  &:hover a {
+    color: $colorHovered;
+  }
+
+  a {
+    text-decoration: none;
+    color: $color;
+  }
+}
+
 $buttonGetStarted: #485181;
 $buttonSignUp: #c3c9eb;
 $headerHeight: 690px;
@@ -126,6 +137,8 @@ $headerHeightOnPhone: 860px;
     border-color: $buttonGetStarted;
     padding-left: 2rem;
     padding-right: 2rem;
+
+    @include resetAnchorHover($buttonSignUp, $buttonSignUp);
   }
 
   .buttonSignUp {
@@ -135,14 +148,7 @@ $headerHeightOnPhone: 860px;
     padding-left: 3rem;
     padding-right: 3rem;
 
-    &:hover a {
-      color: $buttonSignUp;
-    }
-
-    a {
-      text-decoration: none;
-      color: $buttonGetStarted;
-    }
+    @include resetAnchorHover($buttonGetStarted, $buttonSignUp);
   }
 }
 
