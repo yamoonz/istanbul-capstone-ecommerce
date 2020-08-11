@@ -13,6 +13,8 @@ function ProfilePage() {
           <a href="#" onClick={handleClick}>
             Favorite
           </a>
+          <div className="vl"></div>
+          <div className="hl"></div>
           <a href="#" onClick={handleClick}>
             Ordered
           </a>

@@ -19,3 +19,16 @@
   display: flex;
   margin-bottom: 50px;
 }
+.vl {
+  position:absolute;
+    top:125%;
+    left:59%;
+  margin: 0;
+   -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-left: 3px solid #05225a ;
+  height: 700px;
+  position: absolute;
+  //left: 59%;
+  //margin-left: -3px;
+}
