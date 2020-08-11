@@ -1,6 +1,6 @@
 @import "../../common/mixins";
 
-$avoidOverlappingNavbar: 120px;
+$avoidOverlappingNavbar: 130px !important;
 
 // To only affect this styling scope for resetting.
 .paymentInfoBar * {
@@ -13,6 +13,7 @@ $avoidOverlappingNavbar: 120px;
   max-width: 300px !important;
   height: 100vh;
   position: fixed;
+  top: 0;
   right: 0;
   background-color: rgba(128, 141, 158, 0.527);
   font-size: 18px;
