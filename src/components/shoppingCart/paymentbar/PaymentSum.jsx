@@ -20,7 +20,6 @@ const PaymentSum = () => {
   if (subTotal >= AMOUNT_TO_FREE_SHIPPING) {
     isShippingFree = true;
     totalCost = subTotal;
-    return;
   } else {
     isShippingFree = false;
     totalCost = subTotal + shippingCost;

@@ -103,7 +103,7 @@ const Navbar = () => {
           <NavLink to="/products">Products</NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/about">About</NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">
