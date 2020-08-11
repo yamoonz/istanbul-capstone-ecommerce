@@ -1,0 +1,15 @@
+.cartDetailWrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cartDetailWrapper {
+  width: calc(100% - 400px);
+  min-height: 300px;
+  height: auto;
+  background-color: rgba(76, 76, 155, 0.76);
+
+  .cartDetailHeader {
+  }
+}

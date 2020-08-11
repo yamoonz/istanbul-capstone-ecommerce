@@ -1,12 +1,12 @@
 import React from "react";
 import PaymentSum from "./paymentbar/PaymentSum";
-import RelatedProducts from "./relatedsection/RelatedProducts";
+import CartDetail from "./cartdetail/CartDetail";
 
 const Cart = () => {
   return (
     <>
       <PaymentSum />
-      <RelatedProducts />
+      <CartDetail />
     </>
   );
 };
