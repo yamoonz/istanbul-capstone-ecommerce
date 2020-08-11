@@ -1,4 +1,4 @@
-@import "../../common/variables";
+@import "../../common/mixins";
 
 $fadedWhite: #e0dddd9e;
 $footerBg: #2f3e46;
@@ -7,6 +7,7 @@ $twitterHoverColor: #00acee !important;
 $googleHoverColor: #c52d27 !important;
 $githubHoverColor: #211f1f !important;
 $facebookHoverColor: #3b5998 !important;
+$fadedWhiteBright: #e5e2e2 !important;
 
 .footerWrapper * {
   margin: 0;
@@ -24,7 +25,7 @@ $facebookHoverColor: #3b5998 !important;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  color: white;
+  color: $fadedWhiteBright;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 
@@ -50,6 +51,10 @@ $facebookHoverColor: #3b5998 !important;
       .footerLogo,
       .footerMotto {
         min-width: 100%;
+      }
+
+      .footerLogo {
+        color: white;
       }
     }
 
@@ -99,7 +104,7 @@ $facebookHoverColor: #3b5998 !important;
   }
 
   a {
-    color: white;
+    color: $fadedWhiteBright;
     text-decoration: none !important;
     transition: color 0.3s ease-in-out;
     letter-spacing: 0.5px;

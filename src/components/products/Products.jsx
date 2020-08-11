@@ -10,7 +10,7 @@ export default function Products() {
 
   return (
     <Container className="productsSectionContainer">
-      <h1>Products</h1>
+      <h1 className="productsTitle">Products</h1>
       <Row>
         {MOCK_DATABASE.map((info, index) => (
           <ProductCard info={info} index={index} />
