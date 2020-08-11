@@ -10,6 +10,8 @@ export default function AddProducts() {
   const [productFormDescription, setProductFormDescription] = useState("");
   const [productFormCategory, setProductFormCategory] = useState("");
   const [productFormPrice, setProductFormPrice] = useState("");
+  const [productFormImages, setProductFormImages] = useState({});
+  const [productFormSizes, setProductFormSizes] = useState({});
 
   // Add products to the database
   const addNewProductToDatabase = async (e) => {
@@ -17,20 +19,16 @@ export default function AddProducts() {
 
     // Getting all images from the inputs and then pushing them into an array to post the data to the database
     const allImages = [];
-    const imageInputs = document.getElementsByTagName("input");
-    for (let i = 0; i < imageInputs.length; i++) {
-      if (imageInputs[i].placeholder === "Image") {
-        const image = imageInputs[i].value;
-        allImages.push(image);
-      }
+    for (let i in productFormImages) {
+      const image = productFormImages[i];
+      allImages.push(image);
     }
 
     // Getting all sizes from the select inputs and then  pushing them into an array to post the data to the database
     const allSizes = [];
-    const optionInputs = document.getElementsByClassName("sizeOptions");
     if (hasSizes) {
-      for (let j = 0; j < optionInputs.length; j++) {
-        const size = optionInputs[j].value;
+      for (let j in productFormSizes) {
+        const size = productFormSizes[j];
         allSizes.push(size);
       }
     }
@@ -54,10 +52,22 @@ export default function AddProducts() {
       <option>45</option>
       <option>44</option>
       <option>43</option>
+      <option>42</option>
       <option>41</option>
-      <option>40</option>
     </>
   );
+
+  const handleImageInputChange = (e) => {
+    const value = e.target.value;
+    const key = e.target.name;
+    setProductFormImages({ ...productFormImages, [key]: value });
+  };
+
+  const handleSizeInputChange = (e) => {
+    const value = e.target.value;
+    const key = e.target.name;
+    setProductFormSizes({ ...productFormSizes, [key]: value });
+  };
 
   return (
     <>
@@ -130,7 +140,8 @@ export default function AddProducts() {
                 <Form.Control
                   as="select"
                   defaultValue="sizes"
-                  className="sizeOptions"
+                  name="firstSizeInput"
+                  onChange={handleSizeInputChange}
                 >
                   {sizeOptions}
                 </Form.Control>
@@ -139,7 +150,8 @@ export default function AddProducts() {
                 <Form.Control
                   as="select"
                   defaultValue="sizes"
-                  className="sizeOptions"
+                  name="secondSizeInput"
+                  onChange={handleSizeInputChange}
                 >
                   {sizeOptions}
                 </Form.Control>
@@ -148,7 +160,8 @@ export default function AddProducts() {
                 <Form.Control
                   as="select"
                   defaultValue="sizes"
-                  className="sizeOptions"
+                  name="thirdSizeInput"
+                  onChange={handleSizeInputChange}
                 >
                   {sizeOptions}
                 </Form.Control>
@@ -157,7 +170,8 @@ export default function AddProducts() {
                 <Form.Control
                   as="select"
                   defaultValue="sizes"
-                  className="sizeOptions"
+                  name="fourthSizeInput"
+                  onChange={handleSizeInputChange}
                 >
                   {sizeOptions}
                 </Form.Control>
@@ -166,18 +180,38 @@ export default function AddProducts() {
           )}
           <Row className="productFormRow">
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" />
+              <Form.Control
+                type="text"
+                name="firstImageInput"
+                placeholder="Image"
+                onChange={handleImageInputChange}
+              />
             </Col>
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" />
+              <Form.Control
+                type="text"
+                name="secondImageInput"
+                placeholder="Image"
+                onChange={handleImageInputChange}
+              />
             </Col>
           </Row>
           <Row className="productFormRow">
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" />
+              <Form.Control
+                type="text"
+                name="thirdImageInput"
+                placeholder="Image"
+                onChange={handleImageInputChange}
+              />
             </Col>
             <Col xs={12} md={6}>
-              <Form.Control type="text" placeholder="Image" />
+              <Form.Control
+                type="text"
+                name="fourthImageInput"
+                placeholder="Image"
+                onChange={handleImageInputChange}
+              />
             </Col>
           </Row>
           <Row className="productFormRow">
