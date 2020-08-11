@@ -46,7 +46,7 @@ const SINGLE_PRODUCT_SLIDER_SETTINGS = {
 
 export default function SliderSection() {
   return (
-    <Container>
+    <Container className="sliderSectionWrapper">
       <Slider {...SINGLE_PRODUCT_SLIDER_SETTINGS}>
         {MOCK_DATABASE.map((info, index) => (
           <ProductCard info={info} index={index} key={index} />
