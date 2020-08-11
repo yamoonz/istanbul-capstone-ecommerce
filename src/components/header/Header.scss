@@ -1,21 +1,29 @@
-@import "../common/variables";
+@import "../common/mixins";
 
 $buttonGetStarted: #485181;
 $buttonSignUp: #c3c9eb;
+$headerHeight: 690px;
+$headerHeightOnPhone: 860px;
 
 .header {
-  height: 100vh;
+  height: $headerHeight;
   display: flex;
   align-items: center;
   color: #fff;
+  width: 100vw;
+
+  .headerDescription {
+    padding-top: 20px;
+    font-size: 1.1rem;
+  }
 }
 
 .videoWrap {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: $headerHeight;
   overflow: hidden;
 }
 
@@ -25,8 +33,8 @@ $buttonSignUp: #c3c9eb;
 }
 
 .headerOverlay {
-  height: 100vh;
-  width: 100vw;
+  height: $headerHeight;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -38,7 +46,7 @@ $buttonSignUp: #c3c9eb;
 .headerContent {
   z-index: 2;
   width: 100%;
-  height: 100%;
+  height: $headerHeight;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -53,31 +61,74 @@ $buttonSignUp: #c3c9eb;
 .lineWrapper {
   grid-column: 1/2;
   grid-row: 5/6;
+  margin-top: -35px;
 }
 
 .headerTextContent {
-  grid-column: 2/9;
-  grid-row: 5/9;
+  grid-column: 2/10;
+  grid-row: 4/8;
+  padding-top: 20px;
 }
 
 .bottomButtons {
-  grid-column: 1/7;
-  grid-row: 11/12;
+  grid-column: 1/13;
+  grid-row: 11/13;
 
-  ul {
+  .shortInfoRow {
     color: #fff;
     display: flex;
-    list-style: none;
     padding: 0;
+    position: relative;
+
+    .shortInfoEducation {
+      &::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: -20px;
+        border-left: 1px solid $buttonSignUp;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        right: 20px;
+        border-right: 1px solid $buttonSignUp;
+      }
+    }
+
+    .shortInfoItem {
+      .shortInfoTitle {
+        display: inline-block;
+      }
+
+      .shortInfoText {
+        display: block;
+      }
+
+      .shortInfoIcon {
+        font-size: 30px;
+        padding-right: 20px;
+      }
+    }
   }
 }
 
 .middleButtons {
+  padding-top: 20px;
+
   .buttonGetStarted {
     background-color: $buttonGetStarted;
     border-color: $buttonGetStarted;
     padding-left: 2rem;
     padding-right: 2rem;
+
+    @include resetAnchorHover($buttonSignUp, $buttonSignUp);
   }
 
   .buttonSignUp {
@@ -86,89 +137,204 @@ $buttonSignUp: #c3c9eb;
     color: $buttonGetStarted;
     padding-left: 3rem;
     padding-right: 3rem;
+
+    @include resetAnchorHover($buttonGetStarted, $buttonSignUp);
   }
 }
 
 @include media(tablet) {
+  .headerContent {
+    padding-left: 30px;
+  }
+
   .lineWrapper {
     display: none;
   }
 
   .headerTextContent {
     grid-column: 1/13;
-    grid-row: 4/8;
+    grid-row: 4/9;
 
-    h1 {
-      margin-bottom: 2rem;
+    .headerTitle {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
 
-    p {
-      font-size: 1.25rem;
+    .headerDescription {
+      margin-bottom: 1.3rem;
+      font-size: 1.1rem;
     }
   }
 
   .middleButtons {
-    margin-top: 8%;
+    padding-top: 10px;
     display: flex;
     justify-content: center;
   }
 
   .bottomButtons {
-    grid-column: 3/11;
-    grid-row: 12;
+    grid-row: 10/13;
+    padding-top: 20px;
 
-    ul {
-      justify-content: center;
+    .shortInfoRow {
+      padding-top: 30px;
+
+      .shortInfoIcon,
+      .shortInfoTitle {
+        font-size: 1.4rem;
+      }
+
+      .shortInfoEducation {
+        &::before {
+          left: -10px;
+        }
+
+        &::after {
+          right: 5px;
+        }
+      }
+    }
+  }
+}
+
+@include media(tablet-sm) {
+  .header {
+    max-width: 650px !important;
+    padding-right: 40px !important;
+  }
+
+  .headerTextContent {
+    grid-row: 3/8;
+  }
+
+  .bottomButtons {
+    grid-row: 10/13;
+    padding: 0;
+
+    .shortInfoItem {
+      .shortInfoIcon {
+        padding-right: 10px !important;
+        font-size: 1.3rem !important;
+      }
+
+      .shortInfoTitle {
+        font-size: 1.1rem !important;
+      }
+
+      .shortInfoText {
+        font-size: 2.3vw;
+      }
+    }
+
+    .shortInfoEducation {
+      &::before {
+        left: -5px !important;
+      }
+
+      &::after {
+        right: 10px !important;
+      }
     }
   }
 }
 
 @include media(phone) {
+  .header,
+  .videoWrap,
+  .headerOverlay,
+  .headerContent {
+    height: $headerHeightOnPhone;
+  }
+
   .headerTextContent {
+    grid-row: 2/8;
     padding-left: 15px;
     padding-right: 15px;
 
-    h1 {
-      font-size: 2rem;
+    .headerTitle {
+      font-size: 5.2vw;
       margin-bottom: 1.5rem;
+    }
+
+    .headerDescription {
+      font-size: 3.5vw;
+    }
+  }
+
+  .bottomButtons {
+    grid-row: 9/13;
+    margin-top: -10px;
+
+    .shortInfoRow {
+      flex-wrap: wrap;
+      padding-top: 0px;
+
+      .shortInfoItem {
+        text-align: center;
+        min-width: 100%;
+        padding-bottom: 35px;
+
+        .shortInfoIcon,
+        .shortInfoTitle {
+          font-size: 1.3rem !important;
+        }
+
+        .shortInfoText {
+          font-size: 1rem !important;
+        }
+      }
+
+      .shortInfoEducation {
+        &::before,
+        &::after {
+          width: 80%;
+          height: 1px;
+        }
+
+        &::before {
+          border-top: 1px solid $buttonSignUp;
+          top: -15px;
+          left: 50% !important;
+          transform: translateX(-50%);
+        }
+
+        &::after {
+          border-bottom: 1px solid $buttonSignUp;
+          bottom: -15px;
+          left: 50% !important;
+          transform: translateX(-50%);
+          top: auto;
+          bottom: 12px;
+        }
+      }
     }
   }
 
   .middleButtons {
     grid-column: 1/13;
-    margin-top: 3rem;
 
-    .buttonGetStarted {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
+    .buttonGetStarted,
     .buttonSignUp {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      font-size: 0.8rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
-  }
-
-  .bottomButtons {
-    grid-column: 1/13;
-    grid-row: 12;
   }
 }
 
 @include media(phone-sm) {
-  .headerTextContent {
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    p {
-      font-size: 0.8rem;
-      margin-bottom: 2rem;
-    }
-  }
-
   .bottomButtons {
     grid-column: 1/13;
     grid-row: 11/12;
+  }
+
+  .buttonGetStarted {
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+  }
+
+  .buttonSignUp {
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
   }
 }

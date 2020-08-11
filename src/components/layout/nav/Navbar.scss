@@ -1,4 +1,9 @@
-@import "../../common/variables";
+@import "../../common/mixins";
+
+// Fixed Navbar always will be shown over other components except HamburgerIcon, Search and SignUpModal elements.
+$navbarIndex: 102;
+$hamburgerIconIndex: 103;
+$closeSignUpIconIndex: 105;
 
 .navbar {
   display: flex;
@@ -9,10 +14,11 @@
   justify-content: flex-end;
   position: fixed;
   padding: 0;
+  padding-right: 25px;
   overflow-x: hidden;
 
   // To show Navbar that has transparent background on top of Header component.
-  z-index: 100;
+  z-index: $navbarIndex;
 
   .collapseMenuItems {
     width: 80%;
@@ -57,7 +63,7 @@
 
     .iconWrapper {
       max-width: 35px;
-      margin-right: 15px;
+      margin-right: 8px;
       min-width: 18px;
     }
 
@@ -71,6 +77,11 @@
   }
 
   @include media(tablet) {
+    .navbarItems {
+      width: 60%;
+      margin-right: 20px;
+    }
+
     .navLinkCol {
       font-size: 95%;
     }
@@ -125,7 +136,7 @@
       position: absolute;
       top: 10px;
       right: 50px;
-      z-index: 2;
+      z-index: $hamburgerIconIndex;
 
       .hamburgerIcon {
         display: block;
@@ -136,7 +147,7 @@
         top: 50%;
         transform: translate(-50%, -50%);
         background-color: white;
-        z-index: 2;
+        z-index: $hamburgerIconIndex;
 
         &::before,
         &::after {
@@ -144,7 +155,7 @@
           height: 3px;
           position: absolute;
           background-color: white;
-          z-index: 2;
+          z-index: $hamburgerIconIndex;
         }
 
         &::before {
@@ -216,8 +227,25 @@
 
   @include media(tablet-sm) {
     transform: none;
+  }
+}
 
-    // To keep Navbar above everything when it is in shape of Hamburger.
-    z-index: 102;
+.closeSignUpForm {
+  position: fixed !important;
+  transform: translateY(70px);
+  top: 40px;
+  right: 50px;
+  z-index: $closeSignUpIconIndex;
+  font-size: 25px;
+  width: 30px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include media(tablet-sm) {
+    top: calc(50% - 240px);
+    right: calc(50% - 150px);
   }
 }

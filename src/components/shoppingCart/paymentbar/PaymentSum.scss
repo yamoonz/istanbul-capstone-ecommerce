@@ -1,0 +1,90 @@
+@import "../../common/mixins";
+
+$avoidOverlappingNavbar: 120px;
+
+// To only affect this styling scope for resetting.
+.paymentInfoBar * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.paymentInfoBar {
+  max-width: 300px !important;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  background-color: rgba(128, 141, 158, 0.527);
+  font-size: 18px;
+  padding-top: $avoidOverlappingNavbar;
+
+  .orderSummary {
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    margin-bottom: 50px;
+
+    .subTotal,
+    .shipping {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .shipping {
+      padding-top: 25px;
+
+      .shippingFree {
+        position: relative;
+        text-decoration: line-through;
+
+        &::after {
+          content: "FREE!";
+          position: absolute;
+          bottom: -22px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: rgb(12, 134, 12);
+        }
+      }
+    }
+
+    .orderTitle {
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      border: 1px solid black;
+      width: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .totalCost {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    .purchaseButton {
+      width: 200px;
+      margin-top: 30px;
+    }
+
+    .totalTitle {
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+@include media(tablet-sm) {
+  .paymentInfoBar {
+    position: relative !important;
+    max-width: 80% !important;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,152 @@
+@import "../common/mixins";
+
+.aboutHeader {
+  height: 75vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  color: #fff;
+
+  .aboutHeaderImgBox {
+    grid-row: 1/13;
+    grid-column: 1/13;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  h1 {
+    grid-row: 6/8;
+    grid-column: 6/11;
+    z-index: 3;
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: 10px;
+    align-self: center;
+  }
+
+  .aboutLine {
+    grid-row: 6/7;
+    align-self: end;
+    grid-column: 5/6;
+    width: 80px;
+    height: 5px;
+    background-color: #fff;
+    z-index: 3;
+  }
+
+  p {
+    grid-row: 8/11;
+    align-self: end;
+    grid-column: 6/9;
+    z-index: 3;
+  }
+}
+
+.ourTeamContainer {
+  width: 100%;
+  height: 100%;
+
+  .ourTeamTitle {
+    text-align: center;
+    padding: 60px;
+  }
+
+  .ourTeamRow {
+    .teamMember {
+      margin-left: 40px;
+      margin-top: 20px;
+      width: 300px;
+
+      img {
+        width: 100%;
+      }
+
+      h4 {
+        text-align: center;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+@include media(desktop) {
+  .aboutHeader h1 {
+    font-size: 50px;
+  }
+
+  .aboutHeader .aboutLine {
+    width: 75px;
+    height: 4px;
+  }
+
+  .aboutHeader p {
+    grid-column: 6/10;
+  }
+}
+
+@include media(tablet) {
+  .aboutHeader h1 {
+    font-size: 45px;
+    grid-column: 6/12;
+  }
+
+  .aboutHeader .aboutLine {
+    width: 60px;
+    height: 4px;
+  }
+
+  .aboutHeader p {
+    grid-column: 6/11;
+  }
+}
+
+@include media(tablet-sm) {
+  .aboutHeader h1 {
+    grid-column: 5/13;
+  }
+
+  .aboutHeader .aboutLine {
+    width: 50px;
+    height: 3px;
+    grid-column: 3/5;
+    justify-self: center;
+  }
+
+  .aboutHeader p {
+    grid-column: 5/10;
+  }
+}
+
+@include media(phone) {
+  .aboutHeader h1 {
+    grid-column: 1/13;
+    justify-self: center;
+
+    letter-spacing: 5px;
+  }
+
+  .aboutHeader .aboutLine {
+    display: none;
+  }
+
+  .aboutHeader p {
+    grid-column: 2/12;
+    justify-self: center;
+  }
+}

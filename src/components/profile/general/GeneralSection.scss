@@ -1,0 +1,55 @@
+.profileGeneralSection {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: url("./profile-avatar.svg") no-repeat;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: 0 35%;
+
+  .userSectionWrapper {
+    width: 50%;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    padding-bottom: 50px;
+
+    .avatarContainer {
+      width: 90px;
+      height: 90px;
+      position: relative;
+      filter: drop-shadow(0 0 0.3rem black);
+
+      img {
+        width: 100%;
+        clip-path: circle(50%);
+      }
+
+      .settingsIcon {
+        position: absolute;
+        bottom: 0;
+        right: -30px;
+        font-size: 22px;
+        color: white;
+        filter: drop-shadow(0 0 0.55rem black);
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .userInfo {
+      background-color: rgb(218, 218, 218);
+      text-align: center;
+      padding: 3px 10px;
+      border-radius: 5px;
+      line-height: 25px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  }
+}
