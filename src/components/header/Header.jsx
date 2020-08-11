@@ -35,7 +35,7 @@ export default function Header() {
           </p>
           <div className="middleButtons">
             <Button variant="info" className="buttonGetStarted">
-             <NavLink to="/products">Get Started</NavLink>
+              <NavLink to="/products">Get Started</NavLink>
             </Button>
             <Button variant="secondary" className="ml-5 buttonSignUp">
               <NavLink to="/signup">Sign Up</NavLink>

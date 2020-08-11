@@ -87,7 +87,7 @@ export default function Categories() {
     <div className="categoriesContainer">
       <h1 className="categoryTitle">Categories</h1>
 
-      <Slider {...SLIDER_SETTINGS}>
+      <Slider {...SLIDER_SETTINGS} className="cardWrapper">
         {CATEGORIES_INFO.map((cat) => (
           <NavLink to={`/categories/${cat.name.toLowerCase()}`} key={cat.name}>
             <Category category={cat} className="row" />

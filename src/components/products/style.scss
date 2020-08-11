@@ -1,19 +1,13 @@
+@import "../common/variables";
+
 .productsSectionContainer {
   margin-bottom: 50px;
 
-  a {
-    text-decoration: none !important;
-    color: initial;
+  @include resetAnchorHover(initial, initial);
 
-    &:hover {
-      color: initial;
-    }
-  }
-
-  h1 {
+  .productsTitle {
     position: relative;
     padding: 40px 40px 20px 80px;
-    font-family: "Lato", sans-serif;
     font-size: 39px;
     color: #2c3648;
 
@@ -27,5 +21,32 @@
       left: 20px;
       top: 60%;
     }
+  }
+}
+
+@include media(tablet-sm) {
+  .productsTitle {
+    font-size: 30px !important;
+
+    &::before {
+      left: 0px !important;
+    }
+  }
+}
+
+@include media(phone) {
+  .productsTitle {
+    font-size: 25px !important;
+    padding-left: 150px !important;
+
+    &::before {
+      display: none !important;
+    }
+  }
+}
+
+@include media(phone-sm) {
+  .productsTitle {
+    padding-left: 120px !important;
   }
 }
