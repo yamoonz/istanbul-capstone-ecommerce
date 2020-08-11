@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -8,6 +8,7 @@ import SearchBox from "./search/Search";
 import "./Navbar.scss";
 import LanguageDropdown from "../../home/LanguageDropdown";
 import ClickAwayListener from "react-click-away-listener";
+import { useLocation } from "react-router-dom";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -54,6 +55,7 @@ function navbarIconsReducer(state, action) {
 
 const Navbar = (props) => {
   const [navbarClassName, setNavbarClassName] = useState("navbar");
+  const [scrollState, setScrollState] = useState("top");
 
   const [
     {
@@ -80,19 +82,45 @@ const Navbar = (props) => {
       <Col className="hamburgerIcon"></Col>
     </Row>
   );
-  //   ////////////////////////////////////////////////////////////////////
-  // const changeNavbarClassNameForSpecificComponents= (currentLocation) =>{
-  //   const componentsLocation= ["/products","/shoppingcart","/blog"]
-  //   for(const i in componentsLocation){
-  //     if(currentLocation===componentsLocation[i]){
-  //       setNavbarClassName("navbarWithBackground");
-  //     }
-  //     else{
-  //       setNavbarClassName("");
-  //     }
+  ////////////////////////////////////////////////////////////////////
+  const changeNavbarClassNameForSpecificComponents = (currentLocation) => {
+    const componentsLocation = ["/blog", "/products", "/shoppingcart"];
+    for (let i in componentsLocation) {
+      if (currentLocation === componentsLocation[i]) {
+        setNavbarClassName("navbarWithBackground");
+        break;
+      } else {
+        setNavbarClassName("");
+      }
+    }
+  };
 
-  //   }
-  // }
+  const changeNavbarClassNameOnScroll = (currentLocation) => {
+    const componentsLocation = ["/", "/about"];
+
+    const listener = document.addEventListener("scroll", (e) => {
+      for (let i in componentsLocation) {
+        if (currentLocation === componentsLocation[i]) {
+          const scrolled = document.scrollingElement.scrollTop;
+          if (scrolled >= 120) {
+            if (scrollState !== "amir") {
+              setScrollState("amir");
+              setNavbarClassName("navbarWithBackgroundOnScroll");
+            }
+          } else {
+            if (scrollState !== "top") {
+              setScrollState("top");
+              setNavbarClassName("");
+            }
+          }
+        }
+      }
+    });
+
+    return () => {
+      document.removeEventListener("scroll", listener);
+    };
+  };
 
   const fullNavbarMenu = (
     <Row
@@ -157,11 +185,11 @@ const Navbar = (props) => {
   const handleClickAway = () => {
     handleStatus("CLICK_AWAY");
   };
-
-  ////////////////////////////////////////////////////////////
-  // browserHistory.listen( location =>  {
-  //   changeNavbarClassNameForSpecificComponents(location.pathname)
-  //  });
+  let location = useLocation();
+  useEffect(() => {
+    changeNavbarClassNameForSpecificComponents(location.pathname);
+    changeNavbarClassNameOnScroll(location.pathname);
+  }, [location.pathname, scrollState]);
 
   return (
     <>
