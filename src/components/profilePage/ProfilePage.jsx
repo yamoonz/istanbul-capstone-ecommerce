@@ -9,16 +9,12 @@ function ProfilePage() {
   return (
     <>
       <div className="navbarpp">
-        <span className="useOrderList">
-          <a href="#" onClick={handleClick}>
+        <div className="useOrderList">
+          <a href="#" onClick={handleClick} className="anchorFavorite">
             Favorite
           </a>
-          <div className="vl"></div>
-          <div className="hl"></div>
-          <a href="#" onClick={handleClick}>
-            Ordered
-          </a>
-        </span>
+    
+        </div>
         <div className="userProfileItems">
           {MOCK_DATABASE.slice(0, 2).map((info, index) => (
             <ProductCard info={info} index={index} />
