@@ -1,1 +1,1 @@
-export const FIRST_TYPE = "CURRENT_BOARD_ID";
+export const ADD_TO_CART = "ADD_TO_CART";

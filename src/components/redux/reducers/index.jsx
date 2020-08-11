@@ -1,16 +1,17 @@
 import { combineReducers } from "redux";
+import {ADD_TO_CART} from '../actions/actionsTypes';
 
-const currentBoardIDReducer = (state = [], action) => {
+const getProductData = (state = [], action) => {
   switch (action.type) {
-    case "CURRENT_BOARD_ID":
-      return action.payload;
+    case ADD_TO_CART:
+      return [...state , action.payload];
     default:
       return state;
   }
 };
 
 const allReducers = combineReducers({
-  currentBoardIDReducer,
+  getProductData,
 });
 
 export default allReducers;

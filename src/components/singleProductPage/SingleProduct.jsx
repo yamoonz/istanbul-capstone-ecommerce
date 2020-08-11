@@ -1,8 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
 import "./singleProductDetails.scss";
+import {useDispatch} from 'react-redux';
+import { addProductToCart } from '../redux/actions';
 
 export default function SingleProduct({ productData }) {
+  const dispatch = useDispatch();
   const { title, images, brand, price } = productData;
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
@@ -55,13 +58,13 @@ export default function SingleProduct({ productData }) {
           </select>
         )}
 
-        <button className="addToCartBtn">Add to cart</button>
+        <button className="addToCartBtn" onClick ={() => dispatch(addProductToCart(productData)) }>Add to cart</button>
         <button className="buyNowBtn">Buy now</button>
         <button className="favoriteBtn">
-          <i class="fas fa-heart" />
+          <i className="fas fa-heart" />
         </button>
         <button className="commentBtn">
-          <i class="fas fa-comment-alt" />
+          <i className="fas fa-comment-alt" />
         </button>
       </div>
     </div>

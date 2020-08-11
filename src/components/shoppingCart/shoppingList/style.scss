@@ -1,0 +1,5 @@
+$excludePaymentBar: calc(100% - 350px) !important;
+
+.shoppingListItemContainer{
+    width: $excludePaymentBar;
+}

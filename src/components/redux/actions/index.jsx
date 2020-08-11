@@ -1,8 +1,8 @@
-import { FIRST_TYPE } from "./actionsTypes";
+import { ADD_TO_CART } from "./actionsTypes";
 
-export const currentBoardIDAction = (data) => {
+export const addProductToCart = (data) => {
   return {
-    type: FIRST_TYPE,
+    type: ADD_TO_CART,
     payload: data,
   };
 };
