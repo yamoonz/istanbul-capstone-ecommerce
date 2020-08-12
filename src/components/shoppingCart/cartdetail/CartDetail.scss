@@ -102,7 +102,26 @@ $secondaryBackground: #cecceb;
             align-items: center;
 
             .productDelete {
-              border-right: 1px solid;
+              margin-right: 10px;
+              position: relative;
+
+              &::after {
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 1px;
+                right: -5px;
+                background-color: black;
+              }
+            }
+
+            .productDelete,
+            .productSave {
+              max-width: 100px;
+
+              &:hover {
+                cursor: pointer;
+              }
             }
 
             .trashIcon,
