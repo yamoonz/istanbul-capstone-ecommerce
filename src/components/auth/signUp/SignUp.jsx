@@ -1,7 +1,6 @@
 import React from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
-import Footer from "../../layout/footer/Footer";
 import "./signUp.scss";
 
 export default function SignUp() {
@@ -63,7 +62,6 @@ export default function SignUp() {
           <button className="signUpFormBtn">Sign Up</button>
         </form>
       </div>
-      <Footer />
     </>
   );
 }
