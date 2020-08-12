@@ -29,26 +29,8 @@ const CartDetail = () => {
       >
         Products
       </Col>
-      <Col
-        xl={3}
-        lg={3}
-        md={3}
-        sm={3}
-        xs={3}
-        className="quantityHeader titleHeaderItem"
-      >
-        Quantity
-      </Col>
-      <Col
-        xl={3}
-        lg={3}
-        md={3}
-        sm={3}
-        xs={3}
-        className="priceHeader titleHeaderItem"
-      >
-        Price
-      </Col>
+      <Col className="quantityHeader titleHeaderItem">Quantity</Col>
+      <Col className="priceHeader titleHeaderItem">Price</Col>
     </Row>
   );
 
@@ -84,28 +66,12 @@ const CartDetail = () => {
           </Row>
         </Col>
       </Col>
-      <Col
-        xl={3}
-        lg={3}
-        md={3}
-        sm={3}
-        xs={3}
-        className="productQuantityCol productColItem"
-      >
+      <Col className="productQuantityCol productColItem">
         <Button className="countModifier">-</Button>
         <span className="countNumber">1</span>
         <Button className="countModifier">+</Button>
       </Col>
-      <Col
-        xl={3}
-        lg={3}
-        md={3}
-        sm={3}
-        xs={3}
-        className="productPriceCol productColItem"
-      >
-        ${price}
-      </Col>
+      <Col className="productPriceCol productColItem">${price}</Col>
     </>
   );
 
