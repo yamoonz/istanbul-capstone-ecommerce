@@ -84,7 +84,7 @@ const Navbar = () => {
   );
 
   // To give navbar background on components with white bakground
-  const changeNavbarClassNameForSpecificComponents = (currentLocation) => {
+  const navBarClassForLocation = (currentLocation) => {
     const componentsLocation = ["/blog", "/products", "/shoppingcart"];
     for (let i in componentsLocation) {
       if (currentLocation === componentsLocation[i]) {
@@ -191,7 +191,7 @@ const Navbar = () => {
   let location = useLocation();
 
   useEffect(() => {
-    changeNavbarClassNameForSpecificComponents(location.pathname);
+    navBarClassForLocation(location.pathname);
     changeNavbarClassNameOnScroll(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, scrollStateOnTop]);
