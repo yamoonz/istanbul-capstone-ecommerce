@@ -1,15 +1,17 @@
-import React from "react";
-import { MOCK_DATABASE } from "../common/MockDatabase";
-import ProductCard from "../layout/productCard/ProductCard";
+import React from "./node_modules/react";
+import { MOCK_DATABASE } from "../../common/MockDatabase";
+import ProductCard from "../../layout/productCard/ProductCard";
 import "./style.scss";
 
-const ProfilePage = () => {
-  function handleClick(e) {
+const UserFavoriteList = () => {
+
+  const handleClick = (e) => {
     e.preventDefault();
   }
+
   return (
     <>
-      <div className="DownSection">
+      <div className="downSection">
         <div className="useOrderList">
           <a href="#" onClick={handleClick} className="anchorFavorite">
             Favorite
@@ -25,4 +27,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default UserFavoriteList;
