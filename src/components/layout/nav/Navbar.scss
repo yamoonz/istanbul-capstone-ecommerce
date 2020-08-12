@@ -5,20 +5,7 @@ $navbarIndex: 102;
 $hamburgerIconIndex: 103;
 $closeSignUpIconIndex: 105;
 
-body a {
-  text-decoration: none;
-  color: black;
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .navbarWithBackground {
-  background-color: #464b5b;
-}
-
-.navbarWithBackgroundOnScroll {
   background-color: #464b5b;
 }
 

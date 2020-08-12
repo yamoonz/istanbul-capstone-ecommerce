@@ -22,7 +22,7 @@ export default function Header() {
         </div>
         <div className="headerTextContent">
           <h1 className="headerTitle">
-            {t("headerTitle", "We Care About Your Health")}
+            {t("home.headerTitle", "We Care About Your Health")}
           </h1>
           <p className="headerDescription">
             Cholesterol is a waxy, fat-like substance that's found in all the

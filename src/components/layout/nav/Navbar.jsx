@@ -54,8 +54,8 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const [navbarClassName, setNavbarClassName] = useState("navbar");
-  const [scrollState, setScrollState] = useState("top");
+  const [navbarWithBackground, setNavbarWithBackground] = useState(false);
+  const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
 
   const [
     {
@@ -88,10 +88,10 @@ const Navbar = () => {
     const componentsLocation = ["/blog", "/products", "/shoppingcart"];
     for (let i in componentsLocation) {
       if (currentLocation === componentsLocation[i]) {
-        setNavbarClassName("navbarWithBackground");
+        setNavbarWithBackground(true);
         break;
       } else {
-        setNavbarClassName("");
+        setNavbarWithBackground(false);
       }
     }
   };
@@ -102,19 +102,19 @@ const Navbar = () => {
     const listener = document.addEventListener("scroll", (e) => {
       const scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 90) {
-        if (scrollState !== "amir") {
-          setScrollState("amir");
-          setNavbarClassName("navbarWithBackgroundOnScroll");
+        if (scrollStateOnTop) {
+          setScrollStateOnTop(false);
+          setNavbarWithBackground(true);
         }
       } else {
-        if (scrollState !== "top") {
+        if (!scrollStateOnTop) {
           for (let i in componentsLocation) {
             if (currentLocation === componentsLocation[i]) {
-              setScrollState("top");
-              setNavbarClassName("");
+              setScrollStateOnTop(true);
+              setNavbarWithBackground(false);
               break;
             } else {
-              setNavbarClassName("navbarWithBackground");
+              setNavbarWithBackground(true);
             }
           }
         }
@@ -194,7 +194,7 @@ const Navbar = () => {
     changeNavbarClassNameForSpecificComponents(location.pathname);
     changeNavbarClassNameOnScroll(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname, scrollState]);
+  }, [location.pathname, scrollStateOnTop]);
 
   return (
     <>
@@ -202,9 +202,9 @@ const Navbar = () => {
         {isSearchBoxOpen && <SearchBox />}
         <Container
           fluid
-          className={`${navbarClassName} navbar ${
-            isSearchBoxOpen && "moveOverHeader"
-          }`}
+          className={`${
+            navbarWithBackground && "navbarWithBackground"
+          } navbar ${isSearchBoxOpen && "moveOverHeader"}`}
         >
           {hamburgerMenu}
           {fullNavbarMenu}
