@@ -1,5 +1,7 @@
 $avoidOverlappingNavbar: 130px !important;
 $infoTextHeight: 40px;
+$primalBackground: #ecebe4;
+$secondaryBackground: #cecceb;
 
 @mixin flexCenter {
   display: flex;
@@ -35,93 +37,104 @@ $infoTextHeight: 40px;
     width: calc(100% - 350px);
     min-height: 300px;
     height: auto;
-    background-color: #b2b9d6;
+    background-color: $primalBackground;
     margin-left: 25px;
 
     .cartDetailHeader {
       height: 70px;
     }
 
+    .titleHeader {
+      height: 50px;
+      background-color: $secondaryBackground;
+
+      .titleHeaderItem {
+        margin: auto;
+      }
+
+      .productsHeader {
+        padding-left: 50px;
+      }
+
+      .quantityHeader,
+      .priceHeader {
+        text-align: center;
+      }
+    }
+
     .cartDetailMain {
-      .cardProductsCol,
-      .cardQuantityCol,
-      .cardPriceCol {
-        height: 100%;
+      min-height: 240px;
+      @include flexCenter;
+
+      .productColItem {
+        max-height: 200px;
       }
 
-      .productInfoRow,
-      .quantityInfoRow,
-      .priceInfoRow {
-        height: calc(100% - 40px);
-      }
+      .productInfoCol {
+        display: flex;
+        height: 200px;
 
-      .productTitleRow,
-      .quantityTitleRow,
-      .priceTitleRow {
-        height: $infoTextHeight;
-        background-color: #dacfbb;
-      }
-
-      .quantityTitleRow,
-      .priceTitleRow {
-        @include flexCenter;
-      }
-
-      .productTitleRow {
-        padding: 10px 30px;
-      }
-
-      .quantityInfoCol,
-      .priceNumber {
-        @include flexCenter;
-      }
-
-      .productInfoRow {
         .productImg {
-          width: 100%;
+          display: block;
+          max-height: 100%;
+          margin: auto;
         }
 
-        .productTexts {
-          padding: 20px 5px 10px 20px;
+        .productTextCol {
           display: flex;
           flex-wrap: wrap;
-        }
 
-        .productBrand {
-          max-height: 50px;
-          width: 100%;
-
-          .productBrandText {
-            font-size: 1.2rem;
+          .productBrand,
+          .productName,
+          .productDeleteSave {
+            min-height: 30px;
+            max-height: 50px;
+            min-width: 100%;
           }
-        }
 
-        .productName {
-          max-height: 150px;
-          width: 100%;
-
-          .productNameText {
-            font-size: 1.4rem;
+          .productName {
+            max-height: 100px;
           }
-        }
 
-        .productDeleteSave {
-          align-self: flex-end;
-          max-height: 40px;
-          width: 100%;
+          .productDeleteSave {
+            align-self: flex-end;
+            text-align: center;
+            align-items: center;
+
+            .productDelete {
+              border-right: 1px solid;
+            }
+
+            .trashIcon,
+            .bookmarkIcon {
+              padding-right: 10px;
+            }
+          }
+
+          .productTextSpan {
+            margin: auto 0;
+          }
+
+          .productTextTitle {
+            margin: 0;
+            font-size: 1.3rem;
+          }
         }
       }
 
-      .quantityInfoCol {
-        .countModifier {
-          width: 30px;
-        }
+      .productQuantityCol,
+      .productPriceCol {
+        @include flexCenter;
+      }
 
-        .countNumber {
-          width: 30px;
-          text-align: center;
-          background-color: white;
-        }
+      .countModifier {
+        padding: 0px 10px;
+      }
+
+      .countNumber {
+        width: 40px;
+        text-align: center;
+        background-color: white;
       }
     }
   }
