@@ -2,13 +2,14 @@ import React from "react";
 import { MOCK_DATABASE } from "../common/MockDatabase";
 import ProductCard from "../layout/productCard/ProductCard";
 import "./style.scss";
-function ProfilePage() {
-  function handleClick(e) {
-    e.preventDefault();
-  }
+
+  const ProfilePage = () => {
+    function handleClick(e) {
+      e.preventDefault();
+    }
   return (
     <>
-      <div className="navbarpp">
+      <div className="DownSection">
         <div className="useOrderList">
           <a href="#" onClick={handleClick} className="anchorFavorite">
             Favorite
