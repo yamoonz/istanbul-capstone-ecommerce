@@ -97,13 +97,16 @@ const Navbar = () => {
           </NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/about"> {t("navbarMenuAbout", "About")}</NavLink>
         </Col>
         <Col className="navLinkCol">
           <NavLink to="/blog">Blog</NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/products">
+            {" "}
+            {t("navbarMenuProducts", "Products")}
+          </NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">

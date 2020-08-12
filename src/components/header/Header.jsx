@@ -50,23 +50,35 @@ export default function Header() {
           <Row className="shortInfoRow">
             <Col className="shortInfoItem">
               <i className="fas fa-shipping-fast shippingIcon shortInfoIcon"></i>
-              <h3 className="shortInfoTitle">Fast shipping</h3>
+              <h3 className="shortInfoTitle">
+                {t("headerShipping", "Fast Shipping")}
+              </h3>
               <span className="shortInfoText">
-                Have your orders shipped right away!
+                {t(
+                  "headerShippingInfo",
+                  `Have your orders shipped right away!`
+                )}
               </span>
             </Col>
             <Col className="shortInfoItem shortInfoEducation">
               <i className="fas fa-award educationIcon shortInfoIcon"></i>
-              <h3 className="shortInfoTitle">Education</h3>
+              <h3 className="shortInfoTitle">
+                {t("headerEducation", "Education")}
+              </h3>
               <span className="shortInfoText">
-                Learn how to distinct quality products!
+                {t(
+                  "headerEducationInfo",
+                  `Learn how to distinct quality products!`
+                )}
               </span>
             </Col>
             <Col className="shortInfoItem">
               <i className="fas fa-medkit healthIcon shortInfoIcon"></i>
-              <h3 className="shortInfoTitle">Healthy life</h3>
+              <h3 className="shortInfoTitle">
+                {t("headerHealth", "Healthy life")}
+              </h3>
               <span className="shortInfoText">
-                Choose only natural products!
+                {t("headerHealthInfo", `Choose only natural products!`)}
               </span>
             </Col>
           </Row>
