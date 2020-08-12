@@ -4,8 +4,6 @@ export default function BlogHeader(props) {
   const latestPosts = props.allPosts[0];
   const latestPostImage = props.postImage;
 
-  console.log(latestPostImage);
-
   return (
     <>
       {latestPostImage && (
