@@ -5,8 +5,10 @@ import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { useTranslation } from "react-i18next";
 
 const LogInForm = () => {
+  const { t } = useTranslation();
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [passwordValue, setPasswordValue] = useState("");
@@ -37,10 +39,10 @@ const LogInForm = () => {
 
   const emailGroup = (
     <Form.Group controlId="formGroupEmail">
-      <Form.Label>Email address</Form.Label>
+      <Form.Label>{t("homepage.loginform.email")}</Form.Label>
       <Form.Control
         type="email"
-        placeholder="Enter email"
+        placeholder={t("homepage.loginform.emailPlaceholder")}
         onChange={(e) => setEmailValue(e.target.value)}
       />
     </Form.Group>
@@ -48,10 +50,10 @@ const LogInForm = () => {
 
   const passwordGroup = (
     <Form.Group controlId="formGroupPassword">
-      <Form.Label>Password</Form.Label>
+      <Form.Label>{t("homepage.loginform.password")}</Form.Label>
       <Form.Control
         type="password"
-        placeholder="Password"
+        placeholder={t("homepage.loginform.passwordPlaceholder")}
         onChange={(e) => setPasswordValue(e.target.value)}
       />
     </Form.Group>
@@ -78,7 +80,11 @@ const LogInForm = () => {
             className="loginButton"
             type="submit"
           >
-            {`${isLoggedIn ? "Log out" : "Log in"}`}
+            {`${
+              isLoggedIn
+                ? t("homepage.loginform.logout")
+                : t("homepage.loginform.login")
+            }`}
           </Button>
         </Form>
       </Col>

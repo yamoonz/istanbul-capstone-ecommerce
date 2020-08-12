@@ -5,11 +5,13 @@ import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
 import "./Search.scss";
 import { MOCK_DATABASE } from "../../../common/MockDatabase";
+import { useTranslation } from "react-i18next";
 
 const ONLY_FIRST_IMAGE_OF_PRODUCTS = 0;
 const AMOUNT_OF_PRODUCT_IN_SEARCH_PREVIEW = 3;
 
 const Search = () => {
+  const { t } = useTranslation();
   // It is left empty because we want search to start as empty.
   const [searchQueryContainer, setSearchQueryContainer] = useState("");
   const [showEmptySearchWarning, setShowEmptySearchWarning] = useState(false);
@@ -50,7 +52,7 @@ const Search = () => {
   // TODO(emrerdem1): Make it more precise to show if it's still loading or failed as searching when we implement Fetching.
   const searchSpinnerContainer = (
     <Spinner animation="border" role="status" variant="info">
-      <span className="sr-only">Loading...</span>
+      <span className="sr-only">{t("homepage.search.spinner")}</span>
     </Spinner>
   );
 
@@ -62,14 +64,16 @@ const Search = () => {
             <Form.Control
               size="lg"
               type="text"
-              placeholder="Live search..."
+              placeholder={t("homepage.search.liveSearch")}
               className="searchInput"
               onChange={handleSearchChanges}
               value={searchQueryContainer}
             />
           </Col>
           <Col xl={2} lg={2} md={2} className="col-3 searchButtonWrapper">
-            <Button onClick={sendSearchQuery}>Search</Button>
+            <Button onClick={sendSearchQuery}>
+              {t("homepage.search.searchButton")}
+            </Button>
           </Col>
         </Col>
         {searchQueryContainer ? (
@@ -79,7 +83,9 @@ const Search = () => {
               : previewItemsContainer}
           </Col>
         ) : (
-          showEmptySearchWarning && <span>Please type a search term.</span>
+          showEmptySearchWarning && (
+            <span>{t("homepage.search.emptySearch")}</span>
+          )
         )}
       </Col>
     </>

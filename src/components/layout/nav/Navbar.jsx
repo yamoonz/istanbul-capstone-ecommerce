@@ -93,20 +93,17 @@ const Navbar = () => {
       <Row xl={7} lg={7} className="navbarItems">
         <Col className="navLinkCol">
           <NavLink exact to="/">
-            {t("navbarMenuHome", "Home")}
+            {t("homepage.navbar.menuHome")}
           </NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/about"> {t("navbarMenuAbout", "About")}</NavLink>
+          <NavLink to="/about"> {t("homepage.navbar.menuAbout")}</NavLink>
         </Col>
         <Col className="navLinkCol">
           <NavLink to="/blog">Blog</NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/products">
-            {" "}
-            {t("navbarMenuProducts", "Products")}
-          </NavLink>
+          <NavLink to="/products"> {t("homepage.navbar.menuProducts")}</NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">

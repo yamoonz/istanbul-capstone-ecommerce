@@ -1,0 +1,37 @@
+{
+  "homepage": {
+    "header": {
+      "title": "We Care Your Health",
+      "description": "Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to makehormones and substances that help you digest foods. Your body makes all the cholesterol it needs. Cholesterol is also found in foods from animal sources, such as egg yolks and meat. If you have too much cholesterol in your blood, it can combine with other substances in the blood to form plaque.",
+      "getStarted": "Get Started",
+      "signUp": "Sign Up",
+      "shipping": "Fast Shipping",
+      "shippingInfo": "Have your orders shipped right away!",
+      "education": "Education",
+      "educationInfo": "Learn how to distinct quality products!",
+      "health": "Healthy Life",
+      "healthInfo": "Choose only natural products!"
+    },
+    "navbar": {
+      "menuHome": "Home",
+      "menuAbout": "About",
+      "menuProducts": "Products"
+    },
+    "loginform": {
+      "email": "E-mail address",
+      "emailPlaceholder": "Enter your registered e-mail",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "login": "Log in",
+      "logout": "Log out",
+      "signup": "Still not a user? Register now!",
+      "loginSocial": "Login or Register using:"
+    },
+    "search": {
+      "searchButton": "Search",
+      "liveSearch": "Live search...",
+      "spinner": "Loading...",
+      "emptySearch": "Please type a search term."
+    }
+  }
+}

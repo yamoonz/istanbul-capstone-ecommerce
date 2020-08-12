@@ -7,14 +7,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
-const HEADER_DESCRIPTION = `Cholesterol is a waxy, fat-like substance that's found in all the
-            cells in your body. Your body needs some cholesterol to make
-            hormones and substances that help you digest foods. Your body makes
-            all the cholesterol it needs. Cholesterol is also found in foods
-            from animal sources, such as egg yolks and meat. If you have too
-            much cholesterol in your blood, it can combine with other substances
-            in the blood to form plaque.`;
-
 export default function Header() {
   const { t } = useTranslation();
 
@@ -29,20 +21,18 @@ export default function Header() {
           <p className="whiteLine mt-4"></p>
         </div>
         <div className="headerTextContent">
-          <h1 className="headerTitle">
-            {t("headerTitle", "We Care About Your Health")}
-          </h1>
+          <h1 className="headerTitle">{t("homepage.header.title")}</h1>
           <p className="headerDescription">
-            {t("headerDescription", HEADER_DESCRIPTION)}
+            {t("homepage.header.description")}
           </p>
           <div className="middleButtons">
             <Button variant="info" className="buttonGetStarted">
               <NavLink to="/products">
-                {t("headerGetStarted", "Get Started")}
+                {t("homepage.header.getStarted")}
               </NavLink>
             </Button>
             <Button variant="secondary" className="ml-5 buttonSignUp">
-              <NavLink to="/signup">{t("headerSignUp", "Sign Up")}</NavLink>
+              <NavLink to="/signup">{t("homepage.header.signUp")}</NavLink>
             </Button>
           </div>
         </div>
@@ -51,34 +41,26 @@ export default function Header() {
             <Col className="shortInfoItem">
               <i className="fas fa-shipping-fast shippingIcon shortInfoIcon"></i>
               <h3 className="shortInfoTitle">
-                {t("headerShipping", "Fast Shipping")}
+                {t("homepage.header.shipping")}
               </h3>
               <span className="shortInfoText">
-                {t(
-                  "headerShippingInfo",
-                  `Have your orders shipped right away!`
-                )}
+                {t("homepage.header.shippingInfo")}
               </span>
             </Col>
             <Col className="shortInfoItem shortInfoEducation">
               <i className="fas fa-award educationIcon shortInfoIcon"></i>
               <h3 className="shortInfoTitle">
-                {t("headerEducation", "Education")}
+                {t("homepage.header.education")}
               </h3>
               <span className="shortInfoText">
-                {t(
-                  "headerEducationInfo",
-                  `Learn how to distinct quality products!`
-                )}
+                {t("homepage.header.educationInfo")}
               </span>
             </Col>
             <Col className="shortInfoItem">
               <i className="fas fa-medkit healthIcon shortInfoIcon"></i>
-              <h3 className="shortInfoTitle">
-                {t("headerHealth", "Healthy life")}
-              </h3>
+              <h3 className="shortInfoTitle">{t("homepage.header.health")}</h3>
               <span className="shortInfoText">
-                {t("headerHealthInfo", `Choose only natural products!`)}
+                {t("homepage.header.healthInfo")}
               </span>
             </Col>
           </Row>
