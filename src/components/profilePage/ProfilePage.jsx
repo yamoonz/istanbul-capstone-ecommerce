@@ -3,10 +3,10 @@ import { MOCK_DATABASE } from "../common/MockDatabase";
 import ProductCard from "../layout/productCard/ProductCard";
 import "./style.scss";
 
-  const ProfilePage = () => {
-    function handleClick(e) {
-      e.preventDefault();
-    }
+const ProfilePage = () => {
+  function handleClick(e) {
+    e.preventDefault();
+  }
   return (
     <>
       <div className="DownSection">
@@ -23,6 +23,6 @@ import "./style.scss";
       </div>
     </>
   );
-}
+};
 
 export default ProfilePage;
