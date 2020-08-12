@@ -4,10 +4,9 @@ import ProductCard from "../../layout/productCard/ProductCard";
 import "./style.scss";
 
 const UserFavoriteList = () => {
-
   const handleClick = (e) => {
     e.preventDefault();
-  }
+  };
 
   return (
     <>
