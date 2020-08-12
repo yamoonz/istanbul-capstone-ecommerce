@@ -1,9 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import "./singleProductDetails.scss";
+import { useDispatch } from "react-redux";
+import { addProductToCart, addProductQunatity } from "../redux/actions";
 
 export default function SingleProduct({ productData }) {
+  const dispatch = useDispatch();
   const { title, images, brand, price } = productData;
+  const [productQuantity, setProductQuntity] = React.useState(1);
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
@@ -40,6 +44,11 @@ export default function SingleProduct({ productData }) {
           type="number"
           className="productQuantity"
           name="quantity"
+          value={productQuantity}
+          onChange={(e) => {
+            setProductQuntity(+e.target.value);
+            dispatch(addProductQunatity(productQuantity));
+          }}
           min="1"
           max="10"
         />
@@ -55,7 +64,16 @@ export default function SingleProduct({ productData }) {
           </select>
         )}
 
-        <button className="addToCartBtn">Add to cart</button>
+        <button
+          className="addToCartBtn"
+          onClick={() => {
+            dispatch(addProductToCart(productData));
+            setProductQuntity((productQuantity) => productQuantity + 1);
+            dispatch(addProductQunatity(productQuantity));
+          }}
+        >
+          Add to cart
+        </button>
         <button className="buyNowBtn">Buy now</button>
         <button className="favoriteBtn">
           <i class="fas fa-heart" />

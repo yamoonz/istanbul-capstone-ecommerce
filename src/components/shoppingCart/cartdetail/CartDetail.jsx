@@ -3,11 +3,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { MOCK_DATABASE } from "../../common/MockDatabase";
+import "./CartDetail.scss";
+//import { useSelector } from "react-redux";
+//import { deleteItemFromCartAction } from "../../redux/actions";
+//import { useDispatch } from "react-redux";
 
-const { title, images, brand, price } = MOCK_DATABASE[0];
+const CartDetail = (props) => {
+  //const dispatch = useDispatch();
 
-const CartDetail = () => {
+  //const productsData = useSelector((state) => state.getProductData);
   return (
     <Container className="cartDetailWrapper">
       <Row className="cartDetailHeader">
@@ -21,17 +25,23 @@ const CartDetail = () => {
           <Row className="productTitleRow">Products</Row>
           <Row className="productInfoRow">
             <Col className="productImageCol">
-              <img className="productImg" src={images[0]} alt={brand + title} />
+              <img
+                className="productImg"
+                src={props.info.images[0]}
+                alt={props.info.brand + props.info.title}
+              />
             </Col>
             <Col className="productTexts">
               <Row className="productBrand">
-                <span className="productBrandText">{brand}</span>
+                <span className="productBrandText">{props.info.brand}</span>
               </Row>
               <Row className="productName">
-                <span className="productNameText">{title}</span>
+                <span className="productNameText">{props.info.title}</span>
               </Row>
               <Row className="productDeleteSave">
-                <Col className="productDelete">Delete</Col>
+                <Col className="productDelete">
+                  <button>Delete</button>
+                </Col>
                 <Col className="productSave">Save</Col>
               </Row>
             </Col>
@@ -50,7 +60,7 @@ const CartDetail = () => {
         <Col xl={3} lg={3} md={3} sm={3} xs={3} className="cartPriceCol">
           <Row className="priceTitleRow">Price</Row>
           <Row className="priceInfoRow">
-            <Col className="priceNumber">${price}</Col>
+            <Col className="priceNumber">${props.info.price}</Col>
           </Row>
         </Col>
       </Row>
