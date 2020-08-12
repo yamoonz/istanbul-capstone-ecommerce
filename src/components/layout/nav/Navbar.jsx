@@ -8,6 +8,7 @@ import SearchBox from "./search/Search";
 import "./Navbar.scss";
 import LanguageDropdown from "../../home/LanguageDropdown";
 import ClickAwayListener from "react-click-away-listener";
+import { useTranslation } from "react-i18next";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -53,6 +54,8 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
+  const { t } = useTranslation();
+
   const [
     {
       isLanguageDropdownOpen,
@@ -90,7 +93,7 @@ const Navbar = () => {
       <Row xl={7} lg={7} className="navbarItems">
         <Col className="navLinkCol">
           <NavLink exact to="/">
-            Home
+            {t("navbarMenuHome", "Home")}
           </NavLink>
         </Col>
         <Col className="navLinkCol">
@@ -101,9 +104,6 @@ const Navbar = () => {
         </Col>
         <Col className="navLinkCol">
           <NavLink to="/products">Products</NavLink>
-        </Col>
-        <Col className="navLinkCol">
-          <NavLink to="/about">About</NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">

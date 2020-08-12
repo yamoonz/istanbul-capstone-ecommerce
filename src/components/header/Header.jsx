@@ -7,6 +7,14 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
+const HEADER_DESCRIPTION = `Cholesterol is a waxy, fat-like substance that's found in all the
+            cells in your body. Your body needs some cholesterol to make
+            hormones and substances that help you digest foods. Your body makes
+            all the cholesterol it needs. Cholesterol is also found in foods
+            from animal sources, such as egg yolks and meat. If you have too
+            much cholesterol in your blood, it can combine with other substances
+            in the blood to form plaque.`;
+
 export default function Header() {
   const { t } = useTranslation();
 
@@ -25,20 +33,16 @@ export default function Header() {
             {t("headerTitle", "We Care About Your Health")}
           </h1>
           <p className="headerDescription">
-            Cholesterol is a waxy, fat-like substance that's found in all the
-            cells in your body. Your body needs some cholesterol to make
-            hormones and substances that help you digest foods. Your body makes
-            all the cholesterol it needs. Cholesterol is also found in foods
-            from animal sources, such as egg yolks and meat. If you have too
-            much cholesterol in your blood, it can combine with other substances
-            in the blood to form plaque.
+            {t("headerDescription", HEADER_DESCRIPTION)}
           </p>
           <div className="middleButtons">
             <Button variant="info" className="buttonGetStarted">
-              <NavLink to="/products">Get Started</NavLink>
+              <NavLink to="/products">
+                {t("headerGetStarted", "Get Started")}
+              </NavLink>
             </Button>
             <Button variant="secondary" className="ml-5 buttonSignUp">
-              <NavLink to="/signup">Sign Up</NavLink>
+              <NavLink to="/signup">{t("headerSignUp", "Sign Up")}</NavLink>
             </Button>
           </div>
         </div>
