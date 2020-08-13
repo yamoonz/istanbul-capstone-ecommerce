@@ -2,11 +2,11 @@ import React from "react";
 import { Col, Card, Button } from "react-bootstrap";
 
 export default function SingleBlogCard(props) {
+  console.log(props.post.jetpack_featured_media_url);
   const renderCard = (
     <Card>
-      {props.postImage && (
-        <Card.Img variant="top" src={props.postImage.source_url} />
-      )}
+      <Card.Img variant="top" src={props.post.jetpack_featured_media_url} />
+
       <Card.Body>
         <Card.Title>{props.post.title.rendered}</Card.Title>
       </Card.Body>
@@ -24,7 +24,7 @@ export default function SingleBlogCard(props) {
   );
 
   return (
-    <Col xs={12} md={5} lg={3}>
+    <Col xs={12} md={5} lg={3} className="overviewCardCol">
       {renderCard}
     </Col>
   );
