@@ -5,7 +5,7 @@ const ProfilePage = () => {
   return (
     <>
       <GeneralSection />
-      <MainSection />
+      <UserFavoriteList />
     </>
   );
 };
