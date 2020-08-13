@@ -83,7 +83,7 @@ const Navbar = () => {
     </Row>
   );
 
-  // To give navbar background on components with white bakground
+  // To give navbar background on components with white background
   const navBarClassForLocation = (currentLocation) => {
     const componentsLocation = ["/blog", "/products", "/shoppingcart"];
     for (let i in componentsLocation) {
@@ -188,6 +188,19 @@ const Navbar = () => {
   const handleClickAway = () => {
     handleStatus("CLICK_AWAY");
   };
+
+  const navbarClassName = () => {
+    if (navbarWithBackground && isSearchBoxOpen) {
+      return "navbarWithBackground navbar moveOverHeader";
+    } else if (navbarWithBackground) {
+      return "navbarWithBackground navbar";
+    } else if (isSearchBoxOpen) {
+      return "navbar moveOverHeader";
+    } else {
+      return "navbar";
+    }
+  };
+
   let location = useLocation();
 
   useEffect(() => {
@@ -200,12 +213,7 @@ const Navbar = () => {
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
         {isSearchBoxOpen && <SearchBox />}
-        <Container
-          fluid
-          className={`${
-            navbarWithBackground && "navbarWithBackground"
-          } navbar ${isSearchBoxOpen && "moveOverHeader"}`}
-        >
+        <Container fluid className={`${navbarClassName()}`}>
           {hamburgerMenu}
           {fullNavbarMenu}
         </Container>
