@@ -128,7 +128,12 @@ $headerHeightOnPhone: 860px;
     padding-left: 2rem;
     padding-right: 2rem;
 
-    @include resetAnchorHover($buttonSignUp, $buttonSignUp);
+    @include resetAnchorHover($buttonSignUp, $buttonGetStarted);
+
+    &:hover {
+      background-color: $buttonSignUp;
+      border-color: $buttonSignUp;
+    }
   }
 
   .buttonSignUp {
@@ -139,6 +144,11 @@ $headerHeightOnPhone: 860px;
     padding-right: 3rem;
 
     @include resetAnchorHover($buttonGetStarted, $buttonSignUp);
+
+    &:hover {
+      background-color: $buttonGetStarted;
+      border-color: $buttonGetStarted;
+    }
   }
 }
 
