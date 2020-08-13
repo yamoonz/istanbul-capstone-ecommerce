@@ -1,6 +1,6 @@
 import React from "react";
 import GeneralSection from "./general/GeneralSection";
-import UserFavoriteList from "./userFavoriteList/UserFavoriteList";
+import UserFavoriteList from "./UserFavoriteList";
 const ProfilePage = () => {
   return (
     <>
