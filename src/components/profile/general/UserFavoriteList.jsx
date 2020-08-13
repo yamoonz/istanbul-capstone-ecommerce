@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { MOCK_DATABASE } from "../../common/MockDatabase";
 import ProductCard from "../../layout/productCard/ProductCard";
 import "./style.scss";
