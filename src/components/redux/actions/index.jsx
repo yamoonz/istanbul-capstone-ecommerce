@@ -7,10 +7,10 @@ export const currentBoardIDAction = (data) => {
   };
 };
 
-export const logIn = (user) => {
-  return { type: LOG_IN, payload: user };
+export const logIn = (user, admin) => {
+  return { type: LOG_IN, user, admin };
 };
 
-export const logOut = (user) => {
-  return { type: LOG_OUT, payload: user };
+export const logOut = () => {
+  return { type: LOG_OUT };
 };

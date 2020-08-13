@@ -1,42 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
 import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { logIn, logOut } from "../../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = () => {
-  const isLoggedIn = useSelector((state) => state.loggedIn);
+  const isLoggedIn = useSelector((state) => state.handleLogin);
   const dispatch = useDispatch();
-  const [isAdmin, setIsAdmin] = useState(false);
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
 
   const userLogout = (e) => {
     e.preventDefault();
-    auth.signOut().then(() => {
-      setIsAdmin(false);
-      dispatch(logOut());
-    });
+    auth.signOut().then(() => {});
   };
 
   const userLogin = async (e) => {
     e.preventDefault();
-    const userLogin = await auth.signInWithEmailAndPassword(
-      emailValue,
-      passwordValue
-    );
-
-    const loggedInUserName = await db
-      .collection("users")
-      .doc(userLogin.user.uid)
-      .get();
-    setIsAdmin(loggedInUserName.data().isAdmin);
-    dispatch(logIn());
+    await auth.signInWithEmailAndPassword(emailValue, passwordValue);
   };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userObject = await db.collection("users").doc(user.uid).get();
+        const { name: nameFromSignUpForm, isAdmin } = userObject.data();
+        user.updateProfile({
+          displayName: nameFromSignUpForm,
+        });
+        dispatch(logIn(user.displayName, isAdmin));
+      } else {
+        dispatch(logOut());
+      }
+    });
+    console.log(isLoggedIn);
+    return () => unsubscribe();
+  }, []);
 
   const emailGroup = (
     <Form.Group controlId="formGroupEmail">

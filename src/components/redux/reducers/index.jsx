@@ -15,13 +15,14 @@ const handleLogin = (state = {}, action) => {
     case LOG_IN:
       return {
         ...state,
-        user: action.payload,
+        userName: action.user,
         loggedIn: true,
+        isAdmin: action.admin,
       };
     case LOG_OUT:
       return {
         ...state,
-        user: {},
+        userName: {},
         loggedIn: false,
       };
     default:
