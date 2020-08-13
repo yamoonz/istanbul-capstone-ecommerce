@@ -3,6 +3,9 @@ import {
   PRODUCT_QUNATITY,
   DELETE_FROM_CART,
   MODIFY_QUANTITY,
+  SUM_TOTAL_PRICE,
+  ADD_ONE_MORE_ITEM,
+  REMOVE_ONE_MORE_ITEM,
 } from "./actionsTypes";
 
 export const addProductToCart = (data) => {
@@ -25,6 +28,28 @@ export const deleteItemFromCartAction = (data) => {
     payload: data,
   };
 };
+
+export const sumTotalPrice = (data) => {
+  return {
+    type: SUM_TOTAL_PRICE,
+    payload: data,
+  };
+};
+
+export const addOneMoreItem = (data) => {
+  return {
+    type: ADD_ONE_MORE_ITEM,
+    payload: data,
+  };
+};
+
+export const removeOneMoreItem = (data) => {
+  return {
+    type: REMOVE_ONE_MORE_ITEM,
+    payload: data,
+  };
+};
+
 export const addProductQunatity = (data) => {
   return {
     type: PRODUCT_QUNATITY,

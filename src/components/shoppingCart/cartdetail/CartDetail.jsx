@@ -8,6 +8,9 @@ import { useSelector } from "react-redux";
 import {
   deleteItemFromCartAction,
   modifyProductQuantity,
+  sumTotalPrice,
+  addOneMoreItem,
+  removeOneMoreItem,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
@@ -15,7 +18,20 @@ const CartDetail = (props) => {
   const dispatch = useDispatch();
 
   const productsData = useSelector((state) => state.addOrDeleteProductData);
+  const allPrices = useSelector((state) => state.getTotalPrice);
+  const total = allPrices.reduce((cur, acc) => {
+    return cur + acc;
+  }, 0);
 
+  //const[sum , setSum] = React.useState(0);
+  const getTotalPrice = () => {
+    const sumTotal = props.info.price * props.info.quantity;
+    dispatch(sumTotalPrice(sumTotal));
+  };
+
+  React.useEffect(() => {
+    getTotalPrice();
+  }, []);
   const deleteItemfromData = () => {
     const copyOfData = productsData.slice();
     for (let i = 0; i < copyOfData.length; i++) {
@@ -28,6 +44,16 @@ const CartDetail = (props) => {
         break;
       }
     }
+  };
+
+  const addMoreItems = () => {
+    const newTotal = total + props.info.price;
+    dispatch(addOneMoreItem([newTotal]));
+  };
+
+  const removeMoreItems = () => {
+    const newTotal = total - props.info.price;
+    dispatch(removeOneMoreItem([newTotal]));
   };
 
   const handleQuantitySubtraction = () => {
@@ -94,14 +120,20 @@ const CartDetail = (props) => {
             <Col className="quantityInfoCol">
               <Button
                 className="countModifier"
-                onClick={handleQuantitySubtraction}
+                onClick={() => {
+                  handleQuantitySubtraction();
+                  removeMoreItems();
+                }}
               >
                 -
               </Button>
               <span className="countNumber">{props.info.quantity}</span>
               <Button
                 className="countModifier"
-                onClick={handleQuantityAddition}
+                onClick={() => {
+                  handleQuantityAddition();
+                  addMoreItems();
+                }}
               >
                 +
               </Button>
