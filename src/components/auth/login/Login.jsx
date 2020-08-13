@@ -12,7 +12,6 @@ const LogInForm = () => {
   const isLoggedIn = useSelector((state) => state.loggedIn);
   const dispatch = useDispatch();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
 
@@ -85,7 +84,7 @@ const LogInForm = () => {
           </Button>
         </Form>
       </Col>
-    </Row>
+    </>
   );
 };
 
