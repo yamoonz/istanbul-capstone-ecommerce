@@ -7,7 +7,7 @@ import "./singleProductDetails.scss";
 
 const SingleProductPage = () => {
   return (
-    <Container>
+    <Container className="productDetailsContainer">
       <Row className="productDetailsRow">
         <SingleProduct productData={MOCK_DATABASE[0]} />
       </Row>

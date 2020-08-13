@@ -149,6 +149,11 @@ $headerHeightOnPhone: 860px;
     }
 
     @include resetAnchorHover($buttonGetStarted, $buttonSignUp);
+
+    &:hover {
+      background-color: $buttonGetStarted;
+      border-color: $buttonGetStarted;
+    }
   }
 }
 

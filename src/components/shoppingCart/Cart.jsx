@@ -1,13 +1,14 @@
 import React from "react";
 import PaymentSum from "./paymentbar/PaymentSum";
-import RelatedProducts from "./relatedsection/RelatedProducts";
+import CartDetail from "./cartdetail/CartDetail";
+import "./cartdetail/CartDetail.scss";
 
 const Cart = () => {
   return (
-    <>
+    <div className="shoppingCartWrapper">
       <PaymentSum />
-      <RelatedProducts />
-    </>
+      <CartDetail />
+    </div>
   );
 };
 
