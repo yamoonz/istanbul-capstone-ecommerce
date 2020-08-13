@@ -1,0 +1,160 @@
+$avoidOverlappingNavbar: 130px !important;
+$infoTextHeight: 40px;
+$primalBackground: #ecebe4;
+$secondaryBackground: #cecceb;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shoppingCartWrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.shoppingCartWrapper {
+  padding-top: $avoidOverlappingNavbar;
+  display: flex;
+
+  .cartDetailHeader {
+    .cartDetailTitle {
+      padding: 25px 40px;
+    }
+
+    .backToShoppingWrapper {
+      @include flexCenter;
+
+      .backToShopping {
+        padding: 5px 10px;
+      }
+    }
+  }
+
+  .cartDetailWrapper {
+    width: calc(100% - 350px);
+    min-height: 300px;
+    height: auto;
+    background-color: $primalBackground;
+    margin-left: 25px;
+
+    .cartDetailHeader {
+      height: 70px;
+    }
+
+    .titleHeader {
+      height: 50px;
+      background-color: $secondaryBackground;
+
+      .titleHeaderItem {
+        margin: auto;
+      }
+
+      .productsHeader {
+        padding-left: 50px;
+      }
+
+      .quantityHeader,
+      .priceHeader {
+        text-align: center;
+      }
+    }
+
+    .cartDetailMain {
+      min-height: 240px;
+      @include flexCenter;
+
+      .productColItem {
+        max-height: 200px;
+      }
+
+      .productInfoCol {
+        display: flex;
+        height: 200px;
+
+        .productImg {
+          display: block;
+          max-height: 100%;
+          margin: auto;
+        }
+
+        .productTextCol {
+          display: flex;
+          flex-wrap: wrap;
+
+          .productBrand,
+          .productName,
+          .productDeleteSave {
+            min-height: 30px;
+            max-height: 50px;
+            min-width: 100%;
+          }
+
+          .productName {
+            max-height: 100px;
+          }
+
+          .productDeleteSave {
+            align-self: flex-end;
+            text-align: center;
+            align-items: center;
+
+            .productDelete {
+              margin-right: 10px;
+              position: relative;
+
+              &::after {
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 1px;
+                right: -5px;
+                background-color: black;
+              }
+            }
+
+            .productDelete,
+            .productSave {
+              max-width: 100px;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .trashIcon,
+            .bookmarkIcon {
+              padding-right: 10px;
+            }
+          }
+
+          .productTextSpan {
+            margin: auto 0;
+          }
+
+          .productTextTitle {
+            margin: 0;
+            font-size: 1.3rem;
+          }
+        }
+      }
+
+      .productQuantityCol,
+      .productPriceCol {
+        @include flexCenter;
+      }
+
+      .countModifier {
+        padding: 0px 10px;
+      }
+
+      .countNumber {
+        width: 40px;
+        text-align: center;
+        background-color: white;
+      }
+    }
+  }
+}
