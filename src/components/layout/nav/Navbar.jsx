@@ -213,7 +213,7 @@ const Navbar = () => {
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
         {isSearchBoxOpen && <SearchBox />}
-        <Container fluid className={`${navbarClassName()}`}>
+        <Container fluid className={navbarClassName()}>
           {hamburgerMenu}
           {fullNavbarMenu}
         </Container>
