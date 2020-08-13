@@ -190,15 +190,13 @@ const Navbar = () => {
   };
 
   const navbarClassName = () => {
-    if (navbarWithBackground && isSearchBoxOpen) {
-      return "navbarWithBackground navbar moveOverHeader";
+    let classNames = ["navbar"];
+    if (isSearchBoxOpen) {
+      classNames.push("moveOverHeader");
     } else if (navbarWithBackground) {
-      return "navbarWithBackground navbar";
-    } else if (isSearchBoxOpen) {
-      return "navbar moveOverHeader";
-    } else {
-      return "navbar";
+      classNames.push("navbarWithBackground");
     }
+    return classNames.join(" ");
   };
 
   let location = useLocation();
