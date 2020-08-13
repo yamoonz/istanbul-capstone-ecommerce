@@ -5,17 +5,20 @@ import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import { logIn, logOut } from "../../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = () => {
+  const isLoggedIn = useSelector((state) => state.loggedIn);
+  const dispatch = useDispatch();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const passwordValue = useRef(false);
   const emailValue = useRef(false);
 
   const userLogout = () => {
     auth.signOut().then(() => {
       setIsAdmin(false);
-      setLoggedIn(false);
+      dispatch(logOut());
     });
   };
 
@@ -30,7 +33,7 @@ const LogInForm = () => {
       .doc(userLogin.user.uid)
       .get();
     setIsAdmin(loggedInUserName.data().isAdmin);
-    setLoggedIn(true);
+    dispatch(logIn());
   };
 
   const emailGroup = (
@@ -73,7 +76,6 @@ const LogInForm = () => {
 
   return (
     <>
-      {isAdmin && <AddProducts />}
       <Col className="signupForm">
         <Form>
           {emailGroup}
