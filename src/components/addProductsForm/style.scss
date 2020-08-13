@@ -1,0 +1,12 @@
+.productFormContainer {
+  height: 100vh;
+
+  .productFormRow {
+    margin-top: 30px;
+  }
+
+  .radioBtn {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

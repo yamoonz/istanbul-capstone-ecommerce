@@ -1,10 +1,37 @@
+@import "../common/mixins";
+
 .categoriesContainer {
   background-color: #f0f0f0;
   padding: 10%;
+  padding-top: 7%;
+  color: black;
+
+  // React-slick classes
+  .slick-dots {
+    background-color: #f0f0f0;
+
+    li {
+      button {
+        &::before {
+          font-size: 17px;
+          transform: matrix(0, 1, 1, 0, 0, 0);
+        }
+      }
+    }
+  }
+
+  .slick-slide.slick-center {
+    .card {
+      transform: scale(1.15);
+    }
+  }
+
+  .slick-track {
+    margin-bottom: 20px;
+  }
 }
 
-.title {
-  font-family: "Lato", sans-serif;
+.categoryTitle {
   position: relative;
   font-size: 39px;
   color: #2c3648;
@@ -12,6 +39,7 @@
   margin-left: 1%;
   text-align: center;
   max-width: 300px;
+
   &::before {
     content: "";
     display: block;
@@ -24,18 +52,24 @@
   }
 }
 
+.cardWrapper {
+  @include resetAnchorHover(initial, initial);
+}
+
 .card {
   width: 90%;
   height: 200px;
   position: relative;
   margin: 10%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   img {
     height: 100%;
     width: 100%;
     object-fit: cover !important;
     position: relative;
   }
+
   &::before {
     content: "";
     width: 100%;
@@ -65,42 +99,21 @@
   z-index: 2;
 }
 
-// React-slick classes
-.slick-dots {
-  background-color: #f0f0f0;
-  li {
-    button {
-      &::before {
-        font-size: 17px;
-        transform: matrix(0, 1, 1, 0, 0, 0);
-      }
-    }
-  }
-}
-
-.slick-slide.slick-center {
-  .card {
-    transform: scale(1.15);
-  }
-}
-
-.slick-track {
-  margin-bottom: 20px;
-}
-
-@media screen and (max-width: 768) {
-  .title {
+@include media(tablet-sm) {
+  .categoryTitle {
     font-size: 30px;
   }
 }
 
-@media screen and (max-width: 500px) {
-  .title {
+@include media(phone) {
+  .categoryTitle {
     font-size: 25px;
+
     &::before {
       display: none;
     }
   }
+
   .card {
     width: 90%;
     height: 250px;

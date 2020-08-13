@@ -1,0 +1,150 @@
+@import "../../common/mixins";
+
+$fadedWhite: #e0dddd9e;
+$footerBg: #2f3e46;
+$footerLinksHover: #52796f;
+$twitterHoverColor: #00acee !important;
+$googleHoverColor: #c52d27 !important;
+$githubHoverColor: #211f1f !important;
+$facebookHoverColor: #3b5998 !important;
+$fadedWhiteBright: #e5e2e2 !important;
+
+.footerWrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.footerWrapper {
+  height: 80vh;
+  width: 100%;
+  padding: 50px 0 20px 0;
+  margin: 0;
+  background-color: $footerBg;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  color: $fadedWhiteBright;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+
+  .row {
+    width: 80%;
+    height: 20%;
+    margin-bottom: 10px;
+  }
+
+  .footerLinks {
+    justify-content: space-between;
+
+    .col {
+      max-width: 200px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footerLinksLogo {
+      max-width: 300px;
+
+      .footerLogo,
+      .footerMotto {
+        min-width: 100%;
+      }
+
+      .footerLogo {
+        color: white;
+      }
+    }
+
+    .footerLinksBlogs,
+    .footerLinksPages {
+      a {
+        display: block;
+      }
+    }
+  }
+
+  .footerSeparator {
+    height: 2px;
+    background-color: $fadedWhite;
+  }
+
+  .footerIconsCopyright {
+    max-height: 100px;
+    flex-wrap: wrap;
+    text-transform: none;
+
+    .footerCopyright {
+      margin: auto;
+    }
+
+    .footerIcons,
+    .footerCopyright {
+      min-width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footerSocialIcon {
+      display: inline-block;
+      margin-right: 20px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .twitter:hover {
+      color: $twitterHoverColor;
+    }
+
+    .google:hover {
+      color: $googleHoverColor;
+    }
+
+    .github:hover {
+      color: $githubHoverColor;
+    }
+
+    .facebook:hover {
+      color: $facebookHoverColor;
+    }
+  }
+
+  a {
+    color: $fadedWhiteBright;
+    text-decoration: none !important;
+    transition: color 0.3s ease-in-out;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: $footerLinksHover !important;
+    }
+  }
+}
+
+@include media(tablet) {
+  .footerWrapper {
+    height: 70vh;
+    font-size: 0.8rem;
+  }
+}
+
+@include media(tablet-sm) {
+  .footerLinks {
+    height: auto !important;
+    flex-wrap: wrap;
+
+    .footerLinksLogo {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@include media(phone) {
+  .footerLinksLogo {
+    margin-bottom: 40px !important;
+  }
+}
