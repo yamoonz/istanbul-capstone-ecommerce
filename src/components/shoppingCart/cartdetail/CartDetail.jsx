@@ -4,14 +4,55 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import "./CartDetail.scss";
-//import { useSelector } from "react-redux";
-//import { deleteItemFromCartAction } from "../../redux/actions";
-//import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  deleteItemFromCartAction,
+  modifyProductQuantity,
+} from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const CartDetail = (props) => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  //const productsData = useSelector((state) => state.getProductData);
+  const productsData = useSelector((state) => state.addOrDeleteProductData);
+
+  const deleteItemfromData = () => {
+    const copyOfData = productsData.slice();
+    for (let i = 0; i < copyOfData.length; i++) {
+      const currentItemId = props.info.id;
+      if (copyOfData[i].id === currentItemId) {
+        if (i > -1) {
+          copyOfData.splice(i, 1);
+        }
+        dispatch(deleteItemFromCartAction(copyOfData));
+        break;
+      }
+    }
+  };
+
+  const handleQuantitySubtraction = () => {
+    const copyOfData = productsData.slice();
+    for (let i = 0; i < copyOfData.length; i++) {
+      const currentItemId = props.info.id;
+      if (copyOfData[i].id === currentItemId) {
+        copyOfData[i].quantity--;
+      }
+    }
+    dispatch(modifyProductQuantity(copyOfData));
+  };
+
+  const handleQuantityAddition = () => {
+    const copyOfData = productsData.slice();
+    for (let i = 0; i < copyOfData.length; i++) {
+      const currentItemId = props.info.id;
+      console.log();
+      if (copyOfData[i].id === currentItemId) {
+        copyOfData[i].quantity++;
+      }
+    }
+    dispatch(modifyProductQuantity(copyOfData));
+  };
+
   return (
     <Container className="cartDetailWrapper">
       <Row className="cartDetailHeader">
@@ -39,7 +80,7 @@ const CartDetail = (props) => {
                 <span className="productNameText">{props.info.title}</span>
               </Row>
               <Row className="productDeleteSave">
-                <Col className="productDelete">
+                <Col className="productDelete" onClick={deleteItemfromData}>
                   <button>Delete</button>
                 </Col>
                 <Col className="productSave">Save</Col>
@@ -51,9 +92,19 @@ const CartDetail = (props) => {
           <Row className="quantityTitleRow">Quantity</Row>
           <Row className="quantityInfoRow">
             <Col className="quantityInfoCol">
-              <Button className="countModifier">-</Button>
-              <span className="countNumber">1</span>
-              <Button className="countModifier">+</Button>
+              <Button
+                className="countModifier"
+                onClick={handleQuantitySubtraction}
+              >
+                -
+              </Button>
+              <span className="countNumber">{props.info.quantity}</span>
+              <Button
+                className="countModifier"
+                onClick={handleQuantityAddition}
+              >
+                +
+              </Button>
             </Col>
           </Row>
         </Col>

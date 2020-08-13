@@ -3,11 +3,12 @@ import Slider from "react-slick";
 import "./singleProductDetails.scss";
 import { useDispatch } from "react-redux";
 import { addProductToCart, addProductQunatity } from "../redux/actions";
-
-export default function SingleProduct({ productData }) {
+import { useSelector } from "react-redux";
+export default function SingleProduct({ singleProductData }) {
   const dispatch = useDispatch();
-  const { title, images, brand, price } = productData;
+  const { title, images, brand, price } = singleProductData;
   const [productQuantity, setProductQuntity] = React.useState(1);
+  const productsData = useSelector((state) => state.addOrDeleteProductData);
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
@@ -22,6 +23,26 @@ export default function SingleProduct({ productData }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const addItemToShoppingCart = () => {
+    let flag = false;
+    if (productsData.length !== 0) {
+      for (let i = 0; i < productsData.length; i++) {
+        let currentItemId = singleProductData.id;
+        console.log(currentItemId + " " + productsData[i].id);
+        if (productsData[i].id === currentItemId) {
+          productsData[i].quantity++;
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) {
+        dispatch(addProductToCart(singleProductData));
+      }
+    }
+    // setProductQuntity((productQuantity) => productQuantity + 1);
+    // dispatch(addProductQunatity(productQuantity));
   };
 
   return (
@@ -44,11 +65,6 @@ export default function SingleProduct({ productData }) {
           type="number"
           className="productQuantity"
           name="quantity"
-          value={productQuantity}
-          onChange={(e) => {
-            setProductQuntity(+e.target.value);
-            dispatch(addProductQunatity(productQuantity));
-          }}
           min="1"
           max="10"
         />
@@ -67,9 +83,11 @@ export default function SingleProduct({ productData }) {
         <button
           className="addToCartBtn"
           onClick={() => {
-            dispatch(addProductToCart(productData));
-            setProductQuntity((productQuantity) => productQuantity + 1);
-            dispatch(addProductQunatity(productQuantity));
+            if (productsData.length !== 0) {
+              addItemToShoppingCart();
+            } else {
+              dispatch(addProductToCart(singleProductData));
+            }
           }}
         >
           Add to cart
@@ -85,3 +103,7 @@ export default function SingleProduct({ productData }) {
     </div>
   );
 }
+/*  onChange={(e) => {
+            setProductQuntity(+e.target.value);
+            dispatch(addProductQunatity(productQuantity));
+          }} */

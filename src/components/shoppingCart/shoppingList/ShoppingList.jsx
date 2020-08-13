@@ -4,7 +4,7 @@ import CartDetail from "../cartdetail/CartDetail";
 import { Row } from "react-bootstrap";
 
 export default function ShoppingList() {
-  const productsData = useSelector((state) => state.getProductData);
+  const productsData = useSelector((state) => state.addOrDeleteProductData);
 
   return (
     <div className="shoppingListItemContainer">

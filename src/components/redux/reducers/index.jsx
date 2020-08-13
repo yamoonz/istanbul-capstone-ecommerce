@@ -3,20 +3,16 @@ import {
   ADD_TO_CART,
   PRODUCT_QUNATITY,
   DELETE_FROM_CART,
+  MODIFY_QUANTITY,
 } from "../actions/actionsTypes";
 
-const getProductData = (state = [], action) => {
+const addOrDeleteProductData = (state = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
       return [...state, action.payload];
-    default:
-      return state;
-  }
-};
-
-const deleteItemFromCart = (state = [], action) => {
-  switch (action.type) {
     case DELETE_FROM_CART:
+      return action.payload;
+    case MODIFY_QUANTITY:
       return action.payload;
     default:
       return state;
@@ -33,9 +29,8 @@ const getProductQunatity = (state = [], action) => {
 };
 
 const allReducers = combineReducers({
-  getProductData,
+  addOrDeleteProductData,
   getProductQunatity,
-  deleteItemFromCart,
 });
 
 export default allReducers;

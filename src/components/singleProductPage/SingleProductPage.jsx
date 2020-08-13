@@ -13,7 +13,7 @@ const SingleProductPage = () => {
   return (
     <Container>
       <Row className="productDetailsRow">
-        <SingleProduct productData={MOCK_DATABASE[currentItemId]} />
+        <SingleProduct singleProductData={MOCK_DATABASE[currentItemId]} />
       </Row>
       <Row>
         <SliderSection />
