@@ -16,11 +16,11 @@ const UserFavoriteList = () => {
             Favorite
           </div>
         </div>
-        <div className="userProfileItems">
-          {MOCK_DATABASE.slice(0, 2).map((info, index) => (
-            <ProductCard info={info} index={index} />
-          ))}
-        </div>
+      </div>
+      <div className="userProfileItems">
+        {MOCK_DATABASE.slice(0, 2).map((info, index) => (
+          <ProductCard info={info} index={index} />
+        ))}
       </div>
     </>
   );

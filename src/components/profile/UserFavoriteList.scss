@@ -1,4 +1,5 @@
 .downSection {
+  position: relative;
   width: 100vw;
   height: 100px;
   background-color: #05225a;
@@ -27,6 +28,7 @@
 }
 
 .userProfileItems {
+  position: relative;
   margin-top: 50px !important;
   font-size: 16px;
   display: flex;
