@@ -7,7 +7,6 @@ export default function SinglePostPage(props) {
   const date = postProps.date.split("T")[0];
   const type = postProps.type;
   const content = postProps.content.rendered;
-  // console.log(postProps);
 
   return (
     <div className="singlePostContainer">
@@ -19,6 +18,7 @@ export default function SinglePostPage(props) {
       <div>
         <img
           src={postProps.jetpack_featured_media_url}
+          alt="PostImage"
           className="singlePostMainImg"
         />
       </div>
