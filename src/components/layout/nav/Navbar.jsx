@@ -86,9 +86,9 @@ const Navbar = () => {
     </Row>
   );
 
+  const componentsLocation = ["/", "/about", "/signup"];
   // To give navbar background on components with white background
   const navBarClassForLocation = (currentLocation) => {
-    const componentsLocation = ["/", "/about", "/signup"];
     for (let i in componentsLocation) {
       if (currentLocation === componentsLocation[i]) {
         setNavbarWithTransparentBackground(true);
@@ -101,7 +101,6 @@ const Navbar = () => {
 
   // To give navbar background on scrolling
   const changeNavbarClassNameOnScroll = (currentLocation) => {
-    const componentsLocation = ["/", "/about", "/signup"];
     const listener = document.addEventListener("scroll", (e) => {
       const scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 90) {
