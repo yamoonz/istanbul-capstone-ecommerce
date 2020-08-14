@@ -9,6 +9,8 @@ import "./Navbar.scss";
 import LanguageDropdown from "../../home/LanguageDropdown";
 import ClickAwayListener from "react-click-away-listener";
 import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { handlePopUp } from "../../redux/actions/index";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -54,6 +56,8 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
+  const loginInfo = useSelector((state) => state.handleLogin);
+  const dispatch = useDispatch();
   const [navbarWithBackground, setNavbarWithBackground] = useState(false);
   const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
 
@@ -64,7 +68,7 @@ const Navbar = () => {
       isSearchBoxOpen,
       isHamburgerOpen,
     },
-    dispatch,
+    localeDispatch,
   ] = useReducer(navbarIconsReducer, {
     isLanguageDropdownOpen: false,
     isSignUpBoxOpen: false,
@@ -72,7 +76,7 @@ const Navbar = () => {
     isHamburgerOpen: false,
   });
 
-  const handleStatus = (type) => dispatch({ type });
+  const handleStatus = (type) => localeDispatch({ type });
 
   const hamburgerMenu = (
     <Row
@@ -206,6 +210,13 @@ const Navbar = () => {
     changeNavbarClassNameOnScroll(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, scrollStateOnTop]);
+
+  useEffect(() => {
+    if (loginInfo.isPopUpClosed) {
+      handleStatus("CLICK_AWAY");
+      dispatch(handlePopUp());
+    }
+  }, [loginInfo.isPopUpClosed]);
 
   return (
     <>

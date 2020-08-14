@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
-import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { logIn, logOut } from "../../redux/actions/index";
+import { logIn, logOut, handlePopUp } from "../../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const LogInForm = () => {
-  const isLoggedIn = useSelector((state) => state.handleLogin);
+  const loginInfo = useSelector((state) => state.handleLogin);
   const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
+  const history = useHistory();
 
   const userLogout = (e) => {
     e.preventDefault();
-    auth.signOut().then(() => {});
+    auth.signOut().then(() => {
+      dispatch(logOut());
+    });
   };
 
   const userLogin = async (e) => {
@@ -25,7 +28,7 @@ const LogInForm = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userObject = await db.collection("users").doc(user.uid).get();
         const { name: nameFromSignUpForm, isAdmin } = userObject.data();
@@ -33,12 +36,12 @@ const LogInForm = () => {
           displayName: nameFromSignUpForm,
         });
         dispatch(logIn(user.displayName, isAdmin));
+        dispatch(handlePopUp());
       } else {
-        dispatch(logOut());
+        history.push("/");
+        dispatch(handlePopUp());
       }
     });
-    console.log(isLoggedIn);
-    return () => unsubscribe();
   }, []);
 
   const emailGroup = (
@@ -68,7 +71,7 @@ const LogInForm = () => {
       <Col className="signupForm">
         <Form
           onSubmit={(e) => {
-            if (isLoggedIn) {
+            if (loginInfo.loggedIn) {
               userLogout(e);
             } else {
               userLogin(e);
@@ -83,7 +86,7 @@ const LogInForm = () => {
             className="loginButton"
             type="submit"
           >
-            {`${isLoggedIn ? "Log out" : "Log in"}`}
+            {`${loginInfo.loggedIn ? "Log out" : "Log in"}`}
           </Button>
         </Form>
       </Col>

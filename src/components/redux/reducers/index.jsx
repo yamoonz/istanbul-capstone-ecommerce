@@ -1,5 +1,10 @@
 import { combineReducers } from "redux";
-import { LOG_IN, LOG_OUT, CURRENT_BOARD_ID } from "../actions/actionsTypes";
+import {
+  LOG_IN,
+  LOG_OUT,
+  CURRENT_BOARD_ID,
+  POP_UP_CLOSED,
+} from "../actions/actionsTypes";
 
 const currentBoardIDReducer = (state = [], action) => {
   switch (action.type) {
@@ -10,7 +15,14 @@ const currentBoardIDReducer = (state = [], action) => {
   }
 };
 
-const handleLogin = (state = {}, action) => {
+const initialState = {
+  userName: null,
+  loggedIn: null,
+  isAdmin: false,
+  isPopUpClosed: false,
+};
+
+const handleLogin = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -24,6 +36,12 @@ const handleLogin = (state = {}, action) => {
         ...state,
         userName: {},
         loggedIn: false,
+        isAdmin: false,
+      };
+    case POP_UP_CLOSED:
+      return {
+        ...state,
+        isPopUpClosed: true,
       };
     default:
       return state;
