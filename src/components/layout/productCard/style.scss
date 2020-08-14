@@ -1,3 +1,5 @@
+@import "../../common/mixins";
+
 .productCard {
   width: 300px;
   height: 300px;
@@ -11,19 +13,28 @@
   margin-left: 30px;
   margin-top: 30px;
 
+  .productCardNavLink {
+    grid-row: 3/12;
+    grid-column: 2/12;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+  }
+
   .likeIcon {
     grid-row: 2/3;
     grid-column: 2/3;
   }
 
   .sliderImages {
-    grid-row: 3/9;
+    grid-row: 2/8;
     grid-column: 2/12;
 
     div {
       width: 100%;
       position: relative;
       left: 10px;
+
       img {
         width: 60%;
         object-fit: cover;
@@ -31,8 +42,8 @@
     }
   }
 
-  .title {
-    grid-row: 9/11;
+  .productCardTitle {
+    grid-row: 10/12;
     grid-column: 2/5;
     width: 100%;
     display: flex;
@@ -40,15 +51,15 @@
     align-items: flex-end;
   }
 
-  .brand {
-    grid-row: 11/12;
+  .productCardBrand {
+    grid-row: 12/13;
     grid-column: 2/3;
     opacity: 0.5;
     align-self: center;
   }
 
-  .price {
-    grid-row: 11/12;
+  .productCardPrice {
+    grid-row: 12/13;
     grid-column: 11/12;
     opacity: 0.5;
   }
@@ -60,4 +71,20 @@
 
 .slick-slide {
   display: inline-block;
+}
+
+.categoriesContainer .slick-slide > div {
+  width: 100%;
+}
+
+// This is a default div coming with the slider
+
+.slick-slide > div {
+  width: 330%;
+}
+
+@include media(tablet) {
+  .slick-slide > div {
+    width: 100%;
+  }
 }

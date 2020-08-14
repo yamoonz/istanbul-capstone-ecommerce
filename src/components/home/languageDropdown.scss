@@ -1,0 +1,11 @@
+@import "../common/mixins";
+
+.languageDropdown {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+
+  @include media(tablet-sm) {
+    left: 45px;
+  }
+}
