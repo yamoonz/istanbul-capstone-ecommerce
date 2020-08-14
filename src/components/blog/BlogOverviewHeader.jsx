@@ -1,11 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-export default function BlogHeader(props) {
+export default function BlogOverviewHeader(props) {
   const latestPost = props.posts[0];
 
+  if (!latestPost) {
+    return null;
+  }
   return (
     <>
-      {latestPost && (
+      {
         <div className="blogHeader">
           <div className="headerImgBox">
             <img
@@ -21,11 +25,18 @@ export default function BlogHeader(props) {
             dangerouslySetInnerHTML={{ __html: latestPost.excerpt.rendered }}
             className="blogDescription"
           ></div>
-          <a href="./blog" className="blogHeaderBtn">
+          <NavLink
+            to={{
+              pathname: `/blog/${latestPost.title.rendered}`,
+              state: latestPost,
+            }}
+            exact
+            className="blogHeaderBtn"
+          >
             Read more
-          </a>
+          </NavLink>
         </div>
-      )}
+      }
     </>
   );
 }

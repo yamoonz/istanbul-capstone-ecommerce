@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import SingleBlogCard from "./SingleBlogCard";
 import "./style.overview.scss";
-import BlogHeader from "./BlogHeader";
+import BlogHeader from "./BlogOverviewHeader";
 
 export default function BlogOverview() {
   const [allPosts, setAllPosts] = React.useState([]);
