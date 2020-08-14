@@ -10,7 +10,7 @@ import LanguageDropdown from "../../home/LanguageDropdown";
 import ClickAwayListener from "react-click-away-listener";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { handlePopUp } from "../../redux/actions/index";
+import { popUpStatus } from "../../redux/actions/index";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -56,7 +56,9 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const loginInfo = useSelector((state) => state.handleLogin);
+  const currentPopUpStatus = useSelector(
+    (state) => state.handlePopUp.isPopUpClosed
+  );
   const dispatch = useDispatch();
   const [navbarWithBackground, setNavbarWithBackground] = useState(false);
   const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
@@ -163,7 +165,10 @@ const Navbar = () => {
         <div className="iconWrapper">
           <i
             className="fas fa-user-circle"
-            onClick={() => handleStatus("IS_SIGNUP_OPENED")}
+            onClick={() => {
+              handleStatus("IS_SIGNUP_OPENED");
+              dispatch(popUpStatus(false));
+            }}
           ></i>
         </div>
         <div className="iconWrapper">
@@ -212,11 +217,14 @@ const Navbar = () => {
   }, [location.pathname, scrollStateOnTop]);
 
   useEffect(() => {
-    if (loginInfo.isPopUpClosed) {
-      handleStatus("CLICK_AWAY");
-      dispatch(handlePopUp());
+    if (currentPopUpStatus && isSignUpBoxOpen) {
+      handleStatus("IS_SIGNUP_OPENED");
     }
-  }, [loginInfo.isPopUpClosed]);
+  }, [currentPopUpStatus, isSignUpBoxOpen]);
+
+  useEffect(() => {
+    handleStatus("CLICK_AWAY");
+  }, [location.pathname]);
 
   return (
     <>

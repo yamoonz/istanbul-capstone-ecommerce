@@ -2,7 +2,7 @@ import {
   LOG_IN,
   LOG_OUT,
   CURRENT_BOARD_ID,
-  POP_UP_CLOSED,
+  SHOULD_POP_UP_CLOSE,
 } from "./actionsTypes";
 
 export const currentBoardIDAction = (data) => {
@@ -20,6 +20,6 @@ export const logOut = () => {
   return { type: LOG_OUT };
 };
 
-export const handlePopUp = () => {
-  return { type: POP_UP_CLOSED };
+export const popUpStatus = (payload) => {
+  return { type: SHOULD_POP_UP_CLOSE, payload };
 };

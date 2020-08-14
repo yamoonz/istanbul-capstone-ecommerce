@@ -3,7 +3,7 @@ import {
   LOG_IN,
   LOG_OUT,
   CURRENT_BOARD_ID,
-  POP_UP_CLOSED,
+  SHOULD_POP_UP_CLOSE,
 } from "../actions/actionsTypes";
 
 const currentBoardIDReducer = (state = [], action) => {
@@ -15,14 +15,7 @@ const currentBoardIDReducer = (state = [], action) => {
   }
 };
 
-const initialState = {
-  userName: null,
-  loggedIn: null,
-  isAdmin: false,
-  isPopUpClosed: false,
-};
-
-const handleLogin = (state = initialState, action) => {
+const handleLogin = (state = {}, action) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -38,10 +31,16 @@ const handleLogin = (state = initialState, action) => {
         loggedIn: false,
         isAdmin: false,
       };
-    case POP_UP_CLOSED:
+    default:
+      return state;
+  }
+};
+
+const handlePopUp = (state = {}, action) => {
+  switch (action.type) {
+    case SHOULD_POP_UP_CLOSE:
       return {
-        ...state,
-        isPopUpClosed: true,
+        isPopUpClosed: action.payload,
       };
     default:
       return state;
@@ -51,6 +50,7 @@ const handleLogin = (state = initialState, action) => {
 const allReducers = combineReducers({
   currentBoardIDReducer,
   handleLogin,
+  handlePopUp,
 });
 
 export default allReducers;

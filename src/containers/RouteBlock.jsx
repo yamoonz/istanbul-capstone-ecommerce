@@ -9,6 +9,7 @@ import AdminPage from "../components/addProductsForm/AddProducts";
 import Home from "../components/home/Home";
 import SingleProductPage from "../components/singleProductPage/SingleProductPage";
 import ProfilePage from "../components/profile/ProfilePage";
+import NoMatch from "../components/nomatch/NoMatch";
 import { useSelector } from "react-redux";
 
 export const RouteBlock = () => {
@@ -29,6 +30,7 @@ export const RouteBlock = () => {
       <Route path="/dashboard" component={AdminPage} />
       {isAdmin && history.push("/dashboard")}
       <Route exact path="/" component={Home} />
+      <Route component={NoMatch} />
     </Switch>
   );
 };

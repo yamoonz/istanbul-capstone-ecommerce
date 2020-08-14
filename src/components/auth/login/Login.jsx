@@ -1,48 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
 import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { logIn, logOut, handlePopUp } from "../../redux/actions/index";
+import { logIn, logOut, popUpStatus } from "../../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 const LogInForm = () => {
   const loginInfo = useSelector((state) => state.handleLogin);
   const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
-  const history = useHistory();
+  const [validationError, setValidationError] = useState(false);
 
   const userLogout = (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
       dispatch(logOut());
+      dispatch(popUpStatus(true));
     });
   };
 
   const userLogin = async (e) => {
     e.preventDefault();
-    await auth.signInWithEmailAndPassword(emailValue, passwordValue);
-  };
+    const userLogin = await auth.signInWithEmailAndPassword(
+      emailValue,
+      passwordValue
+    );
 
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const userObject = await db.collection("users").doc(user.uid).get();
-        const { name: nameFromSignUpForm, isAdmin } = userObject.data();
-        user.updateProfile({
-          displayName: nameFromSignUpForm,
-        });
-        dispatch(logIn(user.displayName, isAdmin));
-        dispatch(handlePopUp());
-      } else {
-        history.push("/");
-        dispatch(handlePopUp());
-      }
-    });
-  }, []);
+    if (userLogin) {
+      const loggedInUserName = await db
+        .collection("users")
+        .doc(userLogin.user.uid)
+        .get();
+
+      dispatch(
+        logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
+      );
+      dispatch(popUpStatus(true));
+      setValidationError(false);
+    } else {
+      setValidationError(true);
+    }
+  };
 
   const emailGroup = (
     <Form.Group controlId="formGroupEmail">
@@ -66,20 +67,23 @@ const LogInForm = () => {
     </Form.Group>
   );
 
+  const validationErrorUI = <div>Oops!</div>;
+
+  const handleOnSubmit = (e) => {
+    if (loginInfo.loggedIn) {
+      userLogout(e);
+    } else {
+      userLogin(e);
+    }
+  };
+
   return (
     <>
       <Col className="signupForm">
-        <Form
-          onSubmit={(e) => {
-            if (loginInfo.loggedIn) {
-              userLogout(e);
-            } else {
-              userLogin(e);
-            }
-          }}
-        >
+        <Form onSubmit={handleOnSubmit}>
           {emailGroup}
           {passwordGroup}
+          {validationError && validationErrorUI}
           <Button
             variant="info"
             size="md"

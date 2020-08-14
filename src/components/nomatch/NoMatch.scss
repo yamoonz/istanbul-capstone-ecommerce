@@ -1,0 +1,14 @@
+.noMatchWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-top: 120px;
+
+  .noMatchText {
+    margin-bottom: 20px;
+  }
+}
