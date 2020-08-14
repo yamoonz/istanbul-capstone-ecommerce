@@ -1,14 +1,16 @@
 import React from "react";
 import Slider from "react-slick";
 import "./singleProductDetails.scss";
-import { useDispatch } from "react-redux";
-import { addProductToCart, addProductQunatity } from "../redux/actions";
-import { useSelector } from "react-redux";
+import { addProductToCart } from "../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+//import { modifyProductQuantity} from '../redux/actions/'
+
 export default function SingleProduct({ singleProductData }) {
   const dispatch = useDispatch();
-  const { title, images, brand, price } = singleProductData;
-  const [productQuantity, setProductQuntity] = React.useState(1);
+  const { title, images, brand, price, quantity } = singleProductData;
+  // const [productQuantity, setProductQuantity] = React.useState(0);
   const productsData = useSelector((state) => state.addOrDeleteProductData);
+
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
@@ -41,9 +43,32 @@ export default function SingleProduct({ singleProductData }) {
         dispatch(addProductToCart(singleProductData));
       }
     }
-    // setProductQuntity((productQuantity) => productQuantity + 1);
-    // dispatch(addProductQunatity(productQuantity));
   };
+
+  // const handleQuantitySubtraction = () => {
+  //   const copyOfData = [singleProductData].slice();
+  //   for (let i = 0; i < copyOfData.length; i++) {
+  //     const currentItemId = singleProductData.id;
+  //     if (copyOfData[i].id === currentItemId) {
+  //       copyOfData[i].quantity--;
+  //     }
+  //   }
+  //   dispatch(modifyProductQuantity(copyOfData));
+
+  // };
+
+  // const handleQuantityAddition = () => {
+  //   const copyOfData = [singleProductData].slice();
+  //   for (let i = 0; i < copyOfData.length; i++) {
+  //     const currentItemId = singleProductData.id;
+  //     console.log();
+  //     if (copyOfData[i].id === currentItemId) {
+  //       copyOfData[i].quantity++;
+  //     }
+  //   }
+  //   console.log('+1');
+  //   dispatch(modifyProductQuantity(copyOfData));
+  // };
 
   return (
     <div class="row" className="productInfoContainer">
@@ -65,6 +90,7 @@ export default function SingleProduct({ singleProductData }) {
           type="number"
           className="productQuantity"
           name="quantity"
+          value={quantity}
           min="1"
           max="10"
         />

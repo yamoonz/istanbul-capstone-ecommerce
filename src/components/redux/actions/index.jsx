@@ -6,6 +6,7 @@ import {
   SUM_TOTAL_PRICE,
   ADD_ONE_MORE_ITEM,
   REMOVE_ONE_MORE_ITEM,
+  QUANTITY_IN_SINGLE_PRODUCT,
 } from "./actionsTypes";
 
 export const addProductToCart = (data) => {
@@ -18,6 +19,13 @@ export const addProductToCart = (data) => {
 export const modifyProductQuantity = (data) => {
   return {
     type: MODIFY_QUANTITY,
+    payload: data,
+  };
+};
+
+export const setQuantityInSingleProduct = (data) => {
+  return {
+    type: QUANTITY_IN_SINGLE_PRODUCT,
     payload: data,
   };
 };

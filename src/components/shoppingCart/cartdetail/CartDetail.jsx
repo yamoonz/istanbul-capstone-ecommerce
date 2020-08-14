@@ -31,6 +31,7 @@ const CartDetail = (props) => {
 
   React.useEffect(() => {
     getTotalPrice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const deleteItemfromData = () => {
     const copyOfData = productsData.slice();

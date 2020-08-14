@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import {
   ADD_TO_CART,
-  PRODUCT_QUNATITY,
   DELETE_FROM_CART,
   MODIFY_QUANTITY,
   SUM_TOTAL_PRICE,
   ADD_ONE_MORE_ITEM,
   REMOVE_ONE_MORE_ITEM,
+  QUANTITY_IN_SINGLE_PRODUCT,
 } from "../actions/actionsTypes";
 
 const addOrDeleteProductData = (state = [], action) => {
@@ -37,7 +37,7 @@ const getTotalPrice = (state = [], action) => {
 
 const getProductQunatity = (state = [], action) => {
   switch (action.type) {
-    case PRODUCT_QUNATITY:
+    case QUANTITY_IN_SINGLE_PRODUCT:
       return action.payload;
     default:
       return state;
