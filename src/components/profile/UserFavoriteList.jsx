@@ -12,9 +12,9 @@ const UserFavoriteList = () => {
     <>
       <div className="downSection">
         <div className="useOrderList">
-          <a href="#" onClick={handleClick} className="anchorFavorite">
+          <div onClick={handleClick} className="anchorFavorite">
             Favorite
-          </a>
+          </div>
         </div>
         <div className="userProfileItems">
           {MOCK_DATABASE.slice(0, 2).map((info, index) => (
