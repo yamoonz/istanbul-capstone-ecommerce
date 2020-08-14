@@ -15,7 +15,7 @@ export default function BlogOverview() {
     setAllPosts(posts);
   };
 
-  console.log(allPosts);
+  // console.log(allPosts);
 
   React.useEffect(() => {
     getAllPosts();
