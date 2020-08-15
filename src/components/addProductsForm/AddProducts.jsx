@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import "./style.scss";
 import db from "../config/firebaseConfig";
+import AccessCheck from "../common/AccessCheck";
 
 export default function AddProducts() {
+  <AccessCheck />;
+
   const [hasSizes, setHasSizes] = useState(false);
   const [productFormBrand, setProductFormBrand] = useState("");
   const [productFormTitle, setProductFormTitle] = useState("");

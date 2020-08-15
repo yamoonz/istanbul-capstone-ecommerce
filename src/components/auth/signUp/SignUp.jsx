@@ -2,8 +2,11 @@ import React from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
 import "./signUp.scss";
+import AccessCheck from "../../common/AccessCheck";
 
 export default function SignUp() {
+  <AccessCheck />;
+
   const createNewUser = async (e) => {
     e.preventDefault();
     const userName = e.target[0].value;

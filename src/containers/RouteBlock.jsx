@@ -9,20 +9,31 @@ import AdminPage from "../components/addProductsForm/AddProducts";
 import Home from "../components/home/Home";
 import SingleProductPage from "../components/singleProductPage/SingleProductPage";
 import ProfilePage from "../components/profile/ProfilePage";
+import {
+  CATEGORIES,
+  PRODUCTS,
+  SHOPPING_CART,
+  SIGN_UP,
+  BLOG,
+  PROFILE,
+  ABOUT,
+  ADMIN,
+  HOME,
+} from "./Route.paths.js";
 
 export const RouteBlock = () => {
   return (
     <Switch>
-      <Route path="/categories/:categoryName" component={ProductsPage} />
-      <Route path="/products/:productId" component={SingleProductPage} />
-      <Route path="/products" component={ProductsPage} />
-      <Route path="/shoppingcart" component={CartPage} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/blog" component={BlogOverview} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/about" component={AboutPage} />
-      <Route path="/admin" component={AdminPage} />
-      <Route exact path="/" component={Home} />
+      <Route path={`${CATEGORIES}/:categoryName`} component={ProductsPage} />
+      <Route path={`${PRODUCTS}/:productId`} component={SingleProductPage} />
+      <Route path={PRODUCTS} component={ProductsPage} />
+      <Route path={SHOPPING_CART} component={CartPage} />
+      <Route path={SIGN_UP} component={SignUp} />
+      <Route path={BLOG} component={BlogOverview} />
+      <Route path={PROFILE} component={ProfilePage} />
+      <Route path={ABOUT} component={AboutPage} />
+      <Route path={ADMIN} component={AdminPage} />
+      <Route exact path={HOME} component={Home} />
     </Switch>
   );
 };
