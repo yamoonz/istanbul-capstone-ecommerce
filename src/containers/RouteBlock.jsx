@@ -16,7 +16,7 @@ const ADMIN_PAGE = "/dashboard";
 
 export const RouteBlock = () => {
   const history = useHistory();
-  const isAdmin = useSelector((state) => state.handleLogin.isAdmin);
+  const isAdmin = useSelector((state) => state.authentication.isAdmin);
 
   return (
     <Switch>

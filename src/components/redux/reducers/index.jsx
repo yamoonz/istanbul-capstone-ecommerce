@@ -16,7 +16,7 @@ const currentBoardIDReducer = (state = [], action) => {
   }
 };
 
-const handleLogin = (state = {}, action) => {
+const authenticationReducer = (state = {}, action) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -45,7 +45,7 @@ const handleLogin = (state = {}, action) => {
   }
 };
 
-const handlePopUp = (state = {}, action) => {
+const modalReducer = (state = {}, action) => {
   switch (action.type) {
     case SHOULD_POP_UP_CLOSE:
       return {
@@ -58,8 +58,8 @@ const handlePopUp = (state = {}, action) => {
 
 const allReducers = combineReducers({
   currentBoardIDReducer,
-  handleLogin,
-  handlePopUp,
+  authentication: authenticationReducer,
+  modal: modalReducer,
 });
 
 export default allReducers;

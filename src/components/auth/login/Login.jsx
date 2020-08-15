@@ -13,7 +13,9 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = () => {
-  const { isLoggedIn, authError } = useSelector((state) => state.handleLogin);
+  const { isLoggedIn, authError } = useSelector(
+    (state) => state.authentication
+  );
   const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
@@ -28,11 +30,17 @@ const LogInForm = () => {
 
   const userLogin = async (e) => {
     e.preventDefault();
+    let userLogin;
     try {
-      const userLogin = await auth.signInWithEmailAndPassword(
+      userLogin = await auth.signInWithEmailAndPassword(
         emailValue,
         passwordValue
       );
+    } catch (error) {
+      dispatch(logInError(error));
+    }
+
+    if (userLogin) {
       const loggedInUserName = await db
         .collection("users")
         .doc(userLogin.user.uid)
@@ -41,8 +49,6 @@ const LogInForm = () => {
         logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
       );
       dispatch(popUpStatus(true));
-    } catch (error) {
-      dispatch(logInError(error));
     }
   };
 
@@ -68,7 +74,7 @@ const LogInForm = () => {
     </Form.Group>
   );
 
-  const authErrorUI = <div>Oops!</div>;
+  const authErrorUi = <div>Oops!</div>;
 
   const handleOnSubmit = (e) => {
     if (isLoggedIn) {
@@ -84,7 +90,7 @@ const LogInForm = () => {
         <Form onSubmit={handleOnSubmit}>
           {emailGroup}
           {passwordGroup}
-          {authError && authErrorUI}
+          {authError && authErrorUi}
           <Button
             variant="info"
             size="md"

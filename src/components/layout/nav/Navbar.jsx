@@ -56,9 +56,7 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const currentPopUpStatus = useSelector(
-    (state) => state.handlePopUp.isPopUpClosed
-  );
+  const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
   const [navbarWithBackground, setNavbarWithBackground] = useState(false);
   const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
