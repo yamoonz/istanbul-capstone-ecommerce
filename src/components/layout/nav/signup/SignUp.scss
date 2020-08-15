@@ -78,6 +78,13 @@ $signUpFormIndex: 104;
   .signupForm {
     padding: 0;
 
+    .authFailedText {
+      color: #c5423a;
+      padding: 10px 12px;
+      font-size: 14px;
+      left: 7px;
+    }
+
     .formGroupPassword,
     .formGroupEmail {
       margin-bottom: 0.5rem;

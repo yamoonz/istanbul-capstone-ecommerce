@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
 import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import Overlay from "react-bootstrap/Overlay";
+import Popover from "react-bootstrap/Popover";
+
+const ALERT_OPEN_SECONDS = 3000;
 
 const LogInForm = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
+  const [authErrorTarget, setAuthErrorTarget] = useState(null);
+  const [errorState, setErrorState] = useState(false);
+  const authAlertContainer = useRef(null);
 
   const userLogout = (e) => {
     e.preventDefault();
@@ -35,6 +42,12 @@ const LogInForm = () => {
     setLoggedIn(true);
   };
 
+  const handleClick = (e) => {
+    setAuthErrorTarget(e.target);
+    setErrorState(true);
+    setTimeout(() => setErrorState(false), ALERT_OPEN_SECONDS);
+  };
+
   const emailGroup = (
     <Form.Group controlId="formGroupEmail">
       <Form.Label>Email address</Form.Label>
@@ -57,6 +70,22 @@ const LogInForm = () => {
     </Form.Group>
   );
 
+  const authErrorUi = (
+    <Overlay
+      show={errorState}
+      target={authErrorTarget}
+      placement="bottom"
+      container={authAlertContainer.current}
+      containerPadding={20}
+    >
+      <Popover>
+        <Popover.Title as="h2" className="authFailedText">
+          Invalid login or password!
+        </Popover.Title>
+      </Popover>
+    </Overlay>
+  );
+
   return (
     <Row>
       {isAdmin && <AddProducts />}
@@ -69,6 +98,7 @@ const LogInForm = () => {
               userLogin(e);
             }
           }}
+          ref={authAlertContainer}
         >
           {emailGroup}
           {passwordGroup}
@@ -77,9 +107,11 @@ const LogInForm = () => {
             size="md"
             className="loginButton"
             type="submit"
+            onClick={(e) => handleClick(e)}
           >
             {`${isLoggedIn ? "Log out" : "Log in"}`}
           </Button>
+          {authErrorUi}
         </Form>
       </Col>
     </Row>
