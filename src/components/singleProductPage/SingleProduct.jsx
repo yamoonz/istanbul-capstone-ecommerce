@@ -3,13 +3,16 @@ import Slider from "react-slick";
 import "./singleProductDetails.scss";
 import { addProductToCart } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import { modifyProductQuantity } from "../redux/actions/";
+import {
+  increaseProductQuantity,
+  decreaseProductQuantity,
+} from "../redux/actions/";
 
 export default function SingleProduct({ singleProductData }) {
   const dispatch = useDispatch();
   const { title, images, brand, price, quantity } = singleProductData;
   const productsData = useSelector((state) => state.addOrDeleteProductData);
-
+  const [currentProductQuantity, setCurrentProductQuantity] = React.useState(0);
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
@@ -43,28 +46,6 @@ export default function SingleProduct({ singleProductData }) {
     }
   };
 
-  const handleQuantitySubtraction = () => {
-    const copyOfData = [singleProductData].slice();
-    for (let i = 0; i < copyOfData.length; i++) {
-      const currentItemId = singleProductData.id;
-      if (copyOfData[i].id === currentItemId) {
-        copyOfData[i].quantity--;
-      }
-    }
-    dispatch(modifyProductQuantity(copyOfData));
-  };
-
-  const handleQuantityAddition = () => {
-    const copyOfData = [singleProductData].slice();
-    for (let i = 0; i < copyOfData.length; i++) {
-      const currentItemId = singleProductData.id;
-      if (copyOfData[i].id === currentItemId) {
-        copyOfData[i].quantity++;
-      }
-    }
-    dispatch(modifyProductQuantity(copyOfData));
-  };
-
   return (
     <div class="row" className="productInfoContainer">
       <div class="col-lg-6 col-md-12" className="productImgs">
@@ -81,8 +62,10 @@ export default function SingleProduct({ singleProductData }) {
         <span className="productPrice">{price}$</span>
         <p className="productTitle">{title}</p>
         <p className="productDescription">{description}</p>
+        {/* We are using data-quantity and set it eqaul to currentProductQuantity state to rerender the component */}
         <input
           type="number"
+          data-quantity={currentProductQuantity}
           value={quantity}
           className="productQuantity"
           name="quantity"
@@ -90,14 +73,16 @@ export default function SingleProduct({ singleProductData }) {
         <div className="quantityIncAndDecBtns">
           <button
             onClick={() => {
-              handleQuantityAddition();
+              dispatch(increaseProductQuantity([singleProductData]));
+              setCurrentProductQuantity(singleProductData.quantity);
             }}
           >
             +
           </button>
           <button
             onClick={() => {
-              handleQuantitySubtraction();
+              dispatch(decreaseProductQuantity([singleProductData]));
+              setCurrentProductQuantity(singleProductData.quantity);
             }}
           >
             -

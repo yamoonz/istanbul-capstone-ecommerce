@@ -6,7 +6,8 @@ import Button from "react-bootstrap/Button";
 import "./CartDetail.scss";
 import {
   deleteItemFromCartAction,
-  modifyProductQuantity,
+  increaseProductQuantity,
+  decreaseProductQuantity,
   sumTotalPrice,
   addOneMoreItem,
   removeOneMoreItem,
@@ -23,13 +24,8 @@ const CartDetail = (props) => {
   }, 0);
 
   // Get total price from one item
-  const getItemTotalPrice = () => {
-    const sumTotal = props.info.price * props.info.quantity;
-    dispatch(sumTotalPrice(sumTotal));
-  };
-
   React.useEffect(() => {
-    getItemTotalPrice();
+    dispatch(sumTotalPrice(props.info.price, props.info.quantity));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -42,46 +38,17 @@ const CartDetail = (props) => {
         if (i > -1) {
           copyOfData.splice(i, 1);
         }
-        const singleItemTotalPrice = props.info.price * props.info.quantity;
-        const newTotal = allItemsTotalPrice - singleItemTotalPrice;
-        dispatch(removeOneMoreItem([newTotal]));
+        dispatch(
+          removeOneMoreItem(
+            allItemsTotalPrice,
+            props.info.price * props.info.quantity
+          )
+        );
         dispatch(deleteItemFromCartAction(copyOfData));
         props.info.quantity = 1;
         break;
       }
     }
-  };
-
-  const increaseAmountOfItems = () => {
-    const newTotal = allItemsTotalPrice + props.info.price;
-    dispatch(addOneMoreItem([newTotal]));
-  };
-
-  const decreaseAmountOfItems = () => {
-    const newTotal = allItemsTotalPrice - props.info.price;
-    dispatch(removeOneMoreItem([newTotal]));
-  };
-
-  const handleQuantitySubtraction = () => {
-    const copyOfData = productsData.slice();
-    for (let i = 0; i < copyOfData.length; i++) {
-      const currentItemId = props.info.id;
-      if (copyOfData[i].id === currentItemId) {
-        copyOfData[i].quantity--;
-      }
-    }
-    dispatch(modifyProductQuantity(copyOfData));
-  };
-
-  const handleQuantityAddition = () => {
-    const copyOfData = productsData.slice();
-    for (let i = 0; i < copyOfData.length; i++) {
-      const currentItemId = props.info.id;
-      if (copyOfData[i].id === currentItemId) {
-        copyOfData[i].quantity++;
-      }
-    }
-    dispatch(modifyProductQuantity(copyOfData));
   };
 
   const cartDetailHeaderRow = (
@@ -155,8 +122,8 @@ const CartDetail = (props) => {
         <Button
           className="countModifier"
           onClick={() => {
-            handleQuantitySubtraction();
-            decreaseAmountOfItems();
+            dispatch(decreaseProductQuantity(productsData));
+            dispatch(removeOneMoreItem(allItemsTotalPrice, props.info.price));
           }}
         >
           -
@@ -165,8 +132,8 @@ const CartDetail = (props) => {
         <Button
           className="countModifier"
           onClick={() => {
-            handleQuantityAddition();
-            increaseAmountOfItems();
+            dispatch(increaseProductQuantity(productsData));
+            dispatch(addOneMoreItem(allItemsTotalPrice, props.info.price));
           }}
         >
           +
