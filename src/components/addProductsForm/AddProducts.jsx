@@ -5,8 +5,6 @@ import db from "../config/firebaseConfig";
 import AccessCheck from "../common/AccessCheck";
 
 export default function AddProducts() {
-  <AccessCheck />;
-
   const [hasSizes, setHasSizes] = useState(false);
   const [productFormBrand, setProductFormBrand] = useState("");
   const [productFormTitle, setProductFormTitle] = useState("");
@@ -74,6 +72,7 @@ export default function AddProducts() {
 
   return (
     <>
+      <AccessCheck />;
       <Form onSubmit={(e) => addNewProductToDatabase(e)}>
         <Container className="productFormContainer">
           <Row className="productFormRow">

@@ -15,25 +15,29 @@ const AccessCheck = () => {
   const { isLoggedIn, isAdmin } = useSelector((state) => state.handleLogin);
   const { pathname } = useLocation();
 
-  switch (pathname) {
-    case SIGN_UP:
-      if (isLoggedIn) {
-        return REDIRECT_TO_HOME;
-      }
-      break;
-    case ADMIN:
-      if (!isAdmin) {
-        return REDIRECT_TO_HOME;
-      }
-      break;
-    case SHOPPING_CART || PROFILE:
-      if (!isLoggedIn) {
-        return REDIRECT_TO_HOME;
-      }
-      break;
-    default:
-      return null;
-  }
+  const renderSwitch = () => {
+    switch (pathname) {
+      case SIGN_UP:
+        if (isLoggedIn) {
+          return REDIRECT_TO_HOME;
+        }
+        break;
+      case ADMIN:
+        if (!isAdmin) {
+          return REDIRECT_TO_HOME;
+        }
+        break;
+      case SHOPPING_CART || PROFILE:
+        if (!isLoggedIn) {
+          return REDIRECT_TO_HOME;
+        }
+        break;
+      default:
+        return null;
+    }
+  };
+
+  return <>{renderSwitch()}</>;
 };
 
 export default AccessCheck;
