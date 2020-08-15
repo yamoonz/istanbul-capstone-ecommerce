@@ -4,7 +4,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import "./CartDetail.scss";
-import { useSelector } from "react-redux";
 import {
   deleteItemFromCartAction,
   modifyProductQuantity,
@@ -12,28 +11,30 @@ import {
   addOneMoreItem,
   removeOneMoreItem,
 } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CartDetail = (props) => {
   const dispatch = useDispatch();
-
   const productsData = useSelector((state) => state.addOrDeleteProductData);
-  const allPrices = useSelector((state) => state.getTotalPrice);
-  const total = allPrices.reduce((cur, acc) => {
+  // Getting all the total prices from individual items and add them together
+  const itemsTotalPricesArray = useSelector((state) => state.getTotalPrice);
+  const allItemsTotalPrice = itemsTotalPricesArray.reduce((cur, acc) => {
     return cur + acc;
   }, 0);
 
-  //const[sum , setSum] = React.useState(0);
-  const getTotalPrice = () => {
+  // Get total price from one item
+  const getItemTotalPrice = () => {
     const sumTotal = props.info.price * props.info.quantity;
     dispatch(sumTotalPrice(sumTotal));
   };
 
   React.useEffect(() => {
-    getTotalPrice();
+    getItemTotalPrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const deleteItemfromData = () => {
+
+  // This function deletes thw whole product from the shopping cart and subtract the corresponding price from the total price
+  const deleteItemfromCartData = () => {
     const copyOfData = productsData.slice();
     for (let i = 0; i < copyOfData.length; i++) {
       const currentItemId = props.info.id;
@@ -41,19 +42,23 @@ const CartDetail = (props) => {
         if (i > -1) {
           copyOfData.splice(i, 1);
         }
+        const singleItemTotalPrice = props.info.price * props.info.quantity;
+        const newTotal = allItemsTotalPrice - singleItemTotalPrice;
+        dispatch(removeOneMoreItem([newTotal]));
         dispatch(deleteItemFromCartAction(copyOfData));
+        props.info.quantity = 1;
         break;
       }
     }
   };
 
-  const addMoreItems = () => {
-    const newTotal = total + props.info.price;
+  const increaseAmountOfItems = () => {
+    const newTotal = allItemsTotalPrice + props.info.price;
     dispatch(addOneMoreItem([newTotal]));
   };
 
-  const removeMoreItems = () => {
-    const newTotal = total - props.info.price;
+  const decreaseAmountOfItems = () => {
+    const newTotal = allItemsTotalPrice - props.info.price;
     dispatch(removeOneMoreItem([newTotal]));
   };
 
@@ -72,7 +77,6 @@ const CartDetail = (props) => {
     const copyOfData = productsData.slice();
     for (let i = 0; i < copyOfData.length; i++) {
       const currentItemId = props.info.id;
-      console.log();
       if (copyOfData[i].id === currentItemId) {
         copyOfData[i].quantity++;
       }
@@ -80,74 +84,103 @@ const CartDetail = (props) => {
     dispatch(modifyProductQuantity(copyOfData));
   };
 
+  const cartDetailHeaderRow = (
+    <Row className="cartDetailHeader">
+      <Col className="cartDetailTitle">Shopping Card (X Items)</Col>
+      <Col className="backToShoppingWrapper">
+        <Button className="backToShopping">Back to Shopping!</Button>
+      </Col>
+    </Row>
+  );
+
+  const titleHeaderRow = (
+    <Row className="titleHeader">
+      <Col
+        xl={6}
+        lg={6}
+        md={6}
+        sm={6}
+        xs={6}
+        className="productsHeader titleHeaderItem"
+      >
+        Products
+      </Col>
+      <Col className="quantityHeader titleHeaderItem">Quantity</Col>
+      <Col className="priceHeader titleHeaderItem">Price</Col>
+    </Row>
+  );
+
+  const productDetailCols = (
+    <>
+      <Col
+        xl={6}
+        lg={6}
+        md={6}
+        sm={6}
+        xs={6}
+        className="productInfoCol productColItem"
+      >
+        <Col className="productImageCol">
+          <img
+            className="productImg"
+            src={props.info.images[0]}
+            alt={props.info.brand + props.info.title}
+          />
+        </Col>
+        <Col className="productTextCol">
+          <Row className="productBrand">
+            <span className="productTextSpan">{props.info.brand}</span>
+          </Row>
+          <Row className="productName">
+            <span className="productTextSpan productTextTitle">
+              {props.info.title}
+            </span>
+          </Row>
+          <Row className="productDeleteSave">
+            <Col className="productDelete">
+              <i
+                className="fas fa-trash trashIcon"
+                onClick={deleteItemfromCartData}
+              ></i>
+              <span>Delete</span>
+            </Col>
+            <Col className="productSave">
+              <i className="far fa-bookmark bookmarkIcon"></i>
+              <span>Save</span>
+            </Col>
+          </Row>
+        </Col>
+      </Col>
+      <Col className="productQuantityCol productColItem">
+        <Button
+          className="countModifier"
+          onClick={() => {
+            handleQuantitySubtraction();
+            decreaseAmountOfItems();
+          }}
+        >
+          -
+        </Button>
+        <span className="countNumber">{props.info.quantity}</span>
+        <Button
+          className="countModifier"
+          onClick={() => {
+            handleQuantityAddition();
+            increaseAmountOfItems();
+          }}
+        >
+          +
+        </Button>
+      </Col>
+      <Col className="productPriceCol productColItem">${props.info.price}</Col>
+    </>
+  );
+
   return (
     <Container className="cartDetailWrapper">
-      <Row className="cartDetailHeader">
-        <Col className="cartDetailTitle">Shopping Card (X Items)</Col>
-        <Col className="backToShoppingWrapper">
-          <Button className="backToShopping">Back to Shopping!</Button>
-        </Col>
-      </Row>
-      <Row className="cartDetailMain">
-        <Col xl={6} lg={6} md={6} sm={6} xs={6} className="cartProductsCol">
-          <Row className="productTitleRow">Products</Row>
-          <Row className="productInfoRow">
-            <Col className="productImageCol">
-              <img
-                className="productImg"
-                src={props.info.images[0]}
-                alt={props.info.brand + props.info.title}
-              />
-            </Col>
-            <Col className="productTexts">
-              <Row className="productBrand">
-                <span className="productBrandText">{props.info.brand}</span>
-              </Row>
-              <Row className="productName">
-                <span className="productNameText">{props.info.title}</span>
-              </Row>
-              <Row className="productDeleteSave">
-                <Col className="productDelete" onClick={deleteItemfromData}>
-                  <button>Delete</button>
-                </Col>
-                <Col className="productSave">Save</Col>
-              </Row>
-            </Col>
-          </Row>
-        </Col>
-        <Col xl={3} lg={3} md={3} sm={3} xs={3} className="cartQuantityCol">
-          <Row className="quantityTitleRow">Quantity</Row>
-          <Row className="quantityInfoRow">
-            <Col className="quantityInfoCol">
-              <Button
-                className="countModifier"
-                onClick={() => {
-                  handleQuantitySubtraction();
-                  removeMoreItems();
-                }}
-              >
-                -
-              </Button>
-              <span className="countNumber">{props.info.quantity}</span>
-              <Button
-                className="countModifier"
-                onClick={() => {
-                  handleQuantityAddition();
-                  addMoreItems();
-                }}
-              >
-                +
-              </Button>
-            </Col>
-          </Row>
-        </Col>
-        <Col xl={3} lg={3} md={3} sm={3} xs={3} className="cartPriceCol">
-          <Row className="priceTitleRow">Price</Row>
-          <Row className="priceInfoRow">
-            <Col className="priceNumber">${props.info.price}</Col>
-          </Row>
-        </Col>
-      </Row>
+      {cartDetailHeaderRow}
+      {titleHeaderRow}
+      <Row className="cartDetailMain">{productDetailCols}</Row>
     </Container>
   );
 };

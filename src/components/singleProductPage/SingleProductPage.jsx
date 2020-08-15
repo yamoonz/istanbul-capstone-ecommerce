@@ -11,7 +11,7 @@ const SingleProductPage = () => {
   const currentItemId = productId - 1;
 
   return (
-    <Container>
+    <Container className="productDetailsContainer">
       <Row className="productDetailsRow">
         <SingleProduct singleProductData={MOCK_DATABASE[currentItemId]} />
       </Row>

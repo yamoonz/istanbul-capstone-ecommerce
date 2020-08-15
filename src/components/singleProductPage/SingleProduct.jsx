@@ -3,12 +3,11 @@ import Slider from "react-slick";
 import "./singleProductDetails.scss";
 import { addProductToCart } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-//import { modifyProductQuantity} from '../redux/actions/'
+import { modifyProductQuantity } from "../redux/actions/";
 
 export default function SingleProduct({ singleProductData }) {
   const dispatch = useDispatch();
   const { title, images, brand, price, quantity } = singleProductData;
-  // const [productQuantity, setProductQuantity] = React.useState(0);
   const productsData = useSelector((state) => state.addOrDeleteProductData);
 
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
@@ -28,47 +27,43 @@ export default function SingleProduct({ singleProductData }) {
   };
 
   const addItemToShoppingCart = () => {
-    let flag = false;
+    let isItemAdded = false;
     if (productsData.length !== 0) {
       for (let i = 0; i < productsData.length; i++) {
         let currentItemId = singleProductData.id;
-        console.log(currentItemId + " " + productsData[i].id);
         if (productsData[i].id === currentItemId) {
           productsData[i].quantity++;
-          flag = true;
+          isItemAdded = true;
           break;
         }
       }
-      if (!flag) {
+      if (!isItemAdded) {
         dispatch(addProductToCart(singleProductData));
       }
     }
   };
 
-  // const handleQuantitySubtraction = () => {
-  //   const copyOfData = [singleProductData].slice();
-  //   for (let i = 0; i < copyOfData.length; i++) {
-  //     const currentItemId = singleProductData.id;
-  //     if (copyOfData[i].id === currentItemId) {
-  //       copyOfData[i].quantity--;
-  //     }
-  //   }
-  //   dispatch(modifyProductQuantity(copyOfData));
+  const handleQuantitySubtraction = () => {
+    const copyOfData = [singleProductData].slice();
+    for (let i = 0; i < copyOfData.length; i++) {
+      const currentItemId = singleProductData.id;
+      if (copyOfData[i].id === currentItemId) {
+        copyOfData[i].quantity--;
+      }
+    }
+    dispatch(modifyProductQuantity(copyOfData));
+  };
 
-  // };
-
-  // const handleQuantityAddition = () => {
-  //   const copyOfData = [singleProductData].slice();
-  //   for (let i = 0; i < copyOfData.length; i++) {
-  //     const currentItemId = singleProductData.id;
-  //     console.log();
-  //     if (copyOfData[i].id === currentItemId) {
-  //       copyOfData[i].quantity++;
-  //     }
-  //   }
-  //   console.log('+1');
-  //   dispatch(modifyProductQuantity(copyOfData));
-  // };
+  const handleQuantityAddition = () => {
+    const copyOfData = [singleProductData].slice();
+    for (let i = 0; i < copyOfData.length; i++) {
+      const currentItemId = singleProductData.id;
+      if (copyOfData[i].id === currentItemId) {
+        copyOfData[i].quantity++;
+      }
+    }
+    dispatch(modifyProductQuantity(copyOfData));
+  };
 
   return (
     <div class="row" className="productInfoContainer">
@@ -88,12 +83,26 @@ export default function SingleProduct({ singleProductData }) {
         <p className="productDescription">{description}</p>
         <input
           type="number"
+          value={quantity}
           className="productQuantity"
           name="quantity"
-          value={quantity}
-          min="1"
-          max="10"
         />
+        <div className="quantityIncAndDecBtns">
+          <button
+            onClick={() => {
+              handleQuantityAddition();
+            }}
+          >
+            +
+          </button>
+          <button
+            onClick={() => {
+              handleQuantitySubtraction();
+            }}
+          >
+            -
+          </button>
+        </div>
         <span className="quantity">Quantity</span>
         {hasSize && (
           <select name="productSizes" className="productSizes">
@@ -129,7 +138,3 @@ export default function SingleProduct({ singleProductData }) {
     </div>
   );
 }
-/*  onChange={(e) => {
-            setProductQuntity(+e.target.value);
-            dispatch(addProductQunatity(productQuantity));
-          }} */
