@@ -4,15 +4,19 @@ import db from "../../config/firebaseConfig";
 import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { logIn, logOut, popUpStatus } from "../../redux/actions/index";
+import {
+  logIn,
+  logOut,
+  logInError,
+  popUpStatus,
+} from "../../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = () => {
-  const loginInfo = useSelector((state) => state.handleLogin);
+  const { isLoggedIn, authError } = useSelector((state) => state.handleLogin);
   const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
-  const [validationError, setValidationError] = useState(false);
 
   const userLogout = (e) => {
     e.preventDefault();
@@ -24,24 +28,21 @@ const LogInForm = () => {
 
   const userLogin = async (e) => {
     e.preventDefault();
-    const userLogin = await auth.signInWithEmailAndPassword(
-      emailValue,
-      passwordValue
-    );
-
-    if (userLogin) {
+    try {
+      const userLogin = await auth.signInWithEmailAndPassword(
+        emailValue,
+        passwordValue
+      );
       const loggedInUserName = await db
         .collection("users")
         .doc(userLogin.user.uid)
         .get();
-
       dispatch(
         logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
       );
       dispatch(popUpStatus(true));
-      setValidationError(false);
-    } else {
-      setValidationError(true);
+    } catch (error) {
+      dispatch(logInError(error));
     }
   };
 
@@ -67,10 +68,10 @@ const LogInForm = () => {
     </Form.Group>
   );
 
-  const validationErrorUI = <div>Oops!</div>;
+  const authErrorUI = <div>Oops!</div>;
 
   const handleOnSubmit = (e) => {
-    if (loginInfo.loggedIn) {
+    if (isLoggedIn) {
       userLogout(e);
     } else {
       userLogin(e);
@@ -83,14 +84,14 @@ const LogInForm = () => {
         <Form onSubmit={handleOnSubmit}>
           {emailGroup}
           {passwordGroup}
-          {validationError && validationErrorUI}
+          {authError && authErrorUI}
           <Button
             variant="info"
             size="md"
             className="loginButton"
             type="submit"
           >
-            {`${loginInfo.loggedIn ? "Log out" : "Log in"}`}
+            {`${isLoggedIn ? "Log out" : "Log in"}`}
           </Button>
         </Form>
       </Col>

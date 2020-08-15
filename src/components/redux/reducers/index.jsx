@@ -2,8 +2,9 @@ import { combineReducers } from "redux";
 import {
   LOG_IN,
   LOG_OUT,
-  CURRENT_BOARD_ID,
+  LOGIN_ERROR,
   SHOULD_POP_UP_CLOSE,
+  CURRENT_BOARD_ID,
 } from "../actions/actionsTypes";
 
 const currentBoardIDReducer = (state = [], action) => {
@@ -21,15 +22,23 @@ const handleLogin = (state = {}, action) => {
       return {
         ...state,
         userName: action.user,
-        loggedIn: true,
+        isLoggedIn: true,
         isAdmin: action.admin,
+        authError: false,
       };
     case LOG_OUT:
       return {
         ...state,
         userName: {},
-        loggedIn: false,
+        isLoggedIn: false,
         isAdmin: false,
+        authError: false,
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        authError: true,
+        errorDetail: action.payload,
       };
     default:
       return state;
