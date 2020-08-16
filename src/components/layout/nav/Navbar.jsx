@@ -229,7 +229,7 @@ const Navbar = () => {
       handleStatus(IS_SIGNUP_OPENED);
       isAdmin && history.push(ADMIN);
     }
-  }, [currentPopUpStatus, isSignUpBoxOpen]);
+  }, [currentPopUpStatus, isSignUpBoxOpen, isAdmin, history]);
 
   useEffect(() => {
     handleStatus(CLICK_AWAY);
