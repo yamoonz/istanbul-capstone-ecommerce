@@ -76,14 +76,24 @@ $fadedWhiteBright: #e5e2e2 !important;
     flex-wrap: wrap;
     text-transform: none;
 
+    .footerCopyright {
+      margin: auto;
+    }
+
     .footerIcons,
     .footerCopyright {
       min-width: 100%;
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .footerSocialIcon {
+      display: inline-block;
       margin-right: 20px;
+      width: 32px;
+      height: 32px;
     }
 
     .twitter:hover {

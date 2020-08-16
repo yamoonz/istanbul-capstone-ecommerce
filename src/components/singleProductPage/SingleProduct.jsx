@@ -36,13 +36,11 @@ export default function SingleProduct({ productData }) {
         <span className="productPrice">{price}$</span>
         <p className="productTitle">{title}</p>
         <p className="productDescription">{description}</p>
-        <input
-          type="number"
-          className="productQuantity"
-          name="quantity"
-          min="1"
-          max="10"
-        />
+        <input type="number" className="productQuantity" name="quantity" />
+        <div className="quantityIncAndDecBtns">
+          <button>+</button>
+          <button>-</button>
+        </div>
         <span className="quantity">Quantity</span>
         {hasSize && (
           <select name="productSizes" className="productSizes">
