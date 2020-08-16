@@ -1,0 +1,75 @@
+@import "../common/mixins";
+
+.singlePostContainer {
+  margin: 10%;
+  margin-top: 0;
+  padding-top: 100px;
+}
+
+.singlePostHeader {
+  text-align: center;
+  height: 20%;
+}
+
+.singlePostTitle {
+  font-family: "Playfair Display";
+  font-size: 70px;
+}
+
+.singlePostDate {
+  text-align: left;
+  color: gray;
+  font-size: 10px;
+  margin-bottom: 1%;
+}
+
+.singlePostType {
+  text-align: left;
+  color: gray;
+  position: relative;
+  font-size: 20px;
+  padding-left: 6%;
+  margin-left: -50px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: gray;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+  }
+}
+
+.singlePostMainImg {
+  height: 3% !important;
+  width: 100%;
+  object-fit: cover !important;
+  position: relative;
+}
+
+.singlePostContent {
+  text-align: left;
+  padding: 1%;
+}
+
+@include media(tablet-sm) {
+  .singlePostTitle {
+    font-size: 50px;
+  }
+
+  .singlePostDate {
+    font-size: 15px;
+  }
+
+  .singlePostType {
+    font-size: 15px;
+    padding-left: 3%;
+
+    &::before {
+      left: -20px;
+    }
+  }
+}

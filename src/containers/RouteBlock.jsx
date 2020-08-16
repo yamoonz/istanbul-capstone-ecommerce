@@ -9,6 +9,7 @@ import AdminPage from "../components/addProductsForm/AddProducts";
 import Home from "../components/home/Home";
 import SingleProductPage from "../components/singleProductPage/SingleProductPage";
 import ProfilePage from "../components/profile/ProfilePage";
+import SinglePostPage from "../components/blog/SinglePostPage";
 import NoMatch from "../components/nomatch/NoMatch";
 import { useSelector } from "react-redux";
 
@@ -22,6 +23,7 @@ export const RouteBlock = () => {
     <Switch>
       <Route path="/categories/:categoryName" component={ProductsPage} />
       <Route path="/products/:productId" component={SingleProductPage} />
+      <Route path="/blog/:postTitle" component={SinglePostPage} />
       <Route path="/products" component={ProductsPage} />
       <Route path="/shoppingcart" component={CartPage} />
       <Route path="/signup" component={SignUp} />
