@@ -1,38 +1,55 @@
 import React, { useState } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
-import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import {
+  logIn,
+  logOut,
+  logInError,
+  popUpStatus,
+} from "../../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const { isLoggedIn, authError } = useSelector(
+    (state) => state.authentication
+  );
+  const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
 
   const userLogout = (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
-      setIsAdmin(false);
-      setLoggedIn(false);
+      dispatch(logOut());
+      dispatch(popUpStatus(true));
     });
   };
 
   const userLogin = async (e) => {
     e.preventDefault();
-    const userLogin = await auth.signInWithEmailAndPassword(
-      emailValue,
-      passwordValue
-    );
+    let userLogin;
+    try {
+      userLogin = await auth.signInWithEmailAndPassword(
+        emailValue,
+        passwordValue
+      );
+    } catch (error) {
+      dispatch(logInError(error));
+    }
 
-    const loggedInUserName = await db
-      .collection("users")
-      .doc(userLogin.user.uid)
-      .get();
-    setIsAdmin(loggedInUserName.data().isAdmin);
-    setLoggedIn(true);
+    if (userLogin) {
+      const loggedInUserName = await db
+        .collection("users")
+        .doc(userLogin.user.uid)
+        .get();
+      dispatch(
+        logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
+      );
+      dispatch(popUpStatus(true));
+    }
   };
 
   const emailGroup = (
@@ -65,21 +82,23 @@ const LogInForm = () => {
     </Form.Group>
   );
 
+  const authErrorUi = <div>Oops!</div>;
+
+  const handleOnSubmit = (e) => {
+    if (isLoggedIn) {
+      userLogout(e);
+    } else {
+      userLogin(e);
+    }
+  };
+
   return (
-    <Row>
-      {isAdmin && <AddProducts />}
+    <>
       <Col className="signupForm">
-        <Form
-          onSubmit={(e) => {
-            if (isLoggedIn) {
-              userLogout(e);
-            } else {
-              userLogin(e);
-            }
-          }}
-        >
+        <Form onSubmit={handleOnSubmit}>
           {emailGroup}
           {passwordGroup}
+          {authError && authErrorUi}
           <Button
             variant="info"
             size="md"
@@ -90,7 +109,7 @@ const LogInForm = () => {
           </Button>
         </Form>
       </Col>
-    </Row>
+    </>
   );
 };
 
