@@ -72,7 +72,7 @@ export default function AddProducts() {
 
   return (
     <>
-      <AccessCheck />;
+      <AccessCheck />
       <Form onSubmit={(e) => addNewProductToDatabase(e)}>
         <Container className="productFormContainer">
           <Row className="productFormRow">

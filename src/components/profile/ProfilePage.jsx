@@ -5,7 +5,7 @@ import AccessCheck from "../common/AccessCheck";
 const ProfilePage = () => {
   return (
     <>
-      <AccessCheck />;
+      <AccessCheck />
       <GeneralSection />
     </>
   );

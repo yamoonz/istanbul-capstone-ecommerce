@@ -26,7 +26,7 @@ export default function SignUp() {
 
   return (
     <>
-      <AccessCheck />;
+      <AccessCheck />
       <div className="signUpContainer">
         <form className="signUpForm" onSubmit={createNewUser}>
           <h1 className="signUpTitle">Create Account</h1>

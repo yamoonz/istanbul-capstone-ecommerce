@@ -7,7 +7,7 @@ import AccessCheck from "../common/AccessCheck";
 const Cart = () => {
   return (
     <div className="shoppingCartWrapper">
-      <AccessCheck />;
+      <AccessCheck />
       <PaymentSum />
       <CartDetail />
     </div>

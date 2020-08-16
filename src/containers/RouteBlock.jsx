@@ -20,6 +20,7 @@ import {
   ADMIN,
   HOME,
 } from "./Route.paths.js";
+import SinglePostPage from "../components/blog/SinglePostPage";
 import NoMatch from "../components/nomatch/NoMatch";
 
 export const RouteBlock = () => {
@@ -27,6 +28,7 @@ export const RouteBlock = () => {
     <Switch>
       <Route path={`${CATEGORIES}/:categoryName`} component={ProductsPage} />
       <Route path={`${PRODUCTS}/:productId`} component={SingleProductPage} />
+      <Route path={`${BLOG}/:postTitle`} component={SinglePostPage} />
       <Route path={PRODUCTS} component={ProductsPage} />
       <Route path={SHOPPING_CART} component={CartPage} />
       <Route path={SIGN_UP} component={SignUp} />
