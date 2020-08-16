@@ -14,7 +14,7 @@ export default function AddProducts() {
   const [productFormSizes, setProductFormSizes] = useState({});
 
   // Add products to the database
-  const addNewProductToDatabase = async (e) => {
+  const addNewProductToDatabase = async e => {
     e.preventDefault();
 
     // Getting all images from the inputs and then pushing them into an array to post the data to the database
@@ -41,7 +41,7 @@ export default function AddProducts() {
       images: allImages,
       hasSize: hasSizes,
       sizes: allSizes,
-      price: productFormPrice,
+      price: productFormPrice
     };
 
     await db.collection("products").add(productInfo);
@@ -57,13 +57,13 @@ export default function AddProducts() {
     </>
   );
 
-  const handleImageInputChange = (e) => {
+  const handleImageInputChange = e => {
     const value = e.target.value;
     const key = e.target.name;
     setProductFormImages({ ...productFormImages, [key]: value });
   };
 
-  const handleSizeInputChange = (e) => {
+  const handleSizeInputChange = e => {
     const value = e.target.value;
     const key = e.target.name;
     setProductFormSizes({ ...productFormSizes, [key]: value });
@@ -71,21 +71,21 @@ export default function AddProducts() {
 
   return (
     <>
-      <Form onSubmit={(e) => addNewProductToDatabase(e)}>
+      <Form onSubmit={e => addNewProductToDatabase(e)}>
         <Container className="productFormContainer">
           <Row className="productFormRow">
             <Col>
               <Form.Control
                 type="text"
                 placeholder="Brand"
-                onChange={(e) => setProductFormBrand(e.target.value)}
+                onChange={e => setProductFormBrand(e.target.value)}
               />
             </Col>
             <Col>
               <Form.Control
                 type="text"
                 placeholder="Title"
-                onChange={(e) => setProductFormTitle(e.target.value)}
+                onChange={e => setProductFormTitle(e.target.value)}
               />
             </Col>
           </Row>
@@ -94,7 +94,7 @@ export default function AddProducts() {
               <Form.Control
                 type="text"
                 placeholder="Description"
-                onChange={(e) => setProductFormDescription(e.target.value)}
+                onChange={e => setProductFormDescription(e.target.value)}
               />
             </Col>
           </Row>
@@ -104,7 +104,7 @@ export default function AddProducts() {
                 <Form.Control
                   as="select"
                   defaultValue="Shoes"
-                  onChange={(e) => setProductFormCategory(e.target.value)}
+                  onChange={e => setProductFormCategory(e.target.value)}
                   placeholder="category"
                 >
                   <option value="Shoes">Shoes</option>
@@ -130,7 +130,7 @@ export default function AddProducts() {
               <Form.Control
                 type="number"
                 placeholder="Price"
-                onChange={(e) => setProductFormPrice(parseInt(e.target.value))}
+                onChange={e => setProductFormPrice(parseInt(e.target.value))}
               />
             </Col>
           </Row>

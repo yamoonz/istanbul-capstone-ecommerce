@@ -4,7 +4,7 @@ import {
   faFacebook,
   faTwitter,
   faGoogle,
-  faGithub,
+  faGithub
 } from "@fortawesome/free-brands-svg-icons";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";

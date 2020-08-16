@@ -9,7 +9,7 @@ export default function SingleProduct({ productData }) {
   const hasSize = true;
   const sizes = [41, 42, 43, 44];
   const productImgsSliderSetting = {
-    customPaging: function (i) {
+    customPaging: function(i) {
       return <img src={`${images[i]}`} alt="product" className="smallImgs" />;
     },
     dots: true,
@@ -17,7 +17,7 @@ export default function SingleProduct({ productData }) {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToScroll: 1
   };
 
   return (
@@ -47,7 +47,7 @@ export default function SingleProduct({ productData }) {
             <option selected="selected" disabled>
               Size
             </option>
-            {sizes.map((size) => (
+            {sizes.map(size => (
               <option value={size}>{size}</option>
             ))}
           </select>

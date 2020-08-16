@@ -12,7 +12,7 @@ const LogInForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
 
-  const userLogout = (e) => {
+  const userLogout = e => {
     e.preventDefault();
     auth.signOut().then(() => {
       setIsAdmin(false);
@@ -20,7 +20,7 @@ const LogInForm = () => {
     });
   };
 
-  const userLogin = async (e) => {
+  const userLogin = async e => {
     e.preventDefault();
     const userLogin = await auth.signInWithEmailAndPassword(
       emailValue,
@@ -41,7 +41,7 @@ const LogInForm = () => {
       <Form.Control
         type="email"
         placeholder="Enter email"
-        onChange={(e) => setEmailValue(e.target.value)}
+        onChange={e => setEmailValue(e.target.value)}
       />
     </Form.Group>
   );
@@ -52,7 +52,7 @@ const LogInForm = () => {
       <Form.Control
         type="password"
         placeholder="Password"
-        onChange={(e) => setPasswordValue(e.target.value)}
+        onChange={e => setPasswordValue(e.target.value)}
       />
     </Form.Group>
   );
@@ -62,7 +62,7 @@ const LogInForm = () => {
       {isAdmin && <AddProducts />}
       <Col className="signupForm">
         <Form
-          onSubmit={(e) => {
+          onSubmit={e => {
             if (isLoggedIn) {
               userLogout(e);
             } else {

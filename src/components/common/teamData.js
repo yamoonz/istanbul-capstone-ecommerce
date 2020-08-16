@@ -7,26 +7,26 @@ import burak from "../../assets/img/burak.png";
 export const TEAM_DATA = [
   {
     name: "Omar Alithawi",
-    image: omar,
+    image: omar
   },
 
   {
     name: "Burak Selvi",
-    image: burak,
+    image: burak
   },
 
   {
     name: "Mira Arar",
-    image: mira,
+    image: mira
   },
 
   {
     name: "Emre Erdem",
-    image: emre,
+    image: emre
   },
 
   {
     name: "Yaman Kahveci",
-    image: yaman,
-  },
+    image: yaman
+  }
 ];

@@ -4,7 +4,7 @@ import db from "../../config/firebaseConfig";
 import "./signUp.scss";
 
 export default function SignUp() {
-  const createNewUser = async (e) => {
+  const createNewUser = async e => {
     e.preventDefault();
     const userName = e.target[0].value;
     const email = e.target[1].value;
@@ -12,15 +12,22 @@ export default function SignUp() {
     const newUser = await auth.createUserWithEmailAndPassword(email, password);
 
     // Create new subcollection
-    await db.collection("users").doc(newUser.user.uid).collection("liked").add({
-      liked: 0,
-    });
+    await db
+      .collection("users")
+      .doc(newUser.user.uid)
+      .collection("liked")
+      .add({
+        liked: 0
+      });
 
     // Set new user data
-    await db.collection("users").doc(newUser.user.uid).set({
-      name: userName,
-      isAdmin: false,
-    });
+    await db
+      .collection("users")
+      .doc(newUser.user.uid)
+      .set({
+        name: userName,
+        isAdmin: false
+      });
   };
 
   return (

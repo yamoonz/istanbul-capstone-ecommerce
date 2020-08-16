@@ -10,7 +10,7 @@ const currentBoardIDReducer = (state = [], action) => {
 };
 
 const allReducers = combineReducers({
-  currentBoardIDReducer,
+  currentBoardIDReducer
 });
 
 export default allReducers;

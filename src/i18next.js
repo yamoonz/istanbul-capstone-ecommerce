@@ -6,11 +6,11 @@ import translationTR from "./components/locales/tr/translation.json";
 // the translations
 const resources = {
   ar: {
-    translation: translationAR,
+    translation: translationAR
   },
   tr: {
-    translation: translationTR,
-  },
+    translation: translationTR
+  }
 };
 
 i18n
@@ -22,8 +22,8 @@ i18n
     keySeparator: false, // we do not use keys in form messages.welcome
 
     interpolation: {
-      escapeValue: false, // react already safes from xss.
-    },
+      escapeValue: false // react already safes from xss.
+    }
   });
 
 export default i18n;

@@ -8,29 +8,36 @@ export default function GoogleAndFacebookLogIn() {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-  const postData = async (user) => {
+  const postData = async user => {
     const info = {
       name: user.displayName,
       userId: user.uid,
       imageUrl: user.photoURL,
-      isAdmin: false,
+      isAdmin: false
     };
     // Create new subcollection
-    await db.collection("users").doc(info.userId).collection("liked").add({
-      liked: 0,
-    });
-    await db.collection("users").doc(info.userId).set(info);
+    await db
+      .collection("users")
+      .doc(info.userId)
+      .collection("liked")
+      .add({
+        liked: 0
+      });
+    await db
+      .collection("users")
+      .doc(info.userId)
+      .set(info);
   };
 
-  const logIn = (provider) => {
+  const logIn = provider => {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then((result) => {
+      .then(result => {
         const user = result.user;
         postData(user);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error.message);
       });
   };

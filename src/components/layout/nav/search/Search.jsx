@@ -21,7 +21,7 @@ const Search = () => {
   };
 
   // Set input values by onChange and show preview card only if there is something typed.
-  const handleSearchChanges = (e) => {
+  const handleSearchChanges = e => {
     setSearchQueryContainer(e.target.value);
     handleSearchInputStatus();
   };
@@ -31,7 +31,7 @@ const Search = () => {
       ? setShowEmptySearchWarning(true)
       : setShowEmptySearchWarning(false);
 
-  const previewItemsContainer = MOCK_DATABASE.filter((product) =>
+  const previewItemsContainer = MOCK_DATABASE.filter(product =>
     product.tags.includes(searchQueryContainer)
   )
     .slice(0, AMOUNT_OF_PRODUCT_IN_SEARCH_PREVIEW)

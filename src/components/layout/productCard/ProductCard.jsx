@@ -19,7 +19,7 @@ export default function ProductCard(props) {
     slidesToScroll: 1,
     initialSlide: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5000
   };
 
   const likeBtn = isLiked ? (

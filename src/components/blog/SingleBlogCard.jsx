@@ -13,7 +13,7 @@ export default function SingleBlogCard(props) {
       <Card.Body>
         <Card.Text
           dangerouslySetInnerHTML={{
-            __html: props.post.excerpt.rendered,
+            __html: props.post.excerpt.rendered
           }}
         ></Card.Text>
       </Card.Body>

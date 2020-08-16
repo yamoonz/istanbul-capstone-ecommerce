@@ -17,35 +17,35 @@ function navbarIconsReducer(state, action) {
         ...state,
         isLanguageDropdownOpen: !state.isLanguageDropdownOpen,
         isSearchBoxOpen: false,
-        isSignUpBoxOpen: false,
+        isSignUpBoxOpen: false
       };
 
     case "IS_SIGNUP_OPENED":
       return {
         ...state,
         isSignUpBoxOpen: !state.isSignUpBoxOpen,
-        isSearchBoxOpen: false,
+        isSearchBoxOpen: false
       };
 
     case "IS_SEARCH_OPENED":
       return {
         ...state,
         isSearchBoxOpen: !state.isSearchBoxOpen,
-        isSignUpBoxOpen: false,
+        isSignUpBoxOpen: false
       };
 
     case "IS_HAMBURGER_OPENED":
       return {
         isHamburgerOpen: !state.isHamburgerOpen,
         isSignUpBoxOpen: false,
-        isSearchBoxOpen: false,
+        isSearchBoxOpen: false
       };
 
     case "CLICK_AWAY":
       return {
         isHamburgerOpen: false,
         isSignUpBoxOpen: false,
-        isSearchBoxOpen: false,
+        isSearchBoxOpen: false
       };
 
     default:
@@ -62,17 +62,17 @@ const Navbar = () => {
       isLanguageDropdownOpen,
       isSignUpBoxOpen,
       isSearchBoxOpen,
-      isHamburgerOpen,
+      isHamburgerOpen
     },
-    dispatch,
+    dispatch
   ] = useReducer(navbarIconsReducer, {
     isLanguageDropdownOpen: false,
     isSignUpBoxOpen: false,
     isSearchBoxOpen: false,
-    isHamburgerOpen: false,
+    isHamburgerOpen: false
   });
 
-  const handleStatus = (type) => dispatch({ type });
+  const handleStatus = type => dispatch({ type });
 
   const hamburgerMenu = (
     <Row
@@ -84,7 +84,7 @@ const Navbar = () => {
   );
 
   // To give navbar background on components with white background
-  const navBarClassForLocation = (currentLocation) => {
+  const navBarClassForLocation = currentLocation => {
     const componentsLocation = ["/blog", "/products", "/shoppingcart"];
     for (let i in componentsLocation) {
       if (currentLocation === componentsLocation[i]) {
@@ -97,9 +97,9 @@ const Navbar = () => {
   };
 
   // To give navbar background on scrolling
-  const changeNavbarClassNameOnScroll = (currentLocation) => {
+  const changeNavbarClassNameOnScroll = currentLocation => {
     const componentsLocation = ["/", "/about"];
-    const listener = document.addEventListener("scroll", (e) => {
+    const listener = document.addEventListener("scroll", e => {
       const scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 90) {
         if (scrollStateOnTop) {

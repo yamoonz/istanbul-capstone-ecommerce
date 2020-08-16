@@ -9,7 +9,7 @@ var firebaseConfig = {
   projectId: "testcapstone-project",
   storageBucket: "testcapstone-project.appspot.com",
   messagingSenderId: "866376480749",
-  appId: "1:866376480749:web:24063b63ba331fb83a19e4",
+  appId: "1:866376480749:web:24063b63ba331fb83a19e4"
 };
 
 // Initialize Firebase

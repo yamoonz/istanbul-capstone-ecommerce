@@ -28,53 +28,53 @@ const SLIDER_SETTINGS = {
       settings: {
         slidesToShow: 3,
         slidesToScroll: 1,
-        arrows: false,
-      },
+        arrows: false
+      }
     },
     {
       breakpoint: 500,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: false,
-      },
-    },
-  ],
+        arrows: false
+      }
+    }
+  ]
 };
 
 const CATEGORIES_INFO = [
   {
     name: "Sports",
-    img: sportImg,
+    img: sportImg
   },
   {
     name: "Glasses",
-    img: glassesImg,
+    img: glassesImg
   },
   {
     name: "Set Up",
-    img: setUpImg,
+    img: setUpImg
   },
   {
     name: "Shoes",
-    img: shoesImg,
+    img: shoesImg
   },
   {
     name: "Health",
-    img: sterhoscopeImg,
+    img: sterhoscopeImg
   },
   {
     name: "Nutrition",
-    img: NutritionImg,
+    img: NutritionImg
   },
   {
     name: "Personal Care",
-    img: selfCareimg,
-  },
+    img: selfCareimg
+  }
 ];
 
 export default function Categories() {
-  const Category = (props) => {
+  const Category = props => {
     return (
       <div className="card">
         <img alt={props.category.name} src={`${props.category.img}`} />
@@ -88,7 +88,7 @@ export default function Categories() {
       <h1 className="categoryTitle">Categories</h1>
 
       <Slider {...SLIDER_SETTINGS} className="cardWrapper">
-        {CATEGORIES_INFO.map((cat) => (
+        {CATEGORIES_INFO.map(cat => (
           <NavLink to={`/categories/${cat.name.toLowerCase()}`} key={cat.name}>
             <Category category={cat} className="row" />
           </NavLink>
