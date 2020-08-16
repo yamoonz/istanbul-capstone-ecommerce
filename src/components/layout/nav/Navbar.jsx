@@ -9,10 +9,19 @@ import "./Navbar.scss";
 import LanguageDropdown from "../../home/LanguageDropdown";
 import ClickAwayListener from "react-click-away-listener";
 import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { popUpStatus } from "../../redux/actions/index";
+import {
+  IS_LANGUAGE_DROPDOWN_OPENED,
+  IS_SIGNUP_OPENED,
+  IS_SEARCH_OPENED,
+  IS_HAMBURGER_OPENED,
+  CLICK_AWAY,
+} from "./navbarFormConstants.js";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
-    case "IS_LANGUAGE_DROPDOWN_OPENED":
+    case IS_LANGUAGE_DROPDOWN_OPENED:
       return {
         ...state,
         isLanguageDropdownOpen: !state.isLanguageDropdownOpen,
@@ -20,28 +29,28 @@ function navbarIconsReducer(state, action) {
         isSignUpBoxOpen: false,
       };
 
-    case "IS_SIGNUP_OPENED":
+    case IS_SIGNUP_OPENED:
       return {
         ...state,
         isSignUpBoxOpen: !state.isSignUpBoxOpen,
         isSearchBoxOpen: false,
       };
 
-    case "IS_SEARCH_OPENED":
+    case IS_SEARCH_OPENED:
       return {
         ...state,
         isSearchBoxOpen: !state.isSearchBoxOpen,
         isSignUpBoxOpen: false,
       };
 
-    case "IS_HAMBURGER_OPENED":
+    case IS_HAMBURGER_OPENED:
       return {
         isHamburgerOpen: !state.isHamburgerOpen,
         isSignUpBoxOpen: false,
         isSearchBoxOpen: false,
       };
 
-    case "CLICK_AWAY":
+    case CLICK_AWAY:
       return {
         isHamburgerOpen: false,
         isSignUpBoxOpen: false,
@@ -54,6 +63,8 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
+  const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
+  const dispatch = useDispatch();
   const [
     navbarWithTransparentBackground,
     setNavbarWithTransparentBackground,
@@ -67,7 +78,7 @@ const Navbar = () => {
       isSearchBoxOpen,
       isHamburgerOpen,
     },
-    dispatch,
+    localeDispatch,
   ] = useReducer(navbarIconsReducer, {
     isLanguageDropdownOpen: false,
     isSignUpBoxOpen: false,
@@ -75,12 +86,12 @@ const Navbar = () => {
     isHamburgerOpen: false,
   });
 
-  const handleStatus = (type) => dispatch({ type });
+  const handleStatus = (type) => localeDispatch({ type });
 
   const hamburgerMenu = (
     <Row
       className="hamburgerContainer navbarItemWrapper"
-      onClick={() => handleStatus("IS_HAMBURGER_OPENED")}
+      onClick={() => handleStatus(IS_HAMBURGER_OPENED)}
     >
       <Col className="hamburgerIcon"></Col>
     </Row>
@@ -155,13 +166,16 @@ const Navbar = () => {
         <div className="iconWrapper">
           <i
             className="fas fa-search"
-            onClick={() => handleStatus("IS_SEARCH_OPENED")}
+            onClick={() => handleStatus(IS_SEARCH_OPENED)}
           ></i>
         </div>
         <div className="iconWrapper">
           <i
             className="fas fa-user-circle"
-            onClick={() => handleStatus("IS_SIGNUP_OPENED")}
+            onClick={() => {
+              handleStatus(IS_SIGNUP_OPENED);
+              dispatch(popUpStatus(false));
+            }}
           ></i>
         </div>
         <div className="iconWrapper">
@@ -172,7 +186,7 @@ const Navbar = () => {
         <div className="iconWrapper">
           <i
             className="fas fa-globe"
-            onClick={() => handleStatus("IS_LANGUAGE_DROPDOWN_OPENED")}
+            onClick={() => handleStatus(IS_LANGUAGE_DROPDOWN_OPENED)}
           ></i>
           {isLanguageDropdownOpen && <LanguageDropdown />}
         </div>
@@ -183,13 +197,11 @@ const Navbar = () => {
   const closeSignUpForm = (
     <i
       className="fas fa-times closeSignUpForm"
-      onClick={() => handleStatus("IS_SIGNUP_OPENED")}
+      onClick={() => handleStatus(IS_SIGNUP_OPENED)}
     ></i>
   );
 
-  const handleClickAway = () => {
-    handleStatus("CLICK_AWAY");
-  };
+  const handleClickAway = () => handleStatus(CLICK_AWAY);
 
   const navbarClassName = () => {
     let classNames = ["navbar"];
@@ -208,6 +220,16 @@ const Navbar = () => {
     changeNavbarClassNameOnScroll(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, scrollStateOnTop]);
+
+  useEffect(() => {
+    if (currentPopUpStatus && isSignUpBoxOpen) {
+      handleStatus(IS_SIGNUP_OPENED);
+    }
+  }, [currentPopUpStatus, isSignUpBoxOpen]);
+
+  useEffect(() => {
+    handleStatus(CLICK_AWAY);
+  }, [location.pathname]);
 
   return (
     <>
