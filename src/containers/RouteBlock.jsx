@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import SignUp from "../components/auth/signUp/SignUp";
 import CartPage from "../components/shoppingCart/Cart";
 import BlogOverview from "../components/blog/BlogOverview";
@@ -11,8 +11,14 @@ import SingleProductPage from "../components/singleProductPage/SingleProductPage
 import ProfilePage from "../components/profile/ProfilePage";
 import SinglePostPage from "../components/blog/SinglePostPage";
 import NoMatch from "../components/nomatch/NoMatch";
+import { useSelector } from "react-redux";
+
+const ADMIN_PAGE = "/dashboard";
 
 export const RouteBlock = () => {
+  const history = useHistory();
+  const isAdmin = useSelector((state) => state.authentication.isAdmin);
+
   return (
     <Switch>
       <Route path="/categories/:categoryName" component={ProductsPage} />
@@ -24,7 +30,8 @@ export const RouteBlock = () => {
       <Route path="/blog" component={BlogOverview} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/about" component={AboutPage} />
-      <Route path="/dashboard" component={AdminPage} />
+      <Route path={ADMIN_PAGE} component={AdminPage} />
+      {isAdmin && history.push(ADMIN_PAGE)}
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
     </Switch>

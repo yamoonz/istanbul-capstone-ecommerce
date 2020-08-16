@@ -19,6 +19,8 @@ import {
   CLICK_AWAY,
 } from "./navbarFormConstants.js";
 
+const CLOSE_MODAL_AFTER = 2500;
+
 function navbarIconsReducer(state, action) {
   switch (action.type) {
     case IS_LANGUAGE_DROPDOWN_OPENED:
@@ -222,7 +224,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (currentPopUpStatus && isSignUpBoxOpen) {
-      setTimeout(() => handleStatus(IS_SIGNUP_OPENED), 2000);
+      setTimeout(() => handleStatus(IS_SIGNUP_OPENED), CLOSE_MODAL_AFTER);
     }
   }, [currentPopUpStatus, isSignUpBoxOpen]);
 
