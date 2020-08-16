@@ -20,6 +20,7 @@ import {
   ADMIN,
   HOME,
 } from "./Route.paths.js";
+import NoMatch from "../components/nomatch/NoMatch";
 
 export const RouteBlock = () => {
   return (
@@ -34,6 +35,7 @@ export const RouteBlock = () => {
       <Route path={ABOUT} component={AboutPage} />
       <Route path={ADMIN} component={AdminPage} />
       <Route exact path={HOME} component={Home} />
+      <Route component={NoMatch} />
     </Switch>
   );
 };

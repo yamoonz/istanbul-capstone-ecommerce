@@ -12,7 +12,7 @@ import {
 const REDIRECT_TO_HOME = <Redirect to={HOME} />;
 
 const AccessCheck = () => {
-  const { isLoggedIn, isAdmin } = useSelector((state) => state.handleLogin);
+  const { isLoggedIn, isAdmin } = useSelector((state) => state.authentication);
   const { pathname } = useLocation();
 
   const renderSwitch = () => {
