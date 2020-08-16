@@ -4,7 +4,8 @@ import "./singlePostPage.scss";
 export default function SinglePostPage(props) {
   const postProps = props.location.state;
   const title = postProps.title.rendered;
-  const date = postProps.date.split("T")[0];
+  // Split to exclude the time part after "T"
+  const dateString = postProps.date.split("T")[0];
   const type = postProps.type;
   const content = postProps.content.rendered;
 
@@ -13,7 +14,7 @@ export default function SinglePostPage(props) {
       <h6 className="singlePostType">{type}</h6>
       <div className="singlePostHeader">
         <h1 className="singlePostTitle">{title}</h1>
-        <h6 className="singlePostDate">{date}</h6>
+        <h6 className="singlePostDate">{dateString}</h6>
       </div>
       <div>
         <img

@@ -18,7 +18,7 @@ export default function BlogOverviewHeader(props) {
               alt="CardImage"
             />
             <h6>Me</h6>
-            <h6>{latestPost.date}</h6>
+            <h6>{latestPost.date.split("T")[0]}</h6>
           </div>
           <h1>{latestPost.title.rendered}</h1>
           <div
