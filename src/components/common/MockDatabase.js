@@ -48,6 +48,7 @@ export const MOCK_DATABASE = [
     ],
     brand: "Nike",
     price: 199.99,
+    quantity: 1,
     tags: ["shoe", "shoes", "nike", "airmax", "air"],
   },
   {
@@ -60,6 +61,7 @@ export const MOCK_DATABASE = [
     ],
     brand: "Nike",
     price: 199.99,
+    quantity: 1,
     tags: ["shoe", "shoes", "nike", "airmax", "air"],
   },
   {
@@ -72,6 +74,7 @@ export const MOCK_DATABASE = [
     ],
     brand: "Nike",
     price: 199.99,
+    quantity: 1,
     tags: ["shoe", "shoes", "nike", "airmax", "air"],
   },
 ];

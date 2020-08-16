@@ -5,20 +5,20 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import "./CartDetail.scss";
 import {
-  deleteItemFromCartAction,
+  deleteItemFromCart,
   increaseProductQuantity,
   decreaseProductQuantity,
   sumTotalPrice,
-  addOneMoreItem,
-  removeOneMoreItem,
+  addPriceOfOneItem,
+  subtractPriceOfOneItem,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartDetail = (props) => {
   const dispatch = useDispatch();
-  const productsData = useSelector((state) => state.addOrDeleteProductData);
+  const productsData = useSelector((state) => state.productsData);
   // Getting all the total prices from individual items and add them together
-  const itemsTotalPricesArray = useSelector((state) => state.getTotalPrice);
+  const itemsTotalPricesArray = useSelector((state) => state.totalPrice);
   const allItemsTotalPrice = itemsTotalPricesArray.reduce((cur, acc) => {
     return cur + acc;
   }, 0);
@@ -29,7 +29,7 @@ const CartDetail = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // This function deletes thw whole product from the shopping cart and subtract the corresponding price from the total price
+  // This function deletes the whole product from the shopping cart and subtract the corresponding price from the total price
   const deleteItemfromCartData = () => {
     const copyOfData = productsData.slice();
     for (let i = 0; i < copyOfData.length; i++) {
@@ -39,12 +39,12 @@ const CartDetail = (props) => {
           copyOfData.splice(i, 1);
         }
         dispatch(
-          removeOneMoreItem(
+          subtractPriceOfOneItem(
             allItemsTotalPrice,
             props.info.price * props.info.quantity
           )
         );
-        dispatch(deleteItemFromCartAction(copyOfData));
+        dispatch(deleteItemFromCart(copyOfData));
         props.info.quantity = 1;
         break;
       }
@@ -123,7 +123,9 @@ const CartDetail = (props) => {
           className="countModifier"
           onClick={() => {
             dispatch(decreaseProductQuantity(productsData));
-            dispatch(removeOneMoreItem(allItemsTotalPrice, props.info.price));
+            dispatch(
+              subtractPriceOfOneItem(allItemsTotalPrice, props.info.price)
+            );
           }}
         >
           -
@@ -133,7 +135,7 @@ const CartDetail = (props) => {
           className="countModifier"
           onClick={() => {
             dispatch(increaseProductQuantity(productsData));
-            dispatch(addOneMoreItem(allItemsTotalPrice, props.info.price));
+            dispatch(addPriceOfOneItem(allItemsTotalPrice, props.info.price));
           }}
         >
           +

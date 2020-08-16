@@ -3,11 +3,10 @@ import {
   ADD_TO_CART,
   DELETE_FROM_CART,
   SUM_TOTAL_PRICE,
-  ADD_ONE_MORE_ITEM,
-  REMOVE_ITEM,
-  QUANTITY_IN_SINGLE_PRODUCT,
-  INCREASE_MODIFY_QUANTITY,
-  DECREASE_MODIFY_QUANTITY,
+  ADD_PRICE_OF_ONE_ITEM,
+  SUBTRACT_PRICE_OF_ONE_ITEM,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY,
 } from "../actions/actionsTypes";
 
 const addOrDeleteProductData = (state = [], action) => {
@@ -23,9 +22,9 @@ const addOrDeleteProductData = (state = [], action) => {
 
 const getModifiedQuantity = (state = [], action) => {
   switch (action.type) {
-    case INCREASE_MODIFY_QUANTITY:
+    case INCREASE_QUANTITY:
       return action.payload();
-    case DECREASE_MODIFY_QUANTITY:
+    case DECREASE_QUANTITY:
       return action.payload();
     default:
       return state;
@@ -37,29 +36,19 @@ const getTotalPrice = (state = [], action) => {
   switch (action.type) {
     case SUM_TOTAL_PRICE:
       return [...state, action.payload];
-    case ADD_ONE_MORE_ITEM:
+    case ADD_PRICE_OF_ONE_ITEM:
       return [action.payload];
-    case REMOVE_ITEM:
+    case SUBTRACT_PRICE_OF_ONE_ITEM:
       return [action.payload];
-    default:
-      return state;
-  }
-};
-
-const getProductQunatity = (state = [], action) => {
-  switch (action.type) {
-    case QUANTITY_IN_SINGLE_PRODUCT:
-      return action.payload;
     default:
       return state;
   }
 };
 
 const allReducers = combineReducers({
-  addOrDeleteProductData,
-  getProductQunatity,
-  getTotalPrice,
-  getModifiedQuantity,
+  productsData: addOrDeleteProductData,
+  totalPrice: getTotalPrice,
+  modifiedQuantity: getModifiedQuantity,
 });
 
 export default allReducers;

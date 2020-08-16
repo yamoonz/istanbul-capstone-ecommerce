@@ -11,7 +11,7 @@ import {
 export default function SingleProduct({ singleProductData }) {
   const dispatch = useDispatch();
   const { title, images, brand, price, quantity } = singleProductData;
-  const productsData = useSelector((state) => state.addOrDeleteProductData);
+  const productsData = useSelector((state) => state.productsData);
   const [currentProductQuantity, setCurrentProductQuantity] = React.useState(0);
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";

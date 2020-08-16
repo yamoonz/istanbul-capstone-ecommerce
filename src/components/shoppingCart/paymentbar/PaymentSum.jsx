@@ -11,7 +11,7 @@ const SHIPPING_COST = 10;
 const AMOUNT_TO_FREE_SHIPPING = 150;
 
 const PaymentSum = () => {
-  const allPrices = useSelector((state) => state.getTotalPrice);
+  const allPrices = useSelector((state) => state.totalPrice);
   const total = allPrices.reduce((cur, acc) => {
     return cur + acc;
   }, 0);
