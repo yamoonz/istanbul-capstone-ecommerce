@@ -65,7 +65,10 @@ function navbarIconsReducer(state, action) {
 const Navbar = () => {
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
-  const [navbarWithBackground, setNavbarWithBackground] = useState(false);
+  const [
+    navbarWithTransparentBackground,
+    setNavbarWithTransparentBackground,
+  ] = useState(false);
   const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
 
   const [
@@ -94,38 +97,37 @@ const Navbar = () => {
     </Row>
   );
 
+  const componentsLocation = ["/", "/about", "/signup"];
   // To give navbar background on components with white background
   const navBarClassForLocation = (currentLocation) => {
-    const componentsLocation = ["/blog", "/products", "/shoppingcart"];
     for (let i in componentsLocation) {
       if (currentLocation === componentsLocation[i]) {
-        setNavbarWithBackground(true);
+        setNavbarWithTransparentBackground(true);
         break;
       } else {
-        setNavbarWithBackground(false);
+        setNavbarWithTransparentBackground(false);
       }
     }
   };
 
   // To give navbar background on scrolling
   const changeNavbarClassNameOnScroll = (currentLocation) => {
-    const componentsLocation = ["/", "/about"];
     const listener = document.addEventListener("scroll", (e) => {
       const scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 90) {
         if (scrollStateOnTop) {
           setScrollStateOnTop(false);
-          setNavbarWithBackground(true);
+          setNavbarWithTransparentBackground(false);
         }
       } else {
         if (!scrollStateOnTop) {
           for (let i in componentsLocation) {
             if (currentLocation === componentsLocation[i]) {
               setScrollStateOnTop(true);
-              setNavbarWithBackground(false);
+              setNavbarWithTransparentBackground(true);
               break;
             } else {
-              setNavbarWithBackground(true);
+              setNavbarWithTransparentBackground(false);
             }
           }
         }
@@ -205,8 +207,8 @@ const Navbar = () => {
     let classNames = ["navbar"];
     if (isSearchBoxOpen) {
       classNames.push("moveOverHeader");
-    } else if (navbarWithBackground) {
-      classNames.push("navbarWithBackground");
+    } else if (navbarWithTransparentBackground) {
+      classNames.push("navbarWithTransparentBackground");
     }
     return classNames.join(" ");
   };
