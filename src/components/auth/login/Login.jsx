@@ -1,81 +1,114 @@
 import React, { useState, useRef } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
-import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
+import Spinner from "react-bootstrap/Spinner";
+import {
+  logIn,
+  logOut,
+  logInError,
+  popUpStatus,
+} from "../../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
-const ALERT_OPEN_SECONDS = 3000;
+const ALERT_OPEN_SECONDS = 2500;
+const VALIDATING_TEXT = "Validating...";
+const LOG_IN_TEXT = "Log in";
+const LOG_OUT_TEXT = "Log out";
 
 const LogInForm = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const { isLoggedIn, isAuthFailed, isAuthSucceeded } = useSelector(
+    (state) => state.authentication
+  );
+  const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
-  const [authErrorTarget, setAuthErrorTarget] = useState(null);
-  const [errorState, setErrorState] = useState(false);
-  const authAlertContainer = useRef(null);
+  const [authErrorTargetUi, setAuthErrorTargetUi] = useState(null);
+  const authAlertContainerUi = useRef(null);
+  const [isValidating, setIsValidating] = useState(false);
 
   const userLogout = (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
-      setIsAdmin(false);
-      setLoggedIn(false);
+      dispatch(logInError(false, false));
+      dispatch(logOut());
+      dispatch(popUpStatus(true));
     });
   };
 
   const userLogin = async (e) => {
     e.preventDefault();
-    const userLogin = await auth.signInWithEmailAndPassword(
-      emailValue,
-      passwordValue
-    );
+    setIsValidating(true);
+    let userLogin;
+    try {
+      userLogin = await auth.signInWithEmailAndPassword(
+        emailValue,
+        passwordValue
+      );
+    } catch (error) {
+      dispatch(logInError(true));
+      setIsValidating(false);
+      setTimeout(() => dispatch(logInError(false)), ALERT_OPEN_SECONDS);
+    }
 
-    const loggedInUserName = await db
-      .collection("users")
-      .doc(userLogin.user.uid)
-      .get();
-    setIsAdmin(loggedInUserName.data().isAdmin);
-    setLoggedIn(true);
+    if (userLogin) {
+      const loggedInUserName = await db
+        .collection("users")
+        .doc(userLogin.user.uid)
+        .get();
+      setIsValidating(false);
+      dispatch(logInError(false, true));
+      dispatch(
+        logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
+      );
+      dispatch(popUpStatus(true));
+    }
   };
 
   const handleClick = (e) => {
-    setAuthErrorTarget(e.target);
-    setErrorState(true);
-    setTimeout(() => setErrorState(false), ALERT_OPEN_SECONDS);
+    setAuthErrorTargetUi(e.target);
   };
 
   const emailGroup = (
-    <Form.Group controlId="formGroupEmail">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        type="email"
-        placeholder="Enter email"
-        onChange={(e) => setEmailValue(e.target.value)}
-      />
+    <Form.Group controlId="formGroupEmail" className="formGroupEmail">
+      <Form.Label className="formInputLabel">Email address</Form.Label>
+      <div className="formInputWrapper">
+        <i className="fas fa-user-circle"></i>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          className="formInput"
+          onChange={(e) => setEmailValue(e.target.value)}
+        />
+      </div>
     </Form.Group>
   );
 
   const passwordGroup = (
     <Form.Group controlId="formGroupPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPasswordValue(e.target.value)}
-      />
+      <Form.Label className="formInputLabel">Password</Form.Label>
+      <div className="formInputWrapper">
+        <i className="fas fa-key"></i>
+        <Form.Control
+          type="password"
+          placeholder="Enter your password"
+          className="formInput"
+          onChange={(e) => setPasswordValue(e.target.value)}
+        />
+      </div>
     </Form.Group>
   );
 
   const authErrorUi = (
     <Overlay
-      show={errorState}
-      target={authErrorTarget}
+      show={isAuthFailed}
+      target={authErrorTargetUi}
       placement="bottom"
-      container={authAlertContainer.current}
+      container={authAlertContainerUi.current}
       containerPadding={20}
     >
       <Popover>
@@ -86,35 +119,68 @@ const LogInForm = () => {
     </Overlay>
   );
 
+  const authSuccessUi = (
+    <Overlay
+      show={isAuthSucceeded}
+      target={authErrorTargetUi}
+      placement="bottom"
+      container={authAlertContainerUi.current}
+      containerPadding={20}
+    >
+      <Popover>
+        <Popover.Title as="h2" className="authSucceededText">
+          Logged in succesfully!
+        </Popover.Title>
+      </Popover>
+    </Overlay>
+  );
+
+  const handleOnSubmit = (e) => {
+    if (isLoggedIn) {
+      userLogout(e);
+    } else {
+      userLogin(e);
+    }
+  };
+
+  const validationButton = (
+    <Button variant="info" size="md" className="loginButton" disabled>
+      <Spinner
+        as="span"
+        animation="grow"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+        className="validationSpinner"
+      />
+      {VALIDATING_TEXT}
+    </Button>
+  );
+
+  const loginButton = (
+    <Button
+      variant="info"
+      size="md"
+      className="loginButton"
+      type="submit"
+      onClick={(e) => handleClick(e)}
+    >
+      {isLoggedIn ? LOG_OUT_TEXT : LOG_IN_TEXT}
+    </Button>
+  );
+
   return (
-    <Row>
-      {isAdmin && <AddProducts />}
+    <>
       <Col className="signupForm">
-        <Form
-          onSubmit={(e) => {
-            if (isLoggedIn) {
-              userLogout(e);
-            } else {
-              userLogin(e);
-            }
-          }}
-          ref={authAlertContainer}
-        >
+        <Form onSubmit={handleOnSubmit} ref={authAlertContainerUi}>
           {emailGroup}
           {passwordGroup}
-          <Button
-            variant="info"
-            size="md"
-            className="loginButton"
-            type="submit"
-            onClick={(e) => handleClick(e)}
-          >
-            {`${isLoggedIn ? "Log out" : "Log in"}`}
-          </Button>
-          {authErrorUi}
+          {isValidating ? validationButton : loginButton}
+          {isAuthFailed && authErrorUi}
+          {isAuthSucceeded && authSuccessUi}
         </Form>
       </Col>
-    </Row>
+    </>
   );
 };
 

@@ -9,6 +9,7 @@ import AdminPage from "../components/addProductsForm/AddProducts";
 import Home from "../components/home/Home";
 import SingleProductPage from "../components/singleProductPage/SingleProductPage";
 import ProfilePage from "../components/profile/ProfilePage";
+import NoMatch from "../components/nomatch/NoMatch";
 
 export const RouteBlock = () => {
   return (
@@ -21,8 +22,9 @@ export const RouteBlock = () => {
       <Route path="/blog" component={BlogOverview} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/about" component={AboutPage} />
-      <Route path="/admin" component={AdminPage} />
+      <Route path="/dashboard" component={AdminPage} />
       <Route exact path="/" component={Home} />
+      <Route component={NoMatch} />
     </Switch>
   );
 };
