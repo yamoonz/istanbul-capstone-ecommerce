@@ -17,35 +17,35 @@ function navbarIconsReducer(state, action) {
         ...state,
         isLanguageDropdownOpen: !state.isLanguageDropdownOpen,
         isSearchBoxOpen: false,
-        isSignUpBoxOpen: false
+        isSignUpBoxOpen: false,
       };
 
     case "IS_SIGNUP_OPENED":
       return {
         ...state,
         isSignUpBoxOpen: !state.isSignUpBoxOpen,
-        isSearchBoxOpen: false
+        isSearchBoxOpen: false,
       };
 
     case "IS_SEARCH_OPENED":
       return {
         ...state,
         isSearchBoxOpen: !state.isSearchBoxOpen,
-        isSignUpBoxOpen: false
+        isSignUpBoxOpen: false,
       };
 
     case "IS_HAMBURGER_OPENED":
       return {
         isHamburgerOpen: !state.isHamburgerOpen,
         isSignUpBoxOpen: false,
-        isSearchBoxOpen: false
+        isSearchBoxOpen: false,
       };
 
     case "CLICK_AWAY":
       return {
         isHamburgerOpen: false,
         isSignUpBoxOpen: false,
-        isSearchBoxOpen: false
+        isSearchBoxOpen: false,
       };
 
     default:
@@ -54,7 +54,10 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const [navbarWithBackground, setNavbarWithBackground] = useState(false);
+  const [
+    navbarWithTransparentBackground,
+    setNavbarWithTransparentBackground,
+  ] = useState(false);
   const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
 
   const [
@@ -62,17 +65,17 @@ const Navbar = () => {
       isLanguageDropdownOpen,
       isSignUpBoxOpen,
       isSearchBoxOpen,
-      isHamburgerOpen
+      isHamburgerOpen,
     },
-    dispatch
+    dispatch,
   ] = useReducer(navbarIconsReducer, {
     isLanguageDropdownOpen: false,
     isSignUpBoxOpen: false,
     isSearchBoxOpen: false,
-    isHamburgerOpen: false
+    isHamburgerOpen: false,
   });
 
-  const handleStatus = type => dispatch({ type });
+  const handleStatus = (type) => dispatch({ type });
 
   const hamburgerMenu = (
     <Row
@@ -83,38 +86,37 @@ const Navbar = () => {
     </Row>
   );
 
+  const componentsLocation = ["/", "/about", "/signup"];
   // To give navbar background on components with white background
-  const navBarClassForLocation = currentLocation => {
-    const componentsLocation = ["/blog", "/products", "/shoppingcart"];
+  const navBarClassForLocation = (currentLocation) => {
     for (let i in componentsLocation) {
       if (currentLocation === componentsLocation[i]) {
-        setNavbarWithBackground(true);
+        setNavbarWithTransparentBackground(true);
         break;
       } else {
-        setNavbarWithBackground(false);
+        setNavbarWithTransparentBackground(false);
       }
     }
   };
 
   // To give navbar background on scrolling
-  const changeNavbarClassNameOnScroll = currentLocation => {
-    const componentsLocation = ["/", "/about"];
-    const listener = document.addEventListener("scroll", e => {
+  const changeNavbarClassNameOnScroll = (currentLocation) => {
+    const listener = document.addEventListener("scroll", (e) => {
       const scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 90) {
         if (scrollStateOnTop) {
           setScrollStateOnTop(false);
-          setNavbarWithBackground(true);
+          setNavbarWithTransparentBackground(false);
         }
       } else {
         if (!scrollStateOnTop) {
           for (let i in componentsLocation) {
             if (currentLocation === componentsLocation[i]) {
               setScrollStateOnTop(true);
-              setNavbarWithBackground(false);
+              setNavbarWithTransparentBackground(true);
               break;
             } else {
-              setNavbarWithBackground(true);
+              setNavbarWithTransparentBackground(false);
             }
           }
         }
@@ -193,8 +195,8 @@ const Navbar = () => {
     let classNames = ["navbar"];
     if (isSearchBoxOpen) {
       classNames.push("moveOverHeader");
-    } else if (navbarWithBackground) {
-      classNames.push("navbarWithBackground");
+    } else if (navbarWithTransparentBackground) {
+      classNames.push("navbarWithTransparentBackground");
     }
     return classNames.join(" ");
   };

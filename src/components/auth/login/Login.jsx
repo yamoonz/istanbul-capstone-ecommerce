@@ -12,7 +12,7 @@ const LogInForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
 
-  const userLogout = e => {
+  const userLogout = (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
       setIsAdmin(false);
@@ -20,7 +20,7 @@ const LogInForm = () => {
     });
   };
 
-  const userLogin = async e => {
+  const userLogin = async (e) => {
     e.preventDefault();
     const userLogin = await auth.signInWithEmailAndPassword(
       emailValue,
@@ -36,24 +36,32 @@ const LogInForm = () => {
   };
 
   const emailGroup = (
-    <Form.Group controlId="formGroupEmail">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        type="email"
-        placeholder="Enter email"
-        onChange={e => setEmailValue(e.target.value)}
-      />
+    <Form.Group controlId="formGroupEmail" className="formGroupEmail">
+      <Form.Label className="formInputLabel">Email address</Form.Label>
+      <div className="formInputWrapper">
+        <i className="fas fa-user-circle"></i>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          className="formInput"
+          onChange={(e) => setEmailValue(e.target.value)}
+        />
+      </div>
     </Form.Group>
   );
 
   const passwordGroup = (
     <Form.Group controlId="formGroupPassword">
       <Form.Label>Password</Form.Label>
-      <Form.Control
-        type="password"
-        placeholder="Password"
-        onChange={e => setPasswordValue(e.target.value)}
-      />
+      <div className="formInputWrapper">
+        <i className="fas fa-key"></i>
+        <Form.Control
+          type="password"
+          placeholder="Enter your password"
+          className="formInput"
+          onChange={(e) => setPasswordValue(e.target.value)}
+        />
+      </div>
     </Form.Group>
   );
 
@@ -62,7 +70,7 @@ const LogInForm = () => {
       {isAdmin && <AddProducts />}
       <Col className="signupForm">
         <Form
-          onSubmit={e => {
+          onSubmit={(e) => {
             if (isLoggedIn) {
               userLogout(e);
             } else {
