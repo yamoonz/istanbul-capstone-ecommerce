@@ -30,13 +30,16 @@ const LogInForm = () => {
   const [authErrorTargetUi, setAuthErrorTargetUi] = useState(null);
   const authAlertContainerUi = useRef(null);
   const [isValidating, setIsValidating] = useState(false);
+  const [isLogOut, setIsLogOut] = useState(null);
 
   const userLogout = (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
-      dispatch(logInError(false, false));
       dispatch(logOut());
-      dispatch(popUpStatus(true));
+      setIsLogOut(true);
+      dispatch(logInError(false, false));
+      dispatch(popUpStatus(false));
+      setTimeout(() => setIsLogOut(false), ALERT_OPEN_SECONDS);
     });
   };
 
@@ -62,10 +65,12 @@ const LogInForm = () => {
         .get();
       setIsValidating(false);
       dispatch(logInError(false, true));
+      setIsLogOut(false);
       dispatch(
         logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
       );
       dispatch(popUpStatus(true));
+      setTimeout(() => dispatch(logInError(false, false)), ALERT_OPEN_SECONDS);
     }
   };
 
@@ -169,6 +174,22 @@ const LogInForm = () => {
     </Button>
   );
 
+  const logOutUi = (
+    <Overlay
+      show={isLogOut}
+      target={authErrorTargetUi}
+      placement="bottom"
+      container={authAlertContainerUi.current}
+      containerPadding={20}
+    >
+      <Popover>
+        <Popover.Title as="h2" className="authLogOutText">
+          Logged out! We'll miss you!
+        </Popover.Title>
+      </Popover>
+    </Overlay>
+  );
+
   return (
     <>
       <Col className="signupForm">
@@ -178,6 +199,7 @@ const LogInForm = () => {
           {isValidating ? validationButton : loginButton}
           {isAuthFailed && authErrorUi}
           {isAuthSucceeded && authSuccessUi}
+          {isLogOut && logOutUi}
         </Form>
       </Col>
     </>

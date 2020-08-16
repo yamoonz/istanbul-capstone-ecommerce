@@ -18,7 +18,6 @@ import {
   IS_HAMBURGER_OPENED,
   CLICK_AWAY,
 } from "./navbarFormConstants.js";
-import UserLoggedInDropdown from "../../auth/login/UserLoggedInDropdown.jsx";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -64,7 +63,6 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => state.authentication.isLoggedIn);
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
   const [
@@ -214,7 +212,7 @@ const Navbar = () => {
       classNames.push("navbarWithTransparentBackground");
     }
     return classNames.join(" ");
-  };  
+  };
 
   useEffect(() => {
     navBarClassForLocation(location.pathname);

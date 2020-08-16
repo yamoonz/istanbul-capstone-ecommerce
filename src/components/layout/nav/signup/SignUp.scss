@@ -1,5 +1,10 @@
 @import "../../../common/mixins";
 
+@mixin notification {
+  padding: 10px 12px;
+  font-size: 14px;
+  left: 7px;
+}
 $rightBorderRounded: 0.25rem 0 0 0.25rem;
 $leftBorderRounded: 0 0.25rem 0.25rem 0;
 $signUpIconBackground: #f3f3f36e;
@@ -84,16 +89,17 @@ $signUpFormIndex: 104;
 
     .authFailedText {
       color: #c5423a;
-      padding: 10px 12px;
-      font-size: 14px;
-      left: 7px;
+      @include notification;
     }
 
     .authSucceededText {
       color: #19aa44;
-      padding: 10px 12px;
-      font-size: 14px;
-      left: 7px;
+      @include notification;
+    }
+
+    .authLogOutText {
+      color: #88640f;
+      @include notification;
     }
 
     .formGroupPassword,
