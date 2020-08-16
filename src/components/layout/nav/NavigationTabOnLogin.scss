@@ -1,0 +1,19 @@
+$loggedInFormIndex = 104;
+
+.loggedInBox {
+  width: 150px !important;
+  padding: 10px !important;
+  transition: all 1s ease-in-out;
+  margin: 0 auto;
+  background-color: white;
+  transform: translateY(70px);
+  top: 30px;
+  color: black;
+  right: 35px;
+  display: block !important;
+  filter: drop-shadow(0 0 0.4rem black);
+  border-radius: 4px;
+
+  // To show SignUpBox on the Header overlay.
+  z-index: $loggedInFormIndex;
+}
