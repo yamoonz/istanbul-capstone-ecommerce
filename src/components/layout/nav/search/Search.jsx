@@ -69,7 +69,9 @@ const Search = () => {
             />
           </Col>
           <Col xl={2} lg={2} md={2} className="col-3 searchButtonWrapper">
-            <Button onClick={sendSearchQuery}>Search</Button>
+            <Button onClick={sendSearchQuery} className="searchButton">
+              Search
+            </Button>
           </Col>
         </Col>
         {searchQueryContainer ? (
