@@ -7,14 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { logOut, popUpStatus } from "../../redux/actions/index";
 
 // This is the user dropdown panel that only can be seen by logged in users.
-
 const NavigationTabOnLogin = () => {
   const history = useHistory();
   const isAdmin = useSelector((state) => state.authentication.isAdmin);
   const dispatch = useDispatch();
   const loggingOut = () => {
     dispatch(logOut());
-    isAdmin && history.push("/");
+    if (isAdmin) {
+      history.push("/");
+    }
     dispatch(popUpStatus(true));
   };
 

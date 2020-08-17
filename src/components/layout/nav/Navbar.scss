@@ -41,7 +41,7 @@ $closeSignUpIconIndex: 105;
   position: fixed;
   padding: 0;
   padding-right: 25px;
-  overflow-x: hidden;
+  overflow: hidden;
 
   // To show Navbar that has transparent background on top of Header component.
   z-index: $navbarIndex;
@@ -94,6 +94,10 @@ $closeSignUpIconIndex: 105;
     margin-right: 10px;
     padding: 10px 5px 10px 5px;
 
+    .shoppingCartIconContainer {
+      height: 22px;
+    }
+
     .iconWrapper {
       max-width: 35px;
       margin-right: 12px;
@@ -135,7 +139,7 @@ $closeSignUpIconIndex: 105;
       .loggedInTextContainer {
         flex-direction: column;
         flex-wrap: nowrap;
-        padding: 4px 0;
+        height: 70%;
 
         .loggedInTabText {
           margin: 0;

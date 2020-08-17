@@ -165,7 +165,7 @@ const Navbar = () => {
   };
 
   const shoppingCart = (
-    <NavLink to="/shoppingcart">
+    <NavLink to="/shoppingcart" className="shoppingCartIconContainer">
       <i className="fas fa-shopping-cart"></i>
     </NavLink>
   );
