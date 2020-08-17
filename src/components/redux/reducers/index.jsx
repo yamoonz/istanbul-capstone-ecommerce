@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 import {
-
   ADD_TO_CART,
   DELETE_FROM_CART,
   SUM_TOTAL_PRICE,
@@ -25,13 +24,16 @@ const addOrDeleteProductData = (state = [], action) => {
   }
 };
 
-
 const getModifiedQuantity = (state = [], action) => {
   switch (action.type) {
     case INCREASE_QUANTITY:
       return action.payload();
     case DECREASE_QUANTITY:
       return action.payload();
+    default:
+      return state;
+  }
+};
 
 const authenticationReducer = (state = {}, action) => {
   switch (action.type) {
@@ -62,7 +64,6 @@ const authenticationReducer = (state = {}, action) => {
   }
 };
 
-
 // Getting an array of prices , and enabling adding and removing items from the shopping cart.
 const getTotalPrice = (state = [], action) => {
   switch (action.type) {
@@ -72,6 +73,10 @@ const getTotalPrice = (state = [], action) => {
       return [action.payload];
     case SUBTRACT_PRICE_OF_ONE_ITEM:
       return [action.payload];
+    default:
+      return state;
+  }
+};
 
 const modalReducer = (state = {}, action) => {
   switch (action.type) {
@@ -91,7 +96,6 @@ const allReducers = combineReducers({
   modifiedQuantity: getModifiedQuantity,
   authentication: authenticationReducer,
   modal: modalReducer,
-
 });
 
 export default allReducers;

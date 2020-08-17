@@ -20,7 +20,6 @@ export const addProductToCart = (data) => {
   };
 };
 
-
 // This function subtract one from the quantity which the user added to the shopping cart.
 const handleQuantitySubtraction = (data) => {
   const copyOfData = data.slice();
@@ -91,7 +90,7 @@ export const subtractPriceOfOneItem = (allItemsTotalPrice, itemTotalPrice) => {
     type: SUBTRACT_PRICE_OF_ONE_ITEM,
     payload: allItemsTotalPrice - itemTotalPrice,
   };
-
+};
 export const logIn = (user, admin) => {
   return { type: LOG_IN, user, admin };
 };
@@ -106,5 +105,4 @@ export const logInError = (payload) => {
 
 export const popUpStatus = (payload) => {
   return { type: SHOULD_POP_UP_CLOSE, payload };
-
 };
