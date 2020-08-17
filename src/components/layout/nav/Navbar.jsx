@@ -2,7 +2,7 @@ import React, { useState, useReducer, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
 import NavigationTabOnLogin from "./NavigationTabOnLogin.jsx";
@@ -20,6 +20,7 @@ import {
   IS_HAMBURGER_OPENED,
   CLICK_AWAY,
 } from "./navbarFormConstants.js";
+import { ADMIN } from "../../../containers/Route.paths.js";
 
 const CLOSE_MODAL_AFTER = 2500;
 
@@ -79,6 +80,8 @@ function navbarIconsReducer(state, action) {
 
 const Navbar = () => {
   const { isLoggedIn } = useSelector((state) => state.authentication);
+  const history = useHistory();
+  const isAdmin = useSelector((state) => state.authentication.isAdmin);
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
   const [
@@ -276,8 +279,10 @@ const Navbar = () => {
     if (isLoggedInBoxOpen && !isSignUpBoxOpen && !isLoggedIn) {
       handleStatus(IS_SIGNUP_OPENED);
       dispatch(popUpStatus(false));
+      isAdmin && history.push(ADMIN);
     }
-  }, [currentPopUpStatus, isSignUpBoxOpen, isLoggedInBoxOpen, isLoggedIn]);
+  }, [currentPopUpStatus, isSignUpBoxOpen, isLoggedInBoxOpen, isLoggedIn, isAdmin, history ]);
+     
 
   useEffect(() => {
     handleStatus(CLICK_AWAY);
