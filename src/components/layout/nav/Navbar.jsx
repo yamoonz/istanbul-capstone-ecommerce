@@ -281,8 +281,14 @@ const Navbar = () => {
       dispatch(popUpStatus(false));
       isAdmin && history.push(ADMIN);
     }
-  }, [currentPopUpStatus, isSignUpBoxOpen, isLoggedInBoxOpen, isLoggedIn, isAdmin, history ]);
-     
+  }, [
+    currentPopUpStatus,
+    isSignUpBoxOpen,
+    isLoggedInBoxOpen,
+    isLoggedIn,
+    isAdmin,
+    history,
+  ]);
 
   useEffect(() => {
     handleStatus(CLICK_AWAY);

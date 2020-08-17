@@ -3,13 +3,14 @@ import PaymentSum from "./paymentbar/PaymentSum";
 import CartDetail from "./cartdetail/CartDetail";
 import "./cartdetail/CartDetail.scss";
 import AccessCheck from "../common/AccessCheck";
+import ShoppingList from "./shoppingList/ShoppingList";
 
 const Cart = () => {
   return (
     <div className="shoppingCartWrapper">
       <AccessCheck />
       <PaymentSum />
-      <CartDetail />
+      <ShoppingList />
     </div>
   );
 };

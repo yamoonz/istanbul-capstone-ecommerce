@@ -4,25 +4,29 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import "./PaymentSum.scss";
+import { useSelector } from "react-redux";
 
 // TODO(emrerdem1): To get these datas from Redux.
 const SHIPPING_COST = 10;
 const AMOUNT_TO_FREE_SHIPPING = 150;
-const TEMPORARY_SUBTOTAL = 160;
 
 const PaymentSum = () => {
+  const allPrices = useSelector((state) => state.getTotalPrice);
+  const total = allPrices.reduce((cur, acc) => {
+    return cur + acc;
+  }, 0);
+
   const [shippingCost] = useState(SHIPPING_COST);
-  const [subTotal] = useState(TEMPORARY_SUBTOTAL);
 
   let totalCost;
   let isShippingFree;
 
-  if (subTotal >= AMOUNT_TO_FREE_SHIPPING) {
+  if (total >= AMOUNT_TO_FREE_SHIPPING) {
     isShippingFree = true;
-    totalCost = subTotal;
+    totalCost = total;
   } else {
     isShippingFree = false;
-    totalCost = subTotal + shippingCost;
+    totalCost = total + shippingCost;
   }
 
   const orderSummaryRow = (
@@ -30,7 +34,7 @@ const PaymentSum = () => {
       <h3 className="orderTitle">Order Summary</h3>
       <Col className="subTotal">
         <span>Subtotal</span>
-        <span className="subtotalNumber">${subTotal}</span>
+        <span className="subtotalNumber">${total}</span>
       </Col>
       <Col className="shipping">
         <span>Shipping</span>

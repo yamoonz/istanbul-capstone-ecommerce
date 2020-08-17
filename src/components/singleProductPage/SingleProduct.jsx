@@ -1,9 +1,18 @@
 import React from "react";
 import Slider from "react-slick";
 import "./singleProductDetails.scss";
+import { addProductToCart } from "../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increaseProductQuantity,
+  decreaseProductQuantity,
+} from "../redux/actions/";
 
-export default function SingleProduct({ productData }) {
-  const { title, images, brand, price } = productData;
+export default function SingleProduct({ singleProductData }) {
+  const dispatch = useDispatch();
+  const { title, images, brand, price, quantity } = singleProductData;
+  const productsData = useSelector((state) => state.addOrDeleteProductData);
+  const [currentProductQuantity, setCurrentProductQuantity] = React.useState(0);
   // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
   const description = "Health, soft and fast running shoes";
   const hasSize = true;
@@ -18,6 +27,23 @@ export default function SingleProduct({ productData }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const addItemToShoppingCart = () => {
+    let isItemAdded = false;
+    if (productsData.length !== 0) {
+      for (let i = 0; i < productsData.length; i++) {
+        let currentItemId = singleProductData.id;
+        if (productsData[i].id === currentItemId) {
+          productsData[i].quantity++;
+          isItemAdded = true;
+          break;
+        }
+      }
+      if (!isItemAdded) {
+        dispatch(addProductToCart(singleProductData));
+      }
+    }
   };
 
   return (
@@ -36,10 +62,31 @@ export default function SingleProduct({ productData }) {
         <span className="productPrice">{price}$</span>
         <p className="productTitle">{title}</p>
         <p className="productDescription">{description}</p>
-        <input type="number" className="productQuantity" name="quantity" />
+        {/* We are using data-quantity and set it eqaul to currentProductQuantity state to rerender the component */}
+        <input
+          type="number"
+          data-quantity={currentProductQuantity}
+          value={quantity}
+          className="productQuantity"
+          name="quantity"
+        />
         <div className="quantityIncAndDecBtns">
-          <button>+</button>
-          <button>-</button>
+          <button
+            onClick={() => {
+              dispatch(increaseProductQuantity([singleProductData]));
+              setCurrentProductQuantity(singleProductData.quantity);
+            }}
+          >
+            +
+          </button>
+          <button
+            onClick={() => {
+              dispatch(decreaseProductQuantity([singleProductData]));
+              setCurrentProductQuantity(singleProductData.quantity);
+            }}
+          >
+            -
+          </button>
         </div>
         <span className="quantity">Quantity</span>
         {hasSize && (
@@ -53,7 +100,18 @@ export default function SingleProduct({ productData }) {
           </select>
         )}
 
-        <button className="addToCartBtn">Add to cart</button>
+        <button
+          className="addToCartBtn"
+          onClick={() => {
+            if (productsData.length !== 0) {
+              addItemToShoppingCart();
+            } else {
+              dispatch(addProductToCart(singleProductData));
+            }
+          }}
+        >
+          Add to cart
+        </button>
         <button className="buyNowBtn">Buy now</button>
         <button className="favoriteBtn">
           <i class="fas fa-heart" />
