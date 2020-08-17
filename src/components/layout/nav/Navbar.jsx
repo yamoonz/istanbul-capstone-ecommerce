@@ -173,6 +173,7 @@ const Navbar = () => {
   const handleShoppingCartWarning = (e) => {
     setShoppingCartTargetUi(e.target);
     setIsShoppingCartAccesRejected(true);
+    handleStatus(CLICK_AWAY);
     setTimeout(() => setIsShoppingCartAccesRejected(false), ALERT_OPEN_SECONDS);
   };
 
