@@ -16,8 +16,8 @@ import { useSelector } from "react-redux";
 const ADMIN_PAGE = "/dashboard";
 
 export const RouteBlock = () => {
-  /*const history = useHistory();
-  const isAdmin = useSelector((state) => state.authentication.isAdmin);*/
+  const history = useHistory();
+  const isAdmin = useSelector((state) => state.authentication.isAdmin);
 
   return (
     <Switch>
@@ -31,7 +31,7 @@ export const RouteBlock = () => {
       <Route path="/profile" component={ProfilePage} />
       <Route path="/about" component={AboutPage} />
       <Route path={ADMIN_PAGE} component={AdminPage} />
-      {/*isAdmin && history.push(ADMIN_PAGE)*/}
+      {isAdmin && history.push(ADMIN_PAGE)}
       <Route exact path="/" component={Home} />
       <Route component={NoMatch} />
     </Switch>
