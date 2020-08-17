@@ -2,9 +2,9 @@ import React, { useState, useReducer, useEffect, useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { NavLink, useHistory } from "react-router-dom";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
-import { NavLink } from "react-router-dom";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
 import NavigationTabOnLogin from "./NavigationTabOnLogin.jsx";
@@ -22,6 +22,7 @@ import {
   IS_HAMBURGER_OPENED,
   CLICK_AWAY,
 } from "./navbarFormConstants.js";
+import { ADMIN } from "../../../containers/Route.paths.js";
 
 const ALERT_OPEN_SECONDS = 2500;
 
@@ -80,6 +81,8 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
+  const history = useHistory();
+  const isAdmin = useSelector((state) => state.authentication.isAdmin);
   const shoppingCartUiContainer = useRef(null);
   const isLoggedIn = useSelector((state) => state.authentication.isLoggedIn);
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
@@ -321,6 +324,9 @@ const Navbar = () => {
   useEffect(() => {
     if (currentPopUpStatus && isSignUpBoxOpen) {
       handleStatus(IS_SIGNUP_OPENED);
+      if (isAdmin) {
+        history.push(ADMIN);
+      }
     }
     if (isLoggedInBoxOpen && !isSignUpBoxOpen && !isLoggedIn) {
       handleStatus(IS_SIGNUP_OPENED);
@@ -332,6 +338,8 @@ const Navbar = () => {
     isLoggedInBoxOpen,
     isLoggedIn,
     dispatch,
+    isAdmin,
+    history,
   ]);
 
   useEffect(() => {
