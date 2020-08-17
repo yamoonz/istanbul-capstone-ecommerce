@@ -39,16 +39,22 @@ const LogInForm = () => {
     } catch (error) {
       dispatch(logInError(error));
     }
-
     if (userLogin) {
-      const loggedInUserName = await db
+      await db
         .collection("users")
         .doc(userLogin.user.uid)
-        .get();
-      dispatch(
-        logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
-      );
-      dispatch(popUpStatus(true));
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            dispatch(logIn(doc.data().name, doc.data().isAdmin));
+            dispatch(popUpStatus(true));
+          } else {
+            dispatch(logInError());
+          }
+        })
+        .catch((error) => {
+          dispatch(logInError(error));
+        });
     }
   };
 
