@@ -11,8 +11,8 @@ export default function AboutHeader() {
       <div className="aboutLine"></div>
       <h1>Who are we</h1>
       <p className="aboutDescription">
-      We are a group of four people who aims to enhance the health of everyone
-       by both strengthen the read about health and providing healthy products.
+        We are a group of four people who aims to enhance the health of everyone
+        by both strengthen the read about health and providing healthy products.
       </p>
     </div>
   );
