@@ -85,8 +85,8 @@ const Navbar = () => {
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
   const [
-    isShoppingCartAccesRejected,
-    setIsShoppingCartAccesRejected,
+    isShoppingCartAccessRejected,
+    setIsShoppingCartAccessRejected,
   ] = useState(false);
   const [shoppingCartTargetUi, setShoppingCartTargetUi] = useState(null);
   const [
@@ -172,9 +172,12 @@ const Navbar = () => {
 
   const handleShoppingCartWarning = (e) => {
     setShoppingCartTargetUi(e.target);
-    setIsShoppingCartAccesRejected(true);
+    setIsShoppingCartAccessRejected(true);
     handleStatus(CLICK_AWAY);
-    setTimeout(() => setIsShoppingCartAccesRejected(false), ALERT_OPEN_SECONDS);
+    setTimeout(
+      () => setIsShoppingCartAccessRejected(false),
+      ALERT_OPEN_SECONDS
+    );
   };
 
   const shoppingCartLocked = (
@@ -186,7 +189,7 @@ const Navbar = () => {
 
   const shoppingCartWarningUi = (
     <Overlay
-      show={isShoppingCartAccesRejected}
+      show={isShoppingCartAccessRejected}
       target={shoppingCartTargetUi}
       placement="bottom"
       container={shoppingCartUiContainer.current}
@@ -352,7 +355,7 @@ const Navbar = () => {
         </>
       )}
       {isLoggedInBoxOpen && <NavigationTabOnLogin />}
-      {isShoppingCartAccesRejected && shoppingCartWarningUi}
+      {isShoppingCartAccessRejected && shoppingCartWarningUi}
     </ClickAwayListener>
   );
 };
