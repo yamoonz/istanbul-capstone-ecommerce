@@ -2,14 +2,18 @@ import React from "react";
 import SingleProduct from "./SingleProduct";
 import SliderSection from "./SliderSection";
 import { MOCK_DATABASE } from "../common/MockDatabase";
+import { useParams } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import "./singleProductDetails.scss";
 
 const SingleProductPage = () => {
+  const { productId } = useParams();
+  const currentItemId = productId - 1;
+
   return (
     <Container className="productDetailsContainer">
       <Row className="productDetailsRow">
-        <SingleProduct productData={MOCK_DATABASE[0]} />
+        <SingleProduct singleProductData={MOCK_DATABASE[currentItemId]} />
       </Row>
       <Row>
         <SliderSection />
