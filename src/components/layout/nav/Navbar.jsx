@@ -76,7 +76,7 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const { isLoggedIn, isAdmin } = useSelector((state) => state.authentication);
+  const { isLoggedIn } = useSelector((state) => state.authentication);
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
   const [
@@ -272,7 +272,11 @@ const Navbar = () => {
     if (currentPopUpStatus && isSignUpBoxOpen) {
       handleStatus(IS_SIGNUP_OPENED);
     }
-  }, [currentPopUpStatus, isSignUpBoxOpen]);
+    if (isLoggedInBoxOpen && !isSignUpBoxOpen && !isLoggedIn) {
+      handleStatus(IS_SIGNUP_OPENED);
+      dispatch(popUpStatus(false));
+    }
+  }, [currentPopUpStatus, isSignUpBoxOpen, isLoggedInBoxOpen, isLoggedIn]);
 
   useEffect(() => {
     handleStatus(CLICK_AWAY);

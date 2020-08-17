@@ -1,4 +1,5 @@
 @import "../../common/mixins";
+@import "../../common/variables";
 
 @mixin flexCenter {
   display: flex;
@@ -9,14 +10,13 @@
 $navbarIndex: 102;
 $hamburgerIconIndex: 103;
 $closeSignUpIconIndex: 105;
-$navBarDefault: #464b5b;
 
 .navbarWithTransparentBackground {
   background-color: transparent !important;
 }
 
 .navbar {
-  background-color: $navBarDefault;
+  background-color: $navbarGeneralBlue;
   display: flex;
   height: 100px;
   justify-content: space-around;
@@ -85,9 +85,9 @@ $navBarDefault: #464b5b;
       order: 5;
       background-color: #efe9e9;
       border: 2px solid #8c8c92;
-      height: 40px;
+      height: 45px;
       border-radius: 3px;
-      color: $navBarDefault;
+      color: $navbarGeneralBlue;
       margin: 0;
       padding: 0 10px;
       min-width: 128px !important;
@@ -128,7 +128,7 @@ $navBarDefault: #464b5b;
         }
 
         .loggedUserName {
-          font-size: 10px;
+          font-size: 9px;
           line-height: 9px;
         }
       }
@@ -160,7 +160,7 @@ $navBarDefault: #464b5b;
 
   .hamburgerContainer {
     display: none;
-    background-color: $navBarDefault;
+    background-color: $navbarGeneralBlue;
   }
 }
 
