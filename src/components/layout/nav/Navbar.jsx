@@ -21,9 +21,9 @@ import {
   CLICK_AWAY,
 } from "./navbarFormConstants.js";
 import { ADMIN } from "../../../containers/Route.paths.js";
+import { useTranslation } from "react-i18next";
 
 const CLOSE_MODAL_AFTER = 2500;
-import { useTranslation } from "react-i18next";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {

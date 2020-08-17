@@ -14,6 +14,7 @@ import {
   popUpStatus,
 } from "../../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const ALERT_OPEN_SECONDS = 2500;
 const VALIDATING_TEXT = "Validating...";
@@ -25,9 +26,6 @@ const LogInForm = () => {
     (state) => state.authentication
   );
   const dispatch = useDispatch();
-import { useTranslation } from "react-i18next";
-
-const LogInForm = () => {
   const { t } = useTranslation();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
@@ -84,7 +82,9 @@ const LogInForm = () => {
 
   const emailGroup = (
     <Form.Group controlId="formGroupEmail" className="formGroupEmail">
-      <Form.Label className="formInputLabel">{t("homepage.loginform.email")}</Form.Label>
+      <Form.Label className="formInputLabel">
+        {t("homepage.loginform.email")}
+      </Form.Label>
       <div className="formInputWrapper">
         <i className="fas fa-user-circle"></i>
         <Form.Control
@@ -99,7 +99,9 @@ const LogInForm = () => {
 
   const passwordGroup = (
     <Form.Group controlId="formGroupPassword">
-      <Form.Label className="formInputLabel">{t("homepage.loginform.password")}</Form.Label>
+      <Form.Label className="formInputLabel">
+        {t("homepage.loginform.password")}
+      </Form.Label>
       <div className="formInputWrapper">
         <i className="fas fa-key"></i>
         <Form.Control
