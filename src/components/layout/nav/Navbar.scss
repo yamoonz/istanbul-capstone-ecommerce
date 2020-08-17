@@ -4,12 +4,14 @@
 $navbarIndex: 102;
 $hamburgerIconIndex: 103;
 $closeSignUpIconIndex: 105;
+$navBarDefault: #464b5b;
 
-.navbarWithBackground {
-  background-color: #464b5b;
+.navbarWithTransparentBackground {
+  background-color: transparent !important;
 }
 
 .navbar {
+  background-color: $navBarDefault;
   display: flex;
   height: 100px;
   justify-content: space-around;
@@ -99,6 +101,7 @@ $closeSignUpIconIndex: 105;
 
   .hamburgerContainer {
     display: none;
+    background-color: $navBarDefault;
   }
 }
 

@@ -1,3 +1,4 @@
+
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_FROM_CART = "DELETE_FROM_CART";
 export const PRODUCT_QUANTITY = "PRODUCT_QUANTITY";
@@ -8,3 +9,8 @@ export const ADD_PRICE_OF_ONE_ITEM = "ADD_PRICE_OF_ONE_ITEM";
 export const SUBTRACT_PRICE_OF_ONE_ITEM = "SUBTRACT_PRICE_OF_ONE_ITEM";
 export const DECREASE_QUANTITY = " DECREASE_QUANTITY";
 export const INCREASE_QUANTITY = " INCREASE_QUANTITY";
+export const LOG_IN = "LOG_IN";
+export const LOG_OUT = "LOG_OUT";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const SHOULD_POP_UP_CLOSE = "SHOULD_POP_UP_CLOSE";
+

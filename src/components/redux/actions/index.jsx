@@ -6,6 +6,10 @@ import {
   SUBTRACT_PRICE_OF_ONE_ITEM,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
+  LOG_IN,
+  LOG_OUT,
+  LOGIN_ERROR,
+  SHOULD_POP_UP_CLOSE,
 } from "./actionsTypes";
 
 // Adding items to the shopping cart with the selected quantity
@@ -15,6 +19,7 @@ export const addProductToCart = (data) => {
     payload: data,
   };
 };
+
 
 // This function subtract one from the quantity which the user added to the shopping cart.
 const handleQuantitySubtraction = (data) => {
@@ -86,4 +91,20 @@ export const subtractPriceOfOneItem = (allItemsTotalPrice, itemTotalPrice) => {
     type: SUBTRACT_PRICE_OF_ONE_ITEM,
     payload: allItemsTotalPrice - itemTotalPrice,
   };
+
+export const logIn = (user, admin) => {
+  return { type: LOG_IN, user, admin };
+};
+
+export const logOut = () => {
+  return { type: LOG_OUT };
+};
+
+export const logInError = (payload) => {
+  return { type: LOGIN_ERROR, payload };
+};
+
+export const popUpStatus = (payload) => {
+  return { type: SHOULD_POP_UP_CLOSE, payload };
+
 };

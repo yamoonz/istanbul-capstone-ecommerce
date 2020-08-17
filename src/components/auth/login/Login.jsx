@@ -1,77 +1,104 @@
 import React, { useState } from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
-import AddProducts from "../../addProductsForm/AddProducts";
 import Button from "react-bootstrap/Button";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import {
+  logIn,
+  logOut,
+  logInError,
+  popUpStatus,
+} from "../../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const { isLoggedIn, authError } = useSelector(
+    (state) => state.authentication
+  );
+  const dispatch = useDispatch();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
 
   const userLogout = (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
-      setIsAdmin(false);
-      setLoggedIn(false);
+      dispatch(logOut());
+      dispatch(popUpStatus(true));
     });
   };
 
   const userLogin = async (e) => {
     e.preventDefault();
-    const userLogin = await auth.signInWithEmailAndPassword(
-      emailValue,
-      passwordValue
-    );
+    let userLogin;
+    try {
+      userLogin = await auth.signInWithEmailAndPassword(
+        emailValue,
+        passwordValue
+      );
+    } catch (error) {
+      dispatch(logInError(error));
+    }
 
-    const loggedInUserName = await db
-      .collection("users")
-      .doc(userLogin.user.uid)
-      .get();
-    setIsAdmin(loggedInUserName.data().isAdmin);
-    setLoggedIn(true);
+    if (userLogin) {
+      const loggedInUserName = await db
+        .collection("users")
+        .doc(userLogin.user.uid)
+        .get();
+      dispatch(
+        logIn(loggedInUserName.data().name, loggedInUserName.data().isAdmin)
+      );
+      dispatch(popUpStatus(true));
+    }
   };
 
   const emailGroup = (
-    <Form.Group controlId="formGroupEmail">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        type="email"
-        placeholder="Enter email"
-        onChange={(e) => setEmailValue(e.target.value)}
-      />
+    <Form.Group controlId="formGroupEmail" className="formGroupEmail">
+      <Form.Label className="formInputLabel">Email address</Form.Label>
+      <div className="formInputWrapper">
+        <i className="fas fa-user-circle"></i>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          className="formInput"
+          onChange={(e) => setEmailValue(e.target.value)}
+        />
+      </div>
     </Form.Group>
   );
 
   const passwordGroup = (
     <Form.Group controlId="formGroupPassword">
       <Form.Label>Password</Form.Label>
-      <Form.Control
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPasswordValue(e.target.value)}
-      />
+      <div className="formInputWrapper">
+        <i className="fas fa-key"></i>
+        <Form.Control
+          type="password"
+          placeholder="Enter your password"
+          className="formInput"
+          onChange={(e) => setPasswordValue(e.target.value)}
+        />
+      </div>
     </Form.Group>
   );
 
+  const authErrorUi = <div>Oops!</div>;
+
+  const handleOnSubmit = (e) => {
+    if (isLoggedIn) {
+      userLogout(e);
+    } else {
+      userLogin(e);
+    }
+  };
+
   return (
-    <Row>
-      {isAdmin && <AddProducts />}
+    <>
       <Col className="signupForm">
-        <Form
-          onSubmit={(e) => {
-            if (isLoggedIn) {
-              userLogout(e);
-            } else {
-              userLogin(e);
-            }
-          }}
-        >
+        <Form onSubmit={handleOnSubmit}>
           {emailGroup}
           {passwordGroup}
+          {authError && authErrorUi}
           <Button
             variant="info"
             size="md"
@@ -82,7 +109,7 @@ const LogInForm = () => {
           </Button>
         </Form>
       </Col>
-    </Row>
+    </>
   );
 };
 
