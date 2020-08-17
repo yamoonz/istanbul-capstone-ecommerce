@@ -1,0 +1,9 @@
+export const CATEGORIES = "/categories";
+export const PRODUCTS = "/products";
+export const SHOPPING_CART = "/shoppingcart";
+export const SIGN_UP = "/signup";
+export const BLOG = "/blog";
+export const PROFILE = "/profile";
+export const ABOUT = "/about";
+export const ADMIN = "/dashboard";
+export const HOME = "/";

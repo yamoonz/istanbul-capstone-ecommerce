@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import "./style.scss";
 import db from "../config/firebaseConfig";
+import AccessCheck from "../common/AccessCheck";
 
 export default function AddProducts() {
   const [hasSizes, setHasSizes] = useState(false);
@@ -71,6 +72,7 @@ export default function AddProducts() {
 
   return (
     <>
+      <AccessCheck />
       <Form onSubmit={(e) => addNewProductToDatabase(e)}>
         <Container className="productFormContainer">
           <Row className="productFormRow">
