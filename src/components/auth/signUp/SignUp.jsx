@@ -2,6 +2,7 @@ import React from "react";
 import { auth } from "../../config/firebaseConfig";
 import db from "../../config/firebaseConfig";
 import "./signUp.scss";
+import AccessCheck from "../../common/AccessCheck";
 
 export default function SignUp() {
   const createNewUser = async (e) => {
@@ -25,6 +26,7 @@ export default function SignUp() {
 
   return (
     <>
+      <AccessCheck />
       <div className="signUpContainer">
         <form className="signUpForm" onSubmit={createNewUser}>
           <h1 className="signUpTitle">Create Account</h1>

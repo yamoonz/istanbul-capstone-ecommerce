@@ -1,0 +1,79 @@
+@import "../../common/mixins";
+@import "../../common/variables";
+
+$loggedInFormIndex: 104;
+
+.loggedInBox {
+  position: fixed !important;
+  width: 170px !important;
+  padding: 5px !important;
+  transition: all 1s ease-in-out;
+  margin: 0 auto;
+  background-color: $loggedInTabBright;
+  transform: translateY(70px);
+  top: 30px;
+  color: black;
+  display: block !important;
+  filter: drop-shadow(0 0 0.4rem black);
+  border-radius: 4px;
+  margin-right: 2vw !important;
+  right: 4vw;
+  font-size: 15px;
+
+  @include resetAnchorHover(initial, initial);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: #efe9e9;
+    transform-origin: 0;
+    transform: rotate(45deg) translateX(-50%);
+    left: 50%;
+  }
+
+  // To show SignUpBox on the Header overlay.
+  z-index: $loggedInFormIndex;
+
+  .loggedInBoxItems {
+    display: flex;
+    padding: 0;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .profilePageIcon,
+    .logOutIcon,
+    .adminPageIcon {
+      color: $navbarGeneralBlue;
+      font-size: 17px;
+    }
+
+    .logOutIcon {
+      font-size: 19px;
+    }
+  }
+
+  .profilePageItemContainer::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #0a0a0a5e;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -1px;
+  }
+
+  .logOutIconContainer {
+    padding-top: 5px;
+  }
+
+  @include media(tablet) {
+    margin-right: 0 !important;
+    right: 4.5vw;
+  }
+}
