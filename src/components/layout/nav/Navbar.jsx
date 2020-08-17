@@ -23,6 +23,7 @@ import {
 import { ADMIN } from "../../../containers/Route.paths.js";
 
 const CLOSE_MODAL_AFTER = 2500;
+import { useTranslation } from "react-i18next";
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -90,6 +91,7 @@ const Navbar = () => {
   ] = useState(false);
   const [scrollStateOnTop, setScrollStateOnTop] = useState(true);
   let location = useLocation();
+  const { t } = useTranslation();
 
   const [
     {
@@ -171,17 +173,17 @@ const Navbar = () => {
       <Row xl={7} lg={7} className="navbarItems">
         <Col className="navLinkCol">
           <NavLink exact to="/">
-            Home
+            {t("homepage.navbar.menuHome")}
           </NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/about"> {t("homepage.navbar.menuAbout")}</NavLink>
         </Col>
         <Col className="navLinkCol">
           <NavLink to="/blog">Blog</NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/products"> {t("homepage.navbar.menuProducts")}</NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">

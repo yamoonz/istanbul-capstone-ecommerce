@@ -25,6 +25,10 @@ const LogInForm = () => {
     (state) => state.authentication
   );
   const dispatch = useDispatch();
+import { useTranslation } from "react-i18next";
+
+const LogInForm = () => {
+  const { t } = useTranslation();
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [authErrorTargetUi, setAuthErrorTargetUi] = useState(null);
@@ -80,12 +84,12 @@ const LogInForm = () => {
 
   const emailGroup = (
     <Form.Group controlId="formGroupEmail" className="formGroupEmail">
-      <Form.Label className="formInputLabel">Email address</Form.Label>
+      <Form.Label className="formInputLabel">{t("homepage.loginform.email")}</Form.Label>
       <div className="formInputWrapper">
         <i className="fas fa-user-circle"></i>
         <Form.Control
           type="email"
-          placeholder="Enter email"
+          placeholder={t("homepage.loginform.emailPlaceholder")}
           className="formInput"
           onChange={(e) => setEmailValue(e.target.value)}
         />
@@ -95,12 +99,12 @@ const LogInForm = () => {
 
   const passwordGroup = (
     <Form.Group controlId="formGroupPassword">
-      <Form.Label className="formInputLabel">Password</Form.Label>
+      <Form.Label className="formInputLabel">{t("homepage.loginform.password")}</Form.Label>
       <div className="formInputWrapper">
         <i className="fas fa-key"></i>
         <Form.Control
           type="password"
-          placeholder="Enter your password"
+          placeholder={t("homepage.loginform.passwordPlaceholder")}
           className="formInput"
           onChange={(e) => setPasswordValue(e.target.value)}
         />

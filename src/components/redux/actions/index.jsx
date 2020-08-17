@@ -34,7 +34,7 @@ export const logInError = (isFailed, isSucceeded = null) => {
 
 export const popUpStatus = (payload) => {
   return { type: SHOULD_POP_UP_CLOSE, payload };
-}
+};
 const handleQuantitySubtraction = (data) => {
   const copyOfData = data.slice();
   for (let i = 0; i < copyOfData.length; i++) {

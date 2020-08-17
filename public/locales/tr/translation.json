@@ -1,0 +1,37 @@
+{
+  "homepage": {
+    "header": {
+      "title": "Sağlığınız Bizim İçin Önemli",
+      "description": "Kolesterol, vücudumuzdaki her hücrede bulunan yağ benzeri bir maddedir. Yiyecekleri sindirmenize yardımcı olan hormonları ve maddeleri üretmek için vücudumuzun bir miktar kolesterole ihtiyacı vardır. Vücudumuz, ihtiyacı olan tüm kolesterolü üretir. Kolesterol, yumurta sarısı ve et gibi hayvansal kaynaklardan elde edilen gıdalarda da bulunur. Kandaki kolestrol seviyesi fazla arttığında diğer maddelerle birleşerek bir plak oluşturabilir.",
+      "getStarted": "Alışverişe Başla",
+      "signUp": "Kayıt Ol",
+      "shipping": "Hızlı Kargo",
+      "shippingInfo": "Siparişin sonraki gün kargoda!",
+      "education": "Bilinçlendirme",
+      "educationInfo": "Kaliteli ürünleri anlamayı öğrenin!",
+      "health": "Sağlıklı Yaşam",
+      "healthInfo": "Sadece doğal ürünler satın alın!"
+    },
+    "navbar": {
+      "menuHome": "Anasayfa",
+      "menuAbout": "Hakkımızda",
+      "menuProducts": "Ürünler"
+    },
+    "loginform": {
+      "email": "E-posta adresiniz",
+      "emailPlaceholder": "Kayıtlı e-posta adresinizi girin",
+      "password": "Şifre",
+      "passwordPlaceholder": "Şifrenizi girin",
+      "login": "Giriş",
+      "logout": "Çıkış",
+      "signUp": "Üye değil misiniz? Hemen kayıt olun!",
+      "loginSocial": "Sosyal Medyayla Giriş Yap veya Kayıt Ol:"
+    },
+    "search": {
+      "searchButton": "Ara",
+      "liveSearch": "Hızlı ara...",
+      "spinner": "Yükleniyor...",
+      "emptySearch": "Arama için lütfen bir şey yazın."
+    }
+  }
+}
