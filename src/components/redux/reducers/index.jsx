@@ -24,7 +24,8 @@ const authenticationReducer = (state = {}, action) => {
         userName: action.user,
         isLoggedIn: true,
         isAdmin: action.admin,
-        authError: false,
+        isAuthFailed: false,
+        isAuthSucceeded: true,
       };
     case LOG_OUT:
       return {
@@ -32,13 +33,14 @@ const authenticationReducer = (state = {}, action) => {
         userName: {},
         isLoggedIn: false,
         isAdmin: false,
-        authError: false,
+        isAuthFailed: false,
+        isAuthSucceeded: false,
       };
     case LOGIN_ERROR:
       return {
         ...state,
-        authError: true,
-        errorDetail: action.payload,
+        isAuthFailed: action.isFailed,
+        isAuthSucceeded: action.isAuthSucceeded,
       };
     default:
       return state;

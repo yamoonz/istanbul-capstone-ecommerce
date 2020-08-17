@@ -21,8 +21,8 @@ export const logOut = () => {
   return { type: LOG_OUT };
 };
 
-export const logInError = (payload) => {
-  return { type: LOGIN_ERROR, payload };
+export const logInError = (isFailed, isSucceeded = null) => {
+  return { type: LOGIN_ERROR, isFailed, isSucceeded };
 };
 
 export const popUpStatus = (payload) => {

@@ -1,5 +1,10 @@
 @import "../../../common/mixins";
 
+@mixin notification {
+  padding: 10px 12px;
+  font-size: 14px;
+  left: 7px;
+}
 $rightBorderRounded: 0.25rem 0 0 0.25rem;
 $leftBorderRounded: 0 0.25rem 0.25rem 0;
 $signUpIconBackground: #f3f3f36e;
@@ -26,6 +31,10 @@ $signUpFormIndex: 104;
 
   // To show SignUpBox on the Header overlay.
   z-index: $signUpFormIndex;
+
+  .validationSpinner {
+    margin-right: 10px;
+  }
 
   .socialMediaSeparator {
     width: 80%;
@@ -78,6 +87,21 @@ $signUpFormIndex: 104;
   .signupForm {
     padding: 0;
 
+    .authFailedText {
+      color: #c5423a;
+      @include notification;
+    }
+
+    .authSucceededText {
+      color: #19aa44;
+      @include notification;
+    }
+
+    .authLogOutText {
+      color: #88640f;
+      @include notification;
+    }
+
     .formGroupPassword,
     .formGroupEmail {
       margin-bottom: 0.5rem;
@@ -124,6 +148,7 @@ $signUpFormIndex: 104;
     width: 100%;
     height: 30px;
     margin-bottom: 15px;
+    padding-top: 5px;
     text-align: center;
 
     a {
@@ -134,10 +159,13 @@ $signUpFormIndex: 104;
 
   .loginButton {
     font-size: 15px;
-    margin-top: 15px;
     width: 100%;
     background-color: $loginButtonColor;
     border-color: $loginButtonColor;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1px;
+    height: 36px;
   }
 }
 
