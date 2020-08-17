@@ -1,6 +1,5 @@
 import React from "react";
 import PaymentSum from "./paymentbar/PaymentSum";
-import CartDetail from "./cartdetail/CartDetail";
 import "./cartdetail/CartDetail.scss";
 import AccessCheck from "../common/AccessCheck";
 import ShoppingList from "./shoppingList/ShoppingList";

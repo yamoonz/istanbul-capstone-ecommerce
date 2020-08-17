@@ -13,6 +13,22 @@ $closeSignUpIconIndex: 105;
 
 .navbarWithTransparentBackground {
   background-color: transparent !important;
+  overflow: hidden;
+}
+
+.navbarClickAwayWrapper {
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+
+.shoppingCartLockedSvg {
+  background: url("../../../assets/svgs/locked-cart.svg") no-repeat;
+  display: inline-block;
+  height: 22px;
+  width: 25px;
 }
 
 .navbar {
@@ -66,6 +82,12 @@ $closeSignUpIconIndex: 105;
     }
   }
 
+  .shoppingCartAccessRejected {
+    color: #c13a3a;
+    height: 40px;
+    font-size: 14px;
+  }
+
   .iconTrio {
     width: 40%;
     position: relative;
@@ -77,6 +99,7 @@ $closeSignUpIconIndex: 105;
       max-width: 35px;
       margin-right: 12px;
       min-width: 18px;
+      @include flexCenter;
     }
 
     .loggedInUserIconWrapper {

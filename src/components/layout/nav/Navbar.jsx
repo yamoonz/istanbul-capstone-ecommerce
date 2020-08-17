@@ -1,8 +1,10 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { NavLink, useHistory } from "react-router-dom";
+import Overlay from "react-bootstrap/Overlay";
+import Popover from "react-bootstrap/Popover";
 import SignUpBox from "./signup/SignUp";
 import SearchBox from "./search/Search";
 import NavigationTabOnLogin from "./NavigationTabOnLogin.jsx";
@@ -24,6 +26,8 @@ import { ADMIN } from "../../../containers/Route.paths.js";
 import { useTranslation } from "react-i18next";
 
 const CLOSE_MODAL_AFTER = 2500;
+
+const ALERT_OPEN_SECONDS = 2500;
 
 function navbarIconsReducer(state, action) {
   switch (action.type) {
@@ -80,11 +84,17 @@ function navbarIconsReducer(state, action) {
 }
 
 const Navbar = () => {
-  const { isLoggedIn } = useSelector((state) => state.authentication);
   const history = useHistory();
   const isAdmin = useSelector((state) => state.authentication.isAdmin);
+  const shoppingCartUiContainer = useRef(null);
+  const isLoggedIn = useSelector((state) => state.authentication.isLoggedIn);
   const currentPopUpStatus = useSelector((state) => state.modal.isPopUpClosed);
   const dispatch = useDispatch();
+  const [
+    isShoppingCartAccesRejected,
+    setIsShoppingCartAccesRejected,
+  ] = useState(false);
+  const [shoppingCartTargetUi, setShoppingCartTargetUi] = useState(null);
   const [
     navbarWithTransparentBackground,
     setNavbarWithTransparentBackground,
@@ -162,6 +172,44 @@ const Navbar = () => {
     };
   };
 
+  const shoppingCart = (
+    <NavLink to="/shoppingcart">
+      <i className="fas fa-shopping-cart"></i>
+    </NavLink>
+  );
+
+  const handleShoppingCartWarning = (e) => {
+    setShoppingCartTargetUi(e.target);
+    setIsShoppingCartAccesRejected(true);
+    setTimeout(() => setIsShoppingCartAccesRejected(false), ALERT_OPEN_SECONDS);
+  };
+
+  const shoppingCartLocked = (
+    <span
+      className="shoppingCartLockedSvg"
+      onClick={handleShoppingCartWarning}
+    ></span>
+  );
+
+  const shoppingCartWarningUi = (
+    <Overlay
+      show={isShoppingCartAccesRejected}
+      target={shoppingCartTargetUi}
+      placement="bottom"
+      container={shoppingCartUiContainer.current}
+      containerPadding={20}
+      rootClose={true}
+      onHide
+      rootCloseEvent="click"
+    >
+      <Popover>
+        <Popover.Title as="h2" className="shoppingCartAccessRejected">
+          You need to login first!
+        </Popover.Title>
+      </Popover>
+    </Overlay>
+  );
+
   const fullNavbarMenu = (
     <Row
       className={`navbarItemWrapper collapseMenuItems ${
@@ -233,10 +281,8 @@ const Navbar = () => {
             ></i>
           </div>
         )}
-        <div className="iconWrapper">
-          <NavLink to="/shoppingcart">
-            <i className="fas fa-shopping-cart"></i>
-          </NavLink>
+        <div className="iconWrapper" ref={shoppingCartUiContainer}>
+          {isLoggedIn ? shoppingCart : shoppingCartLocked}
         </div>
         <div className="iconWrapper">
           <i
@@ -290,6 +336,7 @@ const Navbar = () => {
     isLoggedIn,
     isAdmin,
     history,
+    dispatch,
   ]);
 
   useEffect(() => {
@@ -297,22 +344,24 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <>
-      <ClickAwayListener onClickAway={handleClickAway}>
-        {isSearchBoxOpen && <SearchBox />}
-        <Container fluid className={navbarClassName()}>
-          {hamburgerMenu}
-          {fullNavbarMenu}
-        </Container>
-        {isSignUpBoxOpen && (
-          <>
-            {closeSignUpForm}
-            <SignUpBox />
-          </>
-        )}
-        {isLoggedInBoxOpen && <NavigationTabOnLogin />}
-      </ClickAwayListener>
-    </>
+    <ClickAwayListener
+      onClickAway={handleClickAway}
+      className="navbarClickAwayWrapper"
+    >
+      {isSearchBoxOpen && <SearchBox />}
+      <Container fluid className={navbarClassName()}>
+        {hamburgerMenu}
+        {fullNavbarMenu}
+      </Container>
+      {isSignUpBoxOpen && (
+        <>
+          {closeSignUpForm}
+          <SignUpBox />
+        </>
+      )}
+      {isLoggedInBoxOpen && <NavigationTabOnLogin />}
+      {isShoppingCartAccesRejected && shoppingCartWarningUi}
+    </ClickAwayListener>
   );
 };
 
