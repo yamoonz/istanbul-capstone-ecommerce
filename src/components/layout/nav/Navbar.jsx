@@ -215,7 +215,9 @@ const Navbar = () => {
         isHamburgerOpen ? "hamburgerOpened" : ""
       }`}
     >
-      <Row className="navbarLogo">KATARA</Row>
+      <NavLink exact to="/" className="navbarLogoWrapper">
+        <div className="navbarLogo"></div>
+      </NavLink>
 
       <Row xl={7} lg={7} className="navbarItems">
         <Col className="navLinkCol">
