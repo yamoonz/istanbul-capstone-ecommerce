@@ -119,7 +119,9 @@ const Navbar = () => {
 
   const hamburgerMenu = (
     <Row
-      className="hamburgerContainer navbarItemWrapper"
+      className={`hamburgerContainer navbarItemWrapper ${
+        isSearchBoxOpen ? "hamburgerContainerWithSearch" : ""
+      }`}
       onClick={() => handleStatus(IS_HAMBURGER_OPENED)}
     >
       <Col className="hamburgerIcon"></Col>
@@ -221,24 +223,30 @@ const Navbar = () => {
 
       <Row xl={7} lg={7} className="navbarItems">
         <Col className="navLinkCol">
-          <NavLink exact to="/">
-            Home
+          <NavLink exact to="/" className="navLinkWrapper">
+            <span>Home</span>
           </NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/about" className="navLinkWrapper">
+            <span>About</span>
+          </NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/blog" className="navLinkWrapper">
+            <span>Blog</span>
+          </NavLink>
         </Col>
         <Col className="navLinkCol">
-          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/products" className="navLinkWrapper">
+            <span>Products</span>
+          </NavLink>
         </Col>
       </Row>
       <Row xl={2} lg={2} className="iconTrio navbarItemWrapper">
         <div className="iconWrapper">
           <i
-            className="fas fa-search"
+            className="fas fa-search navbarIcon"
             onClick={() => handleStatus(IS_SEARCH_OPENED)}
           ></i>
         </div>
@@ -252,7 +260,7 @@ const Navbar = () => {
             }}
           >
             <Col className="loggedInTabCol loggedInUserIconCol loggedInIconsContainer">
-              <i className="fas fa-user-astronaut loggedDefaultIcon"></i>
+              <i className="fas fa-user-astronaut loggedDefaultIcon navbarIcon"></i>
             </Col>
             <Col
               className="loggedInTabCol loggedInTextContainer"
@@ -268,13 +276,13 @@ const Navbar = () => {
               <Col className="loggedInTabText loggedUserName">Emre Erdem</Col>
             </Col>
             <Col className="loggedInTabCol loggedInIconsContainer">
-              <i className="fas fa-arrow-down loggedArrowIcon"></i>
+              <i className="fas fa-arrow-down loggedArrowIcon navbarIcon"></i>
             </Col>
           </Row>
         ) : (
           <div className="iconWrapper">
             <i
-              className="fas fa-user-circle"
+              className="fas fa-user-circle navbarIcon"
               onClick={() => {
                 handleStatus(IS_SIGNUP_OPENED);
                 dispatch(popUpStatus(false));
@@ -285,9 +293,9 @@ const Navbar = () => {
         <div className="iconWrapper" ref={shoppingCartUiContainer}>
           {isLoggedIn ? shoppingCart : shoppingCartLocked}
         </div>
-        <div className="iconWrapper">
+        <div className="iconWrapper languageIconWrapper">
           <i
-            className="fas fa-globe"
+            className="fas fa-globe navbarIcon"
             onClick={() => handleStatus(IS_LANGUAGE_DROPDOWN_OPENED)}
           ></i>
           {isLanguageDropdownOpen && <LanguageDropdown />}
