@@ -64,7 +64,7 @@ const CATEGORIES_INFO = [
     img: sterhoscopeImg,
   },
   { 
-    name: "NUTRITION",
+    name: "Nutrition",
     img: NutritionImg,
   },
   {
