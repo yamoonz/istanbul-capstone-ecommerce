@@ -5,10 +5,29 @@ import { NavLink } from "react-router-dom";
 export default function SingleBlogCard(props) {
   const renderCard = (
     <Card>
-      <Card.Img variant="top" src={props.post.jetpack_featured_media_url} />
+      <NavLink
+        to={{
+          pathname: `/blog/${props.post.title.rendered}`,
+          state: props.post,
+        }}
+        exact
+        className="postImageWrapper"
+      >
+        <Card.Img variant="top" src={props.post.jetpack_featured_media_url} />
+      </NavLink>
 
       <Card.Body>
-        <Card.Title>{props.post.title.rendered}</Card.Title>
+        <Card.Title>
+          <NavLink
+            to={{
+              pathname: `/blog/${props.post.title.rendered}`,
+              state: props.post,
+            }}
+            exact
+          >
+            {props.post.title.rendered}
+          </NavLink>
+        </Card.Title>
       </Card.Body>
       <Card.Body>
         <Card.Text
@@ -17,15 +36,18 @@ export default function SingleBlogCard(props) {
           }}
         ></Card.Text>
       </Card.Body>
-      <Card.Body>
+      <Card.Body className="buttonContainer">
         <NavLink
           to={{
             pathname: `/blog/${props.post.title.rendered}`,
             state: props.post,
           }}
           exact
+          className="buttonReadMoreWrapper"
         >
-          <Button>Read more</Button>
+          <Button variant="info" className="buttonReadMore">
+            Read more
+          </Button>
         </NavLink>
       </Card.Body>
     </Card>
