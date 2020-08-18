@@ -10,13 +10,18 @@ import {
 
 export default function SingleProduct({ singleProductData }) {
   const dispatch = useDispatch();
-  const { title, images, brand, price, quantity } = singleProductData;
+  const {
+    title,
+    images,
+    brand,
+    price,
+    quantity,
+    description,
+    hasSize,
+    sizes,
+  } = singleProductData;
   const productsData = useSelector((state) => state.productsData);
   const [currentProductQuantity, setCurrentProductQuantity] = React.useState(0);
-  // These variables (description,hasSize,sizes) need to be replaced by the real data from firebase
-  const description = "Health, soft and fast running shoes";
-  const hasSize = true;
-  const sizes = [41, 42, 43, 44];
   const productImgsSliderSetting = {
     customPaging: function (i) {
       return <img src={`${images[i]}`} alt="product" className="smallImgs" />;

@@ -26,7 +26,9 @@ const handleQuantitySubtraction = (data) => {
   for (let i = 0; i < copyOfData.length; i++) {
     const currentItemId = data[i].id;
     if (copyOfData[i].id === currentItemId) {
-      copyOfData[i].quantity--;
+      if (copyOfData[i].quantity >= 1) {
+        copyOfData[i].quantity--;
+      }
     }
   }
   return copyOfData;

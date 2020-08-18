@@ -21,12 +21,12 @@ const PaymentSum = () => {
   let totalCost;
   let isShippingFree;
 
-  if (total >= AMOUNT_TO_FREE_SHIPPING) {
+  if (total >= AMOUNT_TO_FREE_SHIPPING || total === 0) {
     isShippingFree = true;
     totalCost = total;
   } else {
     isShippingFree = false;
-    totalCost = total + shippingCost;
+    totalCost = Math.round(total + shippingCost);
   }
 
   const orderSummaryRow = (

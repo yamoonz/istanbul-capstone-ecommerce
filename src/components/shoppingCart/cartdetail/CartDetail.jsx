@@ -20,7 +20,7 @@ const CartDetail = (props) => {
   // Getting all the total prices from individual items and add them together
   const itemsTotalPricesArray = useSelector((state) => state.totalPrice);
   const allItemsTotalPrice = itemsTotalPricesArray.reduce((cur, acc) => {
-    return cur + acc;
+    return Math.round(cur + acc);
   }, 0);
 
   // Get total price from one item
