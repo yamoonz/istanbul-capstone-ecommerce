@@ -54,7 +54,7 @@ export default function ProductCard(props) {
 
   return (
     <React.Fragment>
-      <Col xs={8} md={5} lg={3} className="ml-5">
+      <Col xs={8} sm={5} md={5} lg={3} className="ml-5">
         <div className="productCard">
           {likeBtn}
           <NavLink
