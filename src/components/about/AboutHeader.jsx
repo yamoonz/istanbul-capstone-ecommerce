@@ -13,7 +13,7 @@ export default function AboutHeader() {
       <p className="aboutDescription">
         We are a group of four people who aims to enhance the health of everyone{" "}
         <br />
-        by both strengthen the read about health and providing healthy products.
+        by both strengthening the understanding of healthy life and providing healthy products.
       </p>
     </div>
   );

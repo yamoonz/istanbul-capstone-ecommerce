@@ -17,7 +17,7 @@ export default function BlogOverviewHeader(props) {
               src={latestPost.jetpack_featured_media_url}
               alt="CardImage"
             />
-            <h6>Me</h6>
+            <h6>by Sylvia Saveur</h6>
             <h6>{latestPost.date.split("T")[0]}</h6>
           </div>
           <h1>{latestPost.title.rendered}</h1>
