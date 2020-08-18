@@ -1,7 +1,6 @@
 import React from "react";
 import AboutHeader from "./AboutHeader";
 import OurTeam from "./OurTeam";
-import Footer from "../layout/footer/Footer";
 import "./style.scss";
 
 export default function About() {
@@ -9,7 +8,6 @@ export default function About() {
     <div className="aboutPage">
       <AboutHeader />
       <OurTeam />
-      <Footer />
     </div>
   );
 }
