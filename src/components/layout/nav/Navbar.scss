@@ -1,17 +1,37 @@
 @import "../../common/mixins";
+@import "../../common/variables";
 
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 // Fixed Navbar always will be shown over other components except HamburgerIcon, Search and SignUpModal elements.
 $navbarIndex: 102;
 $hamburgerIconIndex: 103;
 $closeSignUpIconIndex: 105;
-$navBarDefault: #464b5b;
 
 .navbarWithTransparentBackground {
   background-color: transparent !important;
 }
 
+.navbarClickAwayWrapper {
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+
+.shoppingCartLockedSvg {
+  background: url("../../../assets/svgs/locked-cart.svg") no-repeat;
+  display: inline-block;
+  height: 22px;
+  width: 25px;
+}
+
 .navbar {
-  background-color: $navBarDefault;
+  background-color: $navbarGeneralBlue;
   display: flex;
   height: 100px;
   justify-content: space-around;
@@ -21,13 +41,13 @@ $navBarDefault: #464b5b;
   position: fixed;
   padding: 0;
   padding-right: 25px;
-  overflow-x: hidden;
+  overflow: hidden;
 
   // To show Navbar that has transparent background on top of Header component.
   z-index: $navbarIndex;
 
   .collapseMenuItems {
-    width: 80%;
+    width: 90%;
     justify-content: flex-end;
   }
 
@@ -39,18 +59,31 @@ $navBarDefault: #464b5b;
       padding-left: 5px;
       padding-right: 5px;
       transition: font-size 0.3s ease-in-out;
+      @include flexCenter;
     }
   }
 
-  .navbarLogo {
+  .navbarLogoWrapper {
     position: absolute;
-    max-width: 100px;
-    left: 100px;
+    width: 150px;
+    height: 100%;
+    @include flexCenter;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
+
+    .navbarLogo {
+      background: url("../../../assets/svgs/katara_logo.svg") no-repeat;
+      color: white;
+      width: 100%;
+      height: 35px;
+    }
   }
 
   .navbarItemWrapper {
     text-align: center;
+    position: relative;
 
     a {
       text-decoration: none;
@@ -58,20 +91,83 @@ $navBarDefault: #464b5b;
     }
   }
 
+  .shoppingCartAccessRejected {
+    color: #c13a3a;
+    height: 40px;
+    font-size: 14px;
+  }
+
   .iconTrio {
-    width: 25%;
+    width: 30%;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-    margin-right: 30px;
-    padding: 10px 5px 10px 5px;
+    @include flexCenter;
+    justify-content: flex-end;
+    padding: 10px 30px 10px 5px;
+
+    .shoppingCartIconContainer {
+      height: 22px;
+    }
 
     .iconWrapper {
       max-width: 35px;
-      margin-right: 8px;
+      margin-right: 12px;
       min-width: 18px;
+      @include flexCenter;
+    }
+
+    .loggedInUserIconWrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      order: 5;
+      background-color: #efe9e9;
+      border: 2px solid #8c8c92;
+      height: 45px;
+      border-radius: 3px;
+      color: $navbarGeneralBlue;
+      margin: 0;
+      padding: 0 10px;
+      min-width: 128px !important;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .loggedInTabCol {
+        padding: 0;
+        flex-wrap: wrap;
+        @include flexCenter;
+
+        .loggedDefaultIcon {
+          font-size: 19px;
+        }
+
+        .loggedArrowIcon {
+          font-size: 15px;
+        }
+      }
+
+      .loggedInTextContainer {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 70%;
+
+        .loggedInTabText {
+          margin: 0;
+          padding: 0;
+          @include flexCenter;
+        }
+
+        .loggedProfileText {
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 12px;
+        }
+
+        .loggedUserName {
+          font-size: 9px;
+          line-height: 9px;
+        }
+      }
     }
 
     // FontAwesome classNames.
@@ -85,12 +181,16 @@ $navBarDefault: #464b5b;
 
   @include media(tablet) {
     .navbarItems {
-      width: 60%;
       margin-right: 20px;
     }
 
     .navLinkCol {
       font-size: 95%;
+    }
+
+    .navbarLogo {
+      height: 25px;
+      width: 100px;
     }
 
     .fas,
@@ -101,21 +201,25 @@ $navBarDefault: #464b5b;
 
   .hamburgerContainer {
     display: none;
-    background-color: $navBarDefault;
+    background-color: $navbarGeneralBlue;
   }
 }
 
 @include media(tablet-sm) {
   .navbar {
     width: 200px;
-    height: 100vh;
-    min-height: 100vh;
+    height: 100%;
+    min-height: 100%;
     right: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: transparent;
     padding: 0;
+
+    .navbarItems {
+      margin: 0;
+    }
 
     .collapseMenuItems {
       align-items: center;
@@ -135,6 +239,10 @@ $navBarDefault: #464b5b;
         transform: translateX(0px);
         width: 100%;
       }
+    }
+
+    .hamburgerContainer {
+      background-color: transparent;
     }
 
     .hamburgerContainer {
@@ -180,8 +288,17 @@ $navBarDefault: #464b5b;
       }
     }
 
-    .navbarLogo {
-      bottom: 20px;
+    .navbarLogoWrapper {
+      height: 40px;
+      bottom: 0;
+      top: auto;
+      left: auto;
+
+      .navbarLogo {
+        bottom: 20px;
+        height: 25px;
+        width: 110px;
+      }
     }
 
     .navbarItems {
@@ -193,6 +310,10 @@ $navBarDefault: #464b5b;
       .navLinkCol {
         border-bottom: 0.1px solid #f5deb378;
         transition: all 1.5s ease-in-out;
+
+        .navLinkWrapper {
+          @include flexCenter;
+        }
 
         // Add border-top to the first side-nav item to tell them apart.
         &:nth-of-type(1) {
@@ -208,7 +329,6 @@ $navBarDefault: #464b5b;
           display: block;
           width: 100%;
           height: 100%;
-          padding-top: 10px;
         }
       }
     }
@@ -220,6 +340,12 @@ $navBarDefault: #464b5b;
       height: 50px;
       margin: 0 auto;
       margin-bottom: 30px;
+      padding: 0;
+      justify-content: center;
+
+      .languageIconWrapper {
+        margin: 0;
+      }
 
       .fas,
       .fab {
@@ -255,5 +381,28 @@ $navBarDefault: #464b5b;
   @include media(tablet-sm) {
     top: calc(50% - 240px);
     right: calc(50% - 150px);
+  }
+}
+
+@include media(phone-sm) {
+  .navbar {
+    width: 100%;
+
+    .iconWrapper {
+      margin-right: 20px !important;
+
+      .navbarIcon {
+        font-size: 30px !important;
+      }
+
+      .shoppingCartLockedSvg {
+        height: 30px;
+        width: 33px;
+      }
+    }
+
+    .languageIconWrapper {
+      margin: 0 !important;
+    }
   }
 }

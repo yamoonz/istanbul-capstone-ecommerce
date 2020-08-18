@@ -1,5 +1,8 @@
 @import "../common/mixins";
 
+$buttonReadMoreDefault: #485181 !important;
+$buttonReadMoreHovered: #c3c9eb !important;
+
 //React-bootstrap built in classes
 .btn-primary {
   margin-top: 80px;
@@ -7,6 +10,7 @@
 
 .card-body {
   padding: 20px 0;
+  @include resetAnchorHover(initial, initial);
 }
 
 .btn-primary {
@@ -18,6 +22,12 @@
   height: 100vh;
 }
 
+.postImageWrapper {
+  height: 200px;
+  cursor: pointer;
+  z-index: 1;
+}
+
 .blogHeader {
   padding-top: 110px;
   background-color: #ecebe4;
@@ -26,6 +36,8 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
+
+  @include resetAnchorHover(initial, initial);
 
   .headerImgBox {
     grid-row: 4/11;
@@ -160,6 +172,7 @@
       grid-column: 3/7;
     }
   }
+
   h6 {
     @include media(tablet) {
       display: none;
@@ -167,6 +180,33 @@
   }
 }
 
-.overviewCardCol {
-  margin-bottom: 200px;
+.overviewCardRow {
+  justify-content: space-evenly;
+
+  .overviewCardCol {
+    margin-bottom: 200px;
+  }
+}
+
+.buttonContainer {
+  justify-content: center;
+  display: flex;
+
+  .buttonReadMoreWrapper {
+    display: inline-block;
+    margin-top: 50px;
+
+    .buttonReadMore {
+      background-color: $buttonReadMoreDefault;
+      border-color: $buttonReadMoreDefault;
+      padding-left: 2rem;
+      padding-right: 2rem;
+
+      &:hover {
+        background-color: $buttonReadMoreHovered;
+        border-color: $buttonReadMoreHovered;
+        color: $buttonReadMoreDefault;
+      }
+    }
+  }
 }
