@@ -51,10 +51,13 @@ $fadedWhiteBright: #e5e2e2 !important;
       .footerLogo,
       .footerMotto {
         min-width: 100%;
+        font-size: 14px;
       }
 
       .footerLogo {
+        background: url("../../../assets/svgs/katara_logo.svg") no-repeat;
         color: white;
+        height: 55%;
       }
     }
 
@@ -104,8 +107,12 @@ $fadedWhiteBright: #e5e2e2 !important;
       color: $googleHoverColor;
     }
 
-    .github:hover {
-      color: $githubHoverColor;
+    .github {
+      margin: 0;
+
+      &:hover {
+        color: $githubHoverColor;
+      }
     }
 
     .facebook:hover {
@@ -139,6 +146,10 @@ $fadedWhiteBright: #e5e2e2 !important;
 
     .footerLinksLogo {
       margin-bottom: 30px;
+
+      .footerLogo {
+        height: 30px !important;
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ const Footer = () => {
     <Container fluid className="footerWrapper">
       <Row className="footerLinks">
         <Col xl={6} lg={6} md={6} sm={12} xs={12} className="footerLinksLogo">
-          <h3 className="footerLogo">LOGO</h3>
+          <div className="footerLogo"></div>
           <span className="footerMotto">Your health is in good hands.</span>
         </Col>
         <Col xl={3} lg={3} md={4} sm={8} xs={8} className="footerLinksBlogs">
